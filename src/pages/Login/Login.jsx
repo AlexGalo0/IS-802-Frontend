@@ -1,13 +1,11 @@
 import './style.css'
-import {Carrousel} from "./Components/Carrousel";
-import {Form} from "./Components/Form";
+import {Carrousel,Form} from "./Components";
 
 export const Login = () => {
   return (
     <>
     <Carrousel/>
     <Form/>
-
     </>
   )
 }
