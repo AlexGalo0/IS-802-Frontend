@@ -1,4 +1,4 @@
-import React from "react";
+import {DepSelect  } from "./Components/DepSelect";
 
 export const Registro = () => {
 	return (
@@ -20,6 +20,8 @@ export const Registro = () => {
 				<label>Repite la contraseña</label>
 				<input type='text' />
 
+				<label htmlFor="">Departamentos</label>
+				<DepSelect/>
 				<button>Enviar</button>
 			</form>
 		</>
