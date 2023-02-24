@@ -38,7 +38,7 @@ export const Registro = () => {
           }}
         >
           <Form
-            fluid
+            fluid="true"
             style={{
               justifyContent: "space-between",
               background: "#F2E8DF",
@@ -202,12 +202,12 @@ export const Registro = () => {
 					
               </Col>
             </Row>
-
-            <Form.Select aria-label="Departamentos">
-              <option>
-                <h3>
+            <h3>
                   Seleccione su departamento <FaVaadin />
                 </h3>
+            <Form.Select aria-label="Departamentos">
+              <option>
+                
               </option>
               <option value="1">Atlantida</option>
               <option value="2">Colon</option>
@@ -248,7 +248,7 @@ export const Registro = () => {
 						Enviar
 					</Button>
 				</Form>
+      </Container>
 			</header>
 		</>
-	);
-};
+	)}
