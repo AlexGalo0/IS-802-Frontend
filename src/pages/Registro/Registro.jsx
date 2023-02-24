@@ -20,9 +20,10 @@ export const Registro = () => {
     handleSubmit,
   } = useForm();
 
-  const enviarInfo = (data) => {
-    console.log(data);
-  };
+	const enviarInfo = (data) => {+
+		/* Agregar validacion de terminos y condiciones */
+		console.log(data);
+	};
 
   return (
     <>
@@ -158,7 +159,13 @@ export const Registro = () => {
                 }}
                 type="email"
                 placeholder="Ingrese su correo electronico"
+							{...register("correo",{required:true,maxLength:50})}
               />
+							{errors.correo?.type === "required" && (
+					<p>El campo Correo es requerido.</p>
+				)}
+					
+
               <Form.Text className="text-muted" style={{ color: "#3D403A" }}>
                 Nunca compartiremos tu correo electronico.
               </Form.Text>
@@ -173,7 +180,8 @@ export const Registro = () => {
                   <Form.Control
                     style={{ background: "#888c81" }}
                     type="password"
-                    placeholder="Ingrese su contrasenia"
+                    placeholder="Ingrese su contraseña"
+							{...register("password")}
                   />
                 </Form.Group>
               </Col>
@@ -187,8 +195,11 @@ export const Registro = () => {
                     style={{ background: "#888c81" }}
                     type="password"
                     placeholder="Ingrese su contrasenia"
+							{...register("password")}
                   />
                 </Form.Group>
+
+					
               </Col>
             </Row>
 
@@ -218,28 +229,26 @@ export const Registro = () => {
               <option value="18">Yoro</option>
             </Form.Select>
 
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check
-                style={{ justifyContent: "space-between", color: "#3D403A" }}
-                type="checkbox"
-                label="Echa un vistazo a los terminos y condiciones"
-              />
-            </Form.Group>
-
-            <Button
-              variant="primary"
-              type="submit"
-              style={{
-                background: "#A67356",
-                border: "#F2E8DF",
-                boxShadow: "5px 5px 1px 1px rgba(32,32,32,0.3)",
-              }}
-            >
-              Enviar
-            </Button>
-          </Form>
-        </Container>
-      </header>
-    </>
-  );
+					<Form.Group className='mb-3' controlId='formBasicCheckbox'>
+						<Form.Check
+							style={{ justifyContent: "space-between", color: "#3D403A" }}
+							type='checkbox'
+							label='Echa un vistazo a los terminos y condiciones'
+						/>
+					</Form.Group>
+					<Button
+						variant='primary'
+						type='submit'
+						style={{
+							background: "#A67356",
+							border: "#F2E8DF",
+							boxShadow: "5px 5px 1px 1px rgba(32,32,32,0.3)",
+						}}
+					>
+						Enviar
+					</Button>
+				</Form>
+			</header>
+		</>
+	);
 };
