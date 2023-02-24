@@ -1,9 +1,9 @@
-import {Login} from "./pages/Login/Login";
+import {Registro} from "./pages/Registro/Registro";
 function App() {
 
   return (
     <div>
-      <Login/>
+      <Registro/>
     </div>
   )
 }
