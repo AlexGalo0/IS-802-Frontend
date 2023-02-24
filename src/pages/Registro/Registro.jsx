@@ -16,14 +16,15 @@ export const Registro = () => {
 		handleSubmit,
 	} = useForm();
 
-	const enviarInfo = (data) => {
+	const enviarInfo = (data) => {+
+		/* Agregar validacion de terminos y condiciones */
 		console.log(data);
 	};
 
 	return (
 		<>
 			<header className='App-header'>
-				<h2 style={{ color: "#59362E" }}>Crea tu cuenta de : </h2>
+				<h2 style={{ color: "#59362E" }}>Crea tu cuenta de Marketplace : </h2>
 
 				<Form
 					style={{
@@ -50,8 +51,14 @@ export const Registro = () => {
 							}}
 							type='text'
 							placeholder='Ingrese su nombre'
-              {...register("nombre")}
+              {...register("nombre",{required:true,maxLength:3})}
             />
+			{errors.nombre?.type === "required" && (
+					<p>El campo Nombre es requerido.</p>
+				)}
+			{errors.nombre?.type === "maxLength" && (
+					<p>Tienes demasiados caracteres.</p> /* Añadir otro comentario  */ 
+				)}
 					</Form.Group>
 
 					<Form.Group
@@ -67,9 +74,15 @@ export const Registro = () => {
 							}}
 							type='text'
 							placeholder='Ingrese su apellido'
-              {...register("apellido")} 
+              {...register("apellido",{required:true,maxLength:50})} 
 						/>
 					</Form.Group>
+					{errors.apellido?.type === "required" && (
+					<p>El campo Apellido es requerido.</p>
+				)}
+					{errors.apellido?.type === "maxLength" && (
+					<p>Tienes demasiados caracteres.</p> /* Añadir otro comentario  */ 
+				)}
 
 					<Form.Group
 						className='mb-3'
@@ -84,7 +97,13 @@ export const Registro = () => {
 							}}
 							type='email'
 							placeholder='Ingrese su correo electronico'
+							{...register("correo",{required:true,maxLength:50})}
 						/>
+							{errors.correo?.type === "required" && (
+					<p>El campo Correo es requerido.</p>
+				)}
+					
+
 						<Form.Text className='text-muted' style={{ color: "#3D403A" }}>
 							Nunca compartiremos tu correo electronico.
 						</Form.Text>
@@ -95,7 +114,8 @@ export const Registro = () => {
 						<Form.Control
 							style={{ background: "#888c81" }}
 							type='password'
-							placeholder='Ingrese su contrasenia'
+							placeholder='Ingrese su contraseña'
+							{...register("password")}
 						/>
 					</Form.Group>
 					<Form.Group className='mb-3' controlId='formBasicPassword'>
@@ -106,8 +126,11 @@ export const Registro = () => {
 							style={{ background: "#888c81" }}
 							type='password'
 							placeholder='Ingrese su contrasenia'
+							{...register("password")}
 						/>
 					</Form.Group>
+
+					
 
 					<Form.Group className='mb-3' controlId='formBasicCheckbox'>
 						<Form.Check
@@ -129,6 +152,7 @@ export const Registro = () => {
 					</Button>
 				</Form>
 			</header>
+			
 		</>
 	);
 };
