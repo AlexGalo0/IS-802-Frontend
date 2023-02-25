@@ -13,17 +13,19 @@ import "./style.css";
 import { useForm } from "react-hook-form";
 import { FaVaadin } from "react-icons/fa";
 
+import {comprobarEdad} from "./helpers/comprobarEdad";
 export const Registro = () => {
 	const {
 		register,
-		formState: { errors },
+		formState: { errors},
 		handleSubmit,
 	} = useForm();
 
 	const enviarInfo = (data) => {
-		/* Agregar validacion de terminos y condiciones */
-		console.log(data);
-	};
+	// const {nombre,apellido,telefono,fechaNacimiento,dni,correo,password,confirmPassword,departamentos} = data
+	// console.log(nombre,apellido,telefono)
+	// console.log(data);
+};
 
 	return (
 		<>
@@ -142,8 +144,15 @@ export const Registro = () => {
 										}}
 										type='date'
 										placeholder='Ingrese su Fecha de nacimiento'
-										{...register("fechaNacimiento",{required:true})}
+										{...register("fechaNacimiento",{required:true,validate:comprobarEdad})}
+
 									/>
+									{errors?.fechaNacimiento?.type === "required" && (
+										<p>El campo Fecha de nacimiento es requerido.</p>
+									)}
+									{errors?.fechaNacimiento?.type === "validate" && (
+										<p>Debes ser mayor de 18.</p>
+									)}
 								</Form.Group>
 							</Col>
 						</Row>
@@ -213,7 +222,7 @@ export const Registro = () => {
 								{errors.password?.type === "required" && (
 									<p>El campo password es requerido.</p>
 								)}
-								{errors.password?.type === "maxLength" && (
+								{errors.password?.type === "minLength" && (
 									<p>
 										Tienes muy pocos caracteres.
 									</p> /* Añadir otro comentario  */
@@ -229,15 +238,15 @@ export const Registro = () => {
 										style={{ background: "#888c81" }}
 										type='password'
 										placeholder='Ingrese su contrasenia'
-										{...register("confirmPassword", { required: true })}
+										{...register("confirmPassword", { required: true,minLength:8 })}
 									/>
 								</Form.Group>
-								{errors.password?.type === "required" && (
+								{errors.confirmPassword?.type === "required" && (
 									<p>El campo password es requerido.</p>
 								)}
-								{errors.password?.type === "maxLength" && (
+								{errors.confirmPassword?.type === "minLength" && (
 									<p>
-										Tienes demasiados caracteres.
+										Tienes muy pocos caracteres
 									</p> /* Añadir otro comentario  */
 								)}
 							</Col>
@@ -278,7 +287,11 @@ export const Registro = () => {
 								style={{ justifyContent: "space-between", color: "#3D403A" }}
 								type='checkbox'
 								label='Echa un vistazo a los terminos y condiciones'
-							/>
+								{...register("contrato",{required:true})}
+								 ></Form.Check>
+								 	{errors.contrato?.type === "required" && (
+							<p>Debes de aceptar todos los terminos y condiciones</p>
+						)}
 						</Form.Group>
 						<Button
 							variant='primary'
