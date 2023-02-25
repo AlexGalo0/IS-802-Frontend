@@ -62,7 +62,7 @@ export const Registro = () => {
                   <Form.Control
                     style={{
                       background:
-                        "#FFF" /* Falta cambiar el color al placeholder */, 
+                        "#FFF" /* Falta cambiar el color al placeholder */
                     }}
                     type="text"
                     placeholder="Ingrese su nombre"
