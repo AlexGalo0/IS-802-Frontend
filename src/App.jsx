@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <Registro/>
-      <Construyendo/>
+      {/* <Construyendo/> */}
     </div>
   )
 }
