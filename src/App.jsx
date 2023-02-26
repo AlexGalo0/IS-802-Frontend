@@ -1,13 +1,11 @@
-import {Registro} from "./pages/Registro/Registro";
-import {Construyendo} from './pages/Registro/UI/Construyendo'
-
+import { Registro} from "./pages/Registro/Components/Registro";
+import { Construyendo } from "./pages/Registro/Components/UI/Construyendo";
 
 function App() {
 
   return (
     <div>
-      <Registro/>
-      {/* <Construyendo/> */}
+     <Registro/>
     </div>
   )
 }

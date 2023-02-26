@@ -9,8 +9,8 @@ import {
   NavDropdown,
   Row,
 } from "react-bootstrap";
-import '../styles/style.css'
-import whmcs from './whmcs.svg';
+import '../../styles/style.css'
+import whmcs from '../../styles/whmcs.svg'
 
 
 export const Construyendo = () => {
