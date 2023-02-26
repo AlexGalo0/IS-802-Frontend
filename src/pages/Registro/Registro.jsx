@@ -7,10 +7,10 @@ import {
 	Nav,
 	Navbar,
 	NavDropdown,
-	Row
+	Row,
 } from "react-bootstrap";
 import "./style.css";
-import { useForm } from "react-hook-form";
+import { get, useForm } from "react-hook-form";
 import { CiUser, CiCalendarDate } from "react-icons/ci";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { HiOutlineIdentification } from "react-icons/hi";
@@ -19,21 +19,27 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 import { comprobarEdad } from "./helpers/comprobarEdad";
 import { createUser } from "../../api/sendRequest.api";
+import { useRef } from "react";
 
 export const Registro = () => {
 	const {
 		register,
 		formState: { errors },
 		handleSubmit,
+		getValues,
+		setError,
+		watch
 	} = useForm();
+	const password = useRef({})
+	password.current = watch("password","")
 
 	const enviarInfo = async (data) => {
 		try {
 			console.log(data);
-			const response = await createUser(data);
-			console.log(response);
+			// const response = await createUser(data);
+			// console.log(response);
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 		}
 	};
 
@@ -61,7 +67,7 @@ export const Registro = () => {
 							</Col>
 						</Row>
 						<h1 style={{ color: "#0d0d0d", margin: "15px 0px auto" }}>
-							Crea tu cuenta de :{" "}
+							Crea tu cuenta de: 504Marketplace
 						</h1>
 
 						<Row>
@@ -77,16 +83,22 @@ export const Registro = () => {
 										className='Input'
 										type='text'
 										placeholder='Ingrese su nombre'
-										{...register("nombres", { required: true, maxLength: 10 })}
+										{...register("nombres", { required: true, maxLength: 40 , min:3 , pattern:/^[a-zA-Z]+$/})}
 									/>
 
 									{errors.nombre?.type === "required" && (
-										<p className='FontAlert'>El campo Nombre es requerido</p>
+										<p className='FontAlert'>El campo Nombre es requerido!</p>
 									)}
 									{errors.nombre?.type === "maxLength" && (
 										<p className='FontAlert'>
-											Tienes demasiados caracteres
-										</p> /* Añadir otro comentario  */
+											Tienes demasiados caracteres!
+										</p>
+									)}
+									{errors.nombre?.type === "min" && (
+										<p className='FontAlert'>Tienes muy pocos caracteres!</p>
+									)}
+									{errors.nombre?.type === "pattern" && (
+										<p className='FontAlert'>Tu nombre solo deben ser caracteres!</p>
 									)}
 								</Form.Group>
 							</Col>
@@ -102,7 +114,7 @@ export const Registro = () => {
 										className='Input'
 										type='text'
 										placeholder='Ingrese su apellido'
-										{...register("apellido", { required: true, maxLength: 10 })}
+										{...register("apellido", { required: true, maxLength: 10, min:3 , pattern:/^[a-zA-Z]+$/ })}
 									/>
 									{errors.apellido?.type === "required" && (
 										<p className='FontAlert'>El campo apellido es requerido</p>
@@ -111,6 +123,12 @@ export const Registro = () => {
 										<p className='FontAlert'>
 											Tienes demasiados caracteres
 										</p> /* Añadir otro comentario  */
+									)}
+									{errors.apellido?.type === "min" && (
+										<p className='FontAlert'>Tienes muy pocos caracteres!</p>
+									)}
+									{errors.apellido?.type === "pattern" && (
+										<p className='FontAlert'>Tu apellido solo deben ser caracteres!</p>
 									)}
 								</Form.Group>
 							</Col>
@@ -146,7 +164,7 @@ export const Registro = () => {
 									)}
 									{errors.telefono?.type === "pattern" && (
 										<p className='FontAlert'>
-											El formato es el siguiente : XXXX-XXXX
+											El formato es el siguiente : XXXX-XXXX 
 										</p> /* Añadir otro comentario  */
 									)}
 								</Form.Group>
@@ -183,7 +201,7 @@ export const Registro = () => {
 									required: true,
 									maxLength: 15,
 									pattern:
-										/[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9]/,
+									/^(0[1-9]|1[0-8])\d{2}-\d{4}-\d{5}/
 								})}
 							/>
 							{errors.dni?.type === "required" && (
@@ -210,10 +228,14 @@ export const Registro = () => {
 								className='Input'
 								type='email'
 								placeholder='Ingrese su correo electronico'
-								{...register("correo", { required: true, maxLength: 50 })}
+								{...register("correo", { required: true, maxLength: 50 , pattern:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/
+							})}
 							/>
 							{errors.correo?.type === "required" && (
 								<p className='FontAlert'>El campo Correo es requerido</p>
+							)}
+							{errors.correo?.type === "pattern" && (
+								<p className='FontAlert'>Debes ingresar un correo valido.</p>
 							)}
 
 							<Form.Text className='text-muted, FontLight'>
@@ -235,13 +257,14 @@ export const Registro = () => {
 										className='Input'
 										type='password'
 										placeholder='Ingrese su contraseña'
-										{...register("password", { required: true, minLength: 8 })}
+										
+										{...register("password", { required: true, minLength: 8})}
 									/>
 								</Form.Group>
 								{errors.password?.type === "required" && (
 									<p className='FontAlert'>El campo password es requerido</p>
 								)}
-								{errors.password?.type === "maxLength" && (
+								{errors.password?.type === "minLength" && (
 									<p className='FontAlert'>
 										Tienes muy pocos caracteres
 									</p> /* Añadir otro comentario  */
@@ -261,17 +284,28 @@ export const Registro = () => {
 										className='Input'
 										type='password'
 										placeholder='Ingrese su Contraseña'
-										{...register("confirmPassword", { required: true })}
+										{...register("confirmPassword", { required: true ,min:8, validate:(value)=>value===password.current})}
+										
 									/>
 								</Form.Group>
-								{errors.password?.type === "required" && (
+								{errors.confirmPassword?.type === "required" && (
 									<p className='FontAlert'>El campo password es requerido</p>
 								)}
-								{errors.password?.type === "maxLength" && (
+								{errors.confirmPassword?.type === "maxLength" && (
 									<p className='FontAlert'>
 										Tienes demasiados caracteres
-									</p> /* Añadir otro comentario  */
+									</p> 
 								)}
+								{
+									errors.confirmPassword && <p>Las contraseñas no coinciden</p>
+								}
+								{errors.confirmPassword?.type === "min" && (
+									<p className='FontAlert'>
+										Tienes muy pocos caracteres
+									</p> 
+								)}
+								
+								
 							</Col>
 						</Row>
 						<Form.Label className='FontMedium'>
