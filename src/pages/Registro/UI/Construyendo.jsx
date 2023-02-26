@@ -9,7 +9,7 @@ import {
   NavDropdown,
   Row,
 } from "react-bootstrap";
-import "../style.css"
+import '../styles/style.css'
 import whmcs from './whmcs.svg';
 
 

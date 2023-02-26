@@ -10,7 +10,8 @@ import {
   Row,
   Modal,
 } from "react-bootstrap";
-import "./style.css";
+import "./styles/style.css"
+import { useRef, useState } from "react";
 import { get, useForm } from "react-hook-form";
 import { CiUser, CiCalendarDate } from "react-icons/ci";
 import { IoMdPhonePortrait } from "react-icons/io";
@@ -21,7 +22,6 @@ import { GoLocation } from "react-icons/go";
 import { BiLeftArrow } from "react-icons/bi";
 import { comprobarEdad } from "./helpers/comprobarEdad";
 import { createUser } from "../../api/sendRequest.api";
-import { useRef, useState } from "react";
 import { Contrato } from "./UI/Contrato";
 
 export const Registro = () => {
