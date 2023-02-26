@@ -82,16 +82,16 @@ body,
   background-image: linear-gradient(
     to bottom right,
     #262524 0%,
-    #736F6C 20%,
-    #928e8c 40%,
-    #736F6C 60%,
+    #484745 20%,
+    #434242 40%,
+    #484745 60%,
     #262524 80%
   );
 
   background-size: 200% 200%;
   animation: movimiento 5s linear infinite alternate-reverse;
 
-  min-height: 110vh;
+  min-height: 120vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,7 +103,7 @@ body,
   background: transparent;
   /* border: #f2efed; */
   width: 650px;
-  height: 1100px; /* 850 */
+  height: 1200px; /* 850 */
   color: #3d403a;
 }
 
@@ -172,8 +172,8 @@ body,
 
 .Buttom-back {
   background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
-  width: 150px;
-  height: 25px;
+  width: 80px;
+  height: 30px;
   color: white;
   font-size: medium;
   padding: 0px;
@@ -187,6 +187,29 @@ body,
 	background:rgb(120, 69, 168)
 }
 
+.Buttom-Link {
+  padding-left: 1px;
+  padding-top: 3px;
+  font-size: 16px;
+  color: rgb(120, 69, 168);
+}
+
+.Buttom-close {
+  background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+  width: 150px;
+  height: 25px;
+  color: white;
+  font-size: medium;
+  padding: 0px;
+  border-bottom: #3d403a;
+  outline-style: outset;
+  outline-color: #E211CC;
+}
+ 
+.Buttom-close:hover{
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+	background:rgb(120, 69, 168)
+}
 /* background: "#A67356",
 								border: "#F2E8DF",
 								boxShadow: "5px 5px 1px 1px rgba(32,32,32,0.3)", */
