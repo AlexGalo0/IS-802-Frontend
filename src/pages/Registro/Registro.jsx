@@ -19,6 +19,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 
 import { comprobarEdad } from "./helpers/comprobarEdad";
+import { createUser } from "../../api/sendRequest.api";
 export const Registro = () => {
 	const {
 		register,
@@ -27,8 +28,13 @@ export const Registro = () => {
 	} = useForm();
 
 	const enviarInfo = async (data) => {
-
-		console.log(data);
+		try {
+			console.log(data);
+			const response = await createUser(data)
+			console.log(response);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
