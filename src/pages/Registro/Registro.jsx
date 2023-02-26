@@ -26,7 +26,8 @@ export const Registro = () => {
 		handleSubmit,
 	} = useForm();
 
-	const enviarInfo = (data) => {
+	const enviarInfo = async (data) => {
+
 		console.log(data);
 	};
 
@@ -70,13 +71,13 @@ export const Registro = () => {
 										className='Input'
 										type='text'
 										placeholder='Ingrese su nombre'
-										{...register("nombre", { required: true, maxLength: 10 })}
+										{...register("nombres", { required: true, maxLength: 10 })}
 									/>
 
-									{errors.nombre?.type === "required" && (
+									{errors.nombres?.type === "required" && (
 										<p className='FontAlert'>El campo Nombre es requerido</p>
 									)}
-									{errors.nombre?.type === "maxLength" && (
+									{errors.nombres?.type === "maxLength" && (
 										<p className='FontAlert'>
 											Tienes demasiados caracteres
 										</p> /* Añadir otro comentario  */
@@ -95,12 +96,12 @@ export const Registro = () => {
 										className='Input'
 										type='text'
 										placeholder='Ingrese su apellido'
-										{...register("apellido", { required: true, maxLength: 10 })}
+										{...register("apellidos", { required: true, maxLength: 10 })}
 									/>
-									{errors.apellido?.type === "required" && (
+									{errors.apellidos?.type === "required" && (
 										<p className='FontAlert'>El campo apellido es requerido</p>
 									)}
-									{errors.apellido?.type === "maxLength" && (
+									{errors.apellidos?.type === "maxLength" && (
 										<p className='FontAlert'>
 											Tienes demasiados caracteres
 										</p> /* Añadir otro comentario  */
@@ -160,7 +161,7 @@ export const Registro = () => {
 							{errors.dni?.type === "required" && (
 								<p className='FontAlert'>El campo DNI es requerido</p>
 							)}
-							{errors.DNI?.type === "maxLength" && (
+							{errors.dni?.type === "maxLength" && (
 								<p className='FontAlert'>
 									Tienes demasiados caracteres
 								</p> /* Añadir otro comentario  */
@@ -230,10 +231,10 @@ export const Registro = () => {
 										{...register("confirmPassword", { required: true })}
 									/>
 								</Form.Group>
-								{errors.password?.type === "required" && (
+								{errors.confirmPassword?.type === "required" && (
 									<p className='FontAlert'>El campo password es requerido</p>
 								)}
-								{errors.password?.type === "maxLength" && (
+								{errors.confirmPassword?.type === "maxLength" && (
 									<p className='FontAlert'>
 										Tienes demasiados caracteres
 									</p> /* Añadir otro comentario  */
@@ -247,7 +248,7 @@ export const Registro = () => {
 						<Form.Select
 							className='Input'
 							aria-label='Departamentos'
-							{...register("departamentos", { required: true })}
+							{...register("direccion", { required: true })}
 						>
 							<option placeholder='Ingrese su nombre'></option>
 							<option value='1'>Atlantida</option>
@@ -269,7 +270,7 @@ export const Registro = () => {
 							<option value='17'>Valle</option>
 							<option value='18'>Yoro</option>
 						</Form.Select>
-						{errors.departamentos?.type === "required" && (
+						{errors.direccion ?.type === "required" && (
 							<p className='FontAlert'>El campo departamentos es requerido</p>
 						)}
 
