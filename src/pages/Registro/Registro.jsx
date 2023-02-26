@@ -8,7 +8,7 @@ import {
 	Navbar,
 	NavDropdown,
 	Row,
-	Accordion
+	Modal,
 } from "react-bootstrap";
 import "./style.css";
 import { get, useForm } from "react-hook-form";
@@ -20,7 +20,8 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 import { comprobarEdad } from "./helpers/comprobarEdad";
 import { createUser } from "../../api/sendRequest.api";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Contrato } from "./UI/Contrato";
 
 export const Registro = () => {
 	const {
@@ -29,10 +30,10 @@ export const Registro = () => {
 		handleSubmit,
 		getValues,
 		setError,
-		watch
+		watch,
 	} = useForm();
-	const password = useRef({})
-	password.current = watch("password","")
+	const password = useRef({});
+	password.current = watch("password", "");
 
 	const enviarInfo = async (data) => {
 		try {
@@ -44,6 +45,9 @@ export const Registro = () => {
 		}
 	};
 
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 	return (
 		<>
 			<header className='App-header'>
@@ -84,22 +88,27 @@ export const Registro = () => {
 										className='Input'
 										type='text'
 										placeholder='Ingrese su nombre'
-										{...register("nombres", { required: true, maxLength: 40 , min:3 , pattern:/^[a-zA-Z]+$/})}
+										{...register("nombres", {
+											required: true,
+											maxLength: 40,
+											min: 3,
+											pattern: /^[a-zA-Z]+$/,
+										})}
 									/>
 
 									{errors.nombre?.type === "required" && (
 										<p className='FontAlert'>El campo Nombre es requerido!</p>
 									)}
 									{errors.nombre?.type === "maxLength" && (
-										<p className='FontAlert'>
-											Tienes demasiados caracteres!
-										</p>
+										<p className='FontAlert'>Tienes demasiados caracteres!</p>
 									)}
 									{errors.nombre?.type === "min" && (
 										<p className='FontAlert'>Tienes muy pocos caracteres!</p>
 									)}
 									{errors.nombre?.type === "pattern" && (
-										<p className='FontAlert'>Tu nombre solo deben ser caracteres!</p>
+										<p className='FontAlert'>
+											Tu nombre solo deben ser caracteres!
+										</p>
 									)}
 								</Form.Group>
 							</Col>
@@ -115,7 +124,12 @@ export const Registro = () => {
 										className='Input'
 										type='text'
 										placeholder='Ingrese su apellido'
-										{...register("apellido", { required: true, maxLength: 10, min:3 , pattern:/^[a-zA-Z]+$/ })}
+										{...register("apellido", {
+											required: true,
+											maxLength: 10,
+											min: 3,
+											pattern: /^[a-zA-Z]+$/,
+										})}
 									/>
 									{errors.apellido?.type === "required" && (
 										<p className='FontAlert'>El campo apellido es requerido</p>
@@ -129,7 +143,9 @@ export const Registro = () => {
 										<p className='FontAlert'>Tienes muy pocos caracteres!</p>
 									)}
 									{errors.apellido?.type === "pattern" && (
-										<p className='FontAlert'>Tu apellido solo deben ser caracteres!</p>
+										<p className='FontAlert'>
+											Tu apellido solo deben ser caracteres!
+										</p>
 									)}
 								</Form.Group>
 							</Col>
@@ -165,7 +181,7 @@ export const Registro = () => {
 									)}
 									{errors.telefono?.type === "pattern" && (
 										<p className='FontAlert'>
-											El formato es el siguiente : XXXX-XXXX 
+											El formato es el siguiente : XXXX-XXXX
 										</p> /* Añadir otro comentario  */
 									)}
 								</Form.Group>
@@ -201,8 +217,7 @@ export const Registro = () => {
 								{...register("dni", {
 									required: true,
 									maxLength: 15,
-									pattern:
-									/^(0[1-9]|1[0-8])\d{2}-\d{4}-\d{5}/
+									pattern: /^(0[1-9]|1[0-8])\d{2}-\d{4}-\d{5}/,
 								})}
 							/>
 							{errors.dni?.type === "required" && (
@@ -229,8 +244,11 @@ export const Registro = () => {
 								className='Input'
 								type='email'
 								placeholder='Ingrese su correo electronico'
-								{...register("correo", { required: true, maxLength: 50 , pattern:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/
-							})}
+								{...register("correo", {
+									required: true,
+									maxLength: 50,
+									pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/,
+								})}
 							/>
 							{errors.correo?.type === "required" && (
 								<p className='FontAlert'>El campo Correo es requerido</p>
@@ -258,8 +276,7 @@ export const Registro = () => {
 										className='Input'
 										type='password'
 										placeholder='Ingrese su contraseña'
-										
-										{...register("password", { required: true, minLength: 8})}
+										{...register("password", { required: true, minLength: 8 })}
 									/>
 								</Form.Group>
 								{errors.password?.type === "required" && (
@@ -285,28 +302,23 @@ export const Registro = () => {
 										className='Input'
 										type='password'
 										placeholder='Ingrese su Contraseña'
-										{...register("confirmPassword", { required: true ,min:8, validate:(value)=>value===password.current})}
-										
+										{...register("confirmPassword", {
+											required: true,
+											min: 8,
+											validate: (value) => value === password.current,
+										})}
 									/>
 								</Form.Group>
 								{errors.confirmPassword?.type === "required" && (
 									<p className='FontAlert'>El campo password es requerido</p>
 								)}
 								{errors.confirmPassword?.type === "maxLength" && (
-									<p className='FontAlert'>
-										Tienes demasiados caracteres
-									</p> 
+									<p className='FontAlert'>Tienes demasiados caracteres</p>
 								)}
-								{
-									errors.confirmPassword && <p>Las contraseñas no coinciden</p>
-								}
+								{errors.confirmPassword && <p>Las contraseñas no coinciden</p>}
 								{errors.confirmPassword?.type === "min" && (
-									<p className='FontAlert'>
-										Tienes muy pocos caracteres
-									</p> 
+									<p className='FontAlert'>Tienes muy pocos caracteres</p>
 								)}
-								
-								
 							</Col>
 						</Row>
 						<Form.Label className='FontMedium'>
@@ -348,15 +360,34 @@ export const Registro = () => {
 						>
 							<Form.Check
 								type='checkbox'
-								label='Echa un vistazo a los terminos y condiciones'
-								{...register("contrato",{required:true})}
-							/>	 
-							</Form.Group>							
+								label='Aceptas los terminos y condiciones'
+								{...register("contrato", { required: true })}
+							/>
+						</Form.Group>
+
+						{errors.contrato?.type === "required" && (
+							<p>Debes de aceptar todos los terminos y condiciones</p>
+						)}
+
+						<Button className='Buttom' variant='primary' onClick={handleShow}>
+							Ver terminos y condiciones
+						</Button>
+
+						<Modal show={show} onHide={handleClose}>
+							<Modal.Header closeButton>
+								<Modal.Title>Terminos y Condiciones de 504Marketplace</Modal.Title>
+							</Modal.Header>
+							<Modal.Body>
+								<Contrato/>
+							</Modal.Body>
+							<Modal.Footer>
+								<Button variant='secondary' onClick={handleClose}>
+									Close
+								</Button>
 							
-								{errors.contrato?.type === "required" && (
-					   <p>Debes de aceptar todos los terminos y condiciones</p>
-				   )}
-				  
+							</Modal.Footer>
+						</Modal>
+
 						<Button className='Buttom' variant='secondary' type='submit'>
 							Crear cuenta
 						</Button>
