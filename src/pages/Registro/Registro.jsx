@@ -8,6 +8,7 @@ import {
 	Navbar,
 	NavDropdown,
 	Row,
+	Accordion
 } from "react-bootstrap";
 import "./style.css";
 import { get, useForm } from "react-hook-form";
@@ -348,8 +349,14 @@ export const Registro = () => {
 							<Form.Check
 								type='checkbox'
 								label='Echa un vistazo a los terminos y condiciones'
-							/>
-						</Form.Group>
+								{...register("contrato",{required:true})}
+							/>	 
+							</Form.Group>							
+							
+								{errors.contrato?.type === "required" && (
+					   <p>Debes de aceptar todos los terminos y condiciones</p>
+				   )}
+				  
 						<Button className='Buttom' variant='secondary' type='submit'>
 							Crear cuenta
 						</Button>
