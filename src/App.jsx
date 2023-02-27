@@ -1,13 +1,11 @@
-import { Registro} from "./pages/Registro/Components/Registro";
-import { Construyendo } from "./pages/Registro/Components/UI/Construyendo";
+import { Router } from "./router/Router";
 
 function App() {
-
-  return (
-    <div>
-     <Registro/>
-    </div>
-  )
+	return (
+		<div>
+			<Router />
+		</div>
+	);
 }
 
-export default App
+export default App;

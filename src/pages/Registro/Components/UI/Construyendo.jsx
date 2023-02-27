@@ -9,11 +9,15 @@ import {
   NavDropdown,
   Row,
 } from "react-bootstrap";
+import { Navigate, useNavigate } from "react-router";
 import '../../styles/style.css'
 import whmcs from '../../styles/whmcs.svg'
 
-
 export const Construyendo = () => {
+  const navigate= useNavigate()
+  const handleRedirection=()=>{
+    navigate(-1)
+  }
   return (
     <>
     <header className="App-header">
@@ -23,6 +27,7 @@ export const Construyendo = () => {
         variant="secondary"
         type="submit"
         className="Buttom"
+        onClick={handleRedirection}
       >
         Regresar
       </Button>

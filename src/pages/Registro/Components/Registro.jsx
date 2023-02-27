@@ -20,9 +20,10 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 import { BiLeftArrow } from "react-icons/bi";
-import { comprobarEdad } from "../helpers/comprobarEdad";
-import { createUser } from "../../../api/sendRequest.api";
-import { Contrato } from "./UI/Contrato";
+import { comprobarEdad } from "../helpers";
+import { createUser } from "../../../api";
+import { Contrato } from "./UI";
+import { useNavigate } from "react-router";
 
 export const Registro = () => {
 	const {
@@ -33,9 +34,8 @@ export const Registro = () => {
 		setError,
 		watch,
 	} = useForm();
-	/* Para verificacion de los dos inputs de password */
-	const password = useRef({});
-	password.current = watch("password", "");
+	
+	const navigate = useNavigate(); //Para redireccion
 
 	const enviarInfo = async (data) => {
 		try {
@@ -44,10 +44,21 @@ export const Registro = () => {
 			console.log(error);
 		}
 	};
+
+	const handleRedirection =()=>{
+		navigate('/construyendo')
+	}
+
+	
 	/* Manejo de Modal */
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+
+	/* Para verificacion de los dos inputs de password */
+	const password = useRef({});
+	password.current = watch("password", "");
+
 	return (
 		<>
 			<header className='App-header'>
@@ -63,6 +74,7 @@ export const Registro = () => {
 									className='Buttom-back'
 									variant='secondary'
 									type='submit'
+									onClick={handleRedirection}
 								>
 									<BiLeftArrow />
 									Atrás
