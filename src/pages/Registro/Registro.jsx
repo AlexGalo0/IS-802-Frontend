@@ -4,13 +4,14 @@ import {
   Col,
   Container,
   Form,
-  Nav,
+/*   Nav,
   Navbar,
-  NavDropdown,
+  NavDropdown, */
   Row,
+  Image,
   Modal,
 } from "react-bootstrap";
-import "../pages/Registro/style.css";
+import "./style.css";
 import { get, useForm } from "react-hook-form";
 import { CiUser, CiCalendarDate } from "react-icons/ci";
 import { IoMdPhonePortrait } from "react-icons/io";
@@ -19,12 +20,13 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 import { BiLeftArrow } from "react-icons/bi";
-/* import { comprobarEdad } from "./helpers/comprobarEdad";
-import { createUser } from "../../api/sendRequest.api"; */
+import { comprobarEdad } from "./helpers/comprobarEdad";
+import { createUser } from "../../api/sendRequest.api";
 import { useRef, useState } from "react";
-import { Contrato } from "../pages/Registro/UI/Contrato";
+import { Contrato } from "./UI/Contrato";
+import logo from "./UI/logoV2.png";
 
-export const RegistroAdmin = () => {
+export const Registro = () => {
   const {
     register,
     formState: { errors },
@@ -49,15 +51,25 @@ export const RegistroAdmin = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <header className="App-header-admin">
+      <header className="App-header">
         <Container className="Container">
           <Form
             fluid="true"
-            className="Form-admin"
+            className="Form"
             onSubmit={handleSubmit(enviarInfo)}
           >
-            <Row>
-              <Col md style={{ display: "flex", paddingLeft: "0px" }}>
+            <Row st>
+              <Col
+                md
+                style={{
+                  display: "flex",
+                  height: "50px",
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                  , paddingTop: '45px',
+                  paddingBottom: '30px',
+                }}
+              > {/* display: 'flex', alignItems: 'center', justifyContent: 'center'  */}
                 <Button
                   className="Buttom-back"
                   variant="secondary"
@@ -66,19 +78,26 @@ export const RegistroAdmin = () => {
                   <BiLeftArrow />
                   Atrás
                 </Button>
+                <Image src={logo} style={{ width: "140px" }} />
               </Col>
-              <Col md style={{ paddingRight: "0px", textAlign: "end" }}>
-                <h2 style={{color: 'white'}}>Logo</h2>
-              </Col>
+              {/* <Col
+                md
+                style={{
+                  paddingRight: "0px",
+                  textAlign: "end",
+                  height: "80px",
+                }}
+              >
+                
+              </Col> */}
             </Row>
-            <h1 style={{ color: "#FFF", margin: "15px 0px auto" }}>
-              Crea tu cuenta de administrador:
+            <h1 style={{ color: "#0d0d0d", textAlign: "left" }}>
+              Crea tu cuenta:
             </h1>
-
             <Row>
               <Col md>
                 <Form.Group
-                  className="mb-3, FontMedium-admin"
+                  className="mb-3, FontMedium"
                   controlId="formBasicNombre"
                 >
                   <Form.Label>
@@ -97,16 +116,16 @@ export const RegistroAdmin = () => {
                   />
 
                   {errors.nombre?.type === "required" && (
-                    <p className="FontAlert-admin">¡El campo nombre es requerido!</p>
+                    <p className="FontAlert">¡El campo nombre es requerido!</p>
                   )}
                   {errors.nombre?.type === "maxLength" && (
-                    <p className="FontAlert-admin">¡Tienes demasiados caracteres!</p>
+                    <p className="FontAlert">¡Tienes demasiados caracteres!</p>
                   )}
                   {errors.nombre?.type === "min" && (
-                    <p className="FontAlert-admin">¡Tienes muy pocos caracteres!</p>
+                    <p className="FontAlert">¡Tienes muy pocos caracteres!</p>
                   )}
                   {errors.nombre?.type === "pattern" && (
-                    <p className="FontAlert-admin">
+                    <p className="FontAlert">
                       ¡Tu nombre solo deben ser caracteres!
                     </p>
                   )}
@@ -114,7 +133,7 @@ export const RegistroAdmin = () => {
               </Col>
               <Col md>
                 <Form.Group
-                  className="mb-3, FontMedium-admin"
+                  className="mb-3, FontMedium"
                   controlId="formBasicApellido"
                 >
                   <Form.Label>
@@ -132,18 +151,18 @@ export const RegistroAdmin = () => {
                     })}
                   />
                   {errors.apellido?.type === "required" && (
-                    <p className="FontAlert-admin">
+                    <p className="FontAlert">
                       ¡El campo apellido es requerido!
                     </p>
                   )}
                   {errors.apellido?.type === "maxLength" && (
-                    <p className="FontAlert-admin">¡Tienes demasiados caracteres!</p>
+                    <p className="FontAlert">¡Tienes demasiados caracteres!</p>
                   )}
                   {errors.apellido?.type === "min" && (
-                    <p className="FontAlert-admin">¡Tienes muy pocos caracteres!</p>
+                    <p className="FontAlert">¡Tienes muy pocos caracteres!</p>
                   )}
                   {errors.apellido?.type === "pattern" && (
-                    <p className="FontAlert-admin">
+                    <p className="FontAlert">
                       ¡Tu apellido solo deben ser caracteres!
                     </p>
                   )}
@@ -154,7 +173,7 @@ export const RegistroAdmin = () => {
             <Row>
               <Col md>
                 <Form.Group
-                  className="mb-3, FontMedium-admin"
+                  className="mb-3, FontMedium"
                   controlId="formBasicPhone"
                 >
                   <Form.Label>
@@ -172,15 +191,15 @@ export const RegistroAdmin = () => {
                     })}
                   />
                   {errors.telefono?.type === "required" && (
-                    <p className="FontAlert-admin">
+                    <p className="FontAlert">
                       ¡El campo teléfono es requerido!
                     </p>
                   )}
                   {errors.telefono?.type === "maxLength" && (
-                    <p className="FontAlert-admin">¡Tienes demasiados números!</p>
+                    <p className="FontAlert">¡Tienes demasiados números!</p>
                   )}
                   {errors.telefono?.type === "pattern" && (
-                    <p className="FontAlert-admin">
+                    <p className="FontAlert">
                       El formato es el siguiente: XXXX-XXXX
                     </p>
                   )}
@@ -188,7 +207,7 @@ export const RegistroAdmin = () => {
               </Col>
               <Col md>
                 <Form.Group
-                  className="mb-3, FontMedium-admin"
+                  className="mb-3, FontMedium"
                   controlId="formBasicDate"
                 >
                   <Form.Label>
@@ -202,7 +221,7 @@ export const RegistroAdmin = () => {
                     {...register("fechaNacimiento", { required: true })}
                   />
                   {errors.fechaNacimiento?.type === "required" && (
-                    <p className="FontAlert-admin">
+                    <p className="FontAlert">
                       ¡La fecha de nacimiento es requerida!
                     </p>
                   )}
@@ -210,7 +229,7 @@ export const RegistroAdmin = () => {
               </Col>
             </Row>
 
-            <Form.Group className="mb-3, FontMedium-admin" controlId="formBasicDNI">
+            <Form.Group className="mb-3, FontMedium" controlId="formBasicDNI">
               <Form.Label>
                 <HiOutlineIdentification />
                 DNI
@@ -226,19 +245,19 @@ export const RegistroAdmin = () => {
                 })}
               />
               {errors.dni?.type === "required" && (
-                <p className="FontAlert-admin">¡El campo DNI es requerido!</p>
+                <p className="FontAlert">¡El campo DNI es requerido!</p>
               )}
               {errors.dni?.type === "maxLength" && (
-                <p className="FontAlert-admin">¡Tienes demasiados caracteres!</p>
+                <p className="FontAlert">¡Tienes demasiados caracteres!</p>
               )}
               {errors.dni?.type === "pattern" && (
-                <p className="FontAlert-admin">
+                <p className="FontAlert">
                   El formato es el siguiente : XXXX-XXXX-XXXXX
                 </p>
               )}
             </Form.Group>
 
-            <Form.Group className="mb-3, FontMedium-admin" controlId="formBasicEmail">
+            <Form.Group className="mb-3, FontMedium" controlId="formBasicEmail">
               <Form.Label>
                 <MdOutlineAlternateEmail />
                 Correo
@@ -254,13 +273,13 @@ export const RegistroAdmin = () => {
                 })}
               />
               {errors.correo?.type === "required" && (
-                <p className="FontAlert-admin">¡El campo correo es requerido!</p>
+                <p className="FontAlert">¡El campo correo es requerido!</p>
               )}
               {errors.correo?.type === "pattern" && (
-                <p className="FontAlert-admin">¡Debes ingresar un correo valido!</p>
+                <p className="FontAlert">¡Debes ingresar un correo valido!</p>
               )}
 
-              <Form.Text className="text-muted, FontLight-admin">
+              <Form.Text className="text-muted, FontLight">
                 ¡Nunca compartiremos tu correo electrónico!
               </Form.Text>
             </Form.Group>
@@ -268,7 +287,7 @@ export const RegistroAdmin = () => {
             <Row>
               <Col md>
                 <Form.Group
-                  className="mb-3, FontMedium-admin"
+                  className="mb-3, FontMedium"
                   controlId="formBasicPassword"
                 >
                   <Form.Label>
@@ -282,17 +301,17 @@ export const RegistroAdmin = () => {
                     {...register("password", { required: true, minLength: 8 })}
                   />
                   {errors.password?.type === "required" && (
-                    <p className="FontAlert-admin">¡La contraseña es requerida!</p>
+                    <p className="FontAlert">¡La contraseña es requerida!</p>
                   )}
                   {errors.password?.type === "minLength" && (
-                    <p className="FontAlert-admin">¡Tienes muy pocos caracteres!</p>
+                    <p className="FontAlert">¡Tienes muy pocos caracteres!</p>
                   )}
                 </Form.Group>
               </Col>
 
               <Col md>
                 <Form.Group
-                  className="mb-3, FontMedium-admin"
+                  className="mb-3, FontMedium"
                   controlId="formBasicConfirmPassword"
                 >
                   <Form.Label>
@@ -310,19 +329,19 @@ export const RegistroAdmin = () => {
                     })}
                   />
                   {errors.confirmPassword?.type === "required" && (
-                    <p className="FontAlert-admin">¡la contraseña es requerida!</p>
+                    <p className="FontAlert">¡la contraseña es requerida!</p>
                   )}
                   {errors.confirmPassword?.type === "maxLength" && (
-                    <p className="FontAlert-admin">¡Tiene demasiados caracteres!</p>
+                    <p className="FontAlert">¡Tiene demasiados caracteres!</p>
                   )}
                   {errors.confirmPassword?.type === "min" && (
-                    <p className="FontAlert-admin">¡Tiene muy pocos caracteres!</p>
+                    <p className="FontAlert">¡Tiene muy pocos caracteres!</p>
                   )}
                 </Form.Group>
               </Col>
             </Row>
-            {errors.confirmPassword && <p style={{color: '#F2FEFB'}}>¡Las contraseñas no coinciden!</p>}
-            <Form.Label className="FontMedium-admin">
+            {errors.confirmPassword && <p>¡Las contraseñas no coinciden!</p>}
+            <Form.Label className="FontMedium">
               <GoLocation />
               Elige tu departamento
             </Form.Label>
@@ -352,36 +371,34 @@ export const RegistroAdmin = () => {
               <option value="18">Yoro</option>
             </Form.Select>
             {errors.departamentos?.type === "required" && (
-              <p className="FontAlert-admin">¡El campo departamentos es requerido!</p>
+              <p className="FontAlert">¡El campo departamentos es requerido!</p>
             )}
 
-            <Row style={{ marginLeft: "-70px" }}>
+            <Row>
               <Col md style={{ textAlign: "end", paddingRight: "0px" }}>
                 <Form.Group
-                  className="mb-3, FontMedium-admin"
+                  className="mb-3, FontMedium"
                   controlId="formBasicCheckbox"
-                  style={{ paddingRight: "1px" }}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                   <Form.Check
                     type="checkbox"
                     label="Aceptas los"
                     {...register("contrato", { required: true })}
                   />
-                </Form.Group>
-              </Col>
-              <Col md style={{ display: "flex", paddingLeft: "0px" }}>
-                <Button
-                  className="Buttom-Link-admin"
+                  <Button
+                  className="Buttom-Link"
                   variant="link"
-                  onClick={handleShow}
+                  onClick={handleShow} style={{paddingTop: '4px'}}
                 >
                   términos y condiciones
                 </Button>
+                </Form.Group>
               </Col>
             </Row>
 
             {errors.contrato?.type === "required" && (
-              <p style={{color: '#F2FEFB'}}>¡Debes de aceptar todos los términos y condiciones!</p>
+              <p>¡Debes de aceptar todos los términos y condiciones!</p>
             )}
 
             <Modal show={show} onHide={handleClose}>

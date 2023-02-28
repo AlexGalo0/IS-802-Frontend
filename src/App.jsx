@@ -1,9 +1,11 @@
 import { Router } from "./router/Router";
+import {RegistroAdmin} from "./Administrador/RegistroAdmin";
 
 function App() {
 	return (
 		<div>
-			<Router />
+			<Router/> 
+      <RegistroAdmin/> 
 		</div>
 	);
 }
