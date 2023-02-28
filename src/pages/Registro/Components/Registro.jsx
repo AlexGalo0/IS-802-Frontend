@@ -24,8 +24,10 @@ import { comprobarEdad } from "../helpers";
 import { createUser } from "../../../api";
 import { Contrato } from "./UI";
 import { useNavigate } from "react-router";
+import { useQuery } from "react-query";
 
 export const Registro = () => {
+	const navigate = useNavigate(); //Para redireccion
 	const {
 		register,
 		formState: { errors },
@@ -35,7 +37,13 @@ export const Registro = () => {
 		watch,
 	} = useForm();
 	
-	const navigate = useNavigate(); //Para redireccion
+
+	const {isLoading,data:usuario,isError,error} = useQuery({
+			queryKey:["registroUsuario"],
+			queryFn:createUser
+	})
+
+	
 
 	const enviarInfo = async (data) => {
 		try {
@@ -182,7 +190,7 @@ export const Registro = () => {
 										{...register("telefono", {
 											required: true,
 											maxLength: 9,
-											pattern: /[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]/,
+											pattern: /^\d{4}-\d{4}$/,
 										})}
 									/>
 									{/* Manejo de Errores de Telefono */}
@@ -196,7 +204,7 @@ export const Registro = () => {
 									)}
 									{errors.telefono?.type === "pattern" && (
 										<p className='FontAlert'>
-											El formato es el siguiente: XXXX-XXXX
+											El formato es el siguiente: XXXX-XXXX , solo números!
 										</p>
 									)}
 								</Form.Group>
@@ -301,7 +309,8 @@ export const Registro = () => {
 										className='Input'
 										type='password'
 										placeholder='Ingrese su contraseña'
-										{...register("password", { required: true, minLength: 8 })}
+										{...register("password", { required: true, minLength: 8  , pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).*$/
+									})}
 									/>
 									{/* Manejo de Errores de Password */}
 									{errors.password?.type === "required" && (
@@ -309,6 +318,9 @@ export const Registro = () => {
 									)}
 									{errors.password?.type === "minLength" && (
 										<p className='FontAlert'>¡Tienes muy pocos caracteres!</p>
+									)}
+									{errors.password?.type === "pattern" && (
+										<p className='FontAlert'>Debes tener por lo menos una mayuscula , caracter y numero</p>
 									)}
 								</Form.Group>
 							</Col>
