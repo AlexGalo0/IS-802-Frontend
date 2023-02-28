@@ -4,9 +4,6 @@ import {
 	Col,
 	Container,
 	Form,
-	Nav,
-	Navbar,
-	NavDropdown,
 	Row,
 	Modal,
 } from "react-bootstrap";
@@ -37,11 +34,6 @@ export const Registro = () => {
 		watch,
 	} = useForm();
 	
-
-
-
-	
-
 	const enviarInfo = async (data) => {
 		try {
 			const response = await createUser(data);
@@ -125,7 +117,7 @@ export const Registro = () => {
 									)}
 									{errors.nombre?.type === "pattern" && (
 										<p className='FontAlert'>
-											¡Tu nombre solo deben ser caracteres!
+											¡Tu nombre solo deben ser letras!
 										</p>
 									)}
 								</Form.Group>
@@ -163,7 +155,7 @@ export const Registro = () => {
 									)}
 									{errors.apellido?.type === "pattern" && (
 										<p className='FontAlert'>
-											¡Tu apellido solo deben ser caracteres!
+											¡Tu apellido solo deben ser letras!
 										</p>
 									)}
 								</Form.Group>
@@ -248,7 +240,7 @@ export const Registro = () => {
 								{...register("dni", {
 									required: true,
 									maxLength: 15,
-									pattern: /^(0[1-9]|1[0-8])\d{2}-\d{4}-\d{5}/,
+									pattern: /^(0[1-9]|1[0-8])[0-9]{2}-[0-9]{4}-[0-9]{5}$/,
 								})}
 							/>
 							{/* Manejo de Errores de DNI */}
@@ -260,7 +252,7 @@ export const Registro = () => {
 							)}
 							{errors.dni?.type === "pattern" && (
 								<p className='FontAlert'>
-									El formato es el siguiente : XXXX-XXXX-XXXXX
+									El formato es el siguiente : XXXX-XXXX-XXXXX , solo números.
 								</p>
 							)}
 						</Form.Group>
