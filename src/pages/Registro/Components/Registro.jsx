@@ -221,7 +221,7 @@ export const Registro = () => {
 									)}
 									{errors.fechaNacimiento?.type === "validate" && (
 										<p className='FontAlert'>
-											¡Debes ser mayor de 18!
+											Ingresa una fecha valida!
 										</p>
 									)}
 								</Form.Group>
