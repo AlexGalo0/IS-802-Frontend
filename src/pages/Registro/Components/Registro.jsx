@@ -24,7 +24,7 @@ import { comprobarEdad } from "../helpers";
 import { createUser } from "../../../api";
 import { Contrato } from "./UI";
 import { useNavigate } from "react-router";
-import { useQuery } from "react-query";
+
 
 export const Registro = () => {
 	const navigate = useNavigate(); //Para redireccion
@@ -38,10 +38,7 @@ export const Registro = () => {
 	} = useForm();
 	
 
-	const {isLoading,data:usuario,isError,error} = useQuery({
-			queryKey:["registroUsuario"],
-			queryFn:createUser
-	})
+
 
 	
 
