@@ -5,7 +5,7 @@ function App() {
 	return (
 		<div>
 			<Router/> 
-      <RegistroAdmin/> 
+      {/* <RegistroAdmin/>  */}
 		</div>
 	);
 }

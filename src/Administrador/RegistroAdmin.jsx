@@ -10,7 +10,7 @@ import {
   Row,
   Modal,
 } from "react-bootstrap";
-import "../pages/Registro/style.css";
+import "../pages/Registro/styles/style.css"
 import { get, useForm } from "react-hook-form";
 import { CiUser, CiCalendarDate } from "react-icons/ci";
 import { IoMdPhonePortrait } from "react-icons/io";
@@ -22,7 +22,7 @@ import { BiLeftArrow } from "react-icons/bi";
 /* import { comprobarEdad } from "./helpers/comprobarEdad";
 import { createUser } from "../../api/sendRequest.api"; */
 import { useRef, useState } from "react";
-import { Contrato } from "../pages/Registro/UI/Contrato";
+import { Contrato } from '../pages/Registro/Components/UI';
 
 export const RegistroAdmin = () => {
   const {
