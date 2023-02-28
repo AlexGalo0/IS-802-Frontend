@@ -4,10 +4,11 @@ import {
   Col,
   Container,
   Form,
-  Nav,
+/*   Nav,
   Navbar,
-  NavDropdown,
+  NavDropdown, */
   Row,
+  Image,
   Modal,
 } from "react-bootstrap";
 import "./style.css";
@@ -23,6 +24,7 @@ import { comprobarEdad } from "./helpers/comprobarEdad";
 import { createUser } from "../../api/sendRequest.api";
 import { useRef, useState } from "react";
 import { Contrato } from "./UI/Contrato";
+import logo from "./UI/logoV2.png";
 
 export const Registro = () => {
   const {
@@ -56,8 +58,18 @@ export const Registro = () => {
             className="Form"
             onSubmit={handleSubmit(enviarInfo)}
           >
-            <Row>
-              <Col md style={{ display: "flex", paddingLeft: "0px" }}>
+            <Row st>
+              <Col
+                md
+                style={{
+                  display: "flex",
+                  height: "50px",
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                  , paddingTop: '45px',
+                  paddingBottom: '30px',
+                }}
+              > {/* display: 'flex', alignItems: 'center', justifyContent: 'center'  */}
                 <Button
                   className="Buttom-back"
                   variant="secondary"
@@ -66,15 +78,22 @@ export const Registro = () => {
                   <BiLeftArrow />
                   Atrás
                 </Button>
+                <Image src={logo} style={{ width: "140px" }} />
               </Col>
-              <Col md style={{ paddingRight: "0px", textAlign: "end" }}>
-                <h2>Logo</h2>
-              </Col>
+              {/* <Col
+                md
+                style={{
+                  paddingRight: "0px",
+                  textAlign: "end",
+                  height: "80px",
+                }}
+              >
+                
+              </Col> */}
             </Row>
-            <h1 style={{ color: "#0d0d0d", margin: "15px 0px auto" }}>
-              Crea tu cuenta de: 504Marketplace
+            <h1 style={{ color: "#0d0d0d", textAlign: "left" }}>
+              Crea tu cuenta:
             </h1>
-
             <Row>
               <Col md>
                 <Form.Group
@@ -355,28 +374,26 @@ export const Registro = () => {
               <p className="FontAlert">¡El campo departamentos es requerido!</p>
             )}
 
-            <Row style={{ marginLeft: "-70px" }}>
+            <Row>
               <Col md style={{ textAlign: "end", paddingRight: "0px" }}>
                 <Form.Group
                   className="mb-3, FontMedium"
                   controlId="formBasicCheckbox"
-                  style={{ paddingRight: "1px" }}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                   <Form.Check
                     type="checkbox"
                     label="Aceptas los"
                     {...register("contrato", { required: true })}
                   />
-                </Form.Group>
-              </Col>
-              <Col md style={{ display: "flex", paddingLeft: "0px" }}>
-                <Button
+                  <Button
                   className="Buttom-Link"
                   variant="link"
-                  onClick={handleShow}
+                  onClick={handleShow} style={{paddingTop: '4px'}}
                 >
                   términos y condiciones
                 </Button>
+                </Form.Group>
               </Col>
             </Row>
 

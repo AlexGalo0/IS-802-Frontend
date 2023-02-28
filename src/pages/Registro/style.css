@@ -79,19 +79,21 @@ body,
 
 .App-header {
   /* background-color: #303030 ; */
-  background-image: linear-gradient(
+/*   background-image: linear-gradient(
     to bottom right,
     #262524 0%,
     #484745 20%,
     #434242 40%,
     #484745 60%,
     #262524 80%
-  );
+  ); */
+
+  background: #402c50;
 
   background-size: 200% 200%;
   animation: movimiento 5s linear infinite alternate-reverse;
 
-  min-height: 120vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +127,7 @@ body,
   justify-content: space-between;
   background: #f7f7f7;
   margin: 15px auto;
-  padding: 40px;
+  padding: 20px;
   box-shadow: 1px 1px 1px 1px rgba(32, 32, 32, 0.3);
   text-align: center;
   outline-style: ridge;
@@ -134,7 +136,7 @@ body,
 
 .Form-admin {
   justify-content: space-between;
-  background: #737373;
+  background: #402c50;
   margin: 15px auto;
   padding: 40px;
   box-shadow: 1px 1px 1px 1px rgba(32, 32, 32, 0.3);
@@ -157,8 +159,9 @@ body,
   background: transparent;
   /* border: #f2efed; */
   width: 650px;
-  height: 1200px; /* 850 */
+  height: 1250px;
   color: #3d403a;
+  margin-top: 25px;
 }
 
 .Input {
