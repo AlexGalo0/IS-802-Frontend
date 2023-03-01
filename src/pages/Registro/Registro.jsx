@@ -51,8 +51,7 @@ export const Registro = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <header className="App-header">
-        <Container className="Container">
+      <body className="App-header"><Container className="Container">
           <Form
             fluid="true"
             className="Form"
@@ -66,7 +65,7 @@ export const Registro = () => {
                   height: "50px",
                   justifyContent: 'space-between',
                   alignItems: 'center'
-                  , paddingTop: '45px',
+                  , paddingTop: '50px',
                   paddingBottom: '30px',
                 }}
               > {/* display: 'flex', alignItems: 'center', justifyContent: 'center'  */}
@@ -74,11 +73,12 @@ export const Registro = () => {
                   className="Buttom-back"
                   variant="secondary"
                   type="submit"
+                  style={{marginTop: '-55px'}}
                 >
                   <BiLeftArrow />
-                  Atrás
+                  
                 </Button>
-                <Image src={logo} style={{ width: "140px" }} />
+                <Image src={logo} style={{ width: "140px", paddingRight:'20px', paddingTop: '20px' }} />
               </Col>
               {/* <Col
                 md
@@ -92,7 +92,7 @@ export const Registro = () => {
               </Col> */}
             </Row>
             <h1 style={{ color: "#0d0d0d", textAlign: "left" }}>
-              Crea tu cuenta:
+              Crea tu cuenta
             </h1>
             <Row>
               <Col md>
@@ -425,8 +425,7 @@ export const Registro = () => {
               Crear cuenta
             </Button>
           </Form>
-        </Container>
-      </header>
+        </Container></body>
     </>
   );
 };
