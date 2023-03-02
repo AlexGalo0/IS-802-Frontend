@@ -9,7 +9,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import "../styles/style.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { get, useForm } from "react-hook-form";
 import { CiUser, CiCalendarDate } from "react-icons/ci";
 import { IoMdPhonePortrait } from "react-icons/io";
@@ -28,16 +28,18 @@ export const Registro = () => {
   const navigate = useNavigate(); //Para redireccion
   const {
     register,
-    formState: { errors },
+    formState: { errors , isSubmitSuccessful},
     handleSubmit,
     getValues,
     setError,
     watch,
+    reset
   } = useForm();
 
   const enviarInfo = async (data) => {
+    
     try {
-      const response = await createUser(data);
+      const response = await createUser(data);    
     } catch (error) {
       console.log(error);
     }
@@ -56,6 +58,10 @@ export const Registro = () => {
   const password = useRef({});
   password.current = watch("password", "");
 
+  useEffect(() => {
+    reset()
+  }, [isSubmitSuccessful])
+  
   return (
     <>
       <header className="App-header">
@@ -117,7 +123,7 @@ export const Registro = () => {
                       required: true,
                       maxLength: 40,
                       min: 3,
-                      pattern: /^[a-zA-Z]+$/,
+                      pattern: /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/
                     })}
                   />
                   {/* Manejo de Errores de nombre */}
@@ -153,7 +159,7 @@ export const Registro = () => {
                       required: true,
                       maxLength: 10,
                       min: 3,
-                      pattern: /^[a-zA-Z]+$/,
+                      pattern: /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/
                     })}
                   />
                   {/* Manejo de Errores de apellido */}
