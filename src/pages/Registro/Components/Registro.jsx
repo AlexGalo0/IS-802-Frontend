@@ -157,7 +157,7 @@ export const Registro = () => {
                     placeholder="Ingrese su apellido"
                     {...register("apellido", {
                       required: true,
-                      maxLength: 10,
+                      maxLength: 40,
                       min: 3,
                       pattern: /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/
                     })}
