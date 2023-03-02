@@ -1,13 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  Button,
-  Col,
-  Container,
-  Form,
-  Nav,
-  Navbar,
-  NavDropdown,
-  Row,
+  Button
 } from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router";
 import '../../styles/style.css'
@@ -26,7 +19,7 @@ export const Construyendo = () => {
     <Button
         variant="secondary"
         type="submit"
-        className="Buttom"
+        className="Button"
         onClick={handleRedirection}
       >
         Regresar

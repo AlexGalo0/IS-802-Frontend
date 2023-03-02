@@ -93,29 +93,7 @@ body,
   background-size: 200% 200%;
   animation: movimiento 5s linear infinite alternate-reverse;
 
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* font-size: calc(10px + 2vmin); */
-}
-
-.App-header-admin {
-  /* background-color: #303030 ; */
-  background-image: linear-gradient(
-    to bottom right,
-    #d9d9d9 0%,
-    #f2efeb 20%,
-    #f7f7f7 40%,
-    #f2efeb 60%,
-    #d9d9d9 80%
-  );
-
-  background-size: 200% 200%;
-  animation: movimiento 5s linear infinite alternate-reverse;
-
-  min-height: 120vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,17 +106,6 @@ body,
   background: #f7f7f7;
   margin: 15px auto;
   padding: 20px;
-  box-shadow: 1px 1px 1px 1px rgba(32, 32, 32, 0.3);
-  text-align: center;
-  outline-style: ridge;
-  outline-color: #bfb8b4;
-}
-
-.Form-admin {
-  justify-content: space-between;
-  background: #402c50;
-  margin: 15px auto;
-  padding: 40px;
   box-shadow: 1px 1px 1px 1px rgba(32, 32, 32, 0.3);
   text-align: center;
   outline-style: ridge;
@@ -159,9 +126,8 @@ body,
   background: transparent;
   /* border: #f2efed; */
   width: 650px;
-  height: 1250px;
+  height: 100%;
   color: #3d403a;
-  margin-top: 25px;
 }
 
 .Input {
@@ -204,7 +170,7 @@ body,
   font-size: small;
 }
 
-.Buttom {
+.Button {
   background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
   width: 350px;
   height: 55px;
@@ -215,14 +181,14 @@ body,
   outline-color: #E211CC;
 }
  
-.Buttom:hover{
+.Button:hover{
 	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
 	background:rgb(120, 69, 168)
 }
 
-.Buttom-back {
+.Button-back {
   background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
-  width: 80px;
+  width: 40px;
   height: 30px;
   color: white;
   font-size: medium;
@@ -232,26 +198,26 @@ body,
   outline-color: #E211CC;
 }
  
-.Buttom-back:hover{
+.Button-back:hover{
 	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
 	background:rgb(120, 69, 168)
 }
 
-.Buttom-Link {
+.Button-Link {
   padding-left: 1px;
   padding-top: 3px;
   font-size: 16px;
   color: rgb(120, 69, 168);
 }
 
-.Buttom-Link-admin {
+.Button-Link-admin {
   padding-left: 1px;
   padding-top: 3px;
   font-size: 16px;
   color: #da62ce;
 }
 
-.Buttom-close {
+.Button-close {
   background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
   width: 150px;
   height: 25px;
@@ -263,7 +229,7 @@ body,
   outline-color: #E211CC;
 }
  
-.Buttom-close:hover{
+.Button-close:hover{
 	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
 	background:rgb(120, 69, 168)
 }

@@ -2,8 +2,8 @@ import React from "react";
 
 export const Contrato = () => {
   return (
-    <div>
-      <p style={{ textAlign: "justify" }}>
+    <div  style={{ textAlign: "justify" }}>
+      <p>
         Bienvenido a 504Marketplace.
         Estos términos y condiciones rigen su acceso y uso del marketplace.
         </p>
