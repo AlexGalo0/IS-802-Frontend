@@ -38,7 +38,7 @@ export const Registro = () => {
 
 	const enviarInfo = async (data) => {
 		try {
-			// const response = await createUser(data);
+			const response = await createUser(data);
 			console.log(data);
 		} catch (error) {
 			console.log(error);
