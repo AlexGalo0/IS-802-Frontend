@@ -123,7 +123,7 @@ export const Registro = () => {
                       required: true,
                       maxLength: 40,
                       min: 3,
-                      pattern: /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/
+                      pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/
                     })}
                   />
                   {/* Manejo de Errores de nombre */}
@@ -159,7 +159,7 @@ export const Registro = () => {
                       required: true,
                       maxLength: 40,
                       min: 3,
-                      pattern: /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/
+                      pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/
                     })}
                   />
                   {/* Manejo de Errores de apellido */}
@@ -326,6 +326,9 @@ export const Registro = () => {
                       pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).*$/,
                     })}
                   />
+                  <label htmlFor="">
+                    La contraseña debe estar construida por minimo 8 caracteres, un signo especial , una mayuscula y un numero.
+                  </label>
                   {/* Manejo de Errores de Password */}
                   {errors.password?.type === "required" && (
                     <p className="FontAlert">¡La contraseña es requerida!</p>
