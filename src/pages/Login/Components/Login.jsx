@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { login } from "../../../api";
+import { iniciarSesion } from "../../../api";
 export const Login = () => {
 	const {
 		register,
@@ -10,7 +10,7 @@ export const Login = () => {
 	const enviarDatosLogin = async (userData) => {
 		console.log(userData);
         try {
-            const response = await login(userData)
+            const response = await iniciarSesion(userData)
         } catch (error) {
             console.log(error);
         }
