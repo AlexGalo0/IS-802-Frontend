@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { CloudinaryUploadWidget } from "./CloudinaryUploadWidget";
 export const RegistroProducto = () => {
 	const {
 		register,
@@ -84,7 +85,9 @@ export const RegistroProducto = () => {
 					<option value='Empleos'>Empleos</option>
 				</select>
 
+				<CloudinaryUploadWidget/>
 				<button onClick={handleSubmit(enviarProducto)}>Enviar Producto</button>
+				
 			</div>
 		</>
 	);
