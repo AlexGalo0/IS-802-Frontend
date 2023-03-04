@@ -1,113 +1,16 @@
-import React, { useRef } from 'react';
-import axios from 'axios';
-import useFileUpload from 'react-use-file-upload';
+import { CloudinaryContext, Image, Transformation, Video, } from 'cloudinary-react';
 
-   
 export const SubidaImagenes = () => {
-    const {
-        files,
-        fileNames,
-        fileTypes,
-        totalSize,
-        totalSizeInBytes,
-        handleDragDropEvent,
-        clearAllFiles,
-        createFormData,
-        setFiles,
-        removeFile,
-      } = useFileUpload();
-      const inputRef = useRef();
-
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        const formData = createFormData();
-    
-        try {
-          axios.post('https//localhost:4000', formData, { /* AQUI PONE LA URL */
-            'content-type': 'multipart/form-data',
-          });
-        } catch (error) {
-          console.error('Failed to submit files.');
-        }
-      };
-
-
-
-
-
-
-
-
-
-
-
+	const handleUploadSuccess = (fileInfo) => {
+		console.log(fileInfo.secure_url);
+	  };
   return (
-    <div>
-      <h1>Upload Files</h1>
-
-      <p>Please use the form to your right to upload any file(s) of your choosing.</p>
-
-      <div>
-        {/* Display the files to be uploaded */}
-        <div>
-          <ul>
-            {fileNames.map((name) => (
-              <li key={name}>
-                <span>{name}</span>
-
-                <span onClick={() => removeFile(name)}>
-                  <i className="fa fa-times" />
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          {files.length > 0 && (
-            <ul>
-              <li>File types found: {fileTypes.join(', ')}</li>
-              <li>Total Size: {totalSize}</li>
-              <li>Total Bytes: {totalSizeInBytes}</li>
-
-              <li className="clear-all">
-                <button onClick={() => clearAllFiles()}>Clear All</button>
-              </li>
-            </ul>
-          )}
-        </div>
-
-        {/* Provide a drop zone and an alternative button inside it to upload files. */}
-        <div
-          
-          onDragEnter={handleDragDropEvent}
-          onDragOver={handleDragDropEvent}
-          onDrop={(e) => {
-            handleDragDropEvent(e);
-            setFiles(e, 'a');
-          }}
-        >
-          <p>Drag and drop files here</p>
-
-          <button onClick={() => inputRef.current.click()}>Or select files to upload</button>
-
-          {/* Hide the crappy looking default HTML input */}
-          <input
-            ref={inputRef}
-            type="file"
-            multiple
-            style={{ display: 'none' }}
-            onChange={(e) => {
-              setFiles(e, 'a');
-              inputRef.current.value = null;
-            }}
-          />
-        </div>
-      </div>
-
-      <div className="submit">
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
+	<div>
+      <ImageUploader
+        cloudName="djnzoyal5"
+        uploadPreset="preset_pabs"
+        onSuccess={handleUploadSuccess}
+      />
     </div>
-  );
-  
+  )
 }
