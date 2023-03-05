@@ -1,4 +1,5 @@
 import React from 'react'
+import "../../Registro/styles/style.css";
 
 export const CloudinaryUploadWidget = () => {
     const cloudName = "djnzoyal5"; // replace with your own cloud name
@@ -20,6 +21,6 @@ export const CloudinaryUploadWidget = () => {
     }
 
     return (
-        <button onClick={openingWidget}>Sube las imagenes</button>
+        <button onClick={openingWidget}  className="learn-more">Sube las imagenes del producto</button>
     )
 }

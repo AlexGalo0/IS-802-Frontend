@@ -1,7 +1,4 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Button
-} from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router";
 import '../../styles/style.css'
 import whmcs from '../../styles/whmcs.svg'
@@ -16,14 +13,13 @@ export const Construyendo = () => {
     <header className="App-header">
     <h1 style={{ color: "#FFF"}}>Construyendo... </h1>
     <img src={whmcs} className="App-logo" alt="logo" />
-    <Button
-        variant="secondary"
+    <button
         type="submit"
         className="Button"
         onClick={handleRedirection}
       >
         Regresar
-      </Button>
+      </button>
     </header>
     </>
   )

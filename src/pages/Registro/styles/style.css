@@ -1,93 +1,8 @@
-/* html,
-body,
-.container-fluid {
-    height: 100%;
-}
-
-.row{
-    height: 100%;
-}
-
-#columna2{
-    background-color: #0a0c0d;
-    color: #f2f2f2;
-}
-
-#columna2 a{
-    color: #f2f2f2;
-    text-decoration: none;
-    font-weight: 600;
-    padding-bottom: 8px;
-}
-
-.form-control{
-    background-color: #0a0c0d !important;
-    border: none !important;
-    color: #f2f2f2 !important;
-}
-
-.form-control button{
-    background-color: #348e91 !important;
-}
-
-.form-control input{
-    background-color: #213635 !important;
-    color: #f2f2f2 !important;
-}
-
-.form-control input::placeholder{
-    color: #f2f2f2 !important;
-}
-
-.form-control p{
-    color: #f2f2f2;
-}
-
-.btn-google{
-    border: 1px solid #f2f2f2 !important;
-    width: 180px;
-    height: 50px;
-    color: #f2f2f2 !important;
-    font-size: 20px !important;
-}
-
-
-
-.color1{ 
-    color: #f2f2f2;
-}
-
-.color2{ 
-    color: #348e91;
-}
-
-.color3{ 
-    color: #1c5052;
-}
-
-.color4{ 
-    color: #213635;
-}
-
-.color5{ 
-    color: #0a0c0d;
-} */
-
 * {
   font-family: "Mulish", sans-serif;
 }
 
 .App-header {
-  /* background-color: #303030 ; */
-/*   background-image: linear-gradient(
-    to bottom right,
-    #262524 0%,
-    #484745 20%,
-    #434242 40%,
-    #484745 60%,
-    #262524 80%
-  ); */
-
   background: #402c50;
 
   background-size: 200% 200%;
@@ -110,6 +25,7 @@ body,
   text-align: center;
   outline-style: ridge;
   outline-color: #bfb8b4;
+  width: 650px;
 }
 
 @keyframes movimiento {
@@ -130,24 +46,17 @@ body,
   color: #3d403a;
 }
 
-.Input {
-  background: #F7F7F7;
-  /* outline-style: ridge;
-    outline-color: #8c61f7; */
-  border: 3px solid #E211CC;
-  height: 45px;
-}
 
 .FontMedium {
-  color: #0d0d0d;
+  color: #e211cc;
   font-size: medium;
   padding: 8px;
 }
+
 
 .FontMedium-admin {
   color: #FFF;
   font-size: medium;
-  padding: 8px;
 }
 
 .FontLight {
@@ -171,43 +80,54 @@ body,
 }
 
 .Button {
-  background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
-  width: 350px;
+  display: grid;
+  place-content: center;
   height: 55px;
-  color: white;
-  font-size: larger ;
-  border-bottom: #3d403a;
+  width: 350px;
+  background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+  border-radius: 10px;
+  border: none;
+  color: #f7f7f7;
+  font-size: larger;
+  text-shadow: 0 2px 2px rgb(120, 69, 168);
   outline-style: outset;
-  outline-color: #E211CC;
+  outline-color: #e211cc;
+  margin: 15px auto;
 }
- 
-.Button:hover{
-	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
-	background:rgb(120, 69, 168)
+
+.Button:hover {
+text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+background: rgb(120, 69, 168);
 }
 
 .Button-back {
-  background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
-  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 30px;
-  color: white;
-  font-size: medium;
-  padding: 0px;
-  border-bottom: #3d403a;
+  width: 40px;
+  background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+  border-radius: 10px;
+  border: none;
+  color: #f7f7f7;
+  font-size: larger;
+  text-shadow: 0 2px 2px rgb(120, 69, 168);
   outline-style: outset;
-  outline-color: #E211CC;
+  outline-color: #e211cc;
 }
- 
-.Button-back:hover{
-	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
-	background:rgb(120, 69, 168)
+
+.Button-back:hover {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  background: rgb(120, 69, 168);
 }
 
 .Button-Link {
-  padding-left: 1px;
-  padding-top: 3px;
   font-size: 16px;
   color: rgb(120, 69, 168);
+  border: none;
+  background-color: transparent;
+  margin-top: -6px;
+  padding-left: 3px;
 }
 
 .Button-Link-admin {
@@ -218,20 +138,24 @@ body,
 }
 
 .Button-close {
-  background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
   width: 150px;
-  height: 25px;
-  color: white;
-  font-size: medium;
-  padding: 0px;
-  border-bottom: #3d403a;
+  background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+  border-radius: 10px;
+  border: none;
+  color: #f7f7f7;
+  font-size: larger;
+  text-shadow: 0 2px 2px rgb(120, 69, 168);
   outline-style: outset;
-  outline-color: #E211CC;
+  outline-color: #e211cc;
 }
- 
-.Button-close:hover{
-	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
-	background:rgb(120, 69, 168)
+
+.Button-close:hover {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  background: rgb(120, 69, 168);
 }
 /* background: "#A67356",
 								border: "#F2E8DF",
@@ -256,3 +180,49 @@ body,
     transform: rotate(360deg);
   }
 }
+
+/* input con animacion */
+.inRegistro {
+  border-radius: 1rem;
+  background: none;
+  padding: 1.2rem;
+  font-size: medium;
+  color: #0d0d0d;
+  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+  border: 2px solid #e211cc;
+  width: 600px;
+  box-shadow: 0 0.4rem #dfd9d9;
+  margin: 15px;
+  margin-left: 3px;
+ }
+ 
+.laberRegistro {
+  position: absolute;
+  left: 20px;
+  margin-top: -96px;
+  color: #e211cc;
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: 150ms cubic-bezier(0.4,0,0.2,1);
+ }
+ 
+ .inRegistro:focus, inRegistro:valid {
+  outline: none;
+  border: 2px solid #95289b;
+ }
+ 
+ .inRegistro:focus ~ label, inRegistro:valid ~ label {
+  transform: translateY(-10%) scale(0.8);
+  background-color: #f7f7f7;
+  padding: 0.2em;
+  color: #95289b;
+ }
+
+ .labelCheck {
+  position: absolute;
+  left: 20px;
+  color: #e211cc;
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: 150ms cubic-bezier(0.4,0,0.2,1);
+ }
