@@ -12,7 +12,8 @@ export const CloudinaryUploadWidget = ({recibirURL}) => {
             theme:"purple",
             clientAllowedFormats: ["jpg","png"],
             multiple: true,
-            sources: [ "local", "url"]
+            sources: [ "local", "url"],
+            maxFiles:6
         }, (error, result) => {
             if (!error && result && result.event === "success") {
                 recibirURL(result.info.url)
