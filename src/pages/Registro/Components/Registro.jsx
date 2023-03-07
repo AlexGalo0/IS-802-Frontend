@@ -21,7 +21,7 @@ import { comprobarEdad } from "../helpers";
 import { createUser } from "../../../api";
 import { Contrato } from "./UI";
 import { useNavigate } from "react-router";
-import logo from "../styles/logoV2.png";
+import logo from "../../../assets/logoV2.png";
 
 export const Registro = () => {
   const navigate = useNavigate(); //Para redireccion
