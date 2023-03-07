@@ -27,16 +27,14 @@ export const RegistroProducto = () => {
 		reset,
 	} = useForm();
 
-	const [url, setURL] = useState("");
-	const enviarProducto = async (data) => {
-		/* Falta destructurar solo las URLs de cada uno de los productos */
-		const enlace = url;
-		const allData = { enlace, data };
-		console.log(allData);
+	const [urls, setURLS] = useState([]);
+	const enviarProducto = async (productInfo) => {
+		productInfo.imagenes = urls
+		console.log(productInfo)
 	};
 	const recibirURL = (url) => {
 		/* Validar cuantas URLs vienen */
-		setURL(url);
+		setURLS(url);
 	};
 	return (
 		<>

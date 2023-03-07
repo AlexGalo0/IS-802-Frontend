@@ -1,31 +1,38 @@
-import React from 'react'
+import React from "react";
 import "../../Registro/styles/style.css";
 
-export const CloudinaryUploadWidget = ({recibirURL}) => {
-    const cloudName = "djnzoyal5"; // replace with your own cloud name
-    const uploadPreset = "preset_pabs"; // replace with your own upload preset
+export const CloudinaryUploadWidget = ({ recibirURL }) => {
+	const urlsImages = [];
+	const cloudName = "djnzoyal5"; // replace with your own cloud name
+	const uploadPreset = "preset_pabs"; // replace with your own upload preset
 
-    const myWidget = window.cloudinary.createUploadWidget(
-        {
-            cloudName: cloudName,
-            uploadPreset: uploadPreset, 
-            theme:"purple",
-            clientAllowedFormats: ["jpg","png"],
-            multiple: true,
-            sources: [ "local", "url"],
-            maxFiles:6
-        }, (error, result) => {
-            if (!error && result && result.event === "success") {
-                recibirURL(result.info.url)
-            }
-        }
-    );
+	const myWidget = window.cloudinary.createUploadWidget(
+		{
+			cloudName: cloudName,
+			uploadPreset: uploadPreset,
+			theme: "purple",
+			clientAllowedFormats: ["jpg", "png"],
+			multiple: true,
+			sources: ["local"],
+			maxFiles: 6,
+			folder: "productos_clientes",
+		},
+		(error, result) => {
+			if (!error && result && result.event === "success") {
+				// recibirURL(result.info.url)
+				urlsImages.push(result.info.url);
+				recibirURL(urlsImages);
+			}
+		}
+	);
 
-    const openingWidget=()=>{
-        myWidget.open()
-    }
+	const openingWidget = () => {
+		myWidget.open();
+	};
 
-    return (
-        <button onClick={openingWidget}  className="learn-more">Sube las imagenes del producto</button>
-    )
-}
+	return (
+		<button onClick={openingWidget} className='learn-more'>
+			Sube las imagenes del producto
+		</button>
+	);
+};

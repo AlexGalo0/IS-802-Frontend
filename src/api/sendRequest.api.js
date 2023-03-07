@@ -5,5 +5,8 @@ export const createUser = async (userData) => {
 }
 
 export const iniciarSesion =async (loginData) =>{
-    await axios.post('http://localhost:4000/login',loginData) /* Verificar ruta en Backend */
+    await axios.post('http://localhost:4000/login',loginData) 
+}
+export const enviarProductos = async (infoProducto) =>{
+    await axios.post('http://localhost:4000/product',infoProducto)
 }
