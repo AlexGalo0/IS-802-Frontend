@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { login } from "../../../api";
+import { iniciarSesion } from "../../../api";
 import "../../Registro/styles/styleRegistroProductos.css";
 import logo from "../../Registro/styles/logoV2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,14 +15,14 @@ export const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const enviarDatosLogin = async (userData) => {
-    console.log(userData);
-    try {
-      const response = await login(userData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+	const enviarDatosLogin = async (userData) => {
+		console.log(userData);
+        try {
+            const response = await iniciarSesion(userData)
+        } catch (error) {
+            console.log(error);
+        }
+	};
 
   return (
     <>
