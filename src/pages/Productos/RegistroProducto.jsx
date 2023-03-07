@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { CloudinaryUploadWidget } from "./CloudinaryUploadWidget";
-import "../../Registro/styles/styleRegistroProductos.css";
-import logo from "../../Registro/styles/logoV2.png";
+import { CloudinaryUploadWidget } from "./Components/CloudinaryUploadWidget";
+import "./styles/styleRegistroProductos.css"
+import logo from "../../assets/logo.png";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
 import { MdDriveFileRenameOutline, MdOutlineDescription } from "react-icons/md";
 import { FaSortAmountDownAlt } from "react-icons/fa";

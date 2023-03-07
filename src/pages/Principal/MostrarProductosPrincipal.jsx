@@ -9,18 +9,14 @@ import {
   Pagination,
   Card,
 } from "react-bootstrap";
-import "../styles/styleArticulos.css";
-import { useRef, useState } from "react";
-import { get, useForm } from "react-hook-form";
-import { FiMenu } from "react-icons/fi";
+import './styles/styleArticulos.css'
+import {  useState } from "react";
+// import { get, useForm } from "react-hook-form";
+// import { FiMenu } from "react-icons/fi";
 import { BiSearchAlt, BiUser } from "react-icons/bi";
-import { comprobarEdad } from "../helpers";
-import { createUser } from "../../../api";
-import { Contrato } from "./UI";
-import { useNavigate } from "react-router";
-import primera from "../styles/1.png";
-import ejem from "../styles/ejem.jpeg";
-import logo from "../styles/logo.png";
+import primera from "../../assets/1.png";
+import ejem from "../../assets/ejem.jpeg";
+import logo from "../../assets/logo.png";
 import { BsFacebook, BsTwitter, BsInstagram, BsDiscord } from "react-icons/bs";
 import { FaCopyright } from "react-icons/fa";
 
