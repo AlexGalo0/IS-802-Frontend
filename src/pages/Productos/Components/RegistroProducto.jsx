@@ -18,6 +18,7 @@ import {
 	FormLabel,
 } from "react-bootstrap";
 import { useState } from "react";
+import { enviarProductos } from "../../../api";
 
 export const RegistroProducto = () => {
 	const {
@@ -30,7 +31,8 @@ export const RegistroProducto = () => {
 	const [urls, setURLS] = useState([]);
 	const enviarProducto = async (productInfo) => {
 		productInfo.imagenes = urls
-		console.log(productInfo)
+		const response = await enviarProductos(productInfo)
+		console.log(response);
 	};
 	const recibirURL = (url) => {
 		/* Validar cuantas URLs vienen */
