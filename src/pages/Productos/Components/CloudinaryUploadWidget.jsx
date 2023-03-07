@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../Registro/styles/style.css";
 
-export const CloudinaryUploadWidget = () => {
+export const CloudinaryUploadWidget = ({recibirURL}) => {
     const cloudName = "djnzoyal5"; // replace with your own cloud name
     const uploadPreset = "preset_pabs"; // replace with your own upload preset
 
@@ -15,8 +15,8 @@ export const CloudinaryUploadWidget = () => {
             sources: [ "local", "url"]
         }, (error, result) => {
             if (!error && result && result.event === "success") {
-                console.log("Done! Here is the image info: ", result.info);
-                        }
+                recibirURL(result.info.url)
+            }
         }
     );
 

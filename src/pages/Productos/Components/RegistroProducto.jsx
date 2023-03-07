@@ -17,6 +17,7 @@ import {
   FormGroup,
   FormLabel,
 } from "react-bootstrap";
+import { useState } from "react";
 
 export const RegistroProducto = () => {
   const {
@@ -26,9 +27,15 @@ export const RegistroProducto = () => {
     reset,
   } = useForm();
 
-  const enviarProducto = (data) => {
-    console.log(data);
+  const [url, setURL] = useState('')
+  const enviarProducto =  async (data) => {
+    const enlace =  url
+    const allData = {enlace,data}
+    console.log(allData);
   };
+  const recibirURL= (url) =>{
+    setURL(url)
+  }
   return (
     <>
       <header className="App-header">
@@ -202,7 +209,7 @@ export const RegistroProducto = () => {
             
           </Form>
 		  <div className="Form-Buttons" style={{display: 'grip', placeContent: 'center'}}>
-		  <CloudinaryUploadWidget/>
+		  <CloudinaryUploadWidget recibirURL={recibirURL}/>
 		  
 		  <div><button
 			className="Button-Product"
