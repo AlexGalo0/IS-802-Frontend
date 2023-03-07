@@ -8,7 +8,11 @@ export const CloudinaryUploadWidget = () => {
     const myWidget = window.cloudinary.createUploadWidget(
         {
             cloudName: cloudName,
-            uploadPreset: uploadPreset
+            uploadPreset: uploadPreset, 
+            theme:"purple",
+            clientAllowedFormats: ["jpg","png"],
+            multiple: true,
+            sources: [ "local", "url"]
         }, (error, result) => {
             if (!error && result && result.event === "success") {
                 console.log("Done! Here is the image info: ", result.info);
