@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { CloudinaryUploadWidget } from "./Components/CloudinaryUploadWidget";
-import "./styles/styleRegistroProductos.css"
+import "./styles/styleRegistroProductos.css";
 import logo from "../../assets/logo.png";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
 import { MdDriveFileRenameOutline, MdOutlineDescription } from "react-icons/md";
@@ -18,7 +18,7 @@ import {
 	FormLabel,
 } from "react-bootstrap";
 import { useState } from "react";
-import { enviarProductos } from "../../../api";
+import { enviarProductos } from "../../api/sendRequest.api";
 
 export const RegistroProducto = () => {
 	const {
@@ -30,8 +30,8 @@ export const RegistroProducto = () => {
 
 	const [urls, setURLS] = useState([]);
 	const enviarProducto = async (productInfo) => {
-		productInfo.imagenes = urls
-		const response = await enviarProductos(productInfo)
+		productInfo.imagenes = urls;
+		const response = await enviarProductos(productInfo);
 		console.log(response);
 	};
 	const recibirURL = (url) => {
@@ -90,39 +90,24 @@ export const RegistroProducto = () => {
 							style={{ position: "relative" }}
 							controlId='formBasicNombre'
 						>
+							<Form.Label htmlFor='' className='user-label'>
+								<MdDriveFileRenameOutline />
+								Nombre
+							</Form.Label>
 							<input
 								type='text'
 								name='text'
 								className='inNombre'
 								{...register("nombreProducto", {
-									pattern: /^[a-zA-Z\sáéíóúñÁÉÍÓÚÑ]+$/g,
+									pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]{4,50}$/,
 									required: true,
-									max: 100,
 								})}
 							/>
 							{errors.nombreProducto?.type === "pattern" && (
-								<p>Mensaje de Error</p>
+								<p>El nombre del producto no es válido</p>
 							)}
 							{errors.nombreProducto?.type === "required" && (
-								<p>Mensaje de Error</p>
-							)}
-							{errors.nombreProducto?.type === "max" && <p>Mensaje de Error</p>}
-							<Form.Label htmlFor='' className='user-label'>
-								<MdDriveFileRenameOutline />
-								Nombre
-							</Form.Label>
-							{errors.nombreProducto?.type === "required" && (
-								<p className='FontAlert'>¡El campo nombre es requerido!</p>
-							)}
-							{errors.nombreProducto?.type === "pattern" && (
-								<p className='FontAlert'>
-									¡No debes ingresar caracteres especiales ni numeros!!
-								</p>
-							)}
-							{errors.nombreProducto?.type === "min" && (
-								<p className='FontAlert'>
-									Debes ingresar menos de 100 caracteres{" "}
-								</p>
+								<p>Debes ingresar un nombre de producto</p>
 							)}
 						</Form.Group>
 
@@ -130,16 +115,22 @@ export const RegistroProducto = () => {
 							style={{ position: "relative" }}
 							controlId='formBasicDescripcion'
 						>
-							<input
-								type='text'
-								name='text'
-								className='inNombre'
-								{...register("descripcion", { required: true, max: 150 })}
-							/>
 							<Form.Label htmlFor='' className='user-label'>
 								<MdOutlineDescription />
 								Descripcion
 							</Form.Label>
+							<input
+								type='text'
+								name='text'
+								className='inNombre'
+								{...register("descripcion", { required: true, minLength: 10 })}
+							/>
+							{errors.descripcion?.type === "required" && (
+								<p>Debes ingresar una descripcion al producto.</p>
+							)}
+							{errors.descripcion?.type === "minLength" && (
+								<p>Debe tener minimo 10 caracteres.</p>
+							)}
 						</Form.Group>
 
 						<Form.Group
@@ -149,39 +140,70 @@ export const RegistroProducto = () => {
 							<input
 								name='text'
 								className='inNombre'
-								type='number'
-								min='1'
-								pattern='^[0-9]+'
-								{...register("cantidad", { required: true })}
+								type='text'
+								
+								{...register("cantidad", {
+									required: true,
+									pattern:/^[1-9][0-9]*$/ ,
+									min:1
+								})}
 							/>
 							<Form.Label htmlFor='' className='user-label'>
 								<FaSortAmountDownAlt />
 								Cantidad del Producto
 							</Form.Label>
 						</Form.Group>
-						{errors.cantidad?.type === "pattern" && <p>Mensaje de Error</p>}
-						{errors.cantidad?.type === "required" && <p>Mensaje de Error</p>}
-
-						{errors.cantidad?.type === "min" && <p>Mensaje de Error</p>}
+						{errors.cantidad?.type === "pattern" && (
+							<p>Solo debes ingresar números</p>
+						)}
+						{errors.cantidad?.type === "required" && (
+							<p>Debes ingresar la cantidad</p>
+						)}
+						{errors.cantidad?.type === "min" && (
+							<p>Debe ser minimo 1</p>
+						)}
 
 						<Form.Group
 							style={{ position: "relative" }}
 							controlId='formBasicLimitDays'
 						>
-							<input
-								name='text'
-								className='inNombre'
-								type='number'
-								min='1'
-								pattern='^[0-9]+'
-								{...register("limite_dias", { required: true })}
-							/>
+							{" "}
 							<Form.Label htmlFor='' className='user-label'>
 								<BsCalendarDay /> Limite de Dias
 							</Form.Label>
+							<input
+								name='text'
+								className='inNombre'
+								type='text'
+								{...register("limite_dias", {
+									required: true,
+									max: 30,
+									pattern: /^(?:[1-9]|[1-2][0-9]|30)$/,
+									min:1
+									
+								})}
+							/>
+							{errors.limite_dias?.type === "pattern" && (
+								<p>Solo debes ingresar números</p>
+							)}
+							{errors.limite_dias?.type === "required" && (
+								<p>
+									Debes ingresar el limite de dias disponibles para la venta, 30
+									días es el máximo
+								</p>
+							)}
+								{errors.limite_dias?.type === "max" && (
+								<p>
+									El valor maximo de dias es 30.
+								</p>
+							)}
+								{errors.limite_dias?.type === "min" && (
+								<p>
+									El valor minimo de dias es 1.
+								</p>
+							)}
 						</Form.Group>
-						{errors.limite_dias?.type === "pattern" && <p>Mensaje de Error</p>}
-						{errors.limite_dias?.type === "required" && <p>Mensaje de Error</p>}
+				
 
 						<Form.Group
 							className='mb-3, letterMedium'
@@ -224,7 +246,7 @@ export const RegistroProducto = () => {
 							</Form.Select>
 						</Form.Group>
 
-						{errors.dptoVenta?.type === "required" && <p>Mensaje de Error</p>}
+						{errors.dptoVenta?.type === "required" && <p>Debes seleccionar un departamento.</p>}
 
 						<Form.Group
 							className='mb-3, letterMedium'
@@ -249,7 +271,7 @@ export const RegistroProducto = () => {
 								<option value='Inmuebles'>Inmuebles</option>
 								<option value='Vehículos'>Vehículos</option>
 								<option value='Hogar'>Hogar</option>
-								<option value='Futuros padres'>Futuros Paders</option>
+								<option value='Futuros padres'>Futuros Padres</option>
 								<option value='Mascotas'>Mascotas</option>
 								<option value='Electrónica'>Electrónica</option>
 								<option value='Servicios'>Servicios</option>
@@ -258,10 +280,7 @@ export const RegistroProducto = () => {
 							</Form.Select>
 						</Form.Group>
 
-						{errors.idCategoria?.type === "required" && <p>Mensaje de Error</p>}
-                
-
-
+						{errors.idCategoria?.type === "required" && <p>Debes seleccionar una categoria a la que el producto pertenece.</p>}
 					</Form>
 					<div
 						className='Form-Buttons'
