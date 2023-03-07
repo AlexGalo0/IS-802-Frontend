@@ -19,7 +19,10 @@ import { createUser } from "../../../api";
 import { Contrato } from "./UI";
 import { useNavigate } from "react-router";
 import primera from "../styles/1.png";
+import ejem from "../styles/ejem.jpeg";
 import logo from "../styles/logo.png";
+import { BsFacebook, BsTwitter, BsInstagram, BsDiscord } from "react-icons/bs";
+import { FaCopyright } from "react-icons/fa";
 
 export const PaginaPrincipal = () => {
   /* Elentos del boton categorias */
@@ -39,11 +42,39 @@ export const PaginaPrincipal = () => {
     <>
       <body className="body">
         <div className="top-header">
-          <div className="top-header-right">
-            <a href="">Facebook</a>
-            <a href="">Instagram</a>
-            <a href="">Twitter</a>
-          </div>
+          <span className="letterHeader">
+            ¿Ya sigues nuestras redes sociales?
+          </span>
+          <span className="letterLightHeader">
+            Si quieres mantenerte informado de todas las novedades, no olvides
+            visitar nuestras redes sociales.......
+          </span>
+          <ul className="ulRedes">
+            <li className="liRedes">
+              <span className="redes">
+                <BsFacebook className="i" />
+              </span>
+              <span className="titulo">Facebook</span>
+            </li>
+            <li className="liRedes">
+              <span className="redes">
+                <BsTwitter className="i" />
+              </span>
+              <span className="titulo">twitter</span>
+            </li>
+            <li className="liRedes">
+              <span className="redes">
+                <BsInstagram className="i" />
+              </span>
+              <span className="titulo">instagram</span>
+            </li>
+            <li className="liRedes">
+              <span className="redes">
+                <BsDiscord className="i" />
+              </span>
+              <span className="titulo">discord</span>
+            </li>
+          </ul>
         </div>
 
         <div className="navbar">
@@ -54,9 +85,9 @@ export const PaginaPrincipal = () => {
               type="text"
               style={{ paddingLeft: "8px", paddingRight: "8px" }}
             />
-            <button className="button-buscar">
-              <BiSearchAlt style={{ fontSize: "25" }} />
-              Buscar
+            <button className="btnBuscar">
+              <BiSearchAlt className="iconBuscar" />
+              <span className="textBuscar">Buscar</span>
             </button>
           </div>
 
@@ -64,19 +95,8 @@ export const PaginaPrincipal = () => {
             className="botonLogin"
             style={{ display: "flex", flexDirection: "row" }}
           >
-            <button
-              className="button-login"
-              style={{ color: "#f7f7f7", fontSize: "larger" }}
-            >
-              <span class="box">Iniciar sesion</span>
-            </button>
-            <button
-              className="button-login"
-              style={{ color: "#f7f7f7", fontSize: "larger" }}
-            >
-              <span class="box">Registrate</span>
-              
-            </button>
+            <button className="regis">Inicia sesion</button>
+            <button className="regis">Registrate</button>
           </div>
           <div>
             <OverlayTrigger
@@ -102,64 +122,167 @@ export const PaginaPrincipal = () => {
             {" "}
             {/* Boton categorias */}
             <div className="section-header">
-              <button onClick={handleShow} className="button-category">
-                <FiMenu style={{ fontSize: "25", marginRight: "10px" }} />
-                Categorias
+              <button onClick={handleShow} className="btn">
+                <span className="icon">
+                  <svg viewBox="0 0 175 80" width="40" height="40">
+                    <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                    <rect
+                      y="30"
+                      width="80"
+                      height="15"
+                      fill="#f0f0f0"
+                      rx="10"
+                    ></rect>
+                    <rect
+                      y="60"
+                      width="80"
+                      height="15"
+                      fill="#f0f0f0"
+                      rx="10"
+                    ></rect>
+                  </svg>
+                </span>
+                <span className="text">Categorias</span>
               </button>
 
               <Offcanvas show={show} onHide={handleClose} className="canvas">
-                <Offcanvas.Header closeButton closeVariant="white">
-                  <Offcanvas.Title>
-                    <h2>Elija las categorias que desea ver:</h2>
-                  </Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <Form>
+                <Form className="formCategory">
+                  <Offcanvas.Header closeButton closeVariant="white" >
+                    <Offcanvas.Title>
+                      <p
+                        style={{
+                          color: "#f7f7f7",
+                          textAlign: "left",
+                          marginLeft: '-5px',
+                          marginRight: '10px',
+                          fontSize: '26px',
+                          fontWeight: '400',
+                          marginBottom: '-55px',
+                          marginTop: '-20px'
+                        }}
+                      >
+                        Categorias a mostrar:  
+                      </p>
+                    </Offcanvas.Title>
+                  </Offcanvas.Header>
+                  <Offcanvas.Body>
+                    <Form>
                     <div className="checkbox">
-                      <div class="checkbox-apple">
-                        <input class="yep" id="check-apple" type="checkbox" />
-                        <label for="check-apple"></label>
+                        <div class="checkbox-apple">
+                          <input class="yep" id="check-apple" type="checkbox" />
+                          <label for="check-apple"></label>
+                        </div>
+                        <p>Todas</p>
                       </div>
-                      <p>Categoria 1</p>
-                    </div>
-                    <div className="checkbox">
-                      <div class="checkbox-apple">
-                        <input class="yep" id="check-apple2" type="checkbox" />
-                        <label for="check-apple2"></label>
+                      <div className="checkbox">
+                        <div class="checkbox-apple">
+                          <input class="yep" id="check-apple1" type="checkbox" />
+                          <label for="check-apple1"></label>
+                        </div>
+                        <p>Inmuebles</p>
                       </div>
-                      <p>Categoria 1</p>
-                    </div>
-                    <div className="checkbox">
-                      <div class="checkbox-apple">
-                        <input class="yep" id="check-apple3" type="checkbox" />
-                        <label for="check-apple3"></label>
+                      <div className="checkbox">
+                        <div class="checkbox-apple">
+                          <input
+                            class="yep"
+                            id="check-apple2"
+                            type="checkbox"
+                          />
+                          <label for="check-apple2"></label>
+                        </div>
+                        <p>Vehículos</p>
                       </div>
-                      <p>Categoria 1</p>
-                    </div>
-                    <div className="checkbox">
-                      <div class="checkbox-apple">
-                        <input class="yep" id="check-apple4" type="checkbox" />
-                        <label for="check-apple4"></label>
+                      <div className="checkbox">
+                        <div class="checkbox-apple">
+                          <input
+                            class="yep"
+                            id="check-apple3"
+                            type="checkbox"
+                          />
+                          <label for="check-apple3"></label>
+                        </div>
+                        <p>Hogar</p>
                       </div>
-                      <p>Categoria 1</p>
-                    </div>
-                    <div className="checkbox">
-                      <div class="checkbox-apple">
-                        <input class="yep" id="check-apple5" type="checkbox" />
-                        <label for="check-apple5"></label>
+                      <div className="checkbox">
+                        <div class="checkbox-apple">
+                          <input
+                            class="yep"
+                            id="check-apple4"
+                            type="checkbox"
+                          />
+                          <label for="check-apple4"></label>
+                        </div>
+                        <p>Futuros Paders</p>
                       </div>
-                      <p>Categoria 1</p>
-                    </div>
-                    <div className="checkbox">
-                      <div class="checkbox-apple">
-                        <input class="yep" id="check-apple6" type="checkbox" />
-                        <label for="check-apple6"></label>
+                      <div className="checkbox">
+                        <div class="checkbox-apple">
+                          <input
+                            class="yep"
+                            id="check-apple5"
+                            type="checkbox"
+                          />
+                          <label for="check-apple5"></label>
+                        </div>
+                        <p>Mascotas</p>
                       </div>
-                      <p>Categoria 1</p>
-                    </div>
-                  </Form>
-                </Offcanvas.Body>
-                <button className="button-aplicar">Aplicar</button>
+                      <div className="checkbox">
+                        <div class="checkbox-apple">
+                          <input
+                            class="yep"
+                            id="check-apple6"
+                            type="checkbox"
+                          />
+                          <label for="check-apple6"></label>
+                        </div>
+                        <p>Electrónica</p>
+                      </div>
+                      <div className="checkbox">
+                        <div class="checkbox-apple">
+                          <input
+                            class="yep"
+                            id="check-apple7"
+                            type="checkbox"
+                          />
+                          <label for="check-apple7"></label>
+                        </div>
+                        <p>Servicios</p>
+                      </div>
+                      <div className="checkbox">
+                        <div class="checkbox-apple">
+                          <input
+                            class="yep"
+                            id="check-apple8"
+                            type="checkbox"
+                          />
+                          <label for="check-apple8"></label>
+                        </div>
+                        <p>Negocios</p>
+                      </div>
+                      <div className="checkbox">
+                        <div class="checkbox-apple">
+                          <input
+                            class="yep"
+                            id="check-apple9"
+                            type="checkbox"
+                          />
+                          <label for="check-apple9"></label>
+                        </div>
+                        <p>Empleos</p>
+                      </div>
+                    </Form>
+                  </Offcanvas.Body>
+                  <button
+                    className="buttonProducto"
+                    style={{
+                      color: "#f7f7f7",
+                      fontSize: "larger",
+                      margin: "auto",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <span class="box">Aplicar</span>
+                  </button>
+                </Form>
               </Offcanvas>
             </div>
             <div
@@ -180,11 +303,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -198,11 +324,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -216,11 +345,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -234,11 +366,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -252,11 +387,35 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
+                  </Card.Body>
+                </Card>
+              </div>
+              <div>
+                <Card className="card-newProduct">
+                  <Card.Img
+                    variant="top"
+                    src={primera}
+                    className="card-image"
+                  />
+                  <Card.Body className="card-body">
+                    <Card.Title className="card-title">Card Title</Card.Title>
+                    <Card.Text className="card-medium">
+                    lps. 00000
+                    </Card.Text>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -273,8 +432,11 @@ export const PaginaPrincipal = () => {
             >
               <Carousel variant="dark" className="carousel-style">
                 <Carousel.Item>
-                  <Image src={primera} className="image-carousel" />
-                  <Carousel.Caption className="carousel">
+                  <Image src={ejem} className="image-carousel" />
+                  <Carousel.Caption
+                    className="carousel"
+                    style={{ color: "#f7f7f7" }}
+                  >
                     <h3>First slide label</h3>
                     <p>
                       Nulla vitae elit libero, a pharetra augue mollis interdum.
@@ -282,9 +444,12 @@ export const PaginaPrincipal = () => {
                   </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
-                  <Image src={primera} className="image-carousel" />
+                  <Image src={ejem} className="image-carousel" />
 
-                  <Carousel.Caption className="carousel">
+                  <Carousel.Caption
+                    className="carousel"
+                    style={{ color: "#f7f7f7" }}
+                  >
                     <h3>Second slide label</h3>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -292,9 +457,12 @@ export const PaginaPrincipal = () => {
                   </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
-                  <Image src={primera} className="image-carousel" />
+                  <Image src={ejem} className="image-carousel" />
 
-                  <Carousel.Caption className="carousel">
+                  <Carousel.Caption
+                    className="carousel"
+                    style={{ color: "#f7f7f7" }}
+                  >
                     <h3>Third slide label</h3>
                     <p>
                       Praesent commodo cursus magna, vel scelerisque nisl
@@ -303,7 +471,11 @@ export const PaginaPrincipal = () => {
                   </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
-                  <Image src={primera} className="image-carousel" />
+                  <Image
+                    src={ejem}
+                    className="image-carousel"
+                    style={{ color: "#f7f7f7" }}
+                  />
 
                   <Carousel.Caption className="carousel">
                     <h3>Four slide label</h3>
@@ -333,12 +505,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d asd asd asd
-                      asdasdaasd a
+                      lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -357,12 +531,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d asd asd asd
-                      asdasdaasd a
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -381,29 +557,32 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d asd asd asd
-                      asdasdaasd a
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
             </div>
 
+            {/* Apartado de promociones */}
             <div
               style={{
                 height: "250px",
                 width: "100%",
-                padding: "20px 15px",
+                padding: "20px 20px",
               }}
             >
               <div className="promo">
                 <p>Hola</p>
               </div>
             </div>
-            {/* Apartado de promociones */}
+            
 
             <div className="div-imagenes">
               {/* Segunda linea de imagenes */}
@@ -422,12 +601,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d asd asd asd
-                      asdasdaasd a
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -446,12 +627,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d asd asd asd
-                      asdasdaasd a
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -470,12 +653,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d asd asd asd
-                      asdasdaasd a
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -498,11 +683,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -521,11 +709,14 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
@@ -544,15 +735,20 @@ export const PaginaPrincipal = () => {
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content. asdasda sadas as
-                      ddsa dasdasd asd sad as dasd as asda as d
+                    lps. 00000
                     </Card.Text>
-                    <button className="button-verProduct">Ver producto</button>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span class="box">Ver producto</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </div>
             </div>
+
+            
 
             <div
               style={{
@@ -560,31 +756,50 @@ export const PaginaPrincipal = () => {
                 width: "100%",
               }}
             >
-              <Pagination size="lg" className="pagination" bsPrefix="">
-                {/* podemos modificar esto desde css como queramos */}
-                <Pagination.First />
-                <Pagination.Prev />
-                <Pagination.Item>{1}</Pagination.Item>
-                <Pagination.Ellipsis />
-                <Pagination.Item>{10}</Pagination.Item>
-                <Pagination.Item>{11}</Pagination.Item>
-                <Pagination.Item active>{12}</Pagination.Item>
-                <Pagination.Item>{13}</Pagination.Item>
-                <Pagination.Item disabled>{14}</Pagination.Item>
-                <Pagination.Ellipsis />
-                <Pagination.Item>{20}</Pagination.Item>
-                <Pagination.Next />
-                <Pagination.Last />
-              </Pagination>
+              <section className="secPagination">
+                <ul className="ulPagination">
+                  <a href="" className="aPagination">
+                    <li className="liPagination">Anterior</li>
+                  </a>
+                  <a href="" className="aPagination">
+                    <li className="liPagination">Siguiente</li>
+                  </a>
+                  <a href="" className="aPagination active">
+                    <li className="liPagination">1</li>
+                  </a>
+                  <a href="" className="aPagination">
+                    <li className="liPagination">2</li>
+                  </a>
+                  <a href="" className="aPagination">
+                    <li className="liPagination">3</li>
+                  </a>
+                  <a href="" className="aPagination">
+                    <li className="liPagination">...</li>
+                  </a>
+                  <a href="" className="aPagination">
+                    <li className="liPagination">15</li>
+                  </a>
+                </ul>
+              </section>
             </div>
             {/* Apartado de pagination */}
           </div>
         </div>
 
         <footer>
-          <div className="top-header-xd"></div>
+          <div className="top-footer">
+          <span className="letterLightFooter">
+            Los principales distribuidores y grandes vendedores trabajan con <span style={{color: '#e211cc'}}>Market</span><span style={{color: '#dfbee5'}}>Place</span>504
+          </span>
+          </div>
 
-          <div className="navbar-xd"></div>
+          <div className="navbar-footer">
+            <div style={{display: 'flex', gap: '25px', fontSize: 'larger', marginBottom: '5px'}}>
+              <div><button className="buttonFooter">Terminos y condiciones</button></div>
+              <div><button className="buttonFooter">Sobre nosotros</button></div>
+            </div>
+            <div style={{display: 'flex', justifyContent: "center", alignItems: 'center'}}><FaCopyright style={{width: '20px', height: '20px', marginRight: '5px'}}/>2023 MarketPlace504.hn</div>
+          </div>
         </footer>
       </body>
     </>

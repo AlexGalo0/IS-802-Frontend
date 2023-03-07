@@ -437,7 +437,7 @@ export const Registro = () => {
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton style={{ border: "3px solid #E211CC" }}>
                 <Modal.Title style={{ textAlign: "center" }}>
-                  <h2>Términos y Condiciones de 504Marketplace</h2>
+                  <h2>Términos y Condiciones de Marketplace504</h2>
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body style={{ border: "3px solid #E211CC" }}>
