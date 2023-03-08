@@ -2,8 +2,8 @@ import { BrowserRouter, Routes,Route,Link } from "react-router-dom";
 import { RegistroProducto } from "../pages/Productos";
 import {Construyendo,Registro} from "../pages/Registro/Components";
 import { Login } from "../pages/Login/Components";
-import { PaginaPrincipal } from "../pages/Principal";
-import { CartaProducto } from "../pages/Principal/Components/CartaProducto";
+// import { PaginaPrincipal } from "../pages/Principal";
+// import { CartaProducto } from "../pages/Principal/Components/CartaProducto";
 import { MostrarProducto } from "../pages/Principal/Components/MostrarProducto";
 export const Router = () => {
   return (

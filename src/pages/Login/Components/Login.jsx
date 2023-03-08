@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { iniciarSesion } from "../../../api";
 import "../styles/styleRegistroProductos.css"
-// import logo from "../../../assets/logoV2.png";
+import logo from "../../../assets/logoV2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Form, Row, Image } from "react-bootstrap";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
@@ -18,9 +18,9 @@ export const Login = () => {
 	const enviarDatosLogin = async (userData) => {
 		console.log(userData);
         try {
-            const response = await iniciarSesion(userData)
+            // const response = await iniciarSesion(userData)
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
 	};
 
@@ -85,9 +85,9 @@ export const Login = () => {
                 name="text"
                 className="inNombre"
                 {...register("correo", {
-                  pattern: /^[a-zA-Z\sáéíóúñÁÉÍÓÚÑ]+$/g,
                   required: true,
-                  max: 100,
+                  maxLength: 50,
+                  pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/,
                 })}
               />
               <Form.Label htmlFor="" className="user-label">
@@ -95,6 +95,13 @@ export const Login = () => {
                 Correo
               </Form.Label>
             </Form.Group>
+            {errors.correo?.type === "required" && (
+                <p className="FontAlert">¡El campo correo es requerido!</p>
+              )}
+              {errors.correo?.type === "pattern" && (
+                <p className="FontAlert">¡Debes ingresar un correo valido!</p>
+              )}
+              
 
             <Form.Group
               style={{ position: "relative" }}
@@ -104,13 +111,19 @@ export const Login = () => {
                 type="password"
                 name="password"
                 className="inNombre"
-                {...register("password")}
+                {...register("password",{
+                  required: true,
+                })}
               />
               <Form.Label htmlFor="" className="user-label">
                 <RiLockPasswordLine />
                 Contraseña
               </Form.Label>
             </Form.Group>
+            {errors.password?.type === "required" && (
+                <p className="FontAlert">¡La contraseña es requerida!</p>
+              )}
+             
 
             <div>
               <button className="Button-Login" type="submit">
