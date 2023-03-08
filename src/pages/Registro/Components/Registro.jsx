@@ -21,7 +21,7 @@ import { comprobarEdad } from "../helpers";
 import { createUser } from "../../../api";
 import { Contrato } from "./UI";
 import { useNavigate } from "react-router";
-import logo from "../../../assets/logoV2.png";
+// import logo from "../../../assets/logoV2.png";
 
 export const Registro = () => {
   const navigate = useNavigate(); //Para redireccion
@@ -90,14 +90,14 @@ export const Registro = () => {
                 >
                   <BiLeftArrow />
                 </button>
-                <Image
+                {/* <Image
                   src={logo}
                   style={{
                     width: "110px",
                     paddingRight: "10px",
                     paddingTop: "20px",
                   }}
-                />
+                /> */}
               </Col>
             </Row>
             <h1 style={{ color: "#0d0d0d", textAlign: "left" }}>

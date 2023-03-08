@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { iniciarSesion } from "../../../api";
 import "../styles/styleRegistroProductos.css"
-import logo from "../../../assets/logoV2.png";
+// import logo from "../../../assets/logoV2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Form, Row, Image } from "react-bootstrap";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
