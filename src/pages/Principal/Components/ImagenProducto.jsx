@@ -8,7 +8,10 @@ export const ImagenProducto = ({ imagenesProducto }) => {
 	return (
 		<>
 			{imagenes.map((imagen,index) => (
+				<>
+				<hr/>
 				<Card.Img src={imagen} key={index} variant="top" className="card-image" />
+				</>
 			))}
 		</>
 	);
