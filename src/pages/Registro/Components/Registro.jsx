@@ -36,6 +36,7 @@ export const Registro = () => {
   } = useForm();
 
   const enviarInfo = async (data) => {
+    console.log(data);
     try {
       const response = await createUser(data);
       console.log(data);
@@ -160,7 +161,7 @@ export const Registro = () => {
               {errors.apellido?.type === "maxLength" && (
                 <p className="FontAlert">¡Tienes demasiados caracteres!</p>
               )}
-              {errors.apellido?.type === "min" && (
+              {errors.apellido?.type === "minLength" && (
                 <p className="FontAlert">¡Tienes muy pocos caracteres!</p>
               )}
               {errors.apellido?.type === "pattern" && (
@@ -172,7 +173,7 @@ export const Registro = () => {
               style={{position: 'relative'}} controlId="formBasicPhone">
               <input
                 name="text" className="inRegistro"
-                type="number"
+                type="text"
                 {...register("telefono", {
                   required: true,
                   maxLength: 9,
@@ -273,7 +274,7 @@ export const Registro = () => {
                 >
                   <input
                     name="number" className="inRegistro"
-                    type="number"
+                    type="text"
                     {...register("dniHondurenio", {
                       required: true,
                       maxLength: 15,
@@ -296,7 +297,7 @@ export const Registro = () => {
                 >
                   <input
                     name="number" className="inRegistro"
-                    type="number"
+                    type="text"
                     {...register("dniExtranjero", {
                       required: true,
                       maxLength: 15,
