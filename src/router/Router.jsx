@@ -3,6 +3,7 @@ import { RegistroProducto } from "../pages/Productos";
 import {Construyendo,Registro} from "../pages/Registro/Components";
 import { Login } from "../pages/Login/Components";
 import { PaginaPrincipal } from "../pages/Principal";
+import { CartaProducto } from "../pages/Principal/Components/CartaProducto";
 export const Router = () => {
   return (
     <BrowserRouter>
@@ -15,6 +16,8 @@ export const Router = () => {
         <Route path="/login" element={<Login/>}/>
         <Route path="/principal" element={<PaginaPrincipal/>}/>
         <Route path="/registro" element={<Registro/>}/>
+        <Route path="/card" element={<CartaProducto/>}/>
+
       </Routes>
     </BrowserRouter>
   )

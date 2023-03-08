@@ -10,7 +10,7 @@ import {
   Card,
 } from "react-bootstrap";
 import './styles/styleArticulos.css'
-import {  useState } from "react";
+import {  useState,useEffect } from "react";
 // import { get, useForm } from "react-hook-form";
 // import { FiMenu } from "react-icons/fi";
 import { BiSearchAlt, BiUser } from "react-icons/bi";
@@ -19,13 +19,26 @@ import ejem from "../../assets/ejem.jpeg";
 import logo from "../../assets/logo.png";
 import { BsFacebook, BsTwitter, BsInstagram, BsDiscord } from "react-icons/bs";
 import { FaCopyright } from "react-icons/fa";
-
+import { CartaProducto } from "./Components/CartaProducto";
 export const PaginaPrincipal = () => {
   /* Elentos del boton categorias */
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [pageNumber, setPageNumber] = useState(1);
+	const [productInfo, setProductInfo] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
+
+  const URL = `http://localhost:4000/pagination/:${pageNumber}`;
+	useEffect(() => {
+		fetch(URL)
+			.then((response) => response.json())
+			.then((product) => {
+				setProductInfo(product); //Esto en teoria , deberia ser un arreglo con 9 productos
+			});
+	},[productInfo]); //Este product info en los filtros deberia funcionar
 
   /* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
   const renderTooltip = (props) => (
@@ -492,6 +505,22 @@ export const PaginaPrincipal = () => {
                   width: "527px",
                 }}
               >
+
+
+{/*isLoading ? <p>Cargando...</p> : null*/}
+
+{/*
+Aqui se generaran todos los productos
+  //Falta el key que me retornara producto
+  productInfo.map((product) => {
+    <CartaProducto producto={product} />;
+  })
+*/}
+
+
+
+
+
                 <Card className="card">
                   <Card.Img
                     variant="top"
@@ -499,7 +528,7 @@ export const PaginaPrincipal = () => {
                     className="card-image"
                   />
                   <Card.Body className="card-body">
-                    <Card.Title className="card-title">Card Title</Card.Title>
+                    <Card.Title className="card-title">PRUEBA</Card.Title>
                     <Card.Text className="card-medium">
                       lps. 00000
                     </Card.Text>
@@ -752,6 +781,9 @@ export const PaginaPrincipal = () => {
                 width: "100%",
               }}
             >
+              {
+                //Crear funcion de Paginacion
+              }
               <section className="secPagination">
                 <ul className="ulPagination">
                   <a href="" className="aPagination">
