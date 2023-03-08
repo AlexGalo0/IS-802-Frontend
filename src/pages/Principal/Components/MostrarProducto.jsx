@@ -5,7 +5,7 @@ Esta es solo una representacion de como funcionaria el componente de MostrarProd
 import React, { useEffect, useState } from "react";
 import { CartaProducto } from "./CartaProducto";
 
-export const PrototipoMap = () => {
+export const MostrarProducto = () => {
 	//Hacer peticion de todos los datos
 	const [productInfo, setProductInfo] = useState([]);
 	const [pageNumber, setPageNumber] = useState(1);
