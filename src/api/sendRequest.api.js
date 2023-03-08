@@ -10,3 +10,7 @@ export const iniciarSesion =async (loginData) =>{
 export const enviarProductos = async (infoProducto) =>{
     await axios.post('http://localhost:4000/product',infoProducto)
 }
+
+// export const recibirProductos = async (infoProducto) =>{
+//     await axios.post('http://localhost:4000/product',infoProducto)
+// }
