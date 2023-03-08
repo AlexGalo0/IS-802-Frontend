@@ -31,6 +31,7 @@ export const RegistroProducto = () => {
 	const [urls, setURLS] = useState([]);
 	const enviarProducto = async (productInfo) => {
 		productInfo.imagenes = urls;
+		/* if(==='') */
 		const response = await enviarProductos(productInfo);
 		console.log(response);
 	};

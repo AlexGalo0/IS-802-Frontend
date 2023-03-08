@@ -7,7 +7,6 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-     
         <Route index  element={<Registro/>}/>
         <Route path="/construyendo" element={<Construyendo/>}/>
         <Route path="/admin" element={<Construyendo/>}/> 
@@ -16,11 +15,6 @@ export const Router = () => {
         <Route path="/login" element={<Login/>}/>
         <Route path="/principal" element={<PaginaPrincipal/>}/>
         <Route path="/registro" element={<Registro/>}/>
-
-
-
-
-       
       </Routes>
     </BrowserRouter>
   )
