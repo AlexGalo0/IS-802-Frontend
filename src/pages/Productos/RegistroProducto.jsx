@@ -30,6 +30,7 @@ export const RegistroProducto = () => {
 
 	const [urls, setURLS] = useState([]);
 	const enviarProducto = async (productInfo) => {
+		console.log(productInfo);
 		productInfo.imagenes = urls;
 		/* if(==='') */
 		const response = await enviarProductos(productInfo);
@@ -110,6 +111,31 @@ export const RegistroProducto = () => {
 							{errors.nombreProducto?.type === "required" && (
 								<p>Debes ingresar un nombre de producto</p>
 							)}
+						</Form.Group>
+
+						<Form.Group
+							style={{ position: "relative" }}
+							controlId='formBasicNombre'
+						>
+							<Form.Label htmlFor='' className='user-label'>
+								<MdDriveFileRenameOutline />
+								Precio
+							</Form.Label>
+							<input
+								type='text'
+								name='number'
+								className='inNombre'
+								{...register("Precio", {
+									// pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]{4,50}$/,
+									// required: true,
+								})}
+							/>
+							{/* {errors.nombreProducto?.type === "pattern" && (
+								<p>El nombre del producto no es válido</p>
+							)}
+							{errors.nombreProducto?.type === "required" && (
+								<p>Debes ingresar un nombre de producto</p>
+							)} */}
 						</Form.Group>
 
 						<Form.Group
