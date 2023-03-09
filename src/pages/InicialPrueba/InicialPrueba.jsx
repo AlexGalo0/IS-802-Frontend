@@ -10,11 +10,9 @@ export const InicialPrueba = () => {
 	return (
 		<>
 			<h1>Menú Inicial: </h1>
-			{userAuth ? (
-				<h3>Usted esta logueado!</h3>
-			) : (
-				<h3>Usted no esta logueado</h3>
-			)}
+			{
+				userAuth === true || userAuth ==="true" ? <h3>Usted esta logueado</h3> : <h3>Usted no esta logueado</h3>
+			}
 			<button onClick={logout}>Logout</button>
 			<nav>
 				<ul>

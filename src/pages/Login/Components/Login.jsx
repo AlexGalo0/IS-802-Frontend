@@ -24,7 +24,9 @@ export const Login = () => {
 	const [requestError, setRequestError] = useState(false);
 	const {userAuth,setUserAuth}  = useContext(UserContext)
 
-	
+	useEffect(()=>{
+		setUserAuth(false)
+	},[])
 
 	const enviarDatosLogin = async (userData) => {
 		
@@ -42,7 +44,6 @@ export const Login = () => {
 			console.log(error);
 			setSuccesfullResponse(false)
 			setRequestError(true);
-			
 			setTimeout(()=>{
 				navigate("/registrarUsuario")
 			},2500)
