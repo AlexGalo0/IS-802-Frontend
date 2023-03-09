@@ -36,10 +36,10 @@ export const Registro = () => {
   } = useForm();
 
   const enviarInfo = async (data) => {
-    console.log(data);
+   
     try {
       const response = await createUser(data);
-      console.log(data);
+      
     } catch (error) {
       console.log(error);
     }

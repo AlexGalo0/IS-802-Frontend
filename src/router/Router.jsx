@@ -9,9 +9,9 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index  element={<Registro/>}/>
+        <Route index  element={<Login/>}/>
         <Route path="/registrarProducto" element={<RegistroProducto/>}/>
-        <Route path="/login" element={<Login/>}/>
+        <Route path="/registrarUsuario" element={<Registro/>}/>
         {/* <Route path="/principal" element={<PaginaPrincipal/>}/> */}
         {/* <Route path="/card" element={<CartaProducto/>}/> */}
         <Route path="/productos" element={<MostrarProducto/>}/>
