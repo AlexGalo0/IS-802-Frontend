@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Col, Container, Form, Row, Image, Modal } from "react-bootstrap";
+import { Col, Container, Form, Row, Image, Modal , Alert } from "react-bootstrap";
 import "../styles/style.css";
 import { useEffect, useRef, useState } from "react";
 import { get, useForm } from "react-hook-form";
@@ -28,9 +28,14 @@ export const Registro = () => {
 		reset,
 	} = useForm();
 
+	const [succesfullResponse, setSuccesfullResponse] = useState(false);
 	const enviarInfo = async (data) => {
 		try {
 			const response = await createUser(data);
+			setTimeout(()=>{
+				navigate("/login")
+			},1500)
+			setSuccesfullResponse(true)
 		} catch (error) {
 			console.log(error);
 		}
@@ -530,7 +535,9 @@ export const Registro = () => {
 								</button>
 							</Modal.Footer>
 						</Modal>
-
+						{
+  succesfullResponse ? <Alert variant="success">Se creo de forma correcta su usuario</Alert> :''
+}
 						<button className='Button' type='submit'>
 							Crear cuenta
 						</button>
