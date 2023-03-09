@@ -8,6 +8,7 @@ import { FaSortAmountDownAlt } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
 import { BsCalendarDay } from "react-icons/bs";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Alert } from "react-bootstrap";
 import {
 	Col,
 	Container,
@@ -31,20 +32,26 @@ export const RegistroProducto = () => {
 	} = useForm();
 
 	const [urls, setURLS] = useState([]);
-	const [imagenesVacias,setImagenesVacias] = useState(false)
+	const [imagenesVacias, setImagenesVacias] = useState(false);
+	const [succesfullResponse, setSuccesfullResponse] = useState(false);
 	const enviarProducto = async (productInfo) => {
-		
 		productInfo.imagenes = urls;
-		if (productInfo.imagenes.length===0) {
-			setImagenesVacias(true)
+		if (productInfo.imagenes.length === 0) {
+			setImagenesVacias(true);
 			return;
 		}
-		console.log('Esto no deberia ejecutarse');
-		const response = await enviarProductos(productInfo);
-		console.log(response);
+
+		try {
+			const response = await enviarProductos(productInfo);
+			setSuccesfullResponse(true);
+			setTimeout(() => {
+				navigate("/productos");
+			}, 1500);
+		} catch (error) {
+			console.log(response);
+		}
 	};
 	const recibirURL = (url) => {
-		
 		setURLS(url);
 	};
 	const handleRedirection = () => {
@@ -141,10 +148,10 @@ export const RegistroProducto = () => {
 									required: true,
 								})}
 							/>
-						
+
 							{errors.Precio?.type === "required" && (
 								<p>Debes ingresar un precio de producto</p>
-							)} 
+							)}
 						</Form.Group>
 
 						<Form.Group
@@ -179,7 +186,7 @@ export const RegistroProducto = () => {
 								type='text'
 								{...register("cantidad", {
 									required: true,
-									pattern: /^[1-9][0-9]*$/,
+									pattern: /^[0-9][0-9]*$/,
 									min: 1,
 								})}
 							/>
@@ -211,7 +218,7 @@ export const RegistroProducto = () => {
 								{...register("limite_dias", {
 									required: true,
 									max: 30,
-									pattern: /^(?:[1-9]|[1-2][0-9]|30)$/,
+									pattern: /^(0|[1-9][0-9]*)$/,
 									min: 1,
 								})}
 							/>
@@ -321,16 +328,14 @@ export const RegistroProducto = () => {
 					>
 						<CloudinaryUploadWidget recibirURL={recibirURL} />
 
-
-							{
-								imagenesVacias ? <p>
-								Debes enviar por lo menos una imagen.
-							</p> : ''
-							}
-
-
-
-							
+						{imagenesVacias ? <p>Debes enviar por lo menos una imagen.</p> : ""}
+						{succesfullResponse ? (
+							<Alert variant='success'>
+								Se registro el producto exitosamente
+							</Alert>
+						) : (
+							""
+						)}
 						<div>
 							<button
 								className='Button-Product'

@@ -25,7 +25,7 @@ export const MostrarProducto = () => {
 	return (
 		<>
 			<h1>Productos Ingresados: </h1>
-			<select name="" id=""></select>
+			
 			{
 				//Falta el key que me retornara producto
 				productInfo.map((product) => (

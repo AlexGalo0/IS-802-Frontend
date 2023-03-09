@@ -194,13 +194,14 @@ body::-webkit-scrollbar-thumb {
 
 .card {
   width: 30rem;
-  display: flex;
+  display: grid;
   margin-left: 21px;
   margin-top: 7px;
   margin-bottom: 7px;
   border: 1px solid #e211cc;
   border-radius: 10px;
   background-color: #dfbee5;
+  place-content: center;
 }
 
 .card-newProduct {
@@ -225,6 +226,7 @@ body::-webkit-scrollbar-thumb {
 .card-image {
   border-radius: 10px;
   border: 1px solid #e211cc;
+  width: 450px;
 }
 
 .card-body {
