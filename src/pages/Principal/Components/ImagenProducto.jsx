@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
-export const ImagenProducto = ({ imagenesProducto }) => {
+import "bootstrap/dist/css/bootstrap.min.css";
+import { v4 as uuidv4 } from 'uuid';
+export const ImagenProducto = ({ imagenesProducto  }) => {
 	const [imagenes, setImagenes] = useState([imagenesProducto]);
 	useEffect(()=>{
         setImagenes(JSON.parse(imagenes))
     },[])
 	return (
-		<>
-			{imagenes.map((imagen,index) => (
+		<div>
+			{imagenes.map((imagen ) => (
 				<>
-				<hr/>
-				<Card.Img src={imagen} key={index} variant="top" className="card-image" />
+				
+				<img src={imagen} key={uuidv4()} style={{maxHeight:'100px'}}	/>
 				</>
 			))}
-		</>
+		</div>
 	);
 };

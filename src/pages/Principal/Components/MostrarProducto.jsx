@@ -4,7 +4,8 @@ Esta es solo una representacion de como funcionaria el componente de MostrarProd
 
 import React, { useEffect, useState } from "react";
 import { CartaProducto } from "./CartaProducto";
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { v4 as uuidv4 } from 'uuid';
 export const MostrarProducto = () => {
 	//Hacer peticion de todos los datos
 	const [productInfo, setProductInfo] = useState([]);
@@ -24,12 +25,11 @@ export const MostrarProducto = () => {
 	return (
 		<>
 			<h1>Productos Ingresados: </h1>
-			{/* {isLoading ? <p>Cargando...</p> : null} */}
-
 			{
 				//Falta el key que me retornara producto
-				productInfo.map((product,index) => (
-					<CartaProducto key={index} {...product} />
+				productInfo.map((product) => (
+					<CartaProducto key={uuidv4()} {...product} />
+					
 				))
 			}
 			
