@@ -31,15 +31,20 @@ export const RegistroProducto = () => {
 	} = useForm();
 
 	const [urls, setURLS] = useState([]);
+	const [imagenesVacias,setImagenesVacias] = useState(false)
 	const enviarProducto = async (productInfo) => {
-		console.log(productInfo);
+		
 		productInfo.imagenes = urls;
-		/* if(==='') */
+		if (productInfo.imagenes.length===0) {
+			setImagenesVacias(true)
+			return;
+		}
+		console.log('Esto no deberia ejecutarse');
 		const response = await enviarProductos(productInfo);
 		console.log(response);
 	};
 	const recibirURL = (url) => {
-		/* Validar cuantas URLs vienen */
+		
 		setURLS(url);
 	};
 	const handleRedirection = () => {
@@ -317,7 +322,11 @@ export const RegistroProducto = () => {
 						style={{ display: "grip", placeContent: "center" }}
 					>
 						<CloudinaryUploadWidget recibirURL={recibirURL} />
-
+							{
+								imagenesVacias ? <p>
+								Debes enviar por lo menos una imagen.
+							</p> : ''
+							}
 						<div>
 							<button
 								className='Button-Product'
