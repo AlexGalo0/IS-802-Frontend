@@ -32,7 +32,8 @@ export const Login = () => {
 			const response = await iniciarSesion(userData);
 			setRequestError(false)
 			setSuccesfullResponse(true)
-			setUserAuth(true)
+			setUserAuth(true) /* Loguear al Usuario */
+
 			setTimeout(()=>{
 				navigate("/")
 			},1500)
@@ -41,7 +42,7 @@ export const Login = () => {
 			console.log(error);
 			setSuccesfullResponse(false)
 			setRequestError(true);
-			setUserAuth(false)
+			
 			setTimeout(()=>{
 				navigate("/registrarUsuario")
 			},2500)

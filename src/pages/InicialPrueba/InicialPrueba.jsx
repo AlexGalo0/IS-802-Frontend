@@ -4,7 +4,8 @@ import { UserContext } from "../../context/UserContext";
 export const InicialPrueba = () => {
 	const { userAuth, setUserAuth } = useContext(UserContext);
 	const logout = () => {
-		setUserAuth(false);
+		/* Desloguear al Usuario */
+		setUserAuth(false); 
 	};
 	return (
 		<>

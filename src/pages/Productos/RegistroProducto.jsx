@@ -218,7 +218,7 @@ export const RegistroProducto = () => {
 								{...register("limite_dias", {
 									required: true,
 									max: 30,
-									pattern: /^(0|[1-9][0-9]*)$/,
+									pattern: /^(0?[1-9]|[1-9][0-9]|100)$/,
 									min: 1,
 								})}
 							/>
