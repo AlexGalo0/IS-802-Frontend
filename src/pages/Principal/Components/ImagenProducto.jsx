@@ -11,7 +11,6 @@ export const ImagenProducto = ({ imagenesProducto  }) => {
 		<div>
 			{imagenes.map((imagen ) => (
 				<>
-				
 				<img src={imagen} key={uuidv4()} style={{maxHeight:'100px'}}	/>
 				</>
 			))}

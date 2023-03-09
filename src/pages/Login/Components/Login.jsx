@@ -7,8 +7,10 @@ import { Col, Container, Form, Row, Image , Alert } from "react-bootstrap";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../context/UserContext";
+import { RutaProtegida } from "../../../Components/RutaProtegida";
 
 export const Login = () => {
 	const {
@@ -16,9 +18,12 @@ export const Login = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+	const navigate = useNavigate()
 
 	const [succesfullResponse, setSuccesfullResponse] = useState(false);
 	const [requestError, setRequestError] = useState(false);
+	const {userAuth,setUserAuth}  = useContext(UserContext)
+	const [redirect, setRedirect] = useState(false);
 
 	const enviarDatosLogin = async (userData) => {
 		
@@ -26,14 +31,24 @@ export const Login = () => {
 			const response = await iniciarSesion(userData);
 			setRequestError(false)
 			setSuccesfullResponse(true)
+			setUserAuth(true)
+			setTimeout(()=>{
+				navigate("/productos")
+			},1500)
 			
 		} catch (error) {
 			console.log(error);
 			setSuccesfullResponse(false)
 			setRequestError(true);
+			setUserAuth(false)
+			setTimeout(()=>{
+				navigate("/registrarUsuario")
+			},1500)
+			
 		}
+		
 	};
-
+	
 	return (
 		<>
 			<header className='App-header'>
@@ -138,6 +153,7 @@ export const Login = () => {
 {
   succesfullResponse ? <Alert variant="success">Se accedio de forma correcta</Alert> :''
 }
+
 						<div>
 							<button className='Button-Login' type='submit'>
 								Iniciar Sesion
