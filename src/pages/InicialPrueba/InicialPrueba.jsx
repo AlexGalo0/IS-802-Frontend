@@ -21,7 +21,7 @@ export const InicialPrueba = () => {
 						<Link to='/productos'>Ver Productos</Link>
 					</li>
 					<li>
-						<Link to='/registrarUsuario'>Registrar Usuario</Link>
+						<Link to='/registrarUsuario'>Registrarme</Link>
 					</li>
 					<li>
 						<Link to='/registrarProducto'> Registrar Producto</Link>

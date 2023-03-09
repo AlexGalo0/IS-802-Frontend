@@ -8,7 +8,7 @@ import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 
 
@@ -24,6 +24,7 @@ export const Login = () => {
 	const [requestError, setRequestError] = useState(false);
 	const {userAuth,setUserAuth}  = useContext(UserContext)
 
+	
 
 	const enviarDatosLogin = async (userData) => {
 		

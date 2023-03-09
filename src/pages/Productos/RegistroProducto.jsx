@@ -138,15 +138,13 @@ export const RegistroProducto = () => {
 								className='inNombre'
 								{...register("Precio", {
 									// pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]{4,50}$/,
-									// required: true,
+									required: true,
 								})}
 							/>
-							{/* {errors.nombreProducto?.type === "pattern" && (
-								<p>El nombre del producto no es válido</p>
-							)}
-							{errors.nombreProducto?.type === "required" && (
-								<p>Debes ingresar un nombre de producto</p>
-							)} */}
+						
+							{errors.Precio?.type === "required" && (
+								<p>Debes ingresar un precio de producto</p>
+							)} 
 						</Form.Group>
 
 						<Form.Group
@@ -322,11 +320,17 @@ export const RegistroProducto = () => {
 						style={{ display: "grip", placeContent: "center" }}
 					>
 						<CloudinaryUploadWidget recibirURL={recibirURL} />
+
+
 							{
 								imagenesVacias ? <p>
 								Debes enviar por lo menos una imagen.
 							</p> : ''
 							}
+
+
+
+							
 						<div>
 							<button
 								className='Button-Product'
