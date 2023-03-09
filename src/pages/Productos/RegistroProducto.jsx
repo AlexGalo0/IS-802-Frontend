@@ -19,8 +19,10 @@ import {
 } from "react-bootstrap";
 import { useState } from "react";
 import { enviarProductos } from "../../api/sendRequest.api";
+import { useNavigate } from "react-router";
 
 export const RegistroProducto = () => {
+	const navigate = useNavigate(); //Para redireccion
 	const {
 		register,
 		formState: { errors },
@@ -39,6 +41,9 @@ export const RegistroProducto = () => {
 	const recibirURL = (url) => {
 		/* Validar cuantas URLs vienen */
 		setURLS(url);
+	};
+	const handleRedirection = () => {
+		navigate("/");
 	};
 	return (
 		<>
@@ -65,6 +70,7 @@ export const RegistroProducto = () => {
 										paddingTop: "1px",
 										marginLeft: "10px",
 									}}
+									onClick={handleRedirection}
 								>
 									<BiLeftArrow />
 								</button>
@@ -168,11 +174,10 @@ export const RegistroProducto = () => {
 								name='text'
 								className='inNombre'
 								type='text'
-								
 								{...register("cantidad", {
 									required: true,
-									pattern:/^[1-9][0-9]*$/ ,
-									min:1
+									pattern: /^[1-9][0-9]*$/,
+									min: 1,
 								})}
 							/>
 							<Form.Label htmlFor='' className='user-label'>
@@ -186,9 +191,7 @@ export const RegistroProducto = () => {
 						{errors.cantidad?.type === "required" && (
 							<p>Debes ingresar la cantidad</p>
 						)}
-						{errors.cantidad?.type === "min" && (
-							<p>Debe ser minimo 1</p>
-						)}
+						{errors.cantidad?.type === "min" && <p>Debe ser minimo 1</p>}
 
 						<Form.Group
 							style={{ position: "relative" }}
@@ -206,8 +209,7 @@ export const RegistroProducto = () => {
 									required: true,
 									max: 30,
 									pattern: /^(?:[1-9]|[1-2][0-9]|30)$/,
-									min:1
-									
+									min: 1,
 								})}
 							/>
 							{errors.limite_dias?.type === "pattern" && (
@@ -219,18 +221,13 @@ export const RegistroProducto = () => {
 									días es el máximo
 								</p>
 							)}
-								{errors.limite_dias?.type === "max" && (
-								<p>
-									El valor maximo de dias es 30.
-								</p>
+							{errors.limite_dias?.type === "max" && (
+								<p>El valor maximo de dias es 30.</p>
 							)}
-								{errors.limite_dias?.type === "min" && (
-								<p>
-									El valor minimo de dias es 1.
-								</p>
+							{errors.limite_dias?.type === "min" && (
+								<p>El valor minimo de dias es 1.</p>
 							)}
 						</Form.Group>
-				
 
 						<Form.Group
 							className='mb-3, letterMedium'
@@ -273,7 +270,9 @@ export const RegistroProducto = () => {
 							</Form.Select>
 						</Form.Group>
 
-						{errors.dptoVenta?.type === "required" && <p>Debes seleccionar un departamento.</p>}
+						{errors.dptoVenta?.type === "required" && (
+							<p>Debes seleccionar un departamento.</p>
+						)}
 
 						<Form.Group
 							className='mb-3, letterMedium'
@@ -307,7 +306,11 @@ export const RegistroProducto = () => {
 							</Form.Select>
 						</Form.Group>
 
-						{errors.idCategoria?.type === "required" && <p>Debes seleccionar una categoria a la que el producto pertenece.</p>}
+						{errors.idCategoria?.type === "required" && (
+							<p>
+								Debes seleccionar una categoria a la que el producto pertenece.
+							</p>
+						)}
 					</Form>
 					<div
 						className='Form-Buttons'

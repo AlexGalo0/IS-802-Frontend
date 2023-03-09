@@ -10,7 +10,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
-import { RutaProtegida } from "../../../Components/RutaProtegida";
+
 
 export const Login = () => {
 	const {
@@ -23,7 +23,7 @@ export const Login = () => {
 	const [succesfullResponse, setSuccesfullResponse] = useState(false);
 	const [requestError, setRequestError] = useState(false);
 	const {userAuth,setUserAuth}  = useContext(UserContext)
-	const [redirect, setRedirect] = useState(false);
+
 
 	const enviarDatosLogin = async (userData) => {
 		
@@ -33,7 +33,7 @@ export const Login = () => {
 			setSuccesfullResponse(true)
 			setUserAuth(true)
 			setTimeout(()=>{
-				navigate("/productos")
+				navigate("/")
 			},1500)
 			
 		} catch (error) {
@@ -43,11 +43,14 @@ export const Login = () => {
 			setUserAuth(false)
 			setTimeout(()=>{
 				navigate("/registrarUsuario")
-			},1500)
+			},2500)
 			
 		}
 		
 	};
+	const handleRedirection = () => {
+		navigate('/');
+	  };
 	
 	return (
 		<>
@@ -73,6 +76,7 @@ export const Login = () => {
 								<button
 									className='Button-backProduct'
 									type='submit'
+									onClick={handleRedirection}
 									style={{
 										marginTop: "-45px",
 										paddingTop: "1px",
@@ -148,7 +152,7 @@ export const Login = () => {
 							<p className='FontAlert'>¡La contraseña es requerida!</p>
 						)}
 {
-  requestError  ? <Alert variant="danger">No existe el usuario en la BDD</Alert> :''
+  requestError  ? <Alert variant="danger">No estás registrado. Crea una cuenta a continuacion</Alert> :''
 }
 {
   succesfullResponse ? <Alert variant="success">Se accedio de forma correcta</Alert> :''
@@ -160,17 +164,7 @@ export const Login = () => {
 							</button>
 						</div>
 
-						<ul style={{ paddingTop: "20px" }}>
-							<Link to='/productos'>Ver Productos</Link>
-						</ul>
-
-						<ul style={{ paddingTop: "20px" }}>
-							<Link to='/registrarProducto'>Registrar Producto</Link>
-						</ul>
-
-						<ul style={{ paddingTop: "20px" }}>
-							<Link to='/registrarUsuario'>Registrar Usuario</Link>
-						</ul>
+					
 					</form>
 				</Container>
 			</header>

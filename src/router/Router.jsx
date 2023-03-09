@@ -1,23 +1,30 @@
-import { BrowserRouter, Routes,Route,Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { RegistroProducto } from "../pages/Productos";
-import {Construyendo,Registro} from "../pages/Registro/Components";
+import { Construyendo, Registro } from "../pages/Registro/Components";
 import { Login } from "../pages/Login/Components";
 // import { PaginaPrincipal } from "../pages/Principal";
 // import { CartaProducto } from "../pages/Principal/Components/CartaProducto";
 import { MostrarProducto } from "../pages/Principal/Components/MostrarProducto";
+import { InicialPrueba } from "../pages/InicialPrueba/InicialPrueba";
+import { RutaProtegida } from "../Components/RutaProtegida";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 export const Router = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route index  element={<Login/>}/>
-        <Route path="/registrarProducto" element={<RegistroProducto/>}/>
-        <Route path="/registrarUsuario" element={<Registro/>}/>
-        {/* <Route path="/principal" element={<PaginaPrincipal/>}/> */}
-        {/* <Route path="/card" element={<CartaProducto/>}/> */}
-        <Route path="/productos" element={<MostrarProducto/>}/>
+  const {userAuth}  = useContext(UserContext)
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route index element={<InicialPrueba />} />
 
-
-      </Routes>
-    </BrowserRouter>
-  )
-}
+				<Route path='/login' element={<Login />} />
+				<Route path='/registrarUsuario' element={<Registro />} />
+				<Route path='/productos' element={<MostrarProducto />} />
+        
+				{/* 
+          Unica Protegida , deberia decirle que no esta logeado , y redirijirlo a Crear Una Cuenta, de ahi deberia mandarlo a Registrar Producto , de Registrar Producto deberia volver? a la principal para que pueda acceder a verProductos o directamente enviarlo
+        */}
+				<Route path='/registrarProducto' element={<RutaProtegida isAllowed={userAuth}> <RegistroProducto/> </RutaProtegida>} />
+			</Routes>
+		</BrowserRouter>
+	);
+};

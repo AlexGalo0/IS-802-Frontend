@@ -46,7 +46,7 @@ export const Registro = () => {
   };
 
   const handleRedirection = () => {
-    navigate("/construyendo");
+    navigate('/');
   };
 
   /* Manejo de Modal */
@@ -88,6 +88,7 @@ export const Registro = () => {
                   type="submit"
                   onClick={handleRedirection}
                   style={{ marginTop: "-45px" }}
+                  
                 >
                   <BiLeftArrow />
                 </button>
