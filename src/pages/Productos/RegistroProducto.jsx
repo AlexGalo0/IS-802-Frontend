@@ -223,9 +223,7 @@ export const RegistroProducto = () => {
 								})}
 							/>
 							{" "}
-							<Form.Label htmlFor='' className='user-label'>
-								<BsCalendarDay /> Limite de dias
-							</Form.Label>
+							
 							{errors.limite_dias?.type === "pattern" && (
 								<p className="FontAlert">¡Solo debes ingresar números!</p>
 							)}
@@ -331,7 +329,7 @@ export const RegistroProducto = () => {
 					>
 						<CloudinaryUploadWidget recibirURL={recibirURL} />
 
-						{imagenesVacias ? <p>Debes enviar por lo menos una imagen.</p> : ""}
+						{imagenesVacias ? <p className="font-cloud">¡Debes enviar por lo menos una imagen!</p> : ""}
 						{succesfullResponse ? (
 							<Alert variant='success'>
 								Se registro el producto exitosamente

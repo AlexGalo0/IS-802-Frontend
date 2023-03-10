@@ -520,8 +520,8 @@ body::-webkit-scrollbar-thumb {
     }
 
     .box {
-        width: 150px;
-        height: 45px;
+        width: 355px;
+        height: 60px;
         transition: .5s linear;
         position: relative;
         display: grid;
