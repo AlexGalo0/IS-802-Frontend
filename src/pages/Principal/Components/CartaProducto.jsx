@@ -2,7 +2,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-
 import { ImagenProducto } from "./ImagenProducto";
 import {
 	Offcanvas,

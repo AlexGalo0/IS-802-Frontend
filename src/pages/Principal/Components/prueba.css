@@ -1,0 +1,57 @@
+.App-header {
+    background: #402c50;
+    background-size: 200% 200%;
+    animation: movimiento 5s linear infinite alternate-reverse;
+  
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* font-size: calc(10px + 2vmin); */
+  }
+
+  .ContainerPueba {
+    background: transparent;
+    width: 1250px;
+    height: 100%;
+    color: #cb8fd6;
+    display: grid;
+    place-content: center;
+  }
+
+  .FormPueba {
+    justify-content: space-between;
+    background: #f7f7f7;
+    padding: 20px;
+    box-shadow: 1px 1px 1px 1px rgba(32, 32, 32, 0.3);
+    text-align: center;
+    outline-style: ridge;
+    outline-color: #bfb8b4;
+    width: 650px;
+    display: grid;
+    place-content: center;
+    padding-bottom: 40px;
+    color: black;
+  }
+
+  .Button-backProduct {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 40px;
+    background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+    border-radius: 10px;
+    border: none;
+    color: #f7f7f7;
+    font-size: larger;
+    text-shadow: 0 2px 2px rgb(120, 69, 168);
+    outline-style: outset;
+    outline-color: #e211cc;
+  }
+  
+  .Button-backProduct:hover {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    background: rgb(120, 69, 168);
+  }

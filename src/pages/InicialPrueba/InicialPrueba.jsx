@@ -1,6 +1,10 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import "./STYLE.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Col, Container, Form, Row, Image, Alert } from "react-bootstrap";
+
 export const InicialPrueba = () => {
 	const { userAuth, setUserAuth } = useContext(UserContext);
 	

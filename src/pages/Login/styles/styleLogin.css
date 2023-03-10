@@ -11,7 +11,7 @@
   /* font-size: calc(10px + 2vmin); */
 }
 
-.ContainerProduct {
+.ContainerLogin {
   background: transparent;
   width: 650px;
   height: 100%;
@@ -20,7 +20,7 @@
   place-content: center;
 }
 
-.Form-Product {
+.Form-Login {
   justify-content: space-between;
   background: #f7f7f7;
   padding: 20px;
@@ -47,7 +47,7 @@
     height: 55px;
     width: 350px;
     background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
-    border-radius: 10px;
+    border-radius: 30px;
     border: none;
     color: #f7f7f7;
     font-size: larger;
@@ -190,7 +190,7 @@
     height: 55px;
     width: 350px;
     background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
-    border-radius: 10px;
+    border-radius: 30px;
     border: none;
     color: #f7f7f7;
     font-size: larger;
@@ -204,4 +204,65 @@
 .Button-Login:hover {
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
     background: rgb(120, 69, 168);
+  }
+
+  /* Animacion boton principal */
+  .box {
+    height: 60px;
+    width: 355px;
+    transition: .5s linear;
+    position: relative;
+    display: grid;
+    place-content: center;
+    overflow: hidden;
+    padding: 5px;
+    text-align: center;
+    background: transparent;
+    border-radius: 30px;
+  }
+  
+  .box:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid transparent;
+    box-sizing: border-box;
+    transform: translateX(100%);
+    border-radius: 30px;
+  }
+  
+  .box:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+    box-sizing: border-box;
+    transform: translateX(-100%);
+    border-radius: 30px;
+  }
+  
+  .box:hover {
+    box-shadow: 0 5px 15px #e211cc;
+  }
+  
+  .box:hover:before {
+    border-color: #e211cc;
+    height: 100%;
+    transform: translateX(0);
+    transition: .3s transform linear, .3s height linear .3s;
+  }
+  
+  .box:hover:after {
+    border-color: #e211cc;
+    height: 100%;
+    transform: translateX(0);
+    transition: .3s transform linear, .3s height linear .5s;
   }
