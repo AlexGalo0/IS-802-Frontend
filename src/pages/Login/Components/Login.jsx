@@ -168,7 +168,7 @@ export const Login = () => {
 
             <div>
               <button className="Button-Login" type="submit">
-			  <span class="box">Iniciar sesión</span>
+			  <span className="box">Iniciar sesión</span>
               </button>
             </div>
           </form>

@@ -1,5 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Col, Container, Form, Row, Image, Modal , Alert } from "react-bootstrap";
+import {
+	Col,
+	Container,
+	Form,
+	Row,
+	Image,
+	Modal,
+	Alert,
+} from "react-bootstrap";
 import "../styles/style.css";
 import { useEffect, useRef, useState } from "react";
 import { get, useForm } from "react-hook-form";
@@ -20,7 +28,7 @@ export const Registro = () => {
 	const navigate = useNavigate(); //Para redireccion
 	const {
 		register,
-		formState: { errors, isSubmitSuccessful },
+		formState: { errors, isSubmitSuccessful  },
 		handleSubmit,
 		getValues,
 		setError,
@@ -29,17 +37,20 @@ export const Registro = () => {
 	} = useForm();
 
 	const [succesfullResponse, setSuccesfullResponse] = useState(false);
+	const [existenAmbosDNI, setExistenAmbosDNI] = useState()
 	const enviarInfo = async (data) => {
-		if(!setExisteDNI) {
-			console.log('No existe ningun DNI');
+		if(!data.dniExtranjero && !data.dniHondurenio) {
+			setExistenAmbosDNI(true)
 			return ; 
+		} else {
+			setExistenAmbosDNI(false)
 		}
 		try {
 			const response = await createUser(data);
-			setTimeout(()=>{
-				navigate("/login")
-			},1500)
-			setSuccesfullResponse(true)
+			setTimeout(() => {
+				navigate("/login");
+			}, 2500);
+			setSuccesfullResponse(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -48,9 +59,6 @@ export const Registro = () => {
 	const handleRedirection = () => {
 		navigate("/");
 	};
-
-	/* Existencia al menos un DNI */
-	const [existeDNI, setExisteDNI] = useState(false)
 
 	/* Manejo de Modal */
 	const [show, setShow] = useState(false);
@@ -61,9 +69,9 @@ export const Registro = () => {
 	const password = useRef({});
 	password.current = watch("password", "");
 
-	useEffect(() => {
-		reset();
-	}, [isSubmitSuccessful]);
+	// useEffect(() => {
+	// 	reset();
+	// }, [isSubmitSuccessful]);
 
 	return (
 		<>
@@ -94,19 +102,19 @@ export const Registro = () => {
 								>
 									<BiLeftArrow />
 								</button>
-								 <Image
-                  src={logo}
-                  style={{
-                    width: "110px",
-                    paddingRight: "10px",
-                    paddingTop: "20px",
-                  }}
-                />
-              </Col>
-            </Row>
-            <h1 style={{ color: "#0d0d0d", textAlign: "left" }}>
-              Crea tu cuenta
-            </h1>
+								<Image
+									src={logo}
+									style={{
+										width: "110px",
+										paddingRight: "10px",
+										paddingTop: "20px",
+									}}
+								/>
+							</Col>
+						</Row>
+						<h1 style={{ color: "#0d0d0d", textAlign: "left" }}>
+							Crea tu cuenta
+						</h1>
 
 						<Form.Group
 							style={{ position: "relative" }}
@@ -251,9 +259,7 @@ export const Registro = () => {
 										style={{ marginTop: "10px" }}
 										label='¿Eres Extranjero?'
 										name='checkExtranjero'
-										{...register("esExtranjero",{
-
-										})}
+										{...register("esExtranjero", {})}
 									/>
 								</Form.Group>
 							</Col>
@@ -341,8 +347,8 @@ export const Registro = () => {
 							</Col>
 						)}
 
-						{errors.dniExtranjero?.type === "required" && (
-							<p className='FontAlert'>El DNI Extranjero es requerido!</p>
+						{errors.dniExtranjero?.type === "required" && errors.dniHondurenio?.type==="required" (
+							// <p className='FontAlert'>Necesitamos al menos un DNI!</p>
 						)}
 
 						{errors.dniExtranjero?.type === "maxLength" && (
@@ -351,12 +357,7 @@ export const Registro = () => {
 							</p>
 						)}
 
-						{/* 
 						
-							dniHondureño y dniExtranjero ===''
-							1. No me debe dejar enviar
-							2. Me debe decir que se debe enviar un DNI
-						*/}
 
 						<Form.Group
 							style={{ position: "relative" }}
@@ -425,6 +426,9 @@ export const Registro = () => {
 								</p>
 							)}
 						</Form.Group>
+						{
+							existenAmbosDNI ? <p>Debes enviar por lo menos un DNI</p> : ''
+						}
 
 						<Form.Group
 							style={{ position: "relative" }}
@@ -551,11 +555,15 @@ export const Registro = () => {
 								</button>
 							</Modal.Footer>
 						</Modal>
-						{
-  succesfullResponse ? <Alert variant="success">Se creo de forma correcta su usuario</Alert> :''
-}
+						{succesfullResponse ? (
+							<Alert variant='success'>
+								Se creo de forma correcta su usuario
+							</Alert>
+						) : (
+							""
+						)}
 						<button className='Button' type='submit'>
-						<span className="box">Crear cuenta</span>
+							<span className='box'>Crear cuenta</span>
 						</button>
 					</Form>
 				</Container>
