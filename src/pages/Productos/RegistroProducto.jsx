@@ -209,7 +209,7 @@ export const RegistroProducto = () => {
 						>
 							{" "}
 							<Form.Label htmlFor='' className='user-label'>
-								<BsCalendarDay /> Limite de Dias
+								<BsCalendarDay /> Dias en existencia
 							</Form.Label>
 							<input
 								name='text'
