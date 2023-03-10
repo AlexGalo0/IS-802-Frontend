@@ -24,6 +24,7 @@ export const Router = () => {
         */}
 				<Route path='/registrarProducto' element={<RutaProtegida isAllowed={userAuth}> <RegistroProducto/> </RutaProtegida>} />
 				<Route path='/registrarUsuario' element={<RutaProtegida isAllowed={!userAuth}> <Registro/> </RutaProtegida>} />
+				<Route path='/trabajoTemporal' element={<RegistroProducto />} />
 
 			</Routes>
 		</BrowserRouter>

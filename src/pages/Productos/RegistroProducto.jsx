@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { CloudinaryUploadWidget } from "./Components/CloudinaryUploadWidget";
 import "./styles/styleRegistroProductos.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logoV2.png";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
 import { MdDriveFileRenameOutline, MdOutlineDescription } from "react-icons/md";
 import { FaSortAmountDownAlt } from "react-icons/fa";
@@ -103,10 +103,6 @@ export const RegistroProducto = () => {
 							style={{ position: "relative" }}
 							controlId='formBasicNombre'
 						>
-							<Form.Label htmlFor='' className='user-label'>
-								<MdDriveFileRenameOutline />
-								Nombre
-							</Form.Label>
 							<input
 								type='text'
 								name='text'
@@ -116,11 +112,15 @@ export const RegistroProducto = () => {
 									required: true,
 								})}
 							/>
+							<Form.Label htmlFor='' className='user-label'>
+								<MdDriveFileRenameOutline />
+								Nombre
+							</Form.Label>
 							{errors.nombreProducto?.type === "pattern" && (
-								<p>El nombre del producto no es válido</p>
+								<p className="FontAlert">¡El nombre del producto no es válido!</p>
 							)}
 							{errors.nombreProducto?.type === "required" && (
-								<p>Debes ingresar un nombre de producto</p>
+								<p className="FontAlert">¡Debes ingresar un nombre de producto!</p>
 							)}
 						</Form.Group>
 
@@ -128,10 +128,6 @@ export const RegistroProducto = () => {
 							style={{ position: "relative" }}
 							controlId='formBasicNombre'
 						>
-							<Form.Label htmlFor='' className='user-label'>
-								<MdDriveFileRenameOutline />
-								Precio
-							</Form.Label>
 							<input
 								type='text'
 								name='number'
@@ -141,9 +137,13 @@ export const RegistroProducto = () => {
 									required: true,
 								})}
 							/>
+							<Form.Label htmlFor='' className='user-label'>
+								<MdDriveFileRenameOutline />
+								Precio
+							</Form.Label>
 						
 							{errors.Precio?.type === "required" && (
-								<p>Debes ingresar un precio de producto</p>
+								<p className="FontAlert">¡Debes ingresar un precio de producto!</p>
 							)} 
 						</Form.Group>
 
@@ -151,21 +151,21 @@ export const RegistroProducto = () => {
 							style={{ position: "relative" }}
 							controlId='formBasicDescripcion'
 						>
-							<Form.Label htmlFor='' className='user-label'>
-								<MdOutlineDescription />
-								Descripcion
-							</Form.Label>
 							<input
 								type='text'
 								name='text'
 								className='inNombre'
 								{...register("descripcion", { required: true, minLength: 10 })}
 							/>
+							<Form.Label htmlFor='' className='user-label'>
+								<MdOutlineDescription />
+								Descripcion
+							</Form.Label>
 							{errors.descripcion?.type === "required" && (
-								<p>Debes ingresar una descripcion al producto.</p>
+								<p className="FontAlert">¡Debes ingresar una descripción al producto!</p>
 							)}
 							{errors.descripcion?.type === "minLength" && (
-								<p>Debe tener minimo 10 caracteres.</p>
+								<p className="FontAlert">¡Debe tener mínimo 10 caracteres!</p>
 							)}
 						</Form.Group>
 
@@ -185,25 +185,21 @@ export const RegistroProducto = () => {
 							/>
 							<Form.Label htmlFor='' className='user-label'>
 								<FaSortAmountDownAlt />
-								Cantidad del Producto
+								Cantidad del producto
 							</Form.Label>
 						</Form.Group>
 						{errors.cantidad?.type === "pattern" && (
-							<p>Solo debes ingresar números</p>
+							<p className="FontAlert">¡Solo debes ingresar números!</p>
 						)}
 						{errors.cantidad?.type === "required" && (
-							<p>Debes ingresar la cantidad</p>
+							<p className="FontAlert">¡Debes ingresar la cantidad!</p>
 						)}
-						{errors.cantidad?.type === "min" && <p>Debe ser minimo 1</p>}
+						{errors.cantidad?.type === "min" && <p className="FontAlert">¡Debe ser mínimo 1!</p>}
 
 						<Form.Group
 							style={{ position: "relative" }}
 							controlId='formBasicLimitDays'
 						>
-							{" "}
-							<Form.Label htmlFor='' className='user-label'>
-								<BsCalendarDay /> Limite de Dias
-							</Form.Label>
 							<input
 								name='text'
 								className='inNombre'
@@ -215,20 +211,23 @@ export const RegistroProducto = () => {
 									min: 1,
 								})}
 							/>
+							{" "}
+							<Form.Label htmlFor='' className='user-label'>
+								<BsCalendarDay /> Limite de dias
+							</Form.Label>
 							{errors.limite_dias?.type === "pattern" && (
-								<p>Solo debes ingresar números</p>
+								<p className="FontAlert">¡Solo debes ingresar números!</p>
 							)}
 							{errors.limite_dias?.type === "required" && (
-								<p>
-									Debes ingresar el limite de dias disponibles para la venta, 30
-									días es el máximo
+								<p className="FontAlert">
+									¡Debes ingresar el límite de días disponibles para la venta, 30 días es el máximo!
 								</p>
 							)}
 							{errors.limite_dias?.type === "max" && (
-								<p>El valor maximo de dias es 30.</p>
+								<p className="FontAlert">¡El valor máximo de días es 30!</p>
 							)}
 							{errors.limite_dias?.type === "min" && (
-								<p>El valor minimo de dias es 1.</p>
+								<p className="FontAlert">¡El valor mínimo de días es 1!</p>
 							)}
 						</Form.Group>
 
@@ -238,7 +237,7 @@ export const RegistroProducto = () => {
 						>
 							<Form.Label className='letterMedium' htmlFor=''>
 								<GoLocation />
-								Departamento de Venta:{" "}
+								Departamento de venta:{" "}
 							</Form.Label>
 							<Form.Select
 								className='input'
@@ -274,7 +273,7 @@ export const RegistroProducto = () => {
 						</Form.Group>
 
 						{errors.dptoVenta?.type === "required" && (
-							<p>Debes seleccionar un departamento.</p>
+							<p className="FontAlert">¡Debes seleccionar un departamento!</p>
 						)}
 
 						<Form.Group
@@ -310,21 +309,21 @@ export const RegistroProducto = () => {
 						</Form.Group>
 
 						{errors.idCategoria?.type === "required" && (
-							<p>
-								Debes seleccionar una categoria a la que el producto pertenece.
+							<p className="FontAlert">
+								¡Debes seleccionar una categoría a la que el producto pertenece!
 							</p>
 						)}
 					</Form>
 					<div
 						className='Form-Buttons'
-						style={{ display: "grip", placeContent: "center" }}
+						style={{ display: "grip", placeContent: "center"}}
 					>
 						<CloudinaryUploadWidget recibirURL={recibirURL} />
 
 
 							{
-								imagenesVacias ? <p>
-								Debes enviar por lo menos una imagen.
+								imagenesVacias ? <p className="font-cloud">
+								¡Debes enviar por lo menos una imagen!
 							</p> : ''
 							}
 
@@ -337,7 +336,7 @@ export const RegistroProducto = () => {
 								type='submit'
 								onClick={handleSubmit(enviarProducto)}
 							>
-								Enviar Producto
+								<span class="box">Enviar producto</span>
 							</button>
 						</div>
 					</div>
