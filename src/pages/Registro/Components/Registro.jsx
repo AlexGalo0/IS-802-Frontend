@@ -87,7 +87,7 @@ export const Registro = () => {
 								>
 									<BiLeftArrow />
 								</button>
-								{/* <Image
+								 <Image
                   src={logo}
                   style={{
                     width: "110px",
@@ -539,7 +539,7 @@ export const Registro = () => {
   succesfullResponse ? <Alert variant="success">Se creo de forma correcta su usuario</Alert> :''
 }
 						<button className='Button' type='submit'>
-							Crear cuenta
+						<span class="box">Crear cuenta</span>
 						</button>
 					</Form>
 				</Container>
