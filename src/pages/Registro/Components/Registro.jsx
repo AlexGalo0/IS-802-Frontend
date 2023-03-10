@@ -30,6 +30,10 @@ export const Registro = () => {
 
 	const [succesfullResponse, setSuccesfullResponse] = useState(false);
 	const enviarInfo = async (data) => {
+		if(!setExisteDNI) {
+			console.log('No existe ningun DNI');
+			return ; 
+		}
 		try {
 			const response = await createUser(data);
 			setTimeout(()=>{
@@ -44,6 +48,9 @@ export const Registro = () => {
 	const handleRedirection = () => {
 		navigate("/");
 	};
+
+	/* Existencia al menos un DNI */
+	const [existeDNI, setExisteDNI] = useState(false)
 
 	/* Manejo de Modal */
 	const [show, setShow] = useState(false);
@@ -112,7 +119,7 @@ export const Registro = () => {
 								{...register("nombre", {
 									required: true,
 									maxLength: 40,
-									min: 3,
+									minLength: 2,
 									pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
 								})}
 							/>
@@ -126,7 +133,7 @@ export const Registro = () => {
 							{errors.nombre?.type === "maxLength" && (
 								<p className='FontAlert'>¡Tienes demasiados caracteres!</p>
 							)}
-							{errors.nombre?.type === "min" && (
+							{errors.nombre?.type === "minLength" && (
 								<p className='FontAlert'>¡Tienes muy pocos caracteres!</p>
 							)}
 							{errors.nombre?.type === "pattern" && (
@@ -145,7 +152,7 @@ export const Registro = () => {
 								{...register("apellido", {
 									required: true,
 									maxLength: 40,
-									min: 3,
+									minLength: 3,
 									pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
 								})}
 							/>
@@ -244,7 +251,9 @@ export const Registro = () => {
 										style={{ marginTop: "10px" }}
 										label='¿Eres Extranjero?'
 										name='checkExtranjero'
-										{...register("esExtranjero")}
+										{...register("esExtranjero",{
+
+										})}
 									/>
 								</Form.Group>
 							</Col>
@@ -341,6 +350,13 @@ export const Registro = () => {
 								El DNI Extranjero no debe exceder 20 caracteres!
 							</p>
 						)}
+
+						{/* 
+						
+							dniHondureño y dniExtranjero ===''
+							1. No me debe dejar enviar
+							2. Me debe decir que se debe enviar un DNI
+						*/}
 
 						<Form.Group
 							style={{ position: "relative" }}
@@ -539,7 +555,7 @@ export const Registro = () => {
   succesfullResponse ? <Alert variant="success">Se creo de forma correcta su usuario</Alert> :''
 }
 						<button className='Button' type='submit'>
-						<span class="box">Crear cuenta</span>
+						<span className="box">Crear cuenta</span>
 						</button>
 					</Form>
 				</Container>
