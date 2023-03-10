@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 export const InicialPrueba = () => {
 	const { userAuth, setUserAuth } = useContext(UserContext);
+	
 	const logout = () => {
 		/* Desloguear al Usuario */
 		setUserAuth(false); 
