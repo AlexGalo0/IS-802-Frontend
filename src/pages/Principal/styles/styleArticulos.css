@@ -27,12 +27,12 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   margin-top: 42px;
   height: 80px;
-  width: 100%;
+  width: 1920px;
   background-color: #402c50;
   position: fixed;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 15px;
+  padding: 0px 20px;
   z-index: 5;
 }
 
@@ -68,20 +68,21 @@ body::-webkit-scrollbar-thumb {
 .image-carousel {
   display: grid;
   place-content: center;
-  width: 100%;
+  width: 1580px;
   overflow: hidden;
   border-radius: 20px;
   margin-top: 45px;
 }
 
 .carousel {
-  color: white;
+  color: #f7f7f7;
   font-family: "Mulish";
 }
 
 .carousel-style {
   border: 1px solid #e211cc;
   height: 505px;
+  width: 1580px;
   border-radius: 20px;
   box-shadow: 5px 5px 10px #402c50,
              -5px -5px 10px #7047a2;
@@ -145,7 +146,7 @@ body::-webkit-scrollbar-thumb {
   padding-top: 15px;
   float: left;
   position: absolute;
-  width: 15%;
+  width: 279px;
   height: 50px;
   text-shadow: 0 2px 2px #dfbee5;
   background-color: #7047a2;
@@ -159,10 +160,11 @@ body::-webkit-scrollbar-thumb {
 
 .section-lastProduct {
   display: flex;
+  align-items: center;
   float: left;
   position: absolute;
-  width: 15%;
-  height: 2220px;
+  width: 279px;
+  height: 2237px;
   background-color: #7047a2;
   margin-top: 47px;
   z-index: 1;
@@ -183,13 +185,14 @@ body::-webkit-scrollbar-thumb {
   padding-top: 121px;
   display: flex;
   flex-direction: row;
-  height: 100%;
+  height: 2455px;
   margin-left: -3px;
 }
 
 .div-imagenes {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .card {
@@ -204,6 +207,30 @@ body::-webkit-scrollbar-thumb {
   place-content: center;
 }
 
+.card:hover {
+  box-shadow: 2px 2px 8px 1px #402c50;
+  border-radius: 10px;
+}
+
+.card-container {
+  border-radius: 10px;
+  border: 1px solid #e211cc;
+  width: 30rem;
+  height: 312px;
+  background-color: #f7f7f7;
+  padding-left: 0px;
+  padding-right: 0px;
+
+}
+
+.card-image {
+  height: calc(100% - 0px);
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+
+/* New product */
 .card-newProduct {
   width: 17rem;
   display: flex;
@@ -214,20 +241,28 @@ body::-webkit-scrollbar-thumb {
   background-color: #dfbee5;
 }
 
-.card:hover {
-  box-shadow: 2px 2px 8px 1px #402c50;
-  border-radius: 10px;
-}
-
 .card-newProduct:hover {
   box-shadow: 0px 0px 0px 0px #402c50;
 }
 
-.card-image {
+.card-image-new {
+  height: calc(100% - 0px);
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.card-container-new {
   border-radius: 10px;
   border: 1px solid #e211cc;
-  width: 450px;
+  width: 270px;
+  height: 177px;
+  background-color: #f7f7f7;
+  padding-left: 0px;
+  padding-right: 0px;
+
 }
+
+
 
 .card-body {
   display: flex;
@@ -252,8 +287,9 @@ body::-webkit-scrollbar-thumb {
   background-color: #cb8fd6;
   border-radius: 10px;
   padding: 5px 5px;
-  width: 100%;
-  height: 100%;
+  width: 1580px;
+  height: 215px;
+  margin: auto;
 }
 
 /* Disenio del apartado de categorias */
@@ -521,7 +557,7 @@ body::-webkit-scrollbar-thumb {
 
     .box {
         width: 355px;
-        height: 60px;
+        height: 45px;
         transition: .5s linear;
         position: relative;
         display: grid;
@@ -579,7 +615,7 @@ body::-webkit-scrollbar-thumb {
         transition: .3s transform linear, .3s height linear .5s;
     }
 
-/* Letras de ya sigues las rede*/
+/* Letras de ya sigues las redes*/
 .letterHeader {
   color: #f7f7f7;
   font-size: larger;
@@ -598,14 +634,14 @@ body::-webkit-scrollbar-thumb {
 /* Disenio de las redes sociales */
 .top-header {
   height: 42px;
-  width: 100%;
+  width: 1920px;
   background-color: #7047a2;
   position: fixed; /* Fija aun cuando hacemos scroll */
   display: flex;
   justify-content: right;
   align-items: center;
   z-index: 5;
-  padding-right: 15px;
+  padding-right: 25px;
 }
 
 .ulRedes {
@@ -708,17 +744,18 @@ body::-webkit-scrollbar-thumb {
 /* Footer */
 .top-footer {
   height: 32px;
-  width: 100%;
+  width: 1908px;
   background-color: #7047a2;
   display: flex;
   justify-content: right;
   align-items: center;
+  padding-right: 15px;
 }
 
 .navbar-footer {
   display: flex;
   height: 80px;
-  width: 100%;
+  width: 1908px;
   background-color: #402c50;
   display: flex;
   justify-content: center;
@@ -747,15 +784,13 @@ body::-webkit-scrollbar-thumb {
 .pagination {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-top: 27px;
-  color: #cb8fd6;
+  height: 98px;
+  width: 1631px;
 }
 
 .secPagination {
   display: grid;
   place-content: center;
-  padding-top: 4px;
 }
 
 .ulPagination {

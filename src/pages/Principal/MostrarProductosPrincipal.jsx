@@ -8,18 +8,22 @@ import {
   Tooltip,
   Pagination,
   Card,
+  Container,
 } from "react-bootstrap";
-import './styles/styleArticulos.css'
-import {  useState,useEffect } from "react";
+import "./styles/styleArticulos.css";
+import { useState, useEffect } from "react";
 // import { get, useForm } from "react-hook-form";
 // import { FiMenu } from "react-icons/fi";
 import { BiSearchAlt, BiUser } from "react-icons/bi";
 import primera from "../../assets/1.png";
+import segunda from "../../assets/4.png";
+import tercera from "../../assets/3.png";
 import ejem from "../../assets/ejem.jpeg";
 import logo from "../../assets/logo.png";
 import { BsFacebook, BsTwitter, BsInstagram, BsDiscord } from "react-icons/bs";
 import { FaCopyright } from "react-icons/fa";
 import { CartaProducto } from "./Components/CartaProducto";
+
 export const PaginaPrincipal = () => {
   /* Elentos del boton categorias */
   const [show, setShow] = useState(false);
@@ -28,17 +32,17 @@ export const PaginaPrincipal = () => {
   const handleShow = () => setShow(true);
 
   const [pageNumber, setPageNumber] = useState(1);
-	const [productInfo, setProductInfo] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
+  const [productInfo, setProductInfo] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const URL = `http://localhost:4000/pagination/:${pageNumber}`;
-	useEffect(() => {
-		fetch(URL)
-			.then((response) => response.json())
-			.then((product) => {
-				setProductInfo(product); //Esto en teoria , deberia ser un arreglo con 9 productos
-			});
-	},[productInfo]); //Este product info en los filtros deberia funcionar
+  useEffect(() => {
+    fetch(URL)
+      .then((response) => response.json())
+      .then((product) => {
+        setProductInfo(product); //Esto en teoria , deberia ser un arreglo con 9 productos
+      });
+  }, [productInfo]); //Este product info en los filtros deberia funcionar
 
   /* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
   const renderTooltip = (props) => (
@@ -55,7 +59,7 @@ export const PaginaPrincipal = () => {
             ¿Ya sigues nuestras redes sociales?
           </span>
           <span className="letterLightHeader">
-            Si quieres mantenerte informado de todas las novedades, no olvides
+            Si quieres mantenerte informado de todas las novedades y promociones, no olvides
             visitar nuestras redes sociales.......
           </span>
           <ul className="ulRedes">
@@ -65,12 +69,12 @@ export const PaginaPrincipal = () => {
               </span>
               <span className="titulo">Facebook</span>
             </li>
-            <li className="liRedes">
+            {/* <li className="liRedes">
               <span className="redes">
                 <BsTwitter className="i" />
               </span>
               <span className="titulo">twitter</span>
-            </li>
+            </li> */}
             <li className="liRedes">
               <span className="redes">
                 <BsInstagram className="i" />
@@ -123,7 +127,7 @@ export const PaginaPrincipal = () => {
         <div className="div-principal">
           <div
             style={{
-              width: "15%",
+              width: "279px",
               height: "51px",
               display: "flex",
             }}
@@ -156,44 +160,48 @@ export const PaginaPrincipal = () => {
 
               <Offcanvas show={show} onHide={handleClose} className="canvas">
                 <Form className="formCategory">
-                  <Offcanvas.Header closeButton closeVariant="white" >
+                  <Offcanvas.Header closeButton closeVariant="white">
                     <Offcanvas.Title>
                       <p
                         style={{
                           color: "#f7f7f7",
                           textAlign: "left",
-                          marginLeft: '-5px',
-                          marginRight: '10px',
-                          fontSize: '26px',
-                          fontWeight: '400',
-                          marginBottom: '-55px',
-                          marginTop: '-20px'
+                          marginLeft: "-5px",
+                          marginRight: "10px",
+                          fontSize: "26px",
+                          fontWeight: "400",
+                          marginBottom: "-55px",
+                          marginTop: "-20px",
                         }}
                       >
-                        Categorias a mostrar:  
+                        Categorias a mostrar:
                       </p>
                     </Offcanvas.Title>
                   </Offcanvas.Header>
                   <Offcanvas.Body>
                     <Form>
-                    <div className="checkbox">
-                        <div class="checkbox-apple">
-                          <input class="yep" id="check-apple" type="checkbox" />
+                      <div className="checkbox">
+                        <div className="checkbox-apple">
+                          <input className="yep" id="check-apple" type="checkbox" />
                           <label for="check-apple"></label>
                         </div>
                         <p>Todas</p>
                       </div>
                       <div className="checkbox">
-                        <div class="checkbox-apple">
-                          <input class="yep" id="check-apple1" type="checkbox" />
+                        <div className="checkbox-apple">
+                          <input
+                            class="yep"
+                            id="check-apple1"
+                            type="checkbox"
+                          />
                           <label for="check-apple1"></label>
                         </div>
                         <p>Inmuebles</p>
                       </div>
                       <div className="checkbox">
-                        <div class="checkbox-apple">
+                        <div className="checkbox-apple">
                           <input
-                            class="yep"
+                            className="yep"
                             id="check-apple2"
                             type="checkbox"
                           />
@@ -202,9 +210,9 @@ export const PaginaPrincipal = () => {
                         <p>Vehículos</p>
                       </div>
                       <div className="checkbox">
-                        <div class="checkbox-apple">
+                        <div className="checkbox-apple">
                           <input
-                            class="yep"
+                            className="yep"
                             id="check-apple3"
                             type="checkbox"
                           />
@@ -213,9 +221,9 @@ export const PaginaPrincipal = () => {
                         <p>Hogar</p>
                       </div>
                       <div className="checkbox">
-                        <div class="checkbox-apple">
+                        <div className="checkbox-apple">
                           <input
-                            class="yep"
+                            className="yep"
                             id="check-apple4"
                             type="checkbox"
                           />
@@ -224,9 +232,9 @@ export const PaginaPrincipal = () => {
                         <p>Futuros Paders</p>
                       </div>
                       <div className="checkbox">
-                        <div class="checkbox-apple">
+                        <div className="checkbox-apple">
                           <input
-                            class="yep"
+                            className="yep"
                             id="check-apple5"
                             type="checkbox"
                           />
@@ -235,9 +243,9 @@ export const PaginaPrincipal = () => {
                         <p>Mascotas</p>
                       </div>
                       <div className="checkbox">
-                        <div class="checkbox-apple">
+                        <div className="checkbox-apple">
                           <input
-                            class="yep"
+                            className="yep"
                             id="check-apple6"
                             type="checkbox"
                           />
@@ -246,9 +254,9 @@ export const PaginaPrincipal = () => {
                         <p>Electrónica</p>
                       </div>
                       <div className="checkbox">
-                        <div class="checkbox-apple">
+                        <div className="checkbox-apple">
                           <input
-                            class="yep"
+                            className="yep"
                             id="check-apple7"
                             type="checkbox"
                           />
@@ -257,9 +265,9 @@ export const PaginaPrincipal = () => {
                         <p>Servicios</p>
                       </div>
                       <div className="checkbox">
-                        <div class="checkbox-apple">
+                        <div className="checkbox-apple">
                           <input
-                            class="yep"
+                            className="yep"
                             id="check-apple8"
                             type="checkbox"
                           />
@@ -268,9 +276,9 @@ export const PaginaPrincipal = () => {
                         <p>Negocios</p>
                       </div>
                       <div className="checkbox">
-                        <div class="checkbox-apple">
+                        <div className="checkbox-apple">
                           <input
-                            class="yep"
+                            className="yep"
                             id="check-apple9"
                             type="checkbox"
                           />
@@ -289,7 +297,7 @@ export const PaginaPrincipal = () => {
                       marginBottom: "10px",
                     }}
                   >
-                    <span class="box">Aplicar</span>
+                    <span className="box">Aplicar</span>
                   </button>
                 </Form>
               </Offcanvas>
@@ -304,126 +312,132 @@ export const PaginaPrincipal = () => {
             <div className="section-lastProduct" style={{ marginTop: "98px" }}>
               <div>
                 <Card className="card-newProduct">
+                <Container
+                    className="card-container-new">
                   <Card.Img
                     variant="top"
-                    src={primera}
-                    className="card-image"
+                    src={segunda}
+                    className="card-image-new"
                   />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
               </div>
               <div>
                 <Card className="card-newProduct">
+                <Container
+                    className="card-container-new">
                   <Card.Img
                     variant="top"
                     src={primera}
-                    className="card-image"
+                    className="card-image-new"
                   />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
               </div>
               <div>
                 <Card className="card-newProduct">
+                <Container
+                    className="card-container-new">
                   <Card.Img
                     variant="top"
-                    src={primera}
-                    className="card-image"
+                    src={tercera}
+                    className="card-image-new"
                   />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
               </div>
               <div>
                 <Card className="card-newProduct">
+                <Container
+                    className="card-container-new">
                   <Card.Img
                     variant="top"
-                    src={primera}
-                    className="card-image"
+                    src={segunda}
+                    className="card-image-new"
                   />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
               </div>
               <div>
                 <Card className="card-newProduct">
+                <Container
+                    className="card-container-new">
                   <Card.Img
                     variant="top"
-                    src={primera}
-                    className="card-image"
+                    src={segunda}
+                    className="card-image-new"
                   />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
               </div>
               <div>
                 <Card className="card-newProduct">
+                <Container
+                    className="card-container-new">
                   <Card.Img
                     variant="top"
-                    src={primera}
-                    className="card-image"
+                    src={segunda}
+                    className="card-image-new"
                   />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
@@ -431,11 +445,11 @@ export const PaginaPrincipal = () => {
             </div>
             {/* Imagenes de productos */}
           </div>
-          <div style={{ width: "100%" }}>
+          <div style={{ width: "1630px", zIndex: '1'}}>
             <div
               style={{
                 height: "550px",
-                width: "100%",
+                width: "1200px",
                 padding: "25px ",
               }}
             >
@@ -483,10 +497,10 @@ export const PaginaPrincipal = () => {
                   <Image
                     src={ejem}
                     className="image-carousel"
-                    style={{ color: "#f7f7f7" }}
                   />
 
-                  <Carousel.Caption className="carousel">
+                  <Carousel.Caption className="carousel" 
+                    style={{ color: "#f7f7f7" }}>
                     <h3>Four slide label</h3>
                     <p>
                       Praesent commodo cursus magna, vel scelerisque nisl
@@ -505,11 +519,9 @@ export const PaginaPrincipal = () => {
                   width: "527px",
                 }}
               >
+                {/*isLoading ? <p>Cargando...</p> : null*/}
 
-
-{/*isLoading ? <p>Cargando...</p> : null*/}
-
-{/*
+                {/*
 Aqui se generaran todos los productos
   //Falta el key que me retornara producto
   productInfo.map((product) => {
@@ -517,26 +529,22 @@ Aqui se generaran todos los productos
   })
 */}
 
-
-
-
-
                 <Card className="card">
-                  <Card.Img
-                    variant="top"
-                    src={primera}
-                    className="card-image"
-                  />
+                  <Container className="card-container">
+                    <Card.Img
+                      variant="top"
+                      src={segunda}
+                      className="card-image"
+                    />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">PRUEBA</Card.Title>
-                    <Card.Text className="card-medium">
-                      lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
@@ -548,21 +556,21 @@ Aqui se generaran todos los productos
                 }}
               >
                 <Card className="card">
-                  <Card.Img
-                    variant="top"
-                    src={primera}
-                    className="card-image"
-                  />
+                  <Container className="card-container">
+                    <Card.Img
+                      variant="top"
+                      src={primera}
+                      className="card-image"
+                    />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
@@ -574,21 +582,22 @@ Aqui se generaran todos los productos
                 }}
               >
                 <Card className="card">
+                <Container
+                    className="card-container">
                   <Card.Img
                     variant="top"
-                    src={primera}
+                    src={tercera}
                     className="card-image"
                   />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
@@ -607,7 +616,6 @@ Aqui se generaran todos los productos
                 <p>Hola</p>
               </div>
             </div>
-            
 
             <div className="div-imagenes">
               {/* Segunda linea de imagenes */}
@@ -625,14 +633,12 @@ Aqui se generaran todos los productos
                   />
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
@@ -651,14 +657,12 @@ Aqui se generaran todos los productos
                   />
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
@@ -677,21 +681,19 @@ Aqui se generaran todos los productos
                   />
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
               </div>
             </div>
 
-            <div className="div-imagenes">
+            <div className="div-imagenes" style={{marginTop: '10px'}}>
               {/* Tercera linea de imagenes */}
               <div
                 style={{
@@ -707,14 +709,12 @@ Aqui se generaran todos los productos
                   />
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
@@ -733,14 +733,12 @@ Aqui se generaran todos los productos
                   />
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
@@ -759,32 +757,25 @@ Aqui se generaran todos los productos
                   />
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
-                    <Card.Text className="card-medium">
-                    lps. 00000
-                    </Card.Text>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
                     <button
                       className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium" }}
                     >
-                      <span class="box">Ver producto</span>
+                      <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
                 </Card>
               </div>
             </div>
 
-            
-
             <div
-              style={{
-                height: "88px",
-                width: "100%",
-              }}
+              className="pagination"
             >
               {
                 //Crear funcion de Paginacion
               }
-              <section className="secPagination">
+              <section className="secPagination" style={{marginTop: '-14px'}}>
                 <ul className="ulPagination">
                   <a href="" className="aPagination">
                     <li className="liPagination">Anterior</li>
@@ -816,17 +807,41 @@ Aqui se generaran todos los productos
 
         <footer>
           <div className="top-footer">
-          <span className="letterLightFooter">
-            Los principales distribuidores y grandes vendedores trabajan con <span style={{color: '#e211cc'}}>Market</span><span style={{color: '#dfbee5'}}>Place</span>504
-          </span>
+            <span className="letterLightFooter">
+              Los principales distribuidores y grandes vendedores trabajan con{" "}
+              <span style={{ color: "#e211cc" }}>Market</span>
+              <span style={{ color: "#dfbee5" }}>Place</span>504
+            </span>
           </div>
 
           <div className="navbar-footer">
-            <div style={{display: 'flex', gap: '25px', fontSize: 'larger', marginBottom: '5px'}}>
-              <div><button className="buttonFooter">Terminos y condiciones</button></div>
-              <div><button className="buttonFooter">Sobre nosotros</button></div>
+            <div
+              style={{
+                display: "flex",
+                gap: "25px",
+                fontSize: "larger",
+                marginBottom: "5px",
+              }}
+            >
+              <div>
+                <button className="buttonFooter">Terminos y condiciones</button>
+              </div>
+              <div>
+                <button className="buttonFooter">Sobre nosotros</button>
+              </div>
             </div>
-            <div style={{display: 'flex', justifyContent: "center", alignItems: 'center'}}><FaCopyright style={{width: '20px', height: '20px', marginRight: '5px'}}/>2023 MarketPlace504.hn</div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <FaCopyright
+                style={{ width: "20px", height: "20px", marginRight: "5px" }}
+              />
+              2023 MarketPlace504.hn
+            </div>
           </div>
         </footer>
       </body>
