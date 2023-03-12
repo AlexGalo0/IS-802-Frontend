@@ -809,8 +809,8 @@ Aqui se generaran todos los productos
           <div className="top-footer">
             <span className="letterLightFooter">
               Los principales distribuidores y grandes vendedores trabajan con{" "}
-              <span style={{ color: "#e211cc" }}>Market</span>
-              <span style={{ color: "#dfbee5" }}>Place</span>504
+              <span style={{ color: "#153B4B" }}>Market</span>
+              <span style={{ color: "#416b7a" }}>Place</span>504
             </span>
           </div>
 
