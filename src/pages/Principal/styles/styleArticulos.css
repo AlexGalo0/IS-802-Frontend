@@ -28,7 +28,7 @@ body::-webkit-scrollbar-thumb {
   margin-top: 42px;
   height: 80px;
   width: 1920px;
-  background-color: #153B4B;
+  background-color: #f7f7f7;
   position: fixed;
   align-items: center;
   justify-content: space-between;
@@ -54,7 +54,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .section-header {
-  background-color: #E6f6ff;
+  background-color: #f7f7f7;
   z-index: 1;
 }
 
@@ -80,12 +80,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .carousel-style {
-  border: 1px solid #75E8E5;
   height: 505px;
   width: 1580px;
   border-radius: 20px;
-  box-shadow: 5px 5px 10px #153B4B,
-             -5px -5px 10px #365662;
 }
 
 .buscador-div {
@@ -103,6 +100,7 @@ body::-webkit-scrollbar-thumb {
   height: 45px;
   width: 950px;
   background-color: hsla(0, 0%, 100%, 0.15);
+  border: 1px solid black;
   border-radius: 30px;
   padding: 0px 4px;
 }
@@ -112,14 +110,14 @@ body::-webkit-scrollbar-thumb {
   width: 40px;
   border-radius: 50%;
   border: none;
-  background-color: hsla(0, 0%, 100%, 0.15);
+  background-color: black;
   margin: 0px 20px;
   align-items: center;
   display: flex;
   justify-content: center;
   cursor: pointer;
   font-size: 30px;
-  color: #f7f7f7;
+  color: black;
   margin-left: -70px;
 }
 
@@ -127,14 +125,14 @@ body::-webkit-scrollbar-thumb {
   height: 45px;
   width: 45px;
   border-radius: 50%;
-  border: none;
-  background-color: hsla(0, 0%, 100%, 0.15);
+  border: 1px solid black;
+  background-color: white;
   align-items: center;
   display: flex;
   justify-content: center;
   cursor: pointer;
   font-size: 30px;
-  color: #f7f7f7;
+  color: black;
   margin-left: -50px;
 }
 
@@ -148,13 +146,12 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   width: 279px;
   height: 50px;
-  text-shadow: 0 2px 2px #94BFD1;
-  background-color: #E6f6ff;
+  text-shadow: 0 1px 1px black;
   z-index: 1;
 }
 
 .section-lastProduct-tittle p {
-  color: #02050A;
+  color: black;
   font-size: larger;
 }
 
@@ -165,7 +162,6 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   width: 279px;
   height: 2237px;
-  background-color: #E6f6ff;
   margin-top: 47px;
   z-index: 1;
   flex-direction: column;
@@ -201,20 +197,15 @@ body::-webkit-scrollbar-thumb {
   margin-left: 21px;
   margin-top: 7px;
   margin-bottom: 7px;
-  border: 1px solid #75E8E5;
   border-radius: 10px;
-  background-color: #94BFD1;
+  background-color: gray;
   place-content: center;
 }
 
-.card:hover {
-  box-shadow: 2px 2px 8px 1px #153B4B;
-  border-radius: 10px;
-}
+
 
 .card-container {
   border-radius: 10px;
-  border: 1px solid #75E8E5;
   width: 30rem;
   height: 312px;
   background-color: #f7f7f7;
@@ -237,8 +228,7 @@ body::-webkit-scrollbar-thumb {
   margin-left: 3px;
   margin-top: 8px;
   margin-bottom: 40px;
-  border: 1px solid #75E8E5;
-  background-color: #94BFD1;
+  background-color: gray;
 }
 
 .card-newProduct:hover {
@@ -253,7 +243,6 @@ body::-webkit-scrollbar-thumb {
 
 .card-container-new {
   border-radius: 10px;
-  border: 1px solid #75E8E5;
   width: 270px;
   height: 177px;
   background-color: #f7f7f7;
@@ -284,7 +273,7 @@ body::-webkit-scrollbar-thumb {
 
 /* Apartado de promociones */
 .promo {
-  background-color: #94BFD1;
+  background-color: gray;
   border-radius: 10px;
   padding: 5px 5px;
   width: 1580px;
@@ -388,72 +377,36 @@ body::-webkit-scrollbar-thumb {
   padding-left: 50px;
   margin-left: 3px;
   border-radius: 20px;
-  border: 2px solid #75E8E5;
   transition: all 0.5s ease-in-out;
   font-size: larger;
   display: flex;
   align-items: center;
-  text-shadow: 0 2px 2px #153B4B;
-  background-color: #365662;
+  justify-content: center;
+  background-color: gray;
   color: #f7f7f7;
 }
 
 .btn:hover {
-  box-shadow: 0 0 20px 0px #153B4B;
-  background-color: #416b7a;
-  border: 2px solid #75E8E5;
+  background-color: rgb(161, 161, 161);
 }
 
-.btn .icon {
-  position: absolute;
-  height: 50px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.5s;
-}
-
-.btn .text {
-  transform: translateX(55px);
-}
-
-.btn:hover .icon {
-  width: 175px;
-}
-
-.btn:hover .text {
-  transition: all 0.5s;
-  opacity: 0;
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.btn:active .icon {
-  transform: scale(0.85);
-}
 
 /* Boton Buscar */
 .btnBuscar {
   width: 90px;
   height: 45px;
   border-radius: 20px;
-  border: 2px solid #75E8E5;
   transition: all 0.5s ease-in-out;
   font-size: 25;
   display: flex;
   align-items: center;
-  text-shadow: 0 2px 2px #153B4B;
-  background-color: #365662;
+  background-color: gray;
   color: #f7f7f7;
   margin-left: 5px;
 }
 
 .btnBuscar:hover {
-  box-shadow: 0 0 20px 0px #153B4B;
-  background-color: #416b7a;
+  background-color: rgb(161, 161, 161);
 }
 
 .btnBuscar .iconBuscar {
@@ -462,79 +415,28 @@ body::-webkit-scrollbar-thumb {
   width: 50px;
   display: flex;
   transition: all 0.5s;
-  margin-left: -8px;
+  margin: auto;
 }
 
-.btnBuscar .textBuscar {
-  transform: translateX(30px);
-}
-
-.btnBuscar:hover .iconBuscar {
-  width: 105px;
-}
-
-.btnBuscar:hover .textBuscar {
-  transition: all 0.5s;
-  opacity: 0;
-}
-
-.btnBuscar:focus {
-  outline: none;
-}
-
-.btnBuscar:active .iconBuscar {
-  transform: scale(0.85);
-}
 
 /* Boton de registrarse y login */
 .regis {
-  --glow-color: #E6f6ff;
-  --glow-spread-color: #94BFD1;
-  --enhanced-glow-color: rgb#E6f6ff;
-  --btn-color: #365662;
-  border: 1px solid var(--glow-color);
-  padding: .40em 1em;
-  color: var(--glow-color);
-  font-size: larger;
-  background-color: var(--btn-color);
-  border-radius: 30px;
-  outline: none;
-  box-shadow: 0 0 .3em .08em var(--glow-color),
-         0 0 .75em .3em var(--glow-spread-color),
-         inset 0 0 .15em .08em var(--glow-color);
-  text-shadow: 0 0 .75em var(--glow-color);
-  position: relative;
-  transition: all 0.3s;
-  margin-left: 10px;
+  width: 120px;
+  height: 45px;
+  border-radius: 20px;
+  font-size: 25;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  color: #f7f7f7;
+  margin-left: 5px;
  }
- 
- .regis::after {
-  pointer-events: none;
-  content: "";
-  position: absolute;
-  top: 120%;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--glow-spread-color);
-  filter: blur(2em);
-  opacity: .7;
-  transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
- }
+
  
  .regis:hover {
-  color: var(--btn-color);
-  background-color: var(--glow-color);
-  box-shadow: 0 0 .2em .10em var(--glow-color),
-         0 0 1em .5em var(--glow-spread-color),
-         inset 0 0 .25em .10em var(--glow-color);
+  background-color: rgb(31, 30, 30);
  }
  
- .regis:active {
-  box-shadow: 0 0 0.2em .10em var(--glow-color),
-         0 0 .75em .5em var(--glow-spread-color),
-         inset 0 0 .2em .10em var(--glow-color);
- }
 
  /* Boton ver Productos */
 .buttonProducto {
@@ -543,7 +445,7 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
   height: 45px;
   width: 130px;
-  background-image: linear-gradient(90deg, #365662, #153B4B);
+  background-color: #02050A;
   border-radius: 30px;
   border: none;
   margin-left: 8px;
@@ -551,68 +453,7 @@ body::-webkit-scrollbar-thumb {
 }
 
     .buttonProducto:hover {
-        text-shadow: 0 1px 1px #153B4B;
-        background: #365662;
-    }
-
-    .box {
-        width: 355px;
-        height: 45px;
-        transition: .5s linear;
-        position: relative;
-        display: grid;
-        place-content: center;
-        overflow: hidden;
-        padding: 5px;
-        text-align: center;
-        background: transparent;
-        border-radius: 30px;
-    }
-    
-    .box:before {
-        position: absolute;
-        content: '';
-        left: 0;
-        bottom: 0;
-        height: 4px;
-        width: 100%;
-        border-bottom: 2px solid transparent;
-        border-left: 2px solid transparent;
-        box-sizing: border-box;
-        transform: translateX(100%);
-        border-radius: 30px;
-    }
-    
-    .box:after {
-        position: absolute;
-        content: '';
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        border-top: 2px solid transparent;
-        border-right: 2px solid transparent;
-        box-sizing: border-box;
-        transform: translateX(-100%);
-        border-radius: 30px;
-    }
-    
-    .box:hover {
-        box-shadow: 0 5px 15px #75E8E5;
-    }
-    
-    .box:hover:before {
-        border-color: #75E8E5;
-        height: 100%;
-        transform: translateX(0);
-        transition: .3s transform linear, .3s height linear .3s;
-    }
-    
-    .box:hover:after {
-        border-color: #75E8E5;
-        height: 100%;
-        transform: translateX(0);
-        transition: .3s transform linear, .3s height linear .5s;
+        background: rgb(28, 28, 28);
     }
 
 /* Letras de ya sigues las redes*/
@@ -635,7 +476,7 @@ body::-webkit-scrollbar-thumb {
 .top-header {
   height: 42px;
   width: 1920px;
-  background-color: #E6f6ff;
+  background-color: #f7f7f7;
   position: fixed; /* Fija aun cuando hacemos scroll */
   display: flex;
   justify-content: right;
@@ -663,8 +504,7 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   transition: 0.5s;
-  border: 2px solid #75E8E5;
-  box-shadow: 0 20px 50px #42a19e;
+  border: 2px solid black;
 }
 
 .ulRedes .liRedes:hover {
@@ -677,7 +517,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   inset: 0;
   border-radius: 50px;
-  background: linear-gradient(45deg, #42a19e, #75E8E5);
+  background: black;
   opacity: 0;
   transition: 0.5s;
 }
@@ -725,7 +565,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .ulRedes .liRedes .titulo {
-  color: #02050A;
+  color: white;
   font-size: 1.1em !important;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -736,7 +576,7 @@ body::-webkit-scrollbar-thumb {
 
 .ulRedes .liRedes:hover .titulo {
   transform: scale(1);
-  color: #02050A;
+  color: white;
   transition-delay: 0.25s;
   font-weight: bold;
 }
@@ -745,7 +585,7 @@ body::-webkit-scrollbar-thumb {
 .top-footer {
   height: 32px;
   width: 1908px;
-  background-color: #E6f6ff;
+  background-color: #f7f7f7;
   display: flex;
   justify-content: right;
   align-items: center;
@@ -756,12 +596,12 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   height: 80px;
   width: 1908px;
-  background-color: #365662;
+  background-color: #f7f7f7;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #f7f7f7;
+  color: black;
 }
 
 .letterLightFooter {
@@ -773,11 +613,11 @@ body::-webkit-scrollbar-thumb {
 .buttonFooter {
   background-color: transparent;
   border: none;
-  color: #f7f7f7;
+  color: black;
 }
 
 .buttonFooter:hover {
-  color: #E6f6ff;
+  color: gray;
 }
 
 /* Pagination */
@@ -800,7 +640,7 @@ body::-webkit-scrollbar-thumb {
   flex-wrap: wrap;
   padding: 0.50rem 0.75rem;
   border-radius: 0.5rem;
-  background-color: #365662;
+  background-color: black;
 }
 
 .liPagination {

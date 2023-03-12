@@ -100,7 +100,7 @@ export const PaginaPrincipal = () => {
             />
             <button className="btnBuscar">
               <BiSearchAlt className="iconBuscar" />
-              <span className="textBuscar">Buscar</span>
+              <span className="textBuscar"></span>
             </button>
           </div>
 
