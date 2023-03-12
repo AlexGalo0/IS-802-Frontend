@@ -775,7 +775,7 @@ Aqui se generaran todos los productos
               {
                 //Crear funcion de Paginacion
               }
-              <section className="secPagination" style={{marginTop: '-14px'}}>
+              <section className="secPagination" style={{marginTop: '10px'}}>
                 <ul className="ulPagination">
                   <a href="" className="aPagination">
                     <li className="liPagination">Anterior</li>

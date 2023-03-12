@@ -1,5 +1,5 @@
-.App-header {
-  background: #402c50;
+.App-headerLogin {
+  background: #E6f6ff;
   background-size: 200% 200%;
   animation: movimiento 5s linear infinite alternate-reverse;
 
@@ -15,7 +15,7 @@
   background: transparent;
   width: 650px;
   height: 100%;
-  color: #cb8fd6;
+  color: #E6f6ff;
   display: grid;
   place-content: center;
 }
@@ -24,10 +24,10 @@
   justify-content: space-between;
   background: #f7f7f7;
   padding: 20px;
-  box-shadow: 1px 1px 1px 1px rgba(32, 32, 32, 0.3);
+  box-shadow: 1px 1px 1px 1px #94BFD1;
   text-align: center;
   outline-style: ridge;
-  outline-color: #bfb8b4;
+  outline-color: #94BFD1;
   width: 650px;
   display: grid;
   place-content: center;
@@ -35,52 +35,52 @@
 }
 
 .letterMedium {
-  color: #e211cc;
+  color:  #75E8E5;
   font-size: medium;
   padding: 8px;
 }
 
 
-.Button-Product {
+.Button-ProductLogin {
     display: grid;
     place-content: center;
     height: 55px;
     width: 350px;
-    background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+    background-image: linear-gradient(90deg, #365662, #94BFD1);
     border-radius: 30px;
     border: none;
     color: #f7f7f7;
     font-size: larger;
-    text-shadow: 0 2px 2px rgb(120, 69, 168);
+    text-shadow: 0 2px 2px #94BFD1;
     outline-style: outset;
-    outline-color: #e211cc;
+    outline-color: #75E8E5;
     margin: 15px auto;
 }
 
-.Button-Product:hover {
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-  background: rgb(120, 69, 168);
+.Button-ProductLogin:hover {
+  text-shadow: 0 1px 1px #153B4B;
+  background: #94BFD1;
 }
 
-.Button-backProduct {
+.Button-backProductLogin {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 30px;
   width: 40px;
-  background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+  background-image: linear-gradient(90deg, #365662, #153B4B);
   border-radius: 10px;
   border: none;
   color: #f7f7f7;
   font-size: larger;
-  text-shadow: 0 2px 2px rgb(120, 69, 168);
+  text-shadow: 0 2px 2px #153B4B;
   outline-style: outset;
-  outline-color: #e211cc;
+  outline-color: #75E8E5;
 }
 
-.Button-backProduct:hover {
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-  background: rgb(120, 69, 168);
+.Button-backProductLogin:hover {
+  text-shadow: 0 1px 1px #153B4B;
+  background: #416b7a;
 }
 
 .learn-more {
@@ -92,8 +92,8 @@
   text-transform: uppercase;
   font-size: larger;
   padding: 1.25em 2em;
-  background: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
-  border: 2px solid #e211cc;
+  background: linear-gradient(90deg, #365662, #153B4B);
+  border: 2px solid #75E8E5;
   border-radius: 0.75em;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -113,7 +113,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #cb8fd6;
+  background: #E6f6ff;
   border-radius: inherit;
   -webkit-transform: translate3d(0, 0.75em, -1em);
   transform: translate3d(0, 0.75em, -1em);
@@ -124,7 +124,7 @@
 }
 
 .learn-more:hover {
-  background: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+  background: linear-gradient(90deg, #365662, #153B4B);
   -webkit-transform: translate(0, 0.25em);
   transform: translate(0, 0.25em);
 }
@@ -135,7 +135,7 @@
 }
 
 .learn-more:active {
-  background: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+  background: linear-gradient(90deg, #365662, #153B4B);
   -webkit-transform: translate(0em, 0.75em);
   transform: translate(0em, 0.75em);
 }
@@ -149,16 +149,16 @@
     font-size: medium;
     color: #0d0d0d;
     transition: border 150ms cubic-bezier(0.4,0,0.2,1);
-    border: 2px solid #e211cc;
+    border: 2px solid #365662;
     width: 600px;
-    box-shadow: 0 0.4rem #dfd9d9;
+    box-shadow: 0 0.4rem #94BFD1;
     margin: 15px;
    }
    
 .user-label {
     position: absolute;
     left: 25px;
-    color: #e211cc;
+    color: #365662;
     pointer-events: none;
     transform: translateY(1rem);
     transition: 150ms cubic-bezier(0.4,0,0.2,1);
@@ -166,21 +166,21 @@
    
    .inNombre:focus, inNombre:valid {
     outline: none;
-    border: 2px solid #95289b;
+    border: 2px solid #94BFD1;
    }
    
    .inNombre:focus ~ label, inNombre:valid ~ label {
     transform: translateY(-10%) scale(0.8);
     background-color: #f7f7f7;
     padding: 0.2em;
-    color: #95289b;
+    color: #153B4B;
    }
 
    .Form-Buttons {
     background: #f7f7f7;
-    box-shadow: 1px 1px 1px 1px rgba(32, 32, 32, 0.3);
+    box-shadow: 1px 1px 1px 1px #94BFD1;
     outline-style: ridge;
-    outline-color: #bfb8b4;
+    outline-color: #94BFD1;
     width: 650px;
   }
 
@@ -189,25 +189,25 @@
     place-content: center;
     height: 55px;
     width: 350px;
-    background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+    background-image: linear-gradient(90deg, #365662, #153B4B);
     border-radius: 30px;
     border: none;
     color: #f7f7f7;
     font-size: larger;
-    text-shadow: 0 2px 2px rgb(120, 69, 168);
+    text-shadow: 0 2px 2px #153B4B;
     outline-style: outset;
-    outline-color: #e211cc;
+    outline-color: #75E8E5;
     margin: 15px auto;
     margin-bottom: -15px;
 }
 
 .Button-Login:hover {
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-    background: rgb(120, 69, 168);
+    background: #416b7a;
   }
 
   /* Animacion boton principal */
-  .box {
+  .boxLogin {
     height: 60px;
     width: 355px;
     transition: .5s linear;
@@ -221,7 +221,7 @@
     border-radius: 30px;
   }
   
-  .box:before {
+  .boxLogin:before {
     position: absolute;
     content: '';
     left: 0;
@@ -235,7 +235,7 @@
     border-radius: 30px;
   }
   
-  .box:after {
+  .boxLogin:after {
     position: absolute;
     content: '';
     top: 0;
@@ -249,19 +249,19 @@
     border-radius: 30px;
   }
   
-  .box:hover {
-    box-shadow: 0 5px 15px #e211cc;
+  .boxLogin:hover {
+    box-shadow: 0 5px 15px #75E8E5;
   }
   
-  .box:hover:before {
-    border-color: #e211cc;
+  .boxLogin:hover:before {
+    border-color: #75E8E5;
     height: 100%;
     transform: translateX(0);
     transition: .3s transform linear, .3s height linear .3s;
   }
   
-  .box:hover:after {
-    border-color: #e211cc;
+  .boxLogin:hover:after {
+    border-color: #75E8E5;
     height: 100%;
     transform: translateX(0);
     transition: .3s transform linear, .3s height linear .5s;

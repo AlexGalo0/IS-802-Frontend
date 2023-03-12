@@ -56,12 +56,12 @@ export const Login = () => {
 	
 	return (
 		<>
-			<header className='App-header'>
+			<header className='App-headerLogin'>
 				<Container className='ContainerProduct'>
 					<form
 						onSubmit={handleSubmit(enviarDatosLogin)}
 						fluid='true'
-						className='Form-Product'
+						className='Form-Login'
 					>
 						<Row>
 							<Col
@@ -76,7 +76,7 @@ export const Login = () => {
 								}}
 							>
 								<button
-									className='Button-backProduct'
+									className='Button-backProductLogin'
 									type='submit'
 									onClick={handleRedirection}
 									style={{
@@ -168,7 +168,7 @@ export const Login = () => {
 
             <div>
               <button className="Button-Login" type="submit">
-			  <span className="box">Iniciar sesión</span>
+			  <span className="boxLogin">Iniciar sesión</span>
               </button>
             </div>
           </form>

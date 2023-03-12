@@ -28,7 +28,7 @@ body::-webkit-scrollbar-thumb {
   margin-top: 42px;
   height: 80px;
   width: 1920px;
-  background-color: #402c50;
+  background-color: #153B4B;
   position: fixed;
   align-items: center;
   justify-content: space-between;
@@ -54,7 +54,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .section-header {
-  background-color: #7047a2;
+  background-color: #E6f6ff;
   z-index: 1;
 }
 
@@ -80,12 +80,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 .carousel-style {
-  border: 1px solid #e211cc;
+  border: 1px solid #75E8E5;
   height: 505px;
   width: 1580px;
   border-radius: 20px;
-  box-shadow: 5px 5px 10px #402c50,
-             -5px -5px 10px #7047a2;
+  box-shadow: 5px 5px 10px #153B4B,
+             -5px -5px 10px #365662;
 }
 
 .buscador-div {
@@ -148,13 +148,13 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   width: 279px;
   height: 50px;
-  text-shadow: 0 2px 2px #dfbee5;
-  background-color: #7047a2;
+  text-shadow: 0 2px 2px #94BFD1;
+  background-color: #E6f6ff;
   z-index: 1;
 }
 
 .section-lastProduct-tittle p {
-  color: #f7f7f7;
+  color: #02050A;
   font-size: larger;
 }
 
@@ -165,7 +165,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   width: 279px;
   height: 2237px;
-  background-color: #7047a2;
+  background-color: #E6f6ff;
   margin-top: 47px;
   z-index: 1;
   flex-direction: column;
@@ -201,20 +201,20 @@ body::-webkit-scrollbar-thumb {
   margin-left: 21px;
   margin-top: 7px;
   margin-bottom: 7px;
-  border: 1px solid #e211cc;
+  border: 1px solid #75E8E5;
   border-radius: 10px;
-  background-color: #dfbee5;
+  background-color: #94BFD1;
   place-content: center;
 }
 
 .card:hover {
-  box-shadow: 2px 2px 8px 1px #402c50;
+  box-shadow: 2px 2px 8px 1px #153B4B;
   border-radius: 10px;
 }
 
 .card-container {
   border-radius: 10px;
-  border: 1px solid #e211cc;
+  border: 1px solid #75E8E5;
   width: 30rem;
   height: 312px;
   background-color: #f7f7f7;
@@ -237,12 +237,12 @@ body::-webkit-scrollbar-thumb {
   margin-left: 3px;
   margin-top: 8px;
   margin-bottom: 40px;
-  border: 1px solid #e211cc;
-  background-color: #dfbee5;
+  border: 1px solid #75E8E5;
+  background-color: #94BFD1;
 }
 
 .card-newProduct:hover {
-  box-shadow: 0px 0px 0px 0px #402c50;
+  box-shadow: 0px 0px 0px 0px #153B4B;
 }
 
 .card-image-new {
@@ -253,7 +253,7 @@ body::-webkit-scrollbar-thumb {
 
 .card-container-new {
   border-radius: 10px;
-  border: 1px solid #e211cc;
+  border: 1px solid #75E8E5;
   width: 270px;
   height: 177px;
   background-color: #f7f7f7;
@@ -284,7 +284,7 @@ body::-webkit-scrollbar-thumb {
 
 /* Apartado de promociones */
 .promo {
-  background-color: #cb8fd6;
+  background-color: #94BFD1;
   border-radius: 10px;
   padding: 5px 5px;
   width: 1580px;
@@ -388,20 +388,20 @@ body::-webkit-scrollbar-thumb {
   padding-left: 50px;
   margin-left: 3px;
   border-radius: 20px;
-  border: 2px solid #e211cc;
+  border: 2px solid #75E8E5;
   transition: all 0.5s ease-in-out;
   font-size: larger;
   display: flex;
   align-items: center;
-  text-shadow: 0 2px 2px rgb(120, 69, 168);
-  background-color: #95289b;
+  text-shadow: 0 2px 2px #153B4B;
+  background-color: #365662;
   color: #f7f7f7;
 }
 
 .btn:hover {
-  box-shadow: 0 0 20px 0px #2e2e2e3a;
-  background-color: #95289b;
-  border: 2px solid #e211cc;
+  box-shadow: 0 0 20px 0px #153B4B;
+  background-color: #416b7a;
+  border: 2px solid #75E8E5;
 }
 
 .btn .icon {
@@ -440,20 +440,20 @@ body::-webkit-scrollbar-thumb {
   width: 90px;
   height: 45px;
   border-radius: 20px;
-  border: 2px solid #e211cc;
+  border: 2px solid #75E8E5;
   transition: all 0.5s ease-in-out;
   font-size: 25;
   display: flex;
   align-items: center;
-  text-shadow: 0 2px 2px rgb(120, 69, 168);
-  background-color: #95289b;
+  text-shadow: 0 2px 2px #153B4B;
+  background-color: #365662;
   color: #f7f7f7;
   margin-left: 5px;
 }
 
 .btnBuscar:hover {
-  box-shadow: 0 0 20px 0px #2e2e2e3a;
-  background-color: #95289b;
+  box-shadow: 0 0 20px 0px #153B4B;
+  background-color: #416b7a;
 }
 
 .btnBuscar .iconBuscar {
@@ -488,10 +488,10 @@ body::-webkit-scrollbar-thumb {
 
 /* Boton de registrarse y login */
 .regis {
-  --glow-color: rgb(228, 205, 250);
-  --glow-spread-color: rgba(191, 123, 255, 0.781);
-  --enhanced-glow-color: rgb(231, 206, 255);
-  --btn-color: #7047a2;
+  --glow-color: #E6f6ff;
+  --glow-spread-color: #94BFD1;
+  --enhanced-glow-color: rgb#E6f6ff;
+  --btn-color: #365662;
   border: 1px solid var(--glow-color);
   padding: .40em 1em;
   color: var(--glow-color);
@@ -543,7 +543,7 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
   height: 45px;
   width: 130px;
-  background-image: linear-gradient(90deg, #95289b, rgb(120, 69, 168));
+  background-image: linear-gradient(90deg, #365662, #153B4B);
   border-radius: 30px;
   border: none;
   margin-left: 8px;
@@ -551,8 +551,8 @@ body::-webkit-scrollbar-thumb {
 }
 
     .buttonProducto:hover {
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-        background: rgb(120, 69, 168);
+        text-shadow: 0 1px 1px #153B4B;
+        background: #365662;
     }
 
     .box {
@@ -598,18 +598,18 @@ body::-webkit-scrollbar-thumb {
     }
     
     .box:hover {
-        box-shadow: 0 5px 15px #e211cc;
+        box-shadow: 0 5px 15px #75E8E5;
     }
     
     .box:hover:before {
-        border-color: #e211cc;
+        border-color: #75E8E5;
         height: 100%;
         transform: translateX(0);
         transition: .3s transform linear, .3s height linear .3s;
     }
     
     .box:hover:after {
-        border-color: #e211cc;
+        border-color: #75E8E5;
         height: 100%;
         transform: translateX(0);
         transition: .3s transform linear, .3s height linear .5s;
@@ -617,14 +617,14 @@ body::-webkit-scrollbar-thumb {
 
 /* Letras de ya sigues las redes*/
 .letterHeader {
-  color: #f7f7f7;
+  color: #02050A;
   font-size: larger;
   margin-right: auto;
   margin-left: 15px;
 }
 
 .letterLightHeader {
-  color: #f7f7f7;
+  color: #02050A;
   font-size: medium;
   margin-right: auto;
   margin-left: -340px;
@@ -635,7 +635,7 @@ body::-webkit-scrollbar-thumb {
 .top-header {
   height: 42px;
   width: 1920px;
-  background-color: #7047a2;
+  background-color: #E6f6ff;
   position: fixed; /* Fija aun cuando hacemos scroll */
   display: flex;
   justify-content: right;
@@ -663,8 +663,8 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   transition: 0.5s;
-  border: 2px solid #cf30c5;
-  box-shadow: 0 20px 50px #95289b;
+  border: 2px solid #75E8E5;
+  box-shadow: 0 20px 50px #42a19e;
 }
 
 .ulRedes .liRedes:hover {
@@ -677,7 +677,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   inset: 0;
   border-radius: 50px;
-  background: linear-gradient(45deg, #95289b, #cf30c5);
+  background: linear-gradient(45deg, #42a19e, #75E8E5);
   opacity: 0;
   transition: 0.5s;
 }
@@ -707,7 +707,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .ulRedes .liRedes .i {
-  color: #f7f7f7;
+  color: #02050A;
   font-size: 1.75em !important;
   transition: 0.5s;
   transition-delay: 0.25s;
@@ -725,7 +725,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .ulRedes .liRedes .titulo {
-  color: #f7f7f7;
+  color: #02050A;
   font-size: 1.1em !important;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -736,7 +736,7 @@ body::-webkit-scrollbar-thumb {
 
 .ulRedes .liRedes:hover .titulo {
   transform: scale(1);
-  color: #f7f7f7;
+  color: #02050A;
   transition-delay: 0.25s;
   font-weight: bold;
 }
@@ -745,7 +745,7 @@ body::-webkit-scrollbar-thumb {
 .top-footer {
   height: 32px;
   width: 1908px;
-  background-color: #7047a2;
+  background-color: #E6f6ff;
   display: flex;
   justify-content: right;
   align-items: center;
@@ -756,7 +756,7 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   height: 80px;
   width: 1908px;
-  background-color: #402c50;
+  background-color: #365662;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -765,7 +765,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .letterLightFooter {
-  color: #f7f7f7;
+  color:  #02050A;
   font-size: medium;
   margin-right: 15px;
 }
@@ -777,7 +777,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .buttonFooter:hover {
-  color: #dfbee5;
+  color: #E6f6ff;
 }
 
 /* Pagination */
@@ -800,7 +800,7 @@ body::-webkit-scrollbar-thumb {
   flex-wrap: wrap;
   padding: 0.50rem 0.75rem;
   border-radius: 0.5rem;
-  background-color: #7047a2;
+  background-color: #365662;
 }
 
 .liPagination {
@@ -819,18 +819,18 @@ body::-webkit-scrollbar-thumb {
 }
 
 .aPagination .liPagination {
-  background-color: #402c50;
-  border: 1px solid #e211cc;
+  background-color: #153B4B;
+  border: 1px solid #75E8E5;
 }
 
 .aPagination:hover .liPagination {
-  border-color: #cb8fd6;
-  color: #e211cc;
+  border-color: #E6f6ff;
+  color: #75E8E5;
 }
 
 .aPagination.active .liPagination {
-  background: #cb8fd6;
-  color: #402c50;
-  border-color: #402c50;
-  box-shadow: 0 0.10rem 0.75rem #cb8fd6;
+  background: #E6f6ff;
+  color: #153B4B;
+  border-color: #153B4B;
+  box-shadow: 0 0.10rem 0.75rem #E6f6ff;
 }
