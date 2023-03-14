@@ -1,40 +1,91 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-    Nav,
-    Image,
-    Container,
-    InputGroup,
-    Button
-} from "react-bootstrap";
+// import { Nav, Navbar, NavDropdown, Container, Button } from "react-bootstrap";
+//import "./style.css"; 
 
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
 export const NavbarPrincipal = () => {
-    return (
-        <Nav className="navbar">
-            <Container fluid>
+  return (
+    <>
+      {[false, 'sm', 'md', 'lg', 'xl', 'xxl'].map((expand) => (
+        <Navbar key={expand} bg="light" expand={false} className="mb-3">
+          <Container fluid>
+            <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                  Offcanvas
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Nav.Link href="#action1">Home</Nav.Link>
+                  <Nav.Link href="#action2">Link</Nav.Link>
+                  <NavDropdown
+                    title="Dropdown"
+                    id={`offcanvasNavbarDropdown-expand-${expand}`}
+                  >
+                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">
+                      Another action
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action5">
+                      Something else here
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+                <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  <Button variant="outline-success">Search</Button>
+                </Form>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </Navbar>
+      ))}
+    </>
+    // <Navbar className="navbar">
+    //   <Container fluid>
+    //     <Button id="menu-btn"><span class="navbar-toggler-icon"></span></Button>
 
-                <button className="btn" id="menu-btn"><span className="navbar-toggler-icon"></span></button>
-                <img className="mx-3 img-fluid" src="img/post-photo.jpg" alt="" width="40px"/>
 
-                <div className="col-5 mx-auto">
-                    <InputGroup>
-                        <span className="input-group-text" id="basic-addon1">
-                            <i className="fa-sharp fa-solid fa-magnifying-glass" style={{color:"#f26c4f"}}></i>
-                        </span>
-                        {/* <input type="text" className="form-control" style="background-color: #9cc4e4;"
-                            placeholder="Ingresa el nombre del producto que deseas buscar" aria-label="Username"
-                            aria-describedby="basic-addon1"/> */}
-                    </InputGroup>
-                </div>
-
-                {/* <div>
-                    <Button type="button" className="btn mx-3">Iniciar sesion <i className="fa-solid fa-right-to-bracket mx-1"
-                            style="color: #f26c4f;"></i></Button>
-                    <Button type="button" className="btn mx-3">Registarse <i className="fa-sharp fa-solid fa-id-card mx-1"
-                            style="color: #f26c4f;"></i></Button>
-                    <Button href="#" className="btn mx-3"><i className="fa-solid fa-user mx-1" style="color: #f26c4f;"></i></Button>
-                </div> */}
-            </Container>
-        </Nav>
-    )
-}
+    //     <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+    //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    //     <Navbar.Collapse id="basic-navbar-nav">
+    //       <Nav className="me-auto">
+    //         <Nav.Link href="#home">Home</Nav.Link>
+    //         <Nav.Link href="#link">Link</Nav.Link>
+    //         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+    //           <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+    //           <NavDropdown.Item href="#action/3.2">
+    //             Another action
+    //           </NavDropdown.Item>
+    //           <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+    //           <NavDropdown.Divider />
+    //           <NavDropdown.Item href="#action/3.4">
+    //             Separated link
+    //           </NavDropdown.Item>
+    //         </NavDropdown>
+    //       </Nav>
+    //     </Navbar.Collapse>
+    //   </Container>
+    // </Navbar>
+  );
+};

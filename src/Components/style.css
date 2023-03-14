@@ -1,0 +1,18 @@
+
+:root{
+    --color1: #1b325f;
+    --color2: #9cc4e4;
+    --color3: #e9f2f9;
+    --color4: #3a89c0;
+    --color5: #f26c4f;
+}
+
+.navbar{
+    background-color: var(--color4);
+    margin-top: 0px;
+}
+
+#menu-btn{
+    background-color: var(--color4);
+}
+
