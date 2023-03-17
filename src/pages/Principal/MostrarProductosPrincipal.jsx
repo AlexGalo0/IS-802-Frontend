@@ -55,14 +55,17 @@ export const PaginaPrincipal = () => {
     <>
       <body className="body">
         <div className="top-header">
-          <span className="letterHeader">
+          <div><span className="letterHeader">
             ¿Ya sigues nuestras redes sociales?
           </span>
-          <span className="letterLightHeader">
-            Si quieres mantenerte informado de todas las novedades y promociones, no olvides
-            visitar nuestras redes sociales.......
+          </div>
+          <div><span className="letterLightHeader">
+            Si quieres mantenerte informado de todas las novedades y
+            promociones, no olvides visitar nuestras redes sociales.......
           </span>
-          <ul className="ulRedes">
+          </div>
+          
+          <div><ul className="ulRedes">
             <li className="liRedes">
               <span className="redes">
                 <BsFacebook className="i" />
@@ -88,6 +91,8 @@ export const PaginaPrincipal = () => {
               <span className="titulo">discord</span>
             </li>
           </ul>
+          </div>
+          
         </div>
 
         <div className="navbar">
@@ -96,7 +101,6 @@ export const PaginaPrincipal = () => {
             <Form.Control
               className="buscador"
               type="text"
-              style={{ paddingLeft: "8px", paddingRight: "8px" }}
             />
             <button className="btnBuscar">
               <BiSearchAlt className="iconBuscar" />
@@ -105,8 +109,6 @@ export const PaginaPrincipal = () => {
           </div>
 
           <div
-            className="botonLogin"
-            style={{ display: "flex", flexDirection: "row" }}
           >
             <button className="regis">Inicia sesion</button>
             <button className="regis">Registrate</button>
@@ -124,17 +126,11 @@ export const PaginaPrincipal = () => {
           </div>
         </div>
 
+        {/* Div que contiene todo lo relacionado con productos */}
         <div className="div-principal">
-          <div
-            style={{
-              width: "279px",
-              height: "51px",
-              display: "flex",
-            }}
-          >
-            {" "}
-            {/* Boton categorias */}
-            <div className="section-header">
+          {/* Boton categorias */}
+          <div className="aside">
+            <div>
               <button onClick={handleShow} className="btn">
                 <span className="icon">
                   <svg viewBox="0 0 175 80" width="40" height="40">
@@ -182,7 +178,11 @@ export const PaginaPrincipal = () => {
                     <Form>
                       <div className="checkbox">
                         <div className="checkbox-apple">
-                          <input className="yep" id="check-apple" type="checkbox" />
+                          <input
+                            className="yep"
+                            id="check-apple"
+                            type="checkbox"
+                          />
                           <label for="check-apple"></label>
                         </div>
                         <p>Todas</p>
@@ -302,23 +302,23 @@ export const PaginaPrincipal = () => {
                 </Form>
               </Offcanvas>
             </div>
+
+            {/* Titulo de nuevos productos */}
             <div
               className="section-lastProduct-tittle"
               style={{ marginTop: "51px" }}
             >
               <p>¡Productos nuevos!</p>
             </div>
-            {/* Titulo de nuevos productos */}
             <div className="section-lastProduct" style={{ marginTop: "98px" }}>
               <div>
                 <Card className="card-newProduct">
-                <Container
-                    className="card-container-new">
-                  <Card.Img
-                    variant="top"
-                    src={segunda}
-                    className="card-image-new"
-                  />
+                  <Container className="card-container-new">
+                    <Card.Img
+                      variant="top"
+                      src={segunda}
+                      className="card-image-new"
+                    />
                   </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
@@ -334,13 +334,12 @@ export const PaginaPrincipal = () => {
               </div>
               <div>
                 <Card className="card-newProduct">
-                <Container
-                    className="card-container-new">
-                  <Card.Img
-                    variant="top"
-                    src={primera}
-                    className="card-image-new"
-                  />
+                  <Container className="card-container-new">
+                    <Card.Img
+                      variant="top"
+                      src={primera}
+                      className="card-image-new"
+                    />
                   </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
@@ -356,13 +355,12 @@ export const PaginaPrincipal = () => {
               </div>
               <div>
                 <Card className="card-newProduct">
-                <Container
-                    className="card-container-new">
-                  <Card.Img
-                    variant="top"
-                    src={tercera}
-                    className="card-image-new"
-                  />
+                  <Container className="card-container-new">
+                    <Card.Img
+                      variant="top"
+                      src={tercera}
+                      className="card-image-new"
+                    />
                   </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
@@ -378,13 +376,12 @@ export const PaginaPrincipal = () => {
               </div>
               <div>
                 <Card className="card-newProduct">
-                <Container
-                    className="card-container-new">
-                  <Card.Img
-                    variant="top"
-                    src={segunda}
-                    className="card-image-new"
-                  />
+                  <Container className="card-container-new">
+                    <Card.Img
+                      variant="top"
+                      src={segunda}
+                      className="card-image-new"
+                    />
                   </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
@@ -400,13 +397,12 @@ export const PaginaPrincipal = () => {
               </div>
               <div>
                 <Card className="card-newProduct">
-                <Container
-                    className="card-container-new">
-                  <Card.Img
-                    variant="top"
-                    src={segunda}
-                    className="card-image-new"
-                  />
+                  <Container className="card-container-new">
+                    <Card.Img
+                      variant="top"
+                      src={segunda}
+                      className="card-image-new"
+                    />
                   </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
@@ -422,13 +418,12 @@ export const PaginaPrincipal = () => {
               </div>
               <div>
                 <Card className="card-newProduct">
-                <Container
-                    className="card-container-new">
-                  <Card.Img
-                    variant="top"
-                    src={segunda}
-                    className="card-image-new"
-                  />
+                  <Container className="card-container-new">
+                    <Card.Img
+                      variant="top"
+                      src={segunda}
+                      className="card-image-new"
+                    />
                   </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
@@ -443,14 +438,14 @@ export const PaginaPrincipal = () => {
                 </Card>
               </div>
             </div>
-            {/* Imagenes de productos */}
           </div>
-          <div style={{ width: "1630px", zIndex: '1'}}>
+
+          <div className="div-product">
             <div
               style={{
                 height: "550px",
-                width: "1200px",
-                padding: "25px ",
+                width: "100%",
+                padding: "20px ",
               }}
             >
               <Carousel variant="dark" className="carousel-style">
@@ -494,13 +489,12 @@ export const PaginaPrincipal = () => {
                   </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
-                  <Image
-                    src={ejem}
-                    className="image-carousel"
-                  />
+                  <Image src={ejem} className="image-carousel" />
 
-                  <Carousel.Caption className="carousel" 
-                    style={{ color: "#f7f7f7" }}>
+                  <Carousel.Caption
+                    className="carousel"
+                    style={{ color: "#f7f7f7" }}
+                  >
                     <h3>Four slide label</h3>
                     <p>
                       Praesent commodo cursus magna, vel scelerisque nisl
@@ -516,7 +510,7 @@ export const PaginaPrincipal = () => {
               <div
                 style={{
                   height: "100%",
-                  width: "527px",
+                  width: "auto",
                 }}
               >
                 {/*isLoading ? <p>Cargando...</p> : null*/}
@@ -552,7 +546,7 @@ Aqui se generaran todos los productos
               <div
                 style={{
                   height: "100%",
-                  width: "527px",
+                  width: "auto",
                 }}
               >
                 <Card className="card">
@@ -578,17 +572,16 @@ Aqui se generaran todos los productos
               <div
                 style={{
                   height: "100%",
-                  width: "527px",
+                  width: "auto",
                 }}
               >
                 <Card className="card">
-                <Container
-                    className="card-container">
-                  <Card.Img
-                    variant="top"
-                    src={tercera}
-                    className="card-image"
-                  />
+                  <Container className="card-container">
+                    <Card.Img
+                      variant="top"
+                      src={tercera}
+                      className="card-image"
+                    />
                   </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
@@ -605,7 +598,7 @@ Aqui se generaran todos los productos
             </div>
 
             {/* Apartado de promociones */}
-            <div
+            {/* <div
               style={{
                 height: "250px",
                 width: "100%",
@@ -615,22 +608,24 @@ Aqui se generaran todos los productos
               <div className="promo">
                 <p>Hola</p>
               </div>
-            </div>
+            </div> */}
 
             <div className="div-imagenes">
               {/* Segunda linea de imagenes */}
               <div
                 style={{
                   height: "100%",
-                  width: "527px",
+                  width: "auto",
                 }}
               >
                 <Card className="card">
-                  <Card.Img
-                    variant="top"
-                    src={primera}
-                    className="card-image"
-                  />
+                <Container className="card-container">
+                    <Card.Img
+                      variant="top"
+                      src={segunda}
+                      className="card-image"
+                    />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">lps. 00000</Card.Text>
@@ -646,15 +641,17 @@ Aqui se generaran todos los productos
               <div
                 style={{
                   height: "100%",
-                  width: "527px",
+                  width: "auto",
                 }}
               >
                 <Card className="card">
-                  <Card.Img
-                    variant="top"
-                    src={primera}
-                    className="card-image"
-                  />
+                <Container className="card-container">
+                    <Card.Img
+                      variant="top"
+                      src={tercera}
+                      className="card-image"
+                    />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">lps. 00000</Card.Text>
@@ -670,15 +667,17 @@ Aqui se generaran todos los productos
               <div
                 style={{
                   height: "100%",
-                  width: "527px",
+                  width: "auto",
                 }}
               >
                 <Card className="card">
-                  <Card.Img
-                    variant="top"
-                    src={primera}
-                    className="card-image"
-                  />
+                <Container className="card-container">
+                    <Card.Img
+                      variant="top"
+                      src={tercera}
+                      className="card-image"
+                    />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">lps. 00000</Card.Text>
@@ -693,20 +692,22 @@ Aqui se generaran todos los productos
               </div>
             </div>
 
-            <div className="div-imagenes" style={{marginTop: '10px'}}>
+            <div className="div-imagenes">
               {/* Tercera linea de imagenes */}
               <div
                 style={{
                   height: "100%",
-                  width: "527px",
+                  width: "auto",
                 }}
               >
                 <Card className="card">
-                  <Card.Img
-                    variant="top"
-                    src={primera}
-                    className="card-image"
-                  />
+                <Container className="card-container">
+                    <Card.Img
+                      variant="top"
+                      src={tercera}
+                      className="card-image"
+                    />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">lps. 00000</Card.Text>
@@ -722,15 +723,17 @@ Aqui se generaran todos los productos
               <div
                 style={{
                   height: "100%",
-                  width: "527px",
+                  width: "auto",
                 }}
               >
                 <Card className="card">
-                  <Card.Img
-                    variant="top"
-                    src={primera}
-                    className="card-image"
-                  />
+                <Container className="card-container">
+                    <Card.Img
+                      variant="top"
+                      src={tercera}
+                      className="card-image"
+                    />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">lps. 00000</Card.Text>
@@ -746,15 +749,17 @@ Aqui se generaran todos los productos
               <div
                 style={{
                   height: "100%",
-                  width: "527px",
+                  width: "auto",
                 }}
               >
                 <Card className="card">
-                  <Card.Img
-                    variant="top"
-                    src={primera}
-                    className="card-image"
-                  />
+                <Container className="card-container">
+                    <Card.Img
+                      variant="top"
+                      src={primera}
+                      className="card-image"
+                    />
+                  </Container>
                   <Card.Body className="card-body">
                     <Card.Title className="card-title">Card Title</Card.Title>
                     <Card.Text className="card-medium">lps. 00000</Card.Text>
@@ -769,13 +774,11 @@ Aqui se generaran todos los productos
               </div>
             </div>
 
-            <div
-              className="pagination"
-            >
+            <div className="pagination">
               {
                 //Crear funcion de Paginacion
               }
-              <section className="secPagination" style={{marginTop: '10px'}}>
+              <section className="secPagination" style={{ marginTop: "15px" }}>
                 <ul className="ulPagination">
                   <a href="" className="aPagination">
                     <li className="liPagination">Anterior</li>
