@@ -27,6 +27,7 @@ export const FiltroDepartamento = ({onSelectDepartamentos}) => {
 	return (
 		<>
 			<select onChange={handleDepartamentoSelect}>
+			<option value="" hidden>Seleccione un Departamento</option>
 				{departamentos.map((departamento) => (
                     <option value={departamento.id_dpto}>{departamento.nombre}</option>
 				))}

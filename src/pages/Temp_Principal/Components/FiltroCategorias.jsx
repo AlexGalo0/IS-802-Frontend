@@ -24,6 +24,7 @@ export const FiltroCategorias = ({onSelectCategoria}) => {
 	return (
 		<>
 			<select onChange={handleCategorySelect}>
+				<option value="" hidden>Seleccione Categoria</option>
 				{categories.map((categoria) => (
                     <option value={categoria.nombre}>{categoria.nombre}</option>
 				))}
