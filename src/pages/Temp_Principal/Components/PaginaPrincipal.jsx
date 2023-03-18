@@ -2,18 +2,18 @@ import { Container, Accordion, Form, Card, Row, Col } from "react-bootstrap";
 import '../Style/Temp_Principal.css'
 import imagen from "../../../assets/1.png";
 import { FaFilter } from "react-icons/fa";
-import { obtenerProductos, obtenerProductoPorCategoria } from "../../../api";
 import { CartaProducto } from "./CartaProducto";
-import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { FiltroCategorias } from "./FiltroCategorias";
+import { FiltroDepartamento } from "./FiltroDepartamentos";
 export const PaginaPrincipal = () => {
-	const navigate = useNavigate();
 
 	const [productos, setProductos] = useState([]);
 	const [numeroPagina, setNumeroPagina] = useState(1);
 
 	const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
+	const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState("");
+
 	/* Renderizado de primera vez */
 	const URL = `http://localhost:4000/product/pagination/${numeroPagina}`;
 	useEffect(() => {
@@ -24,6 +24,8 @@ export const PaginaPrincipal = () => {
 			});
 	}, []);
 
+	/* Renderizado de Categoria */
+
 	useEffect(() => {
 		fetch(`http://localhost:4000/product/${numeroPagina}/find-categories/${categoriaSeleccionada}`)
 		.then((response) => response.json())
@@ -31,12 +33,22 @@ export const PaginaPrincipal = () => {
 				setProductos(product);
 			});
 	}, [categoriaSeleccionada]);
-	/* 
-	Ruta de categoria
-	http://localhost:4000/product/1/find-categories/Electrónica
-*/
+
+	/* Renderizado de Departamento */
+	useEffect(() => {
+		fetch(`http://localhost:4000/product/${numeroPagina}/find-dpto/${departamentoSeleccionado}`)
+		.then((response) => response.json())
+			.then((product) => {
+				setProductos(product);
+			});
+	}, [departamentoSeleccionado]);
+
+
 	const handleSeleccionCategoria = (categoria) => {
 		setCategoriaSeleccionada(categoria);
+	};
+	const handleSeleccionDepartamento = (departamento) => {
+		setDepartamentoSeleccionado(departamento);
 	};
 
 	return (
@@ -59,7 +71,9 @@ export const PaginaPrincipal = () => {
 
 						<Accordion.Item eventKey='1'>
 							<Accordion.Header>Departamentos</Accordion.Header>
-							<Accordion.Body></Accordion.Body>
+							<Accordion.Body>
+								<FiltroDepartamento onSelectDepartamentos={handleSeleccionDepartamento}/>
+							</Accordion.Body>
 						</Accordion.Item>
 
 						<Accordion.Item eventKey='2'>
