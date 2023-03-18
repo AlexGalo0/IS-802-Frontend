@@ -12,7 +12,7 @@ export const FiltroDepartamento = ({onSelectDepartamentos}) => {
 		fetch(URL)
 			.then((response) => response.json())
 			.then((departamento) => {
-				setDepartamento(departamento);
+				setDepartamentos(departamento);
 			});
 	}, []);
 
@@ -20,15 +20,15 @@ export const FiltroDepartamento = ({onSelectDepartamentos}) => {
         Funcion para guardar el departamento que se selecciono
     */
     const handleDepartamentoSelect = (event) => {
-        const departamentoElegido = event.target.value;
-        onSelectDepartamentos(departamentoElegido)
+        const idDepartamentoElegido = event.target.value;
+        onSelectDepartamentos(idDepartamentoElegido)
         
       };
 	return (
 		<>
 			<select onChange={handleDepartamentoSelect}>
 				{departamentos.map((departamento) => (
-                    <option value={departamento.id}>{departamento.nombre}</option>
+                    <option value={departamento.id_dpto}>{departamento.nombre}</option>
 				))}
 			</select>
 		</>
