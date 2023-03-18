@@ -11,7 +11,7 @@ import "./styles/stNav.css";
 import { BiSearchAlt, BiUser } from "react-icons/bi";
 import logo from "../assets/logo.png";
 import { BsFacebook, BsInstagram, BsDiscord } from "react-icons/bs";
-
+import { Link } from "react-router-dom";
 export const NavbarsLR = () => {
   /* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
   const renderTooltip = (props) => (
@@ -78,8 +78,13 @@ export const NavbarsLR = () => {
         </div>
 
         <div>
+        <Link to='/login'>
           <button className="regis">Inicia sesion</button>
+          </Link>
+          <Link to='/registrarUsuario'>
+
           <button className="regis">Registrate</button>
+          </Link>
         </div>
         <div>
           <OverlayTrigger

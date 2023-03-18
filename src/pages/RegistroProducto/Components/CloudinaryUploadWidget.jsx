@@ -1,5 +1,5 @@
 import React from "react";
-import "../../Registro/styles/style.css";
+import "../../../style/styleForm.css";
 
 export const CloudinaryUploadWidget = ({ recibirURL }) => {
 	const urlsImages = [];
@@ -10,7 +10,7 @@ export const CloudinaryUploadWidget = ({ recibirURL }) => {
 		{
 			cloudName: cloudName,
 			uploadPreset: uploadPreset,
-			theme: "purple",
+			theme: "blue",
 			clientAllowedFormats: ["jpg", "png"],
 			multiple: true,
 			sources: ["local"],

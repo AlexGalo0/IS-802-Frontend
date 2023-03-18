@@ -8,7 +8,7 @@ import {
 	Modal,
 	Alert,
 } from "react-bootstrap";
-import "../../styles/styleForm.css";
+import "../../../style/styleForm.css";
 import { useEffect, useRef, useState } from "react";
 import { get, useForm } from "react-hook-form";
 import { CiUser, CiCalendarDate } from "react-icons/ci";
@@ -20,11 +20,11 @@ import { GoLocation } from "react-icons/go";
 import { BiLeftArrow } from "react-icons/bi";
 import { comprobarEdad } from "../helpers";
 import { createUser } from "../../../api";
-import { Contrato } from "./UI";
+import { Contrato } from "./Contrato";
 import { useNavigate } from "react-router";
 import logo from "../../../assets/logoV2.png";
 
-export const Registro = () => {
+export const RegistroUsuario = () => {
 	const navigate = useNavigate(); //Para redireccion
 	const {
 		register,

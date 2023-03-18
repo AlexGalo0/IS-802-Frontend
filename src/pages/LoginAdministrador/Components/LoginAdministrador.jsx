@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { iniciarSesion } from "../../../api";
-import "../../styles/styleForm.css"
-import logo from "../../../assets/logoV2.png";
+import { iniciarSesionAdmin } from "../../../api";
+import '../Style/LoginAdministrador.css';
+import logo from "../../../assets/logo.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Form, Row, Image, Alert } from "react-bootstrap";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
@@ -11,7 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 
-export const Login = () => {
+export const LoginAdministrador = () => {
   const {
     register,
     handleSubmit,
@@ -30,11 +30,10 @@ export const Login = () => {
 	const enviarDatosLogin = async (userData) => {
 		
 		try {
-			const response = await iniciarSesion(userData);
+			const response = await iniciarSesionAdmin(userData);
 			setRequestError(false)
 			setSuccesfullResponse(true)
-			setUserAuth(true) /* Loguear al Usuario */
-
+			// setUserAuth(true) /* Loguear al Usuario */
 			setTimeout(()=>{
 				navigate("/")
 			},1500)
@@ -55,13 +54,14 @@ export const Login = () => {
 	  };
 	
 	return (
+        
 		<>
-			<header className='App-header'>
-				<Container className='Container'>
+			<header className='App-headerLogin'>
+				<Container className='ContainerProduct'>
 					<form
 						onSubmit={handleSubmit(enviarDatosLogin)}
 						fluid='true'
-						className='Form'
+						className='Form-Login'
 					>
 						<Row>
 							<Col
@@ -76,13 +76,13 @@ export const Login = () => {
 								}}
 							>
 								<button
-									className='Button-back'
+									className='Button-backProductLogin'
 									type='submit'
 									onClick={handleRedirection}
 									style={{
 										marginTop: "-45px",
 										paddingTop: "1px",
-										marginLeft: "-10px",
+										marginLeft: "10px",
 									}}
 								>
 									<BiLeftArrow />
@@ -93,7 +93,6 @@ export const Login = () => {
 										width: "110px",
 										paddingRight: "10px",
 										paddingTop: "20px",
-										marginRight: '-20px'
 									}}
 								/>
 							</Col>
@@ -105,7 +104,7 @@ export const Login = () => {
 								marginLeft: "10px",
 							}}
 						>
-							Inicia sesion
+							Ingresa tus credenciales
 						</h1>
 
             <Form.Group
@@ -168,8 +167,8 @@ export const Login = () => {
             )}
 
             <div>
-              <button className="Button" type="submit">
-			  <span className="boxForm">Iniciar sesión</span>
+              <button className="Button-Login" type="submit">
+			  <span className="boxLogin">Iniciar sesión</span>
               </button>
             </div>
           </form>

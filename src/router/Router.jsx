@@ -1,36 +1,47 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { RegistroProducto } from "../pages/Productos";
-import { Construyendo, Registro } from "../pages/Registro/Components";
-import { Login } from "../pages/Login/Components";
-import { PaginaPrincipal } from "../pages/Principal";
-// import { CartaProducto } from "../pages/Principal/Components/CartaProducto";
-import { MostrarProducto } from "../pages/Principal/Components/MostrarProducto";
-import { InicialPrueba } from "../pages/InicialPrueba/InicialPrueba";
-import { RutaProtegida } from "../Components/RutaProtegida";
+import { UserContext, AdminContext } from "../context";
+import {
+	DashboardAdministrador,
+	LoginAdministrador,
+	RegistroProducto,
+	RegistroUsuario,
+	UserLogin,
+	PaginaPrincipal,
+} from "../pages";
 import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { RutaProtegida, NavbarsLR } from "../Components";
+import { Route, Routes } from "react-router-dom";
 export const Router = () => {
-  const {userAuth}  = useContext(UserContext)
+	const { userAuth } = useContext(UserContext);
+	const { adminAuth } = useContext(AdminContext);
 	return (
-		<BrowserRouter>
+		<>
+			{/* <NavbarsLR /> */}
 			<Routes>
-				<Route index element={<InicialPrueba />} />
+				<Route index element={<PaginaPrincipal />} />
+				<Route path='/login' element={<UserLogin />} />
+				<Route path='/login-admin' element={<LoginAdministrador />} />
+				{/* <RutaProtegida isAllowed={userAuth}>  	</RutaProtegida>*/}
+				<Route path='/registrarProducto' element={<RegistroProducto />} />
 
-				<Route path='/productos' element={<MostrarProducto />} />
-				<Route path='/login' element={<Login />} />
-				<Route path="/principal" element={<PaginaPrincipal/>}></Route>
-				<Route path="/registroProductos" element={<RegistroProducto/>}></Route>
+				<Route
+					path='/registrarUsuario'
+					element={
+						
+							
+							<RegistroUsuario />
+					
+					}
+				/>
 
-        
-				{/* 
-          Unica Protegida , deberia decirle que no esta logeado , y redirijirlo a Crear Una Cuenta, de ahi deberia mandarlo a Registrar Producto , de Registrar Producto deberia volver? a la principal para que pueda acceder a verProductos o directamente enviarlo
-        */}
-				<Route path='/registrarProducto' element={<RutaProtegida isAllowed={userAuth}> <RegistroProducto/> </RutaProtegida>} />
-				<Route path='/registrarUsuario' element={<RutaProtegida isAllowed={!userAuth}> <Registro/> </RutaProtegida>} />
-				
-
-
+				<Route
+					path='/dashboard-admin'
+					element={
+						
+							<DashboardAdministrador />
+						
+					}
+				/>
 			</Routes>
-		</BrowserRouter>
+		</>
 	);
 };

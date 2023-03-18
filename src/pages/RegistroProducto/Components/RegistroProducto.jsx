@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { CloudinaryUploadWidget } from "./Components/CloudinaryUploadWidget";
-import "../styles/styleForm.css";
-import logo from "../../assets/logoV2.png";
+import {CloudinaryUploadWidget} from "./CloudinaryUploadWidget";
+import "../../../style/styleForm.css";
+import logo from "../../../assets/logoV2.png";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
 import { MdDriveFileRenameOutline, MdOutlineDescription } from "react-icons/md";
 import { FaSortAmountDownAlt } from "react-icons/fa";
@@ -19,7 +19,7 @@ import {
 	FormLabel,
 } from "react-bootstrap";
 import { useState } from "react";
-import { enviarProductos } from "../../api/sendRequest.api";
+import { enviarProductos } from "../../../api";
 import { useNavigate } from "react-router";
 
 export const RegistroProducto = () => {
@@ -315,7 +315,7 @@ export const RegistroProducto = () => {
 								type='submit'
 								onClick={handleSubmit(enviarProducto)}
 							>
-								<span class="boxForm">Enviar producto</span>
+								<span className="boxForm">Enviar producto</span>
 							</button>
 						</div>
 					</div>

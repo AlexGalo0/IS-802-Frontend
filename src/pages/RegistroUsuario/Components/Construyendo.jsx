@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navigate, useNavigate } from "react-router";
-import '../../styles/style.css'
-import whmcs from '../../styles/whmcs.svg'
+import '../styles/style.css'
+import whmcs from '../styles/whmcs.svg'
 
 export const Construyendo = () => {
   const navigate= useNavigate()

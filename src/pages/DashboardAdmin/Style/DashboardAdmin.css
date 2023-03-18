@@ -1,0 +1,74 @@
+:root{
+    --color1: #1b325f;
+    --color2: #9cc4e4;
+    --color3: #e9f2f9;
+    --color4: #3a89c0;
+    --color5: #f26c4f;
+}
+
+
+/*estilos nav lateral*/
+.center-nav,
+.bottom-nav {
+    list-style: none;
+    color: var(--color3);
+}
+
+.bottom-nav {
+    position: absolute;
+    bottom: 30px;
+}
+
+.center-nav a,
+.bottom-nav a {
+    color: var(--color3);
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.center-nav li,
+.bottom-nav li {
+    padding: 5px 20px;
+    margin: 5px 0;
+    transition: all 0.3s;
+}
+
+.center-nav li:hover,
+.bottom-nav li:hover {
+    color: var(--color1);
+    transform: translateX(4px);
+}
+
+.bottom-nav li a:hover , .center-nav li a:hover {    
+    color: var(--color1);
+}
+
+hr {
+    margin-left: 20px;
+    height: 1.5px;
+    display: block;
+    margin-bottom: 5px;
+    width: 150px;
+    background-color: #2f2c2c1d;
+    outline: none;
+    border: none;
+}
+
+/*Fin estilos nav lateral*/
+
+
+/* ======= Main Content Styling ======= */
+.main-content {
+    padding: 10px;
+    width: 100%;
+    background-color: var(--color2);
+}
+.main-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* ======= FIN Main Content Styling ======= */

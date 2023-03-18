@@ -1,10 +1,13 @@
-import { UserProvider } from "./context/UserProvider";
+import { UserProvider, AdminProvider } from "./context";
 import { Router } from "./router/Router";
+import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
 	return (
-		<UserProvider>
-			<Router/>
-		</UserProvider>
+		<AdminProvider>
+			<UserProvider>
+				<Router />
+			</UserProvider>
+		</AdminProvider>
 	);
 }
 

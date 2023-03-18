@@ -1,0 +1,58 @@
+:root{
+    --color1: #1b325f;
+    --color2: #9cc4e4;
+    --color3: #e9f2f9;
+    --color4: #3a89c0;
+    --color5: #f26c4f;
+}
+
+.container-grid{
+    background-color: var(--color2);
+    height: 100vh;
+    width: 100vw;
+}
+
+.container-fluid{
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+main{
+    display: grid;
+    grid-template-areas: 
+    'side contenido contenido'
+    'side contenido contenido' 
+    'foot foot foot';
+    grid-template-rows: 50px auto 75px;
+    grid-template-columns: 250px auto auto;
+    gap: 0px;
+    height: 100vh;
+}
+
+article{ 
+    grid-area: contenido; 
+    background-color: var(--color2);
+    padding: 20px;
+}
+aside{ 
+    grid-area: side;
+    background-color: var(--color4);
+    
+}
+footer{ 
+    color: var(--color2);
+    grid-area: foot; 
+    background-color: var(--color1);
+}
+
+
+/*sobreescribiendo clases de bootstrap*/
+.offcanvas{
+    width: 250px !important;
+    background-color: var(--color4) !important;
+}
+
+.card{
+    background-color: var(--color3) !important;
+}
+
