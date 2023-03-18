@@ -8,7 +8,7 @@ import {
 	Modal,
 	Alert,
 } from "react-bootstrap";
-import "../styles/style.css";
+import "../../styles/styleForm.css";
 import { useEffect, useRef, useState } from "react";
 import { get, useForm } from "react-hook-form";
 import { CiUser, CiCalendarDate } from "react-icons/ci";
@@ -91,14 +91,18 @@ export const Registro = () => {
 									justifyContent: "space-between",
 									alignItems: "center",
 									paddingTop: "40px",
-									paddingBottom: "15px",
+									paddingBottom: "10px",
 								}}
 							>
 								<button
 									className='Button-back'
 									type='submit'
 									onClick={handleRedirection}
-									style={{ marginTop: "-45px" }}
+									style={{
+										marginTop: "-45px",
+										paddingTop: "1px",
+										marginLeft: "2px",
+									}}
 								>
 									<BiLeftArrow />
 								</button>
@@ -108,11 +112,13 @@ export const Registro = () => {
 										width: "110px",
 										paddingRight: "10px",
 										paddingTop: "20px",
+										marginRight: '-8px'
 									}}
 								/>
 							</Col>
 						</Row>
-						<h1 style={{ color: "#0d0d0d", textAlign: "left" }}>
+						<h1 style={{ color: "#0d0d0d", textAlign: "left", 
+								marginLeft: "10px" }}>
 							Crea tu cuenta
 						</h1>
 
@@ -122,7 +128,7 @@ export const Registro = () => {
 						>
 							<input
 								name='text'
-								className='inRegistro'
+								className='inNombre'
 								type='text'
 								{...register("nombre", {
 									required: true,
@@ -131,7 +137,7 @@ export const Registro = () => {
 									pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
 								})}
 							/>
-							<Form.Label htmlFor='' className='laberRegistro'>
+							<Form.Label htmlFor='' className='user-label-regis'>
 								<CiUser /> Nombre
 							</Form.Label>
 							{/* Manejo de Errores de nombre */}
@@ -155,7 +161,7 @@ export const Registro = () => {
 						>
 							<input
 								name='text'
-								className='inRegistro'
+								className='inNombre'
 								type='text'
 								{...register("apellido", {
 									required: true,
@@ -164,7 +170,7 @@ export const Registro = () => {
 									pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
 								})}
 							/>
-							<Form.Label htmlFor='' className='laberRegistro'>
+							<Form.Label htmlFor='' className='user-label-regis'>
 								<CiUser /> Apellido
 							</Form.Label>
 							{/* Manejo de Errores de apellido */}
@@ -188,7 +194,7 @@ export const Registro = () => {
 						>
 							<input
 								name='text'
-								className='inRegistro'
+								className='inNombre'
 								type='text'
 								{...register("telefono", {
 									required: true,
@@ -196,7 +202,7 @@ export const Registro = () => {
 									pattern: /^\d{4}-\d{4}$/,
 								})}
 							/>
-							<Form.Label htmlFor='' className='laberRegistro'>
+							<Form.Label htmlFor='' className='user-label-regis'>
 								<IoMdPhonePortrait />
 								Teléfono
 							</Form.Label>
@@ -220,14 +226,14 @@ export const Registro = () => {
 						>
 							<input
 								name='date'
-								className='inRegistro'
+								className='inNombre'
 								type='date'
 								{...register("fechaNacimiento", {
 									required: true,
 									validate: comprobarEdad,
 								})}
 							/>
-							<Form.Label htmlFor='' className='laberRegistro'>
+							<Form.Label htmlFor='' className='user-label-regis'>
 								<CiCalendarDate />
 								Fecha de nacimiento
 							</Form.Label>
@@ -292,7 +298,6 @@ export const Registro = () => {
 								style={{
 									display: "grid",
 									placeContent: "center",
-									marginLeft: "4px",
 								}}
 							>
 								<Form.Group
@@ -301,7 +306,7 @@ export const Registro = () => {
 								>
 									<input
 										name='number'
-										className='inRegistro'
+										className='inNombre'
 										type='text'
 										{...register("dniHondurenio", {
 											required: true,
@@ -323,7 +328,6 @@ export const Registro = () => {
 								style={{
 									display: "grid",
 									placeContent: "center",
-									marginLeft: "4px",
 								}}
 							>
 								<Form.Group
@@ -332,7 +336,7 @@ export const Registro = () => {
 								>
 									<input
 										name='number'
-										className='inRegistro'
+										className='inNombre'
 										type='text'
 										{...register("dniExtranjero", {
 											required: true,
@@ -365,7 +369,7 @@ export const Registro = () => {
 						>
 							<input
 								name='email'
-								className='inRegistro'
+								className='inNombre'
 								type='email'
 								{...register("correo", {
 									required: true,
@@ -373,7 +377,7 @@ export const Registro = () => {
 									pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/,
 								})}
 							/>
-							<Form.Label htmlFor='' className='laberRegistro'>
+							<Form.Label htmlFor='' className='user-label-regis'>
 								<MdOutlineAlternateEmail />
 								Correo
 							</Form.Label>
@@ -399,7 +403,7 @@ export const Registro = () => {
 						>
 							<input
 								name='password'
-								className='inRegistro'
+								className='inNombre'
 								type='password'
 								{...register("password", {
 									required: true,
@@ -407,7 +411,7 @@ export const Registro = () => {
 									pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).*$/,
 								})}
 							/>
-							<Form.Label htmlFor='' className='laberRegistro'>
+							<Form.Label htmlFor='' className='user-label-regis'>
 								<RiLockPasswordLine />
 								Contraseña
 							</Form.Label>
@@ -436,7 +440,7 @@ export const Registro = () => {
 						>
 							<input
 								name='password'
-								className='inRegistro'
+								className='inNombre'
 								type='password'
 								{...register("confirmPassword", {
 									required: true,
@@ -444,7 +448,7 @@ export const Registro = () => {
 									validate: (value) => value === password.current,
 								})}
 							/>
-							<Form.Label htmlFor='' className='laberRegistro'>
+							<Form.Label htmlFor='' className='user-label-regis'>
 								<RiLockPasswordLine />
 								Confirmar contraseña
 							</Form.Label>
@@ -466,18 +470,20 @@ export const Registro = () => {
 							Elige tu departamento
 						</Form.Label>
 						<Form.Select
-							className='input'
 							style={{
-								border: "2px solid #E211CC",
-								boxShadow: "0 0.4rem #dfd9d9",
+								border: "2px solid #365662",
+								boxShadow: "0 0.4rem #94BFD1",
 								borderRadius: "12px",
 								height: "45px",
+								width: '550px',
+								margin: 'auto',
+								marginBottom: '10px'
 							}}
 							px
 							aria-label='Departamentos'
 							{...register("departamentos", { required: true })}
 						>
-							<option placeholder='Seleccione un departamento'></option>
+							<option value="" disabled selected hidden>Seleccione un departamento</option>
 							<option value='1'>Atlántida</option>
 							<option value='2'>Colón</option>
 							<option value='3'>Comayagua</option>
@@ -541,15 +547,15 @@ export const Registro = () => {
 						)}
 						{/* Modal de Terminos y Condiciones */}
 						<Modal show={show} onHide={handleClose}>
-							<Modal.Header closeButton style={{ border: "3px solid #E211CC" }}>
+							<Modal.Header closeButton style={{ border: "3px solid #75E8E5" }}>
 								<Modal.Title style={{ textAlign: "center" }}>
 									<h2>Términos y Condiciones de Marketplace504</h2>
 								</Modal.Title>
 							</Modal.Header>
-							<Modal.Body style={{ border: "3px solid #E211CC" }}>
+							<Modal.Body style={{ border: "3px solid #75E8E5" }}>
 								<Contrato />
 							</Modal.Body>
-							<Modal.Footer style={{ border: "3px solid #E211CC" }}>
+							<Modal.Footer style={{ border: "3px solid #75E8E5" }}>
 								<button className='Button-close' onClick={handleClose}>
 									Cerrar
 								</button>
@@ -563,7 +569,7 @@ export const Registro = () => {
 							""
 						)}
 						<button className='Button' type='submit'>
-							<span className='box'>Crear cuenta</span>
+							<span className='boxForm'>Crear cuenta</span>
 						</button>
 					</Form>
 				</Container>

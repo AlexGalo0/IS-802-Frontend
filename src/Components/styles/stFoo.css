@@ -1,0 +1,50 @@
+/* Footer */
+:root{
+    --white: #f7f7f7;
+    --blue1: #94BFD1;
+    --blue2: #75E8E5;
+    --blue3: #365662;
+    --blue4: #153B4B;
+    --blue5: #E6F6FF;
+    --hover: #416b7a;
+    --letter: #02050A;
+    --shadow: #42a19e;
+  }
+
+.top-footer {
+    height: 32px;
+    width: 100%;
+    background-color: var(--blue5);
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-right: 15px;
+  }
+  
+  .navbar-footer {
+    display: flex;
+    height: 80px;
+    width: 100%;
+    background-color: var(--blue4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--white);
+  }
+  
+  .letterLightFooter {
+    color:  var(--letter);
+    font-size: medium;
+    margin-right: 15px;
+  }
+  
+  .buttonFooter {
+    background-color: transparent;
+    border: none;
+    color: var(--white);
+  }
+  
+  .buttonFooter:hover {
+    color: var(--blue1);
+  }

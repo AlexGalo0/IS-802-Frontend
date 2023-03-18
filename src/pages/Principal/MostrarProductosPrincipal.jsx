@@ -8,21 +8,20 @@ import {
   Tooltip,
   Pagination,
   Card,
-  Container,
+  Container,Accordion
 } from "react-bootstrap";
 import "./styles/styleArticulos.css";
 import { useState, useEffect } from "react";
 // import { get, useForm } from "react-hook-form";
 // import { FiMenu } from "react-icons/fi";
-import { BiSearchAlt, BiUser } from "react-icons/bi";
 import primera from "../../assets/1.png";
 import segunda from "../../assets/4.png";
 import tercera from "../../assets/3.png";
 import ejem from "../../assets/ejem.jpeg";
-import logo from "../../assets/logo.png";
-import { BsFacebook, BsTwitter, BsInstagram, BsDiscord } from "react-icons/bs";
 import { FaCopyright } from "react-icons/fa";
 import { CartaProducto } from "./Components/CartaProducto";
+import {NavbarsLR} from '../../Components/NavbarLR';
+import {Footers} from '../../Components/Footer';
 
 export const PaginaPrincipal = () => {
   /* Elentos del boton categorias */
@@ -44,87 +43,10 @@ export const PaginaPrincipal = () => {
       });
   }, [productInfo]); //Este product info en los filtros deberia funcionar
 
-  /* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
-  const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      Inicia sesion
-    </Tooltip>
-  );
-
   return (
     <>
       <body className="body">
-        <div className="top-header">
-          <div><span className="letterHeader">
-            ¿Ya sigues nuestras redes sociales?
-          </span>
-          </div>
-          <div><span className="letterLightHeader">
-            Si quieres mantenerte informado de todas las novedades y
-            promociones, no olvides visitar nuestras redes sociales.......
-          </span>
-          </div>
-          
-          <div><ul className="ulRedes">
-            <li className="liRedes">
-              <span className="redes">
-                <BsFacebook className="i" />
-              </span>
-              <span className="titulo">Facebook</span>
-            </li>
-            {/* <li className="liRedes">
-              <span className="redes">
-                <BsTwitter className="i" />
-              </span>
-              <span className="titulo">twitter</span>
-            </li> */}
-            <li className="liRedes">
-              <span className="redes">
-                <BsInstagram className="i" />
-              </span>
-              <span className="titulo">instagram</span>
-            </li>
-            <li className="liRedes">
-              <span className="redes">
-                <BsDiscord className="i" />
-              </span>
-              <span className="titulo">discord</span>
-            </li>
-          </ul>
-          </div>
-          
-        </div>
-
-        <div className="navbar">
-          <Image src={logo} className="image-logo" />
-          <div className="buscador-div">
-            <Form.Control
-              className="buscador"
-              type="text"
-            />
-            <button className="btnBuscar">
-              <BiSearchAlt className="iconBuscar" />
-              <span className="textBuscar">Buscar</span>
-            </button>
-          </div>
-
-          <div
-          >
-            <button className="regis">Inicia sesion</button>
-            <button className="regis">Registrate</button>
-          </div>
-          <div>
-            <OverlayTrigger
-              placement="left"
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-            >
-              <button className="button-cuenta">
-                <BiUser />
-              </button>
-            </OverlayTrigger>
-          </div>
-        </div>
+        <NavbarsLR/>
 
         {/* Div que contiene todo lo relacionado con productos */}
         <div className="div-principal">
@@ -175,7 +97,7 @@ export const PaginaPrincipal = () => {
                     </Offcanvas.Title>
                   </Offcanvas.Header>
                   <Offcanvas.Body>
-                    <Form>
+                    {/* <Form>
                       <div className="checkbox">
                         <div className="checkbox-apple">
                           <input
@@ -286,7 +208,97 @@ export const PaginaPrincipal = () => {
                         </div>
                         <p>Empleos</p>
                       </div>
-                    </Form>
+                    </Form> */}
+                    <Accordion defaultActiveKey="0" flush>
+                        <Accordion.Item eventKey="0">
+                            <Accordion.Header>Categorias</Accordion.Header>
+                            <Accordion.Body>
+                                <Form>
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="Categoria 1"
+                                    />
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="Categoria 2"
+                                    />
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="Categoria 3"
+                                    />
+                                </Form>
+                            </Accordion.Body>
+                        </Accordion.Item>
+
+                        <Accordion.Item eventKey="1">
+                            <Accordion.Header>Reseñas de clientes</Accordion.Header>
+                            <Accordion.Body>
+                                <Form>
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="1 estrella"
+                                    />
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="2 estrella"
+                                    />
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="3 estrella"
+                                    />
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="4 estrella"
+                                    />
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="5 estrella"
+                                    />
+                                </Form>
+                            </Accordion.Body>
+                        </Accordion.Item>
+
+                        <Accordion.Item eventKey="2">
+                            <Accordion.Header>Rango de precios</Accordion.Header>
+                            <Accordion.Body>
+                                <Form>
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="Lps. 0 a Lps. 10.00"
+                                    />
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="Lps. 10.00 a Lps. 100.00"
+                                    />
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label="Lps. 100 a Lps. 500.00"
+                                    />
+                                </Form>
+                            </Accordion.Body>
+                        </Accordion.Item>
+
+                        <Accordion.Item eventKey="3">
+                            <Accordion.Header>precio</Accordion.Header>
+                            <Accordion.Body>
+                                <input
+                                    type="number"
+                                    placeholder="Precio por el que desea filtrar"
+                                />
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    </Accordion>
                   </Offcanvas.Body>
                   <button
                     className="buttonProducto"
@@ -808,45 +820,7 @@ Aqui se generaran todos los productos
           </div>
         </div>
 
-        <footer>
-          <div className="top-footer">
-            <span className="letterLightFooter">
-              Los principales distribuidores y grandes vendedores trabajan con{" "}
-              <span style={{ color: "#153B4B" }}>Market</span>
-              <span style={{ color: "#416b7a" }}>Place</span>504
-            </span>
-          </div>
-
-          <div className="navbar-footer">
-            <div
-              style={{
-                display: "flex",
-                gap: "25px",
-                fontSize: "larger",
-                marginBottom: "5px",
-              }}
-            >
-              <div>
-                <button className="buttonFooter">Terminos y condiciones</button>
-              </div>
-              <div>
-                <button className="buttonFooter">Sobre nosotros</button>
-              </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <FaCopyright
-                style={{ width: "20px", height: "20px", marginRight: "5px" }}
-              />
-              2023 MarketPlace504.hn
-            </div>
-          </div>
-        </footer>
+        <Footers/>
       </body>
     </>
   );

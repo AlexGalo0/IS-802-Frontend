@@ -22,8 +22,8 @@ export const InicialPrueba = () => {
 					) : (
 						<h3 style={{margin:'auto'}}>¡Usted no esta logueado!</h3>
 					)}
-					<button onClick={logout} className='Button-Login'>
-						<span className='box'>Cerrar sesión</span>
+					<button onClick={logout} className='Button'>
+						<span className='boxForm'>Cerrar sesión</span>
 					</button>
 					<nav className='secPagination'>
 						<ul className='ulPagination'>

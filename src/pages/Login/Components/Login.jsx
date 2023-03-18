@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { iniciarSesion } from "../../../api";
-import "../styles/styleLogin.css";
+import "../../styles/styleForm.css"
 import logo from "../../../assets/logoV2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Form, Row, Image, Alert } from "react-bootstrap";
@@ -56,12 +56,12 @@ export const Login = () => {
 	
 	return (
 		<>
-			<header className='App-headerLogin'>
-				<Container className='ContainerProduct'>
+			<header className='App-header'>
+				<Container className='Container'>
 					<form
 						onSubmit={handleSubmit(enviarDatosLogin)}
 						fluid='true'
-						className='Form-Login'
+						className='Form'
 					>
 						<Row>
 							<Col
@@ -76,13 +76,13 @@ export const Login = () => {
 								}}
 							>
 								<button
-									className='Button-backProductLogin'
+									className='Button-back'
 									type='submit'
 									onClick={handleRedirection}
 									style={{
 										marginTop: "-45px",
 										paddingTop: "1px",
-										marginLeft: "10px",
+										marginLeft: "-10px",
 									}}
 								>
 									<BiLeftArrow />
@@ -93,6 +93,7 @@ export const Login = () => {
 										width: "110px",
 										paddingRight: "10px",
 										paddingTop: "20px",
+										marginRight: '-20px'
 									}}
 								/>
 							</Col>
@@ -167,8 +168,8 @@ export const Login = () => {
             )}
 
             <div>
-              <button className="Button-Login" type="submit">
-			  <span className="boxLogin">Iniciar sesión</span>
+              <button className="Button" type="submit">
+			  <span className="boxForm">Iniciar sesión</span>
               </button>
             </div>
           </form>

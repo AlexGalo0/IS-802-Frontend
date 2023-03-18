@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { CloudinaryUploadWidget } from "./Components/CloudinaryUploadWidget";
-import "./styles/styleRegistroProductos.css";
+import "../styles/styleForm.css";
 import logo from "../../assets/logoV2.png";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
 import { MdDriveFileRenameOutline, MdOutlineDescription } from "react-icons/md";
@@ -60,8 +60,8 @@ export const RegistroProducto = () => {
 	return (
 		<>
 			<header className='App-header'>
-				<Container className='ContainerProduct'>
-					<Form fluid='true' className='Form-Product'>
+				<Container className='Container'>
+					<Form fluid='true' className='Form'>
 						<Row>
 							<Col
 								md
@@ -75,12 +75,12 @@ export const RegistroProducto = () => {
 								}}
 							>
 								<button
-									className='Button-backProduct'
+									className='Button-back'
 									type='submit'
 									style={{
 										marginTop: "-45px",
 										paddingTop: "1px",
-										marginLeft: "10px",
+										marginLeft: "-10px",
 									}}
 									onClick={handleRedirection}
 								>
@@ -92,6 +92,7 @@ export const RegistroProducto = () => {
 										width: "110px",
 										paddingRight: "10px",
 										paddingTop: "20px",
+										marginRight: '-18px'
 									}}
 								/>
 							</Col>
@@ -203,42 +204,6 @@ export const RegistroProducto = () => {
 						)}
 						{errors.cantidad?.type === "min" && <p className="FontAlert">¡Debe ser mínimo 1!</p>}
 
-						<Form.Group
-							style={{ position: "relative" }}
-							controlId='formBasicLimitDays'
-						>
-							{" "}
-							<Form.Label htmlFor='' className='user-label'>
-								<BsCalendarDay /> Dias en existencia
-							</Form.Label>
-							<input
-								name='text'
-								className='inNombre'
-								type='text'
-								{...register("limite_dias", {
-									required: true,
-									max: 30,
-									pattern: /^(0?[1-9]|[1-9][0-9]|100)$/,
-									min: 1,
-								})}
-							/>
-							{" "}
-							
-							{errors.limite_dias?.type === "pattern" && (
-								<p className="FontAlert">¡Solo debes ingresar números!</p>
-							)}
-							{errors.limite_dias?.type === "required" && (
-								<p className="FontAlert">
-									¡Debes ingresar el límite de días disponibles para la venta, 30 días es el máximo!
-								</p>
-							)}
-							{errors.limite_dias?.type === "max" && (
-								<p className="FontAlert">¡El valor máximo de días es 30!</p>
-							)}
-							{errors.limite_dias?.type === "min" && (
-								<p className="FontAlert">¡El valor mínimo de días es 1!</p>
-							)}
-						</Form.Group>
 
 						<Form.Group
 							className='mb-3, letterMedium'
@@ -249,17 +214,19 @@ export const RegistroProducto = () => {
 								Departamento de venta:{" "}
 							</Form.Label>
 							<Form.Select
-								className='input'
 								style={{
-									border: "2px solid #E211CC",
-									boxShadow: "0 0.4rem #dfd9d9",
+									border: "2px solid #365662",
+									boxShadow: "0 0.4rem #94BFD1",
 									borderRadius: "12px",
 									height: "45px",
+									width: '550px',
+									margin: 'auto',
+									marginBottom: '10px'
 								}}
 								aria-label='Departamentos'
 								{...register("dptoVenta", { required: true })}
 							>
-								<option placeholder='Seleccione un departamento'></option>
+								<option value="" disabled selected hidden>Seleccione un departamento</option>
 								<option value='1'>Atlántida</option>
 								<option value='2'>Colón</option>
 								<option value='3'>Comayagua</option>
@@ -294,17 +261,19 @@ export const RegistroProducto = () => {
 								Categoria:{" "}
 							</Form.Label>
 							<Form.Select
-								className='input'
 								style={{
-									border: "2px solid #E211CC",
-									boxShadow: "0 0.4rem #dfd9d9",
+									border: "2px solid #365662",
+									boxShadow: "0 0.4rem #94BFD1",
 									borderRadius: "12px",
 									height: "45px",
+									width: '550px',
+									margin: 'auto',
+									marginBottom: '10px'
 								}}
 								aria-label='categorias'
 								{...register("idCategoria", { required: true })}
 							>
-								<option placeholder='Seleccione una Categoria'></option>
+								<option value="" disabled selected hidden>Seleccione una categoria</option>
 								<option value='Inmuebles'>Inmuebles</option>
 								<option value='Vehículos'>Vehículos</option>
 								<option value='Hogar'>Hogar</option>
@@ -323,10 +292,13 @@ export const RegistroProducto = () => {
 							</p>
 						)}
 					</Form>
+
 					<div
-						className='Form-Buttons'
+						className='Form-buttoms'
 						style={{ display: "grip", placeContent: "center"}}
 					>
+
+						<div className="conWhite"></div>
 						<CloudinaryUploadWidget recibirURL={recibirURL} />
 
 						{imagenesVacias ? <p className="font-cloud">¡Debes enviar por lo menos una imagen!</p> : ""}
@@ -339,11 +311,11 @@ export const RegistroProducto = () => {
 						)}
 						<div>
 							<button
-								className='Button-Product'
+								className='Button'
 								type='submit'
 								onClick={handleSubmit(enviarProducto)}
 							>
-								<span class="box">Enviar producto</span>
+								<span class="boxForm">Enviar producto</span>
 							</button>
 						</div>
 					</div>
