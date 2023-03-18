@@ -6,6 +6,7 @@ import { CartaProducto } from "./CartaProducto";
 import { useEffect, useState } from "react";
 import { FiltroCategorias } from "./FiltroCategorias";
 import { FiltroDepartamento } from "./FiltroDepartamentos";
+import { FiltroPrecio } from "./FiltroPrecio";
 export const PaginaPrincipal = () => {
 
 	const [productos, setProductos] = useState([]);
@@ -13,6 +14,13 @@ export const PaginaPrincipal = () => {
 
 	const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
 	const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState("");
+
+	/* 
+		Para filtrado de Precios
+	*/
+	const [precioMinimo, setPrecioMinimo] = useState(0)
+    const [precioMaximo, setPrecioMaximo] = useState(0)
+	const [preciosCargado , setPreciosCargado ]  = useState(false)
 
 	/* Renderizado de primera vez */
 	const URL = `http://localhost:4000/product/pagination/${numeroPagina}`;
@@ -22,7 +30,7 @@ export const PaginaPrincipal = () => {
 			.then((product) => {
 				setProductos(product);
 			});
-	}, []);
+	},[]);
 
 	/* Renderizado de Categoria */
 
@@ -43,6 +51,19 @@ export const PaginaPrincipal = () => {
 			});
 	}, [departamentoSeleccionado]);
 
+	/* Renderizado por Precio */
+	useEffect(()=>{
+		if(preciosCargado){
+
+			fetch(`http://localhost:4000/product/${numeroPagina}/find-range-price/${precioMinimo}/${precioMaximo}`)
+			.then((response) => response.json())
+			.then((product) => {
+				setProductos(product);
+			});
+		}
+		setPreciosCargado(false)
+	},[preciosCargado])
+
 
 	const handleSeleccionCategoria = (categoria) => {
 		setCategoriaSeleccionada(categoria);
@@ -50,6 +71,11 @@ export const PaginaPrincipal = () => {
 	const handleSeleccionDepartamento = (departamento) => {
 		setDepartamentoSeleccionado(departamento);
 	};
+	const handleSeleccionPreciosMaxMin = (precioMin,precioMax) =>{
+		setPrecioMinimo(precioMin)
+		setPrecioMaximo(precioMax)
+		setPreciosCargado(true)
+	}
 
 	return (
 		<Container fluid className='container-grid'>
@@ -79,23 +105,7 @@ export const PaginaPrincipal = () => {
 						<Accordion.Item eventKey='2'>
 							<Accordion.Header>Rango de precios</Accordion.Header>
 							<Accordion.Body>
-								<Form>
-									<Form.Check
-										type='switch'
-										id='custom-switch'
-										label='Lps. 0 a Lps. 10.00'
-									/>
-									<Form.Check
-										type='switch'
-										id='custom-switch'
-										label='Lps. 10.00 a Lps. 100.00'
-									/>
-									<Form.Check
-										type='switch'
-										id='custom-switch'
-										label='Lps. 100 a Lps. 500.00'
-									/>
-								</Form>
+								<FiltroPrecio preciosMaxMinSeleccionados = {handleSeleccionPreciosMaxMin}/>
 							</Accordion.Body>
 						</Accordion.Item>
 

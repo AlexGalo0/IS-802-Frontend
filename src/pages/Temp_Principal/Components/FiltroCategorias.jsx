@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 
 export const FiltroCategorias = ({onSelectCategoria}) => {
-    /* 
-        Código para obtener las categorias , se intento separar en un modulo distinto pero daba errores , momentaneamente asi se mantendra
-    */
+
 	const [categories, setCategories] = useState([]);
 
 	const URL = `http://localhost:4000/categories`;
