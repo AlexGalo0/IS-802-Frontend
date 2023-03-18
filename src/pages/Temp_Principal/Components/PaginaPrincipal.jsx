@@ -11,23 +11,25 @@ export const PaginaPrincipal = () => {
 	const navigate = useNavigate();
 
 	const [productos, setProductos] = useState([]);
+	const [numeroPagina, setNumeroPagina] = useState(1);
+
 	const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
 	/* Renderizado de primera vez */
-	const URL = `http://localhost:4000/product`;
+	const URL = `http://localhost:4000/product/pagination/${numeroPagina}`;
 	useEffect(() => {
 		fetch(URL)
 			.then((response) => response.json())
 			.then((product) => {
-				// console.log(product[0].imagenes);
-
 				setProductos(product);
 			});
-	}, [productos]);
+	}, []);
 
 	useEffect(() => {
-		/* Cambiar Productos */
-		// const productosFiltradosPorCategoria = await obtenerProductoPorCategoria(categoriaSeleccionada)
-		// setProductos(productosFiltradosPorCategoria)
+		fetch(`http://localhost:4000/product/${numeroPagina}/find-categories/${categoriaSeleccionada}`)
+		.then((response) => response.json())
+			.then((product) => {
+				setProductos(product);
+			});
 	}, [categoriaSeleccionada]);
 	/* 
 	Ruta de categoria

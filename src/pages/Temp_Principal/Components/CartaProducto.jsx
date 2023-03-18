@@ -13,7 +13,7 @@ export const CartaProducto = ({
 	useEffect(() => {
 		const primeraImagen= JSON.parse(imagenes)
 		setPrimeraImagen(primeraImagen[0]);
-	}, []);
+	} );
 
 	return (
 		<Col>
