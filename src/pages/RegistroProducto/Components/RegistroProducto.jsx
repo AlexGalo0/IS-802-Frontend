@@ -298,7 +298,7 @@ export const RegistroProducto = () => {
 						style={{ display: "grip", placeContent: "center"}}
 					>
 
-						<div className="conWhite"></div>
+						<div className="divWhite"></div>
 						<CloudinaryUploadWidget recibirURL={recibirURL} />
 
 						{imagenesVacias ? <p className="font-cloud">¡Debes enviar por lo menos una imagen!</p> : ""}
@@ -314,6 +314,7 @@ export const RegistroProducto = () => {
 								className='Button'
 								type='submit'
 								onClick={handleSubmit(enviarProducto)}
+								style={{marginTop: '25px'}}
 							>
 								<span className="boxForm">Enviar producto</span>
 							</button>

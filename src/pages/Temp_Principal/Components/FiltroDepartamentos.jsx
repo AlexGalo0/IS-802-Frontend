@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "../Style/Temp_Principal.css";
 
 export const FiltroDepartamento = ({onSelectDepartamentos}) => {
   
@@ -26,8 +27,8 @@ export const FiltroDepartamento = ({onSelectDepartamentos}) => {
       };
 	return (
 		<>
-			<select onChange={handleDepartamentoSelect}>
-			<option value="" hidden>Seleccione un Departamento</option>
+			<select onChange={handleDepartamentoSelect} className= "select">
+			<option value="" hidden>Seleccione un departamento</option>
 				{departamentos.map((departamento) => (
                     <option value={departamento.id_dpto}>{departamento.nombre}</option>
 				))}

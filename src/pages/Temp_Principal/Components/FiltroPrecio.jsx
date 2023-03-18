@@ -29,21 +29,25 @@ export const FiltroPrecio = ({preciosMaxMinSeleccionados}) => {
 	return (
 		<>
 			<form onSubmit={handleSubmit(enviarPrecios)}>
-				<label htmlFor=''>Precio Minimo</label>
+				<label htmlFor='' className="labelPrecio">Precio Minimo</label>
 				<input
+				className="inPrecio"
 					type='number'
-					placeholder='Precio Minimo'
 					{...register("precioMin")}
 				/>
-				<label htmlFor=''>Precio Maximo</label>
+				<label htmlFor='' className="labelPrecio">Precio Maximo</label>
 				<input
+				className="inPrecio"
 					type='number'
-					placeholder='Precio Maximo'
 					{...register("precioMax")}
 				/>
-				<button  type='submit'>
-					Filtrar{" "}
-				</button>
+				<button
+				type="submit"
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium", margin: 'auto'}}
+                    >
+                      <span className="box">Filtrar</span>
+                    </button>
 			</form>
 		</>
 	);

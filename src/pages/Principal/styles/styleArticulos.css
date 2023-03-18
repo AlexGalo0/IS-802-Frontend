@@ -38,7 +38,7 @@ body::-webkit-scrollbar-thumb {
   border: 4px solid var(--blue3);
 }
 
-.navbar {
+/* .navbar {
   display: flex;
   margin-top: 32px;
   height: 70px;
@@ -50,7 +50,7 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
   padding: 0px 0px;
   z-index: 5;
-}
+} */
 
 .burger {
   height: 28px;

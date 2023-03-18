@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "../Style/Temp_Principal.css";
 
 export const FiltroCategorias = ({onSelectCategoria}) => {
 
@@ -23,8 +24,8 @@ export const FiltroCategorias = ({onSelectCategoria}) => {
       };
 	return (
 		<>
-			<select onChange={handleCategorySelect}>
-				<option value="" hidden>Seleccione Categoria</option>
+			<select onChange={handleCategorySelect} className= "select">
+				<option value="" hidden>Seleccione una categoria</option>
 				{categories.map((categoria) => (
                     <option value={categoria.nombre}>{categoria.nombre}</option>
 				))}
