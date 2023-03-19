@@ -38,30 +38,36 @@ export const NavbarsLR = () => {
 
         <div>
           <ul className="ulRedes">
+          <Link to='https://www.facebook.com/' style={{textDecoration: 'none'}}>
             <li className="liRedes">
               <span className="redes">
                 <BsFacebook className="i" />
               </span>
               <span className="titulo">Facebook</span>
             </li>
+            </Link>
             {/* <li className="liRedes">
               <span className="redes">
                 <BsTwitter className="i" />
               </span>
               <span className="titulo">twitter</span>
             </li> */}
+            <Link to='https://www.instagram.com/' style={{textDecoration: 'none'}}>
             <li className="liRedes">
               <span className="redes">
                 <BsInstagram className="i" />
               </span>
               <span className="titulo">instagram</span>
             </li>
+            </Link>
+            <Link to='https://discord.com/' style={{textDecoration: 'none'}}>
             <li className="liRedes">
               <span className="redes">
                 <BsDiscord className="i" />
               </span>
               <span className="titulo">discord</span>
             </li>
+            </Link>
           </ul>
         </div>
       </div>
@@ -92,9 +98,11 @@ export const NavbarsLR = () => {
             delay={{ show: 250, hide: 400 }}
             overlay={renderTooltip}
           >
+            <Link to='/construyendo'>
             <button className="button-cuenta">
               <BiUser />
             </button>
+            </Link>
           </OverlayTrigger>
         </div>
       </div>

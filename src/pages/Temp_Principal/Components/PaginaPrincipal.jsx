@@ -98,8 +98,8 @@ export const PaginaPrincipal = () => {
 
   return (
     <Container fluid className="container-grid">
-		{/* <NavbarsLR /> */}
-      <NavbarsLogueado />
+		<NavbarsLR />
+      {/* <NavbarsLogueado /> */}
       <main>
         <aside className="text-center">
           <h4 className="py-3 fil">

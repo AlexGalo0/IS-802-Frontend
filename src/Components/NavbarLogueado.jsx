@@ -23,7 +23,7 @@ export const NavbarsLogueado = () => {
   /* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      Inicia sesion
+      Perfil
     </Tooltip>
   );
 
@@ -63,30 +63,36 @@ export const NavbarsLogueado = () => {
 
         <div>
           <ul className="ulRedes">
+          <Link to='https://www.facebook.com/' style={{textDecoration: 'none'}}>
             <li className="liRedes">
               <span className="redes">
                 <BsFacebook className="i" />
               </span>
               <span className="titulo">Facebook</span>
             </li>
+            </Link>
             {/* <li className="liRedes">
               <span className="redes">
                 <BsTwitter className="i" />
               </span>
               <span className="titulo">twitter</span>
             </li> */}
+            <Link to='https://www.instagram.com/' style={{textDecoration: 'none'}}>
             <li className="liRedes">
               <span className="redes">
                 <BsInstagram className="i" />
               </span>
               <span className="titulo">instagram</span>
             </li>
+            </Link>
+            <Link to='https://discord.com/' style={{textDecoration: 'none'}}>
             <li className="liRedes">
               <span className="redes">
                 <BsDiscord className="i" />
               </span>
               <span className="titulo">discord</span>
             </li>
+            </Link>
           </ul>
         </div>
       </div>
