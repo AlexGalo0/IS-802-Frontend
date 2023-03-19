@@ -11,7 +11,7 @@ export const Construyendo = () => {
   return (
     <>
     <header className="App-header">
-    <h1 style={{ color: "#FFF"}}>Construyendo... </h1>
+    <h1 style={{ color: "#02050A"}}>Construyendo... </h1>
     <img src={whmcs} className="App-logo" alt="logo" />
     <button
         type="submit"

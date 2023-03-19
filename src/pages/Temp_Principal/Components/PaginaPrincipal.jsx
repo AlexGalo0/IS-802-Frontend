@@ -156,6 +156,30 @@ export const PaginaPrincipal = () => {
 							</Accordion.Body>
 						</Accordion.Item> */}
           </Accordion>
+
+		  <h4 className="py-3 fil">
+            Ejemplo de productos nuevos
+          </h4>
+		  <Card className="card-newProduct">
+                  <Container className="card-container-new">
+                    <Card.Img
+                      variant="top"
+                      src={primera}
+                      className="card-image-new"
+                    />
+                  </Container>
+                  <Card.Body className="card-body">
+                    <Card.Title className="card-title">Card Title</Card.Title>
+                    <Card.Text className="card-medium">lps. 00000</Card.Text>
+                    <button
+                      className="buttonProducto"
+                      style={{ color: "#f7f7f7", fontSize: "medium" }}
+                    >
+                      <span className="box">Ver producto</span>
+                    </button>
+                  </Card.Body>
+                </Card>
+				
         </aside>
 
         <article>
@@ -224,13 +248,13 @@ export const PaginaPrincipal = () => {
             </Carousel>
           </div> */}
 
-          <Row xs={1} md={4} className="g-4">
+          <Row xs={1} md={8} className="g-3">
             {/* {productos.map((producto) => (
               <CartaProducto {...producto} />
             ))} */}
             <Card className="card">
               <Container className="card-container">
-                <Card.Img variant="top" src={segunda} className="card-image" />
+                <Card.Img variant="top" src={primera} className="card-image" />
               </Container>
               <Card.Body className="card-body">
                 <Card.Title className="card-title">PRUEBA</Card.Title>

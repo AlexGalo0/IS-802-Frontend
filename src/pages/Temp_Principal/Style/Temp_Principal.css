@@ -170,6 +170,39 @@ footer{ /*
     font-size: 16;
   }
 
+/* Card New producto */
+/* New product */
+.card-newProduct {
+    width: 207px;
+    display: flex;
+    margin-top: 8px;
+    margin-bottom: 25px;
+    border: 1px solid var(--blue2);
+    background-color: var(--blue1);
+  }
+  
+  .card-newProduct:hover {
+    box-shadow: 0px 0px 0px 0px var(--blue4);
+  }
+  
+  .card-image-new {
+    height: calc(100% - 0px);
+    object-fit: contain;
+    border-radius: 10px;
+  }
+  
+  .card-container-new {
+    border-radius: 10px;
+    border: 1px solid var(--blue2);
+    width: 207px;
+    height: 117px;
+    background-color: var(--white);
+    padding-left: 0px;
+    padding-right: 0px;
+  
+  }
+  
+
  /* Boton ver Productos */
  .buttonProducto {
     display: flex;
@@ -352,37 +385,6 @@ footer{ /*
     border: 2px solid var(--blue2);
     color: var(--white);
   }
-  
-  /* .btn .icon {
-    position: absolute;
-    height: 50px;
-    width: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s;
-  }
-  
-  .btn .text {
-    transform: translateX(55px);
-  }
-  
-  .btn:hover .icon {
-    width: 175px;
-  }
-  
-  .btn:hover .text {
-    transition: all 0.5s;
-    opacity: 0;
-  }
-  
-  .btn:focus {
-    outline: none;
-  }
-  
-  .btn:active .icon {
-    transform: scale(0.85);
-  } */
 
   /* Letras filtro */
   .fil {

@@ -114,9 +114,11 @@ export const NavbarsLogueado = () => {
             delay={{ show: 250, hide: 400 }}
             overlay={renderTooltipMessaje}
           >
+            <Link to='/construyendo'>
             <button className="button-cuenta">
               <AiOutlineMessage />
             </button>
+            </Link>
           </OverlayTrigger>
 
           <OverlayTrigger
@@ -124,9 +126,11 @@ export const NavbarsLogueado = () => {
             delay={{ show: 250, hide: 400 }}
             overlay={renderTooltipLike}
           >
+            <Link to='/construyendo'>
             <button className="button-cuenta">
               <AiOutlineHeart />
             </button>
+            </Link>
           </OverlayTrigger>
           
           <OverlayTrigger
@@ -134,9 +138,11 @@ export const NavbarsLogueado = () => {
             delay={{ show: 250, hide: 400 }}
             overlay={renderTooltip}
           >
+            <Link to='/construyendo'>
             <button className="button-cuenta">
               <BiUser />
             </button>
+            </Link>
             {/* <Offcanvas show={show} onHide={handleClose} className="canvas">
                 <Form className="formCategory">
                   <Offcanvas.Header closeButton closeVariant="white">
