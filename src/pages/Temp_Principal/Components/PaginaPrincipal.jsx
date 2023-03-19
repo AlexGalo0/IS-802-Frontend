@@ -1,4 +1,13 @@
-import { Container, Accordion, Form, Card, Row, Col, Carousel, Image} from "react-bootstrap";
+import {
+  Container,
+  Accordion,
+  Form,
+  Card,
+  Row,
+  Col,
+  Carousel,
+  Image,
+} from "react-bootstrap";
 import "../Style/Temp_Principal.css";
 import imagen from "../../../assets/1.png";
 import { FaFilter } from "react-icons/fa";
@@ -8,6 +17,7 @@ import { FiltroCategorias } from "./FiltroCategorias";
 import { FiltroDepartamento } from "./FiltroDepartamentos";
 import { FiltroPrecio } from "./FiltroPrecio";
 import { NavbarsLR } from "../../../Components/NavbarLR";
+import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { Footers } from "../../../Components/Footer";
 import ejem from "../../../assets/ejem.jpeg";
 import segunda from "../../../assets/3.png";
@@ -88,16 +98,21 @@ export const PaginaPrincipal = () => {
 
   return (
     <Container fluid className="container-grid">
-      <NavbarsLR />
+		{/* <NavbarsLR /> */}
+      <NavbarsLogueado />
       <main>
         <aside className="text-center">
-          <h4 className="py-3">
+          <h4 className="py-3 fil">
             <FaFilter /> Filtros
           </h4>
 
           <Accordion defaultActiveKey="0" flush>
-            <Accordion.Item eventKey="0"  className="acordion">
-              <Accordion.Header>Categorias</Accordion.Header>
+            <Accordion.Item eventKey="0" className="acordion">
+              <Accordion.Header>
+                <button className="btn">
+                  <span className="text">Categorias</span>
+                </button>
+              </Accordion.Header>
               <Accordion.Body>
                 <FiltroCategorias
                   onSelectCategoria={handleSeleccionCategoria}
@@ -105,8 +120,12 @@ export const PaginaPrincipal = () => {
               </Accordion.Body>
             </Accordion.Item>
 
-            <Accordion.Item eventKey="1"  className="acordion">
-              <Accordion.Header>Departamentos</Accordion.Header>
+            <Accordion.Item eventKey="1" className="acordion">
+              <Accordion.Header>
+				<button className="btn">
+                  <span className="text">Departamentos</span>
+                </button>
+				</Accordion.Header>
               <Accordion.Body>
                 <FiltroDepartamento
                   onSelectDepartamentos={handleSeleccionDepartamento}
@@ -114,8 +133,12 @@ export const PaginaPrincipal = () => {
               </Accordion.Body>
             </Accordion.Item>
 
-            <Accordion.Item eventKey="2"  className="acordion">
-              <Accordion.Header>Rango de precios</Accordion.Header>
+            <Accordion.Item eventKey="2" className="acordion">
+              <Accordion.Header>
+				<button className="btn">
+                  <span className="text">Rango de precios</span>
+                </button>
+				</Accordion.Header>
               <Accordion.Body>
                 <FiltroPrecio
                   preciosMaxMinSeleccionados={handleSeleccionPreciosMaxMin}
@@ -136,12 +159,12 @@ export const PaginaPrincipal = () => {
         </aside>
 
         <article>
-		<div
+          {/* <div
             style={{
               height: "450px",
               width: "100%",
               padding: "10px ",
-			  marginBottom: '30px'
+              marginBottom: "30px",
             }}
           >
             <Carousel variant="dark" className="carousel-style">
@@ -199,79 +222,117 @@ export const PaginaPrincipal = () => {
                 </Carousel.Caption>
               </Carousel.Item>
             </Carousel>
-          </div>
+          </div> */}
 
-		  
-          <Row xs={1} md={4} className="g-4" >
+          <Row xs={1} md={4} className="g-4">
             {/* {productos.map((producto) => (
               <CartaProducto {...producto} />
             ))} */}
-			<Card className="card">
-                  <Container className="card-container">
-                    <Card.Img
-                      variant="top"
-                      src={segunda}
-                      className="card-image"
-                    />
-                  </Container>
-                  <Card.Body className="card-body">
-                    <Card.Title className="card-title">PRUEBA</Card.Title>
-                    <Card.Text className="card-medium">lps. 00000</Card.Text>
-                    <button
-                      className="buttonProducto"
-                      style={{ color: "#f7f7f7", fontSize: "medium" }}
-                    >
-                      <span className="box">Ver producto</span>
-                    </button>
-                  </Card.Body>
-                </Card>
+            <Card className="card">
+              <Container className="card-container">
+                <Card.Img variant="top" src={segunda} className="card-image" />
+              </Container>
+              <Card.Body className="card-body">
+                <Card.Title className="card-title">PRUEBA</Card.Title>
+                <Card.Text className="card-medium">lps. 00000</Card.Text>
+                <button
+                  className="buttonProducto"
+                  style={{ color: "#f7f7f7", fontSize: "medium" }}
+                >
+                  <span className="box">Ver producto</span>
+                </button>
+              </Card.Body>
+            </Card>
 
-				<Card className="card">
-                  <Container className="card-container">
-                    <Card.Img
-                      variant="top"
-                      src={segunda}
-                      className="card-image"
-                    />
-                  </Container>
-                  <Card.Body className="card-body">
-                    <Card.Title className="card-title">PRUEBA</Card.Title>
-                    <Card.Text className="card-medium">lps. 00000</Card.Text>
-                    <button
-                      className="buttonProducto"
-                      style={{ color: "#f7f7f7", fontSize: "medium" }}
-                    >
-                      <span className="box">Ver producto</span>
-                    </button>
-                  </Card.Body>
-                </Card>		
+            <Card className="card">
+              <Container className="card-container">
+                <Card.Img variant="top" src={segunda} className="card-image" />
+              </Container>
+              <Card.Body className="card-body">
+                <Card.Title className="card-title">PRUEBA</Card.Title>
+                <Card.Text className="card-medium">lps. 00000</Card.Text>
+                <button
+                  className="buttonProducto"
+                  style={{ color: "#f7f7f7", fontSize: "medium" }}
+                >
+                  <span className="box">Ver producto</span>
+                </button>
+              </Card.Body>
+            </Card>
+
+			<Card className="card">
+              <Container className="card-container">
+                <Card.Img variant="top" src={segunda} className="card-image" />
+              </Container>
+              <Card.Body className="card-body">
+                <Card.Title className="card-title">PRUEBA</Card.Title>
+                <Card.Text className="card-medium">lps. 00000</Card.Text>
+                <button
+                  className="buttonProducto"
+                  style={{ color: "#f7f7f7", fontSize: "medium" }}
+                >
+                  <span className="box">Ver producto</span>
+                </button>
+              </Card.Body>
+            </Card>
+
+			<Card className="card">
+              <Container className="card-container">
+                <Card.Img variant="top" src={segunda} className="card-image" />
+              </Container>
+              <Card.Body className="card-body">
+                <Card.Title className="card-title">PRUEBA</Card.Title>
+                <Card.Text className="card-medium">lps. 00000</Card.Text>
+                <button
+                  className="buttonProducto"
+                  style={{ color: "#f7f7f7", fontSize: "medium" }}
+                >
+                  <span className="box">Ver producto</span>
+                </button>
+              </Card.Body>
+            </Card>
+			<Card className="card">
+              <Container className="card-container">
+                <Card.Img variant="top" src={segunda} className="card-image" />
+              </Container>
+              <Card.Body className="card-body">
+                <Card.Title className="card-title">PRUEBA</Card.Title>
+                <Card.Text className="card-medium">lps. 00000</Card.Text>
+                <button
+                  className="buttonProducto"
+                  style={{ color: "#f7f7f7", fontSize: "medium" }}
+                >
+                  <span className="box">Ver producto</span>
+                </button>
+              </Card.Body>
+            </Card>
           </Row>
 
-		  <section className="secPagination">
-                <ul className="ulPagination">
-                  <a href="" className="aPagination">
-                    <li className="liPagination">Anterior</li>
-                  </a>
-                  <a href="" className="aPagination">
-                    <li className="liPagination">Siguiente</li>
-                  </a>
-                  <a href="" className="aPagination active">
-                    <li className="liPagination">1</li>
-                  </a>
-                  <a href="" className="aPagination">
-                    <li className="liPagination">2</li>
-                  </a>
-                  <a href="" className="aPagination">
-                    <li className="liPagination">3</li>
-                  </a>
-                  <a href="" className="aPagination">
-                    <li className="liPagination">...</li>
-                  </a>
-                  <a href="" className="aPagination">
-                    <li className="liPagination">15</li>
-                  </a>
-                </ul>
-              </section>
+          <section className="secPagination">
+            <ul className="ulPagination">
+              <a href="" className="aPagination">
+                <li className="liPagination">Anterior</li>
+              </a>
+              <a href="" className="aPagination">
+                <li className="liPagination">Siguiente</li>
+              </a>
+              <a href="" className="aPagination active">
+                <li className="liPagination">1</li>
+              </a>
+              <a href="" className="aPagination">
+                <li className="liPagination">2</li>
+              </a>
+              <a href="" className="aPagination">
+                <li className="liPagination">3</li>
+              </a>
+              <a href="" className="aPagination">
+                <li className="liPagination">...</li>
+              </a>
+              <a href="" className="aPagination">
+                <li className="liPagination">15</li>
+              </a>
+            </ul>
+          </section>
         </article>
 
         {/* <footer className='d-flex justify-content-around align-items-center'>

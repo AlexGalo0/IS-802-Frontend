@@ -325,3 +325,70 @@ footer{ /*
 	margin-left: -20px;
 	margin-bottom: 10px;
 }
+
+/* Boton filtros */
+.btn {
+    width: 326px;
+    height: 50px;
+    margin-left: -20px;
+    margin-right: -40px;
+    border-radius: 20px;
+    margin-top: -17px;
+    margin-bottom: -18px;
+    border: 2px solid var(--blue2);
+    transition: all 0.5s ease-in-out;
+    font-size: larger;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 2px 2px var(--blue4);
+    background-color: var(--blue3);
+    color: var(--white);
+  }
+  
+  .btn:hover {
+    box-shadow: 0 0 5px 0px var(--blue4);
+    background-color: var(--hover);
+    border: 2px solid var(--blue2);
+    color: var(--white);
+  }
+  
+  /* .btn .icon {
+    position: absolute;
+    height: 50px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+  }
+  
+  .btn .text {
+    transform: translateX(55px);
+  }
+  
+  .btn:hover .icon {
+    width: 175px;
+  }
+  
+  .btn:hover .text {
+    transition: all 0.5s;
+    opacity: 0;
+  }
+  
+  .btn:focus {
+    outline: none;
+  }
+  
+  .btn:active .icon {
+    transform: scale(0.85);
+  } */
+
+  /* Letras filtro */
+  .fil {
+    margin: auto;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    text-shadow: 0 3px 3px var(--blue1);
+
+  }
