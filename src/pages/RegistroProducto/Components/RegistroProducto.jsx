@@ -318,12 +318,18 @@ export const RegistroProducto = () => {
 							</p>
 						)}
 						<CloudinaryUploadWidget recibirURL={recibirURL} />
+						<div>
+							<button
+								className='Button'
+								type='submit'
+								onClick={handleSubmit(enviarProducto)}
+							>
+								<span className='boxForm'>Enviar producto</span>
+							</button>
+						</div>
 					</Form>
 
-					<div
-						className='Form-buttoms'
-						style={{ display: "grip", placeContent: "center" }}
-					>
+					
 						{/* <div className="conWhite"></div> */}
 
 						{imagenesVacias ? (
@@ -341,16 +347,8 @@ export const RegistroProducto = () => {
 						) : (
 							""
 						)}
-						<div>
-							<button
-								className='Button'
-								type='submit'
-								onClick={handleSubmit(enviarProducto)}
-							>
-								<span className='boxForm'>Enviar producto</span>
-							</button>
-						</div>
-					</div>
+						
+					
 				</Container>
 			</header>
 		</>

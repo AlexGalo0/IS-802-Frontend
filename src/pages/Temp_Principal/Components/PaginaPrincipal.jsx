@@ -72,6 +72,7 @@ export const PaginaPrincipal = () => {
   /* Renderizado de Categoria */
 
   useEffect(() => {
+    
     fetch(
       `http://localhost:4000/product/${numeroPagina}/find-categories/${categoriaSeleccionada}`
     )

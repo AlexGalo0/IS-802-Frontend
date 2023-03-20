@@ -75,7 +75,7 @@ export const NavbarsLR = () => {
             {/* Navbar */}
       <div className="navbar">
         <Image src={logo} className="image-logo" />
-        <div className="buscador-div">
+        <div className="buscador-div" style={{display:"none"}}>
           <Form.Control className="buscador" type="text" />
           <button className="btnBuscar">
             <BiSearchAlt className="iconBuscar" />
