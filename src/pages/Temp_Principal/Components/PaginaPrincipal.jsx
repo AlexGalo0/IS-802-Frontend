@@ -25,8 +25,12 @@ import { Footers } from "../../../Components/Footer";
 import ejem from "../../../assets/ejem.jpeg";
 import segunda from "../../../assets/3.png";
 import primera from "../../../assets/4.png";
-
+import { useContext } from "react";
+import { UserContext,AdminContext } from "../../../context";
 export const PaginaPrincipal = () => {
+  const { userAuth } = useContext(UserContext);
+	const { adminAuth } = useContext(AdminContext);
+
   /* Estado Inicial */
   const [productos, setProductos] = useState([]);
 
@@ -182,8 +186,11 @@ export const PaginaPrincipal = () => {
 
   return (
     <Container fluid className="container-grid">
-      <NavbarsLR />
-      {/* <NavbarsLogueado /> */}
+      {
+        userAuth? <NavbarsLogueado /> :  <NavbarsLR />
+      }
+     
+      
       <main>
         <aside className="text-center">
           <h4 className="py-3 fil">
