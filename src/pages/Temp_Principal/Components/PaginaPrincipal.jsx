@@ -56,6 +56,7 @@ export const PaginaPrincipal = () => {
     anio: false,
   });
   const [rutaFecha, setRutaFecha] = useState("");
+  const [reiniciar,setReiniciar] = useState(false)
 
   /* Renderizado de primera vez */
   const URL = `http://localhost:4000/product/pagination/${numeroPagina}`;
@@ -65,7 +66,7 @@ export const PaginaPrincipal = () => {
       .then((product) => {
         setProductos(product);
       });
-  }, [numeroPagina]);
+  }, [numeroPagina,reiniciar]);
 
   /* Renderizado de Categoria */
 
@@ -120,7 +121,7 @@ export const PaginaPrincipal = () => {
   /* 
 		Renderizado por Palabra Clave
 	*/
-
+  
   const actualizarCantidadDeDias = (nuevaCantidadDeDias) => {
     setCantidadDeDias(nuevaCantidadDeDias);
   };
@@ -147,6 +148,10 @@ export const PaginaPrincipal = () => {
   const handlePalabraClave = (palabraClave) => {
     setPalabraClave(palabraClave);
   };
+
+  const handlerReiniciar=()=>{
+    setReiniciar(!reiniciar)
+  }
 
   useEffect(() => {
 		setRutaFecha("");
@@ -270,6 +275,10 @@ export const PaginaPrincipal = () => {
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
+
+          <button onClick={handlerReiniciar}>
+            Recargar
+          </button>
 
           {/* Ejemplo de como quedaria el apartado de nuevos productos bajo los filtros */}
           {/* <h4 className="py-3 fil">
