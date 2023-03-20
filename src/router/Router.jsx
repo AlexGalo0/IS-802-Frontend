@@ -6,7 +6,7 @@ import {
 	RegistroUsuario,
 	UserLogin,
 	PaginaPrincipal,
-	Construyendo
+	Construyendo,
 } from "../pages";
 import { useContext } from "react";
 import { RutaProtegida, NavbarsLR } from "../Components";
@@ -22,27 +22,27 @@ export const Router = () => {
 				<Route path='/login' element={<UserLogin />} />
 				<Route path='/login-admin' element={<LoginAdministrador />} />
 				{/* <RutaProtegida isAllowed={userAuth}>  	</RutaProtegida>*/}
-				<Route path='/registrarProducto' element={<RegistroProducto />} />
+
+				<Route
+					path='/registrarProducto'
+					element={
+						<RutaProtegida isAllowed={userAuth}>
+							<RegistroProducto />
+						</RutaProtegida>
+					}
+				/>
 				<Route path='/construyendo' element={<Construyendo />} />
 
 				<Route
 					path='/registrarUsuario'
 					element={
 						
-							
 							<RegistroUsuario />
 					
 					}
 				/>
 
-				<Route
-					path='/dashboard-admin'
-					element={
-						
-							<DashboardAdministrador />
-						
-					}
-				/>
+				<Route path='/dashboard-admin' element={<DashboardAdministrador />} />
 			</Routes>
 		</>
 	);

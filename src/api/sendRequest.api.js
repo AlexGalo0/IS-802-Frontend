@@ -5,7 +5,7 @@ export const createUser = async (userData) => {
 }
 
 export const iniciarSesion =async (loginData) =>{
-    await axios.post('http://localhost:4000/login',loginData) 
+    await axios.post('http://localhost:4000/login/cliente',loginData) 
 }
 export const enviarProductos = async (infoProducto) =>{
     await axios.post('http://localhost:4000/product',infoProducto)

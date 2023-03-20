@@ -29,7 +29,7 @@ import { useContext } from "react";
 import { UserContext,AdminContext } from "../../../context";
 export const PaginaPrincipal = () => {
   const { userAuth } = useContext(UserContext);
-	const { adminAuth } = useContext(AdminContext);
+	
 
   /* Estado Inicial */
   const [productos, setProductos] = useState([]);
@@ -61,6 +61,7 @@ export const PaginaPrincipal = () => {
   /* Renderizado de primera vez */
   const URL = `http://localhost:4000/product/pagination/${numeroPagina}`;
   useEffect(() => {
+    
     fetch(URL)
       .then((response) => response.json())
       .then((product) => {
@@ -192,7 +193,7 @@ export const PaginaPrincipal = () => {
   return (
     <Container fluid className="container-grid">
       {
-        userAuth? <NavbarsLogueado /> :  <NavbarsLR />
+        userAuth?   <NavbarsLogueado/> : <NavbarsLR/>
       }
      
       

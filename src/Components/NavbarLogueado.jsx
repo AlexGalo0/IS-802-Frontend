@@ -17,9 +17,16 @@ import { BsFacebook, BsInstagram, BsDiscord, } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { FaBoxes, FaStar, FaUserCircle } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
-import { useState, useEffect } from "react";
 
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../context";
 export const NavbarsLogueado = () => {
+	const {userAuth,setUserAuth}  = useContext(UserContext)
+  const pruebaDesloguear=()=>{
+    setUserAuth(false)
+  }
+
+
   /* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -54,6 +61,7 @@ export const NavbarsLogueado = () => {
             ¿Ya sigues nuestras redes sociales?
           </span>
         </div>
+       
         <div>
           <span className="letterLightHeader">
             Si quieres mantenerte informado de todas las novedades y
@@ -113,6 +121,13 @@ export const NavbarsLogueado = () => {
           <button className="regis" style={{width: '250px'}}>Agregar producto</button>
           </Link>
         </div>
+
+        <div>
+          <button onClick={pruebaDesloguear}>Desloguearme</button>
+        </div>
+
+
+
         <div style={{display: 'flex', gap: '10px'}}>
             
           <OverlayTrigger
@@ -149,6 +164,8 @@ export const NavbarsLogueado = () => {
               <BiUser />
             </button>
             </Link>
+
+            
             {/* <Offcanvas show={show} onHide={handleClose} className="canvas">
                 <Form className="formCategory">
                   <Offcanvas.Header closeButton closeVariant="white">
