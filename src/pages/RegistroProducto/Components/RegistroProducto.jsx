@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import {CloudinaryUploadWidget} from "./CloudinaryUploadWidget";
+import { CloudinaryUploadWidget } from "./CloudinaryUploadWidget";
 import "../../../style/styleForm.css";
 import logo from "../../../assets/logoV2.png";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
@@ -18,7 +18,7 @@ import {
 	FormGroup,
 	FormLabel,
 } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { enviarProductos } from "../../../api";
 import { useNavigate } from "react-router";
 
@@ -34,16 +34,23 @@ export const RegistroProducto = () => {
 	const [urls, setURLS] = useState([]);
 	const [imagenesVacias, setImagenesVacias] = useState(false);
 	const [succesfullResponse, setSuccesfullResponse] = useState(false);
+
+	/* 
+
+	*/
+
 	const enviarProducto = async (productInfo) => {
+		console.log(productInfo);
 		productInfo.imagenes = urls;
 		if (productInfo.imagenes.length === 0) {
 			setImagenesVacias(true);
 			return;
 		}
-		console.log(productInfo);
+
 		try {
 			const response = await enviarProductos(productInfo);
 			setSuccesfullResponse(true);
+
 			setTimeout(() => {
 				navigate("/productos");
 			}, 1500);
@@ -61,7 +68,13 @@ export const RegistroProducto = () => {
 		<>
 			<header className='App-header'>
 				<Container className='Container'>
-					<Form fluid='true' className='Form' onSubmit={(e)=>{e.preventDefault()}}>
+					<Form
+						fluid='true'
+						className='Form'
+						onSubmit={(e) => {
+							e.preventDefault();
+						}}
+					>
 						<Row>
 							<Col
 								md
@@ -92,7 +105,7 @@ export const RegistroProducto = () => {
 										width: "110px",
 										paddingRight: "10px",
 										paddingTop: "20px",
-										marginRight: '-18px'
+										marginRight: "-18px",
 									}}
 								/>
 							</Col>
@@ -125,10 +138,14 @@ export const RegistroProducto = () => {
 								Nombre
 							</Form.Label>
 							{errors.nombreProducto?.type === "pattern" && (
-								<p className="FontAlert">¡El nombre del producto no es válido!</p>
+								<p className='FontAlert'>
+									¡El nombre del producto no es válido!
+								</p>
 							)}
 							{errors.nombreProducto?.type === "required" && (
-								<p className="FontAlert">¡Debes ingresar un nombre de producto!</p>
+								<p className='FontAlert'>
+									¡Debes ingresar un nombre de producto!
+								</p>
 							)}
 						</Form.Group>
 
@@ -151,7 +168,9 @@ export const RegistroProducto = () => {
 							</Form.Label>
 
 							{errors.Precio?.type === "required" && (
-								<p className="FontAlert">¡Debes ingresar un precio de producto!</p>
+								<p className='FontAlert'>
+									¡Debes ingresar un precio de producto!
+								</p>
 							)}
 						</Form.Group>
 
@@ -170,10 +189,12 @@ export const RegistroProducto = () => {
 								Descripcion
 							</Form.Label>
 							{errors.descripcion?.type === "required" && (
-								<p className="FontAlert">¡Debes ingresar una descripción al producto!</p>
+								<p className='FontAlert'>
+									¡Debes ingresar una descripción al producto!
+								</p>
 							)}
 							{errors.descripcion?.type === "minLength" && (
-								<p className="FontAlert">¡Debe tener mínimo 10 caracteres!</p>
+								<p className='FontAlert'>¡Debe tener mínimo 10 caracteres!</p>
 							)}
 						</Form.Group>
 
@@ -197,13 +218,14 @@ export const RegistroProducto = () => {
 							</Form.Label>
 						</Form.Group>
 						{errors.cantidad?.type === "pattern" && (
-							<p className="FontAlert">¡Solo debes ingresar números!</p>
+							<p className='FontAlert'>¡Solo debes ingresar números!</p>
 						)}
 						{errors.cantidad?.type === "required" && (
-							<p className="FontAlert">¡Debes ingresar la cantidad!</p>
+							<p className='FontAlert'>¡Debes ingresar la cantidad!</p>
 						)}
-						{errors.cantidad?.type === "min" && <p className="FontAlert">¡Debe ser mínimo 1!</p>}
-
+						{errors.cantidad?.type === "min" && (
+							<p className='FontAlert'>¡Debe ser mínimo 1!</p>
+						)}
 
 						<Form.Group
 							className='mb-3, letterMedium'
@@ -219,14 +241,16 @@ export const RegistroProducto = () => {
 									boxShadow: "0 0.4rem #94BFD1",
 									borderRadius: "12px",
 									height: "45px",
-									width: '550px',
-									margin: 'auto',
-									marginBottom: '10px'
+									width: "550px",
+									margin: "auto",
+									marginBottom: "10px",
 								}}
 								aria-label='Departamentos'
 								{...register("dptoVenta", { required: true })}
 							>
-								<option value="" disabled selected hidden>Seleccione un departamento</option>
+								<option value='' disabled selected hidden>
+									Seleccione un departamento
+								</option>
 								<option value='1'>Atlántida</option>
 								<option value='2'>Colón</option>
 								<option value='3'>Comayagua</option>
@@ -249,7 +273,7 @@ export const RegistroProducto = () => {
 						</Form.Group>
 
 						{errors.dptoVenta?.type === "required" && (
-							<p className="FontAlert">¡Debes seleccionar un departamento!</p>
+							<p className='FontAlert'>¡Debes seleccionar un departamento!</p>
 						)}
 
 						<Form.Group
@@ -266,14 +290,16 @@ export const RegistroProducto = () => {
 									boxShadow: "0 0.4rem #94BFD1",
 									borderRadius: "12px",
 									height: "45px",
-									width: '550px',
-									margin: 'auto',
-									marginBottom: '10px'
+									width: "550px",
+									margin: "auto",
+									marginBottom: "10px",
 								}}
 								aria-label='categorias'
 								{...register("idCategoria", { required: true })}
 							>
-								<option value="" disabled selected hidden>Seleccione una categoria</option>
+								<option value='' disabled selected hidden>
+									Seleccione una categoria
+								</option>
 								<option value='Inmuebles'>Inmuebles</option>
 								<option value='Vehículos'>Vehículos</option>
 								<option value='Hogar'>Hogar</option>
@@ -287,22 +313,27 @@ export const RegistroProducto = () => {
 						</Form.Group>
 
 						{errors.idCategoria?.type === "required" && (
-							<p className="FontAlert">
+							<p className='FontAlert'>
 								¡Debes seleccionar una categoría a la que el producto pertenece!
 							</p>
 						)}
-							<CloudinaryUploadWidget recibirURL={recibirURL} />
+						<CloudinaryUploadWidget recibirURL={recibirURL} />
 					</Form>
 
 					<div
 						className='Form-buttoms'
-						style={{ display: "grip", placeContent: "center"}}
+						style={{ display: "grip", placeContent: "center" }}
 					>
-
 						{/* <div className="conWhite"></div> */}
-					
 
-						{imagenesVacias ? <p className="font-cloud">¡Debes enviar por lo menos una imagen!</p> : ""}
+						{imagenesVacias ? (
+							<p className='font-cloud'>
+								¡Debes enviar por lo menos una imagen!
+							</p>
+						) : (
+							""
+						)}
+					
 						{succesfullResponse ? (
 							<Alert variant='success'>
 								Se registro el producto exitosamente
@@ -316,7 +347,7 @@ export const RegistroProducto = () => {
 								type='submit'
 								onClick={handleSubmit(enviarProducto)}
 							>
-								<span className="boxForm">Enviar producto</span>
+								<span className='boxForm'>Enviar producto</span>
 							</button>
 						</div>
 					</div>

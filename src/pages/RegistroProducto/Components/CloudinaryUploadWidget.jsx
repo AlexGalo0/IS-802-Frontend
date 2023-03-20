@@ -1,10 +1,12 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import "../../../style/styleForm.css";
 
 export const CloudinaryUploadWidget = ({recibirURL}) => {
 	const urlImages=[] ;
 	const cloudinaryRef = useRef();
 	const widgetRef = useRef();
+
+	const [disabledButton, setDisabledButton] = useState(false)
 
 	useEffect(() => {
 		cloudinaryRef.current = window.cloudinary;
@@ -67,6 +69,9 @@ export const CloudinaryUploadWidget = ({recibirURL}) => {
 				if(!error && result && result.event==="success") {
 					urlImages.push(result.info.url)
 					recibirURL(urlImages)
+					if(urlImages.length==6){
+						setDisabledButton(true)
+					}
 				}
 			}
 		);
@@ -77,6 +82,8 @@ export const CloudinaryUploadWidget = ({recibirURL}) => {
 			onClick={() => {
 				widgetRef.current.open();
 			}}
+		disabled={disabledButton}
+		
 		>
 			Subir Imagen
 		</button>

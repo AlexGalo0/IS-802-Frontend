@@ -202,8 +202,10 @@ export const PaginaPrincipal = () => {
           <h4 className="py-3 fil">
             <FaFilter /> Filtros
           </h4>
-
-          <Accordion defaultActiveKey="0" flush>
+          <button onClick={handlerReiniciar}>
+            Limpiar Filtros
+          </button>
+          <Accordion defaultActiveKey="" flush>
             <Accordion.Item eventKey="0" className="acordion">
               <Accordion.Header>
                 <button className="btn">
@@ -277,9 +279,7 @@ export const PaginaPrincipal = () => {
             </Accordion.Item>
           </Accordion>
 
-          <button onClick={handlerReiniciar}>
-            Recargar
-          </button>
+         
 
           {/* Ejemplo de como quedaria el apartado de nuevos productos bajo los filtros */}
           {/* <h4 className="py-3 fil">

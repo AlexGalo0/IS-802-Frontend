@@ -32,13 +32,13 @@ export const FiltroPrecio = ({preciosMaxMinSeleccionados}) => {
 				<label htmlFor='' className="labelPrecio">Precio Minimo:</label>
 				<input
 				className="inPrecio"
-					type='number'
+					type='text'
 					{...register("precioMin")}
 				/>
 				<label htmlFor='' className="labelPrecio">Precio Maximo:</label>
 				<input
 				className="inPrecio"
-					type='number'
+					type='text'
 					{...register("precioMax")}
 				/>
 				<button
