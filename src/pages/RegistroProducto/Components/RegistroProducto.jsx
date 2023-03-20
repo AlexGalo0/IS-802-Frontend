@@ -40,7 +40,7 @@ export const RegistroProducto = () => {
 			setImagenesVacias(true);
 			return;
 		}
-
+		console.log(productInfo);
 		try {
 			const response = await enviarProductos(productInfo);
 			setSuccesfullResponse(true);
@@ -48,7 +48,7 @@ export const RegistroProducto = () => {
 				navigate("/productos");
 			}, 1500);
 		} catch (error) {
-			console.log(response);
+			console.log(error);
 		}
 	};
 	const recibirURL = (url) => {
@@ -61,7 +61,7 @@ export const RegistroProducto = () => {
 		<>
 			<header className='App-header'>
 				<Container className='Container'>
-					<Form fluid='true' className='Form'>
+					<Form fluid='true' className='Form' onSubmit={(e)=>{e.preventDefault()}}>
 						<Row>
 							<Col
 								md
@@ -291,6 +291,7 @@ export const RegistroProducto = () => {
 								¡Debes seleccionar una categoría a la que el producto pertenece!
 							</p>
 						)}
+							<CloudinaryUploadWidget recibirURL={recibirURL} />
 					</Form>
 
 					<div
@@ -298,8 +299,8 @@ export const RegistroProducto = () => {
 						style={{ display: "grip", placeContent: "center"}}
 					>
 
-						<div className="divWhite"></div>
-						<CloudinaryUploadWidget recibirURL={recibirURL} />
+						{/* <div className="conWhite"></div> */}
+					
 
 						{imagenesVacias ? <p className="font-cloud">¡Debes enviar por lo menos una imagen!</p> : ""}
 						{succesfullResponse ? (
@@ -314,7 +315,6 @@ export const RegistroProducto = () => {
 								className='Button'
 								type='submit'
 								onClick={handleSubmit(enviarProducto)}
-								style={{marginTop: '25px'}}
 							>
 								<span className="boxForm">Enviar producto</span>
 							</button>

@@ -105,7 +105,6 @@ export const PaginaPrincipal = () => {
 	*/
 
   useEffect(() => {
-    console.log("Se recibio", palabraClave);
     fetch(
       `http://localhost:4000/product/${numeroPagina}/find-keyword/${palabraClave}`
     )
@@ -146,40 +145,40 @@ export const PaginaPrincipal = () => {
   };
 
   useEffect(() => {
-    setRutaFecha("");
-    switch (true) {
-      case cantidadDeDias.semana:
-        console.log("Se cambio la semana!");
-        setRutaFecha("last7days");
-        break;
-      case cantidadDeDias.mes:
-        console.log("Se cambio el mes!");
-        setRutaFecha("last30days");
-        break;
-      case cantidadDeDias.tres_meses:
-        console.log("Se cambio a tres meses!");
-        setRutaFecha("last3month");
+		setRutaFecha("");
+		switch (true) {
+			case cantidadDeDias.semana:
+				console.log("Se cambio la semana!");
+				setRutaFecha("last7days");
+				break;
+			case cantidadDeDias.mes:
+				console.log("Se cambio el mes!");
+				setRutaFecha("last30days");
+				break;
+			case cantidadDeDias.tres_meses:
+				console.log("Se cambio a tres meses!");
+				setRutaFecha("last3month");
 
-        break;
-      case cantidadDeDias.seis_meses:
-        console.log("Se cambio a seis meses!");
-        setRutaFecha("last6month");
-        break;
-      case cantidadDeDias.anio:
-        console.log("Se cambio a anio!");
-        setRutaFecha("lastyear");
-        break;
-      default:
-        console.log("No se ha seleccionado ninguna opción");
-        break;
-    }
-    fetch(`http://localhost:4000/product/${numeroPagina}/${rutaFecha}`)
-      .then((response) => response.json())
-      .then((product) => {
-        setProductos(product);
-        console.log("Se hizo la peticion a :", rutaFecha);
-      });
-  }, [cantidadDeDias, rutaFecha]);
+				break;
+			case cantidadDeDias.seis_meses:
+				console.log("Se cambio a seis meses!");
+				setRutaFecha("last6month");
+				break;
+			case cantidadDeDias.anio:
+				console.log("Se cambio a anio!");
+				setRutaFecha("lastyear");
+				break;
+			default:
+				console.log("No se ha seleccionado ninguna opción");
+				break;
+		}
+		fetch(`http://localhost:4000/product/${numeroPagina}/${rutaFecha}`)
+			.then((response) => response.json())
+			.then((product) => {
+				setProductos(product);
+				console.log("Se hizo la peticion a :", rutaFecha);
+			});
+	}, [cantidadDeDias, rutaFecha]);
 
   return (
     <Container fluid className="container-grid">
@@ -242,18 +241,14 @@ export const PaginaPrincipal = () => {
               </Accordion.Body>
             </Accordion.Item>
 
-            <Accordion.Item eventKey="4" className="acordion">
-              <Accordion.Header>
-                <button className="btn">
-                  <span className="text">Fecha</span>
-                </button>
-				</Accordion.Header>
-              <Accordion.Body>
-                <FiltroFecha
-                  actualizarCantidadDeDias={actualizarCantidadDeDias}
-                />
-              </Accordion.Body>
-            </Accordion.Item>
+            <Accordion.Item eventKey='4'>
+							<Accordion.Header>Filtrar por Fecha</Accordion.Header>
+							<Accordion.Body>
+								<FiltroFecha
+									actualizarCantidadDeDias={actualizarCantidadDeDias}
+								/>
+							</Accordion.Body>
+						</Accordion.Item>
 
             <Accordion.Item eventKey="5" className="acordion">
               <Accordion.Header>
@@ -361,7 +356,7 @@ export const PaginaPrincipal = () => {
             </Carousel>
           </div> */}
 
-          <Row xs={1} md={8} className="g-3">
+          <Row xs={1} md={3} className="g-3">
             {productos.map((producto) => (
               <CartaProducto {...producto} />
             ))}
