@@ -29,13 +29,13 @@ export const FiltroPrecio = ({preciosMaxMinSeleccionados}) => {
 	return (
 		<>
 			<form onSubmit={handleSubmit(enviarPrecios)}>
-				<label htmlFor='' className="labelPrecio">Precio Minimo</label>
+				<label htmlFor='' className="labelPrecio">Precio Minimo:</label>
 				<input
 				className="inPrecio"
 					type='number'
 					{...register("precioMin")}
 				/>
-				<label htmlFor='' className="labelPrecio">Precio Maximo</label>
+				<label htmlFor='' className="labelPrecio">Precio Maximo:</label>
 				<input
 				className="inPrecio"
 					type='number'

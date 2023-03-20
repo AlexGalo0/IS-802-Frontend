@@ -161,6 +161,8 @@ footer{ /*
   }
   
   .card-title {
+    color: var(--letter);
+    text-shadow: 2px #365662;
     font-weight: 800;
     font-size: 25;
   }
@@ -214,7 +216,7 @@ footer{ /*
     border-radius: 30px;
     border: none;
     margin-left: 8px;
-    text-shadow: 0 2px 2px rgb(120, 69, 168);
+    text-shadow: 0 2px 2px var(--blue4);
   }
   
       .buttonProducto:hover {

@@ -16,6 +16,9 @@ import { useEffect, useState } from "react";
 import { FiltroCategorias } from "./FiltroCategorias";
 import { FiltroDepartamento } from "./FiltroDepartamentos";
 import { FiltroPrecio } from "./FiltroPrecio";
+import { Navegacion } from "./Navegacion";
+import { FiltroFecha } from "./FiltroFecha";
+import { FiltroPalabrasClave } from "./FiltroPalabrasClave";
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { Footers } from "../../../Components/Footer";
@@ -24,11 +27,12 @@ import segunda from "../../../assets/3.png";
 import primera from "../../../assets/4.png";
 
 export const PaginaPrincipal = () => {
+  /* Estado Inicial */
   const [productos, setProductos] = useState([]);
-  const [numeroPagina, setNumeroPagina] = useState(1);
 
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
   const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState("");
+  const [palabraClave, setPalabraClave] = useState("");
 
   /* 
 		Para filtrado de Precios
@@ -36,6 +40,18 @@ export const PaginaPrincipal = () => {
   const [precioMinimo, setPrecioMinimo] = useState(0);
   const [precioMaximo, setPrecioMaximo] = useState(0);
   const [preciosCargado, setPreciosCargado] = useState(false);
+
+  const [numeroPagina, setNumeroPagina] = useState(1);
+  const [numeroPaginaCategoria, setNumeroPaginaCategoria] = useState(1);
+  const [numeroPaginaDepartamento, setNumeroPaginaDepartamento] = useState(1);
+  const [cantidadDeDias, setCantidadDeDias] = useState({
+    semana: false,
+    mes: false,
+    tres_meses: false,
+    seis_meses: false,
+    anio: false,
+  });
+  const [rutaFecha, setRutaFecha] = useState("");
 
   /* Renderizado de primera vez */
   const URL = `http://localhost:4000/product/pagination/${numeroPagina}`;
@@ -45,7 +61,7 @@ export const PaginaPrincipal = () => {
       .then((product) => {
         setProductos(product);
       });
-  }, []);
+  }, [numeroPagina]);
 
   /* Renderizado de Categoria */
 
@@ -84,6 +100,28 @@ export const PaginaPrincipal = () => {
     setPreciosCargado(false);
   }, [preciosCargado]);
 
+  /* 
+		Renderizado por Fecha
+	*/
+
+  useEffect(() => {
+    console.log("Se recibio", palabraClave);
+    fetch(
+      `http://localhost:4000/product/${numeroPagina}/find-keyword/${palabraClave}`
+    )
+      .then((response) => response.json())
+      .then((product) => {
+        setProductos(product);
+      });
+  }, [palabraClave]);
+  /* 
+		Renderizado por Palabra Clave
+	*/
+
+  const actualizarCantidadDeDias = (nuevaCantidadDeDias) => {
+    setCantidadDeDias(nuevaCantidadDeDias);
+  };
+
   const handleSeleccionCategoria = (categoria) => {
     setCategoriaSeleccionada(categoria);
   };
@@ -95,10 +133,57 @@ export const PaginaPrincipal = () => {
     setPrecioMaximo(precioMax);
     setPreciosCargado(true);
   };
+  const handlePaginacion = (numeroDePagina) => {
+    setNumeroPaginaCategoria(numeroDePagina);
+  };
+
+  const handleNDias = (cantidadDeDias) => {
+    setCantidadDias(cantidadDeDias);
+  };
+
+  const handlePalabraClave = (palabraClave) => {
+    setPalabraClave(palabraClave);
+  };
+
+  useEffect(() => {
+    setRutaFecha("");
+    switch (true) {
+      case cantidadDeDias.semana:
+        console.log("Se cambio la semana!");
+        setRutaFecha("last7days");
+        break;
+      case cantidadDeDias.mes:
+        console.log("Se cambio el mes!");
+        setRutaFecha("last30days");
+        break;
+      case cantidadDeDias.tres_meses:
+        console.log("Se cambio a tres meses!");
+        setRutaFecha("last3month");
+
+        break;
+      case cantidadDeDias.seis_meses:
+        console.log("Se cambio a seis meses!");
+        setRutaFecha("last6month");
+        break;
+      case cantidadDeDias.anio:
+        console.log("Se cambio a anio!");
+        setRutaFecha("lastyear");
+        break;
+      default:
+        console.log("No se ha seleccionado ninguna opción");
+        break;
+    }
+    fetch(`http://localhost:4000/product/${numeroPagina}/${rutaFecha}`)
+      .then((response) => response.json())
+      .then((product) => {
+        setProductos(product);
+        console.log("Se hizo la peticion a :", rutaFecha);
+      });
+  }, [cantidadDeDias, rutaFecha]);
 
   return (
     <Container fluid className="container-grid">
-		<NavbarsLR />
+      <NavbarsLR />
       {/* <NavbarsLogueado /> */}
       <main>
         <aside className="text-center">
@@ -122,10 +207,10 @@ export const PaginaPrincipal = () => {
 
             <Accordion.Item eventKey="1" className="acordion">
               <Accordion.Header>
-				<button className="btn">
+                <button className="btn">
                   <span className="text">Departamentos</span>
                 </button>
-				</Accordion.Header>
+              </Accordion.Header>
               <Accordion.Body>
                 <FiltroDepartamento
                   onSelectDepartamentos={handleSeleccionDepartamento}
@@ -135,10 +220,10 @@ export const PaginaPrincipal = () => {
 
             <Accordion.Item eventKey="2" className="acordion">
               <Accordion.Header>
-				<button className="btn">
-                  <span className="text">Rango de precios</span>
+                <button className="btn">
+                  <span className="text">Precios</span>
                 </button>
-				</Accordion.Header>
+              </Accordion.Header>
               <Accordion.Body>
                 <FiltroPrecio
                   preciosMaxMinSeleccionados={handleSeleccionPreciosMaxMin}
@@ -146,18 +231,46 @@ export const PaginaPrincipal = () => {
               </Accordion.Body>
             </Accordion.Item>
 
-            {/* <Accordion.Item eventKey='3'>
-							<Accordion.Header>precio</Accordion.Header>
-							<Accordion.Body>
-								<input
-									type='number'
-									placeholder='Precio por el que desea filtrar'
-								/>
-							</Accordion.Body>
-						</Accordion.Item> */}
+            <Accordion.Item eventKey="3" className="acordion">
+              <Accordion.Header>
+                <button className="btn">
+                  <span className="text">Prueba pagination</span>
+                </button>
+				</Accordion.Header>
+              <Accordion.Body>
+                <Navegacion handlePaginacion={handlePaginacion} />
+              </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="4" className="acordion">
+              <Accordion.Header>
+                <button className="btn">
+                  <span className="text">Fecha</span>
+                </button>
+				</Accordion.Header>
+              <Accordion.Body>
+                <FiltroFecha
+                  actualizarCantidadDeDias={actualizarCantidadDeDias}
+                />
+              </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="5" className="acordion">
+              <Accordion.Header>
+                <button className="btn">
+                  <span className="text">Palabra clave</span>
+                </button>
+				</Accordion.Header>
+              <Accordion.Body>
+                <FiltroPalabrasClave
+                  manejadorPalabraClave={handlePalabraClave}
+                />
+              </Accordion.Body>
+            </Accordion.Item>
           </Accordion>
 
-		  <h4 className="py-3 fil">
+          {/* Ejemplo de como quedaria el apartado de nuevos productos bajo los filtros */}
+          {/* <h4 className="py-3 fil">
             Ejemplo de productos nuevos
           </h4>
 		  <Card className="card-newProduct">
@@ -178,11 +291,11 @@ export const PaginaPrincipal = () => {
                       <span className="box">Ver producto</span>
                     </button>
                   </Card.Body>
-                </Card>
-				
+                </Card> */}
         </aside>
 
         <article>
+          {/* Carusel */}
           {/* <div
             style={{
               height: "450px",
@@ -249,90 +362,18 @@ export const PaginaPrincipal = () => {
           </div> */}
 
           <Row xs={1} md={8} className="g-3">
-            {/* {productos.map((producto) => (
+            {productos.map((producto) => (
               <CartaProducto {...producto} />
-            ))} */}
-            <Card className="card">
-              <Container className="card-container">
-                <Card.Img variant="top" src={primera} className="card-image" />
-              </Container>
-              <Card.Body className="card-body">
-                <Card.Title className="card-title">PRUEBA</Card.Title>
-                <Card.Text className="card-medium">lps. 00000</Card.Text>
-                <button
-                  className="buttonProducto"
-                  style={{ color: "#f7f7f7", fontSize: "medium" }}
-                >
-                  <span className="box">Ver producto</span>
-                </button>
-              </Card.Body>
-            </Card>
-
-            <Card className="card">
-              <Container className="card-container">
-                <Card.Img variant="top" src={segunda} className="card-image" />
-              </Container>
-              <Card.Body className="card-body">
-                <Card.Title className="card-title">PRUEBA</Card.Title>
-                <Card.Text className="card-medium">lps. 00000</Card.Text>
-                <button
-                  className="buttonProducto"
-                  style={{ color: "#f7f7f7", fontSize: "medium" }}
-                >
-                  <span className="box">Ver producto</span>
-                </button>
-              </Card.Body>
-            </Card>
-
-			<Card className="card">
-              <Container className="card-container">
-                <Card.Img variant="top" src={segunda} className="card-image" />
-              </Container>
-              <Card.Body className="card-body">
-                <Card.Title className="card-title">PRUEBA</Card.Title>
-                <Card.Text className="card-medium">lps. 00000</Card.Text>
-                <button
-                  className="buttonProducto"
-                  style={{ color: "#f7f7f7", fontSize: "medium" }}
-                >
-                  <span className="box">Ver producto</span>
-                </button>
-              </Card.Body>
-            </Card>
-
-			<Card className="card">
-              <Container className="card-container">
-                <Card.Img variant="top" src={segunda} className="card-image" />
-              </Container>
-              <Card.Body className="card-body">
-                <Card.Title className="card-title">PRUEBA</Card.Title>
-                <Card.Text className="card-medium">lps. 00000</Card.Text>
-                <button
-                  className="buttonProducto"
-                  style={{ color: "#f7f7f7", fontSize: "medium" }}
-                >
-                  <span className="box">Ver producto</span>
-                </button>
-              </Card.Body>
-            </Card>
-			<Card className="card">
-              <Container className="card-container">
-                <Card.Img variant="top" src={segunda} className="card-image" />
-              </Container>
-              <Card.Body className="card-body">
-                <Card.Title className="card-title">PRUEBA</Card.Title>
-                <Card.Text className="card-medium">lps. 00000</Card.Text>
-                <button
-                  className="buttonProducto"
-                  style={{ color: "#f7f7f7", fontSize: "medium" }}
-                >
-                  <span className="box">Ver producto</span>
-                </button>
-              </Card.Body>
-            </Card>
+            ))}
+            {productos.length === 0 ? (
+              <p>No pudimos encontrar ningún producto</p>
+            ) : (
+              ""
+            )}
           </Row>
 
-          <section className="secPagination">
+          {/* Pagination */}
+          {/* <section className="secPagination">
             <ul className="ulPagination">
               <a href="" className="aPagination">
                 <li className="liPagination">Anterior</li>
@@ -356,19 +397,8 @@ export const PaginaPrincipal = () => {
                 <li className="liPagination">15</li>
               </a>
             </ul>
-          </section>
+          </section> */}
         </article>
-
-        {/* <footer className='d-flex justify-content-around align-items-center'>
-					<div>
-						<h5>Contactanos</h5>
-						<p>admin.correo@marketplace.com</p>
-					</div>
-					<div className='w-25 d-flex justify-content-around'>
-						<h6>Iconos</h6>
-					</div>
-					<div>Marketplace 2023</div>
-				</footer> */}
         <Footers />
       </main>
     </Container>
