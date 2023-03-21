@@ -8,7 +8,7 @@ const seleccionFecha=(event)=>{
 }
 
       return (
-        <select onChange={seleccionFecha}>
+        <select onChange={seleccionFecha} className='select'>
           <option value="" hidden>Selecciona una fecha</option>
           <option value="last7days">Últimos 7 Dias</option>
           <option value="last15days">Ultimos 15 Dias</option>

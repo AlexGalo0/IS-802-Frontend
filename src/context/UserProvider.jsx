@@ -2,21 +2,26 @@ import { useEffect, useState } from "react";
 import { UserContext } from "./UserContext";
 
 export const UserProvider = ({ children }) => {
-	const [userAuth, setUserAuth] = useState(false);
+	const [userAuth, setUserAuth] = useState(null);//false
 	useEffect(() => {
 		// const guardarLogin = sessionStorage.getItem("userAuth")
 		// setUserAuth(guardarLogin)
 		const guardarLogin = sessionStorage.getItem("userAuth");
 		if (guardarLogin === null) {
-			setUserAuth(false);
+			setUserAuth(null);//false
 		} else {
-			setUserAuth(guardarLogin)
+			setUserAuth(guardarLogin === "true"	? true : false)
 		}
 	}, []);
 
 	useEffect(() => {
-		sessionStorage.setItem("userAuth", userAuth);
+		if (userAuth === null) {
+			sessionStorage.removeItem("userAuth");
+		} else {
+			sessionStorage.setItem("userAuth", userAuth);
+		}
 	}, [userAuth]);
+	
 	return (
 		<UserContext.Provider value={{ userAuth, setUserAuth }}>
 			{children}

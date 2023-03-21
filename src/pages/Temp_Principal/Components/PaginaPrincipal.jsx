@@ -147,7 +147,7 @@ export const PaginaPrincipal = () => {
 			.then((product) => {
 				setProductos(product);
 			});
-	}, [fechaSeleccionada,numeroPaginaFecha]);
+	}, [fechaSeleccionada, numeroPaginaFecha]);
 
 	/* Handlers para comunicacion entre componentes */
 	const handleSeleccionCategoria = (categoria) => {
@@ -292,8 +292,12 @@ export const PaginaPrincipal = () => {
 						</Accordion.Item> */}
 
 						<Accordion.Item eventKey='4' className='acordion'>
-							<Accordion.Header>Filtrar por Fecha</Accordion.Header>
-
+							<Accordion.Header>
+							
+								<button className='btn'>
+									<span className='text'>Filtrar por Fecha</span>
+								</button>
+							</Accordion.Header>
 							<Accordion.Body>
 								<FiltroFecha onSelectFecha={handleSeleccionFecha} />
 							</Accordion.Body>

@@ -23,6 +23,9 @@ import { enviarProductos } from "../../../api";
 import { useNavigate } from "react-router";
 
 export const RegistroProducto = () => {
+
+
+	const [departamentos,setDepartamentos]=useState([])
 	const navigate = useNavigate(); //Para redireccion
 	const {
 		register,
@@ -34,6 +37,14 @@ export const RegistroProducto = () => {
 	const [urls, setURLS] = useState([]);
 	const [imagenesVacias, setImagenesVacias] = useState(false);
 	const [succesfullResponse, setSuccesfullResponse] = useState(false);
+
+	useEffect(() => {
+		fetch("http://localhost:4000/departamentos")
+			.then((response) => response.json())
+			.then((departamentos) => {
+				setDepartamentos(departamentos);
+			});
+	}, []);
 
 	/* 
 
@@ -50,7 +61,7 @@ export const RegistroProducto = () => {
 		try {
 			const response = await enviarProductos(productInfo);
 			setSuccesfullResponse(true);
-			
+
 			setTimeout(() => {
 				navigate("/");
 			}, 1500);
@@ -251,24 +262,12 @@ export const RegistroProducto = () => {
 								<option value='' disabled selected hidden>
 									Seleccione un departamento
 								</option>
-								<option value='1'>Atlántida</option>
-								<option value='2'>Colón</option>
-								<option value='3'>Comayagua</option>
-								<option value='4'>Copán</option>
-								<option value='5'>Cortés</option>
-								<option value='6'>Choluteca</option>
-								<option value='7'>El Paraíso</option>
-								<option value='8'>Francisco Morazán</option>
-								<option value='9'>Gracias a Dios</option>
-								<option value='10'>Intibucá</option>
-								<option value='11'>Islas de la Bahía</option>
-								<option value='12'>La Paz</option>
-								<option value='13'>Lempira</option>
-								<option value='14'>Ocotepeque</option>
-								<option value='15'>Olancho</option>
-								<option value='16'>Santa Bárbara</option>
-								<option value='17'>Valle</option>
-								<option value='18'>Yoro</option>
+								{
+									departamentos.map((departamento)=>(
+										<option value={departamento.id_dpto}>{departamento.nombre}</option>
+									))
+								}
+							
 							</Form.Select>
 						</Form.Group>
 
@@ -329,26 +328,21 @@ export const RegistroProducto = () => {
 						</div>
 					</Form>
 
-					
-						{/* <div className="conWhite"></div> */}
+					{/* <div className="conWhite"></div> */}
 
-						{imagenesVacias ? (
-							<p className='font-cloud'>
-								¡Debes enviar por lo menos una imagen!
-							</p>
-						) : (
-							""
-						)}
-					
-						{succesfullResponse ? (
-							<Alert variant='success'>
-								Se registro el producto exitosamente
-							</Alert>
-						) : (
-							""
-						)}
-						
-					
+					{imagenesVacias ? (
+						<p className='font-cloud'>¡Debes enviar por lo menos una imagen!</p>
+					) : (
+						""
+					)}
+
+					{succesfullResponse ? (
+						<Alert variant='success'>
+							Se registro el producto exitosamente
+						</Alert>
+					) : (
+						""
+					)}
 				</Container>
 			</header>
 		</>
