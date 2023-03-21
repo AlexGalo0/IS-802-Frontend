@@ -13,12 +13,15 @@ import imagen from "../../../assets/1.png";
 import { FaFilter } from "react-icons/fa";
 import { CartaProducto } from "./CartaProducto";
 import { useEffect, useState } from "react";
-import { FiltroCategorias } from "./FiltroCategorias";
-import { FiltroDepartamento } from "./FiltroDepartamentos";
-import { FiltroPrecio } from "./FiltroPrecio";
+
 import { Navegacion } from "./Navegacion";
-import { FiltroFecha } from "./FiltroFecha";
-import { FiltroPalabrasClave } from "./FiltroPalabrasClave";
+import {
+	FiltroCategorias,
+	FiltroDepartamento,
+	FiltroFecha,
+	FiltroPalabrasClave,
+	FiltroPrecio,
+} from "./Filtros";
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { Footers } from "../../../Components/Footer";
@@ -293,7 +296,6 @@ export const PaginaPrincipal = () => {
 
 						<Accordion.Item eventKey='4' className='acordion'>
 							<Accordion.Header>
-							
 								<button className='btn'>
 									<span className='text'>Filtrar por Fecha</span>
 								</button>

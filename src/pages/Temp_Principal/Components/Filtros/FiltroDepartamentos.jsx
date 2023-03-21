@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../Style/Temp_Principal.css";
+import '../../Style/Temp_Principal.css';
 
 export const FiltroDepartamento = ({onSelectDepartamentos}) => {
   
