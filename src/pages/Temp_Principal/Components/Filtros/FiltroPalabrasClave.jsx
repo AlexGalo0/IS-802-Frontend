@@ -9,7 +9,6 @@ export const FiltroPalabrasClave = ({ manejadorPalabraClave }) => {
   } = useForm();
 
   const enviarPalabrasClave = (data) => {
-    console.log("Se intenta enviar: ", data.keyword);
     manejadorPalabraClave(data.keyword);
   };
   return (
@@ -17,7 +16,12 @@ export const FiltroPalabrasClave = ({ manejadorPalabraClave }) => {
       <label htmlFor="" className="labelPrecio">
         Palabra clave:
       </label>
-      <input type="text" {...register("keyword")} className="inPrecio" />
+      <input type="text" {...register("keyword",{
+        required:true
+      })} className="inPrecio" />
+      {errors.keyword?.type==="required" && (
+					<p>Ingresa la palabra clave</p>
+				)}
       <button
         type="submit"
         className="buttonProducto"
