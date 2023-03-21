@@ -6,9 +6,14 @@ export const CloudinaryUploadWidget = ({recibirURL}) => {
 	const cloudinaryRef = useRef();
 	const widgetRef = useRef();
 
-	const [disabledButton, setDisabledButton] = useState(false)
+	const [maxFiles,setMaxFiles] = useState(6)
 
+	const [disabledButton, setDisabledButton] = useState (false)
+
+
+	
 	useEffect(() => {
+		console.log('La cantidad disponbile a subir es' , maxFiles	);
 		cloudinaryRef.current = window.cloudinary;
 		//console.log(cloudinaryRef.current)
 		widgetRef.current = cloudinaryRef.current.createUploadWidget(
@@ -19,7 +24,7 @@ export const CloudinaryUploadWidget = ({recibirURL}) => {
 				clientAllowedFormats: ["jpg", "png"],
 				multiple: true,
 				sources: ["local"],
-				maxFiles: 6,
+				maxFiles,
 				folder: "productos_clientes",
 
 				language: "es",
@@ -68,14 +73,21 @@ export const CloudinaryUploadWidget = ({recibirURL}) => {
 			function (error, result) {
 				if(!error && result && result.event==="success") {
 					urlImages.push(result.info.url)
+					setMaxFiles(6-urlImages.length)
+					
 					recibirURL(urlImages)
-					if(urlImages.length==6){
+					if(urlImages.length===6){
 						setDisabledButton(true)
 					}
+					
+					
 				}
+					
 			}
 		);
-	}, []);
+	}, [maxFiles]);
+
+
 
 	return (
 		<button
