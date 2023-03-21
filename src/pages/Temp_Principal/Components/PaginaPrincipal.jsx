@@ -257,8 +257,9 @@ export const PaginaPrincipal = () => {
               </Accordion.Body>
             </Accordion.Item>
 
-            <Accordion.Item eventKey='4'>
+            <Accordion.Item eventKey='4' className="acordion">
 							<Accordion.Header>Filtrar por Fecha</Accordion.Header>
+          
 							<Accordion.Body>
 								<FiltroFecha
 									actualizarCantidadDeDias={actualizarCantidadDeDias}
