@@ -33,6 +33,15 @@ import { UserContext, AdminContext } from "../../../context";
 import Pagination from "react-bootstrap/Pagination";
 export const PaginaPrincipal = () => {
 	const { userAuth } = useContext(UserContext);
+	/* Objeto para la verificacion de ultima peticion hecha */
+	const peticionHecha = {
+		principal: "principal",
+		categoria: "categoria",
+		departamento: "departamento",
+		fecha: "fecha",
+		keyword: "keyword",
+		precio: "precio",
+	};
 
 	/* Estados Inicial */
 	const [productos, setProductos] = useState([]);
@@ -55,66 +64,63 @@ export const PaginaPrincipal = () => {
 	const [rutaFecha, setRutaFecha] = useState("");
 	const [reiniciar, setReiniciar] = useState(false);
 	/* Estados para paginacion */
-	const [numeroPagina, setNumeroPagina] = useState(1);
+	const [numeroPaginaPrincipal, setNumeroPaginaPrincipal] = useState(1);
 	const [numeroPaginaCategoria, setNumeroPaginaCategoria] = useState(1);
 	const [numeroPaginaFecha, setNumeroPaginaFecha] = useState(1);
 	const [numeroPaginaDepartamento, setNumeroPaginaDepartamento] = useState(1);
 	const [numeroPaginaPalabraClave, setNumeroPaginaPalabraClave] = useState(1);
 	const [numeroPaginaPrecio, setNumeroPaginaPrecio] = useState(1);
-	const [ultimaPeticionHecha, setUltimaPeticionHecha] = useState("principal");
+	const [ultimaPeticionHecha, setUltimaPeticionHecha] = useState(
+		peticionHecha.principal
+	);
 	/* Estado para componente de paginacion */
 	const [state, setState] = useState({
 		data: [],
 		activePage: 1,
 	});
 
-	/* Objeto para la verificacion de ultima peticion hecha */
-	const peticionHecha = {
-		principal: "principal",
-		categoria: "categoria",
-		departamento: "departamento",
-		fecha: "fecha",
-		keyword: "keyword",
-		precio: "precio",
-	};
-
 	/* **** Fetching de Datos ****  */
 
 	/* Renderizado de primera vez */
 
 	useEffect(() => {
-		setUltimaPeticionHecha(peticionHecha.principal);
-		fetch(`http://localhost:4000/product/pagination/${numeroPagina}`)
+		//
+		fetch(`http://localhost:4000/product/pagination/${numeroPaginaPrincipal}`)
 			.then((response) => response.json())
 			.then((product) => {
 				setProductos(product);
+				setUltimaPeticionHecha(peticionHecha.principal);
 			});
-	}, [numeroPagina, reiniciar]);
+
+		console.log(ultimaPeticionHecha);
+	}, [numeroPaginaPrincipal, reiniciar]);
 
 	/* Renderizado de Categoria */
-
 	useEffect(() => {
-		setUltimaPeticionHecha(peticionHecha.categoria);
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaCategoria}/find-categories/${categoriaSeleccionada}`
 		)
 			.then((response) => response.json())
-			.then((product) => setProductos(product));
+			.then((product) => {
+				setProductos(product);
+				setUltimaPeticionHecha(peticionHecha.categoria);
+			});
 	}, [categoriaSeleccionada, numeroPaginaCategoria]);
 
 	/* Renderizado por Departamento */
 	useEffect(() => {
-		setUltimaPeticionHecha(peticionHecha.departamento);
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaDepartamento}/find-dpto/${departamentoSeleccionado}`
 		)
 			.then((response) => response.json())
-			.then((product) => setProductos(product));
+			.then((product) => {
+				setProductos(product);
+				setUltimaPeticionHecha(peticionHecha.departamento);
+			});
 	}, [departamentoSeleccionado, numeroPaginaDepartamento]);
 
 	/* Renderizado por rango de precio */
 	useEffect(() => {
-		setUltimaPeticionHecha(peticionHecha.precio);
 		if (preciosCargado) {
 			console.log("se esta haciendo el fetch de precio");
 			fetch(
@@ -123,6 +129,7 @@ export const PaginaPrincipal = () => {
 				.then((response) => response.json())
 				.then((product) => {
 					setProductos(product);
+					setUltimaPeticionHecha(peticionHecha.precio);
 				});
 		}
 		// setPreciosCargado(false);
@@ -130,25 +137,25 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por palabras clave */
 	useEffect(() => {
-		setUltimaPeticionHecha(peticionHecha.keyword);
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaPalabraClave}/find-keyword/${palabraClave}`
 		)
 			.then((response) => response.json())
 			.then((product) => {
 				setProductos(product);
+				setUltimaPeticionHecha(peticionHecha.keyword);
 			});
 	}, [palabraClave, numeroPaginaPalabraClave]);
 
 	/* Renderizado por Fecha */
 	useEffect(() => {
-		setUltimaPeticionHecha(peticionHecha.fecha);
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaFecha}/${fechaSeleccionada}`
 		)
 			.then((response) => response.json())
 			.then((product) => {
 				setProductos(product);
+				setUltimaPeticionHecha(peticionHecha.fecha);
 			});
 	}, [fechaSeleccionada, numeroPaginaFecha]);
 
@@ -175,9 +182,9 @@ export const PaginaPrincipal = () => {
 		setCantidadDeDias(nuevaCantidadDeDias);
 	};
 
-	const handlePaginacion = (numeroDePagina) => {
-		setNumeroPaginaCategoria(numeroDePagina);
-	};
+	// const handlePaginacion = (numeroDePagina) => {
+	// 	setNumeroPaginaCategoria(numeroDePagina);
+	// };
 
 	// const handleNDias = (cantidadDeDias) => {
 	// 	setCantidadDias(cantidadDeDias);
@@ -189,7 +196,7 @@ export const PaginaPrincipal = () => {
 
 	const handlerReiniciar = () => {
 		setReiniciar(!reiniciar);
-		setNumeroPagina(1);
+		setNumeroPaginaPrincipal(1);
 		setNumeroPaginaCategoria(1);
 		setNumeroPaginaDepartamento(1);
 		setNumeroPaginaFecha(1);
@@ -199,11 +206,12 @@ export const PaginaPrincipal = () => {
 
 	/* Para cualquier tipo de paginacion */
 	const handlePageChange = (pageNumber) => {
+		console.log("La peticion inicial es ", ultimaPeticionHecha);
 		setState((prev) => ({ ...prev, activePage: pageNumber }));
 
 		if (ultimaPeticionHecha === peticionHecha.principal) {
 			console.log("La ultima peticion fue principal");
-			setNumeroPagina(pageNumber);
+			setNumeroPaginaPrincipal(pageNumber);
 		}
 		if (ultimaPeticionHecha === peticionHecha.categoria) {
 			console.log("La ultima peticion fue categoria");
