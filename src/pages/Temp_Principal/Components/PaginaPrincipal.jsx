@@ -39,13 +39,16 @@ export const PaginaPrincipal = () => {
 	const [precioMinimo, setPrecioMinimo] = useState(0);
 	const [precioMaximo, setPrecioMaximo] = useState(0);
 	const [preciosCargado, setPreciosCargado] = useState(false);
-	const [cantidadDeDias, setCantidadDeDias] = useState({
-		semana: false,
-		mes: false,
-		tres_meses: false,
-		seis_meses: false,
-		anio: false,
-	});
+	// const [cantidadDeDias, setCantidadDeDias] = useState({
+	// 	semana: false,
+	// 	mes: false,
+	// 	tres_meses: false,
+	// 	seis_meses: false,
+	// 	anio: false,
+	// });
+
+	const [fechaSeleccionada, setFechaSeleccionada] = useState("");
+
 	const [rutaFecha, setRutaFecha] = useState("");
 	const [reiniciar, setReiniciar] = useState(false);
 	/* Estados para paginacion */
@@ -134,39 +137,25 @@ export const PaginaPrincipal = () => {
 			});
 	}, [palabraClave, numeroPaginaPalabraClave]);
 
+	/* Renderizado por Fecha */
 	useEffect(() => {
-		console.log("Se hizo la peticion de fecha");
-    setUltimaPeticionHecha(peticionHecha.fecha);
-		setRutaFecha("");
-		switch (true) {
-			case cantidadDeDias.semana:
-				setRutaFecha("last7days");
-				break;
-			case cantidadDeDias.mes:
-				setRutaFecha("last30days");
-				break;
-			case cantidadDeDias.tres_meses:
-				setRutaFecha("last3month");
-				break;
-			case cantidadDeDias.seis_meses:
-				setRutaFecha("last6month");
-				break;
-			case cantidadDeDias.anio:
-				setRutaFecha("lastyear");
-				break;
-			default:
-				break;
-		}
-		fetch(`http://localhost:4000/product/${numeroPaginaFecha}/${rutaFecha}`)
+		setUltimaPeticionHecha(peticionHecha.fecha);
+		fetch(
+			`http://localhost:4000/product/${numeroPaginaFecha}/${fechaSeleccionada}`
+		)
 			.then((response) => response.json())
 			.then((product) => {
 				setProductos(product);
 			});
-	}, [cantidadDeDias,numeroPaginaFecha, rutaFecha ]);
+	}, [fechaSeleccionada,numeroPaginaFecha]);
 
 	/* Handlers para comunicacion entre componentes */
 	const handleSeleccionCategoria = (categoria) => {
 		setCategoriaSeleccionada(categoria);
+	};
+
+	const handleSeleccionFecha = (fecha) => {
+		setFechaSeleccionada(fecha);
 	};
 
 	const handleSeleccionDepartamento = (departamento) => {
@@ -205,7 +194,7 @@ export const PaginaPrincipal = () => {
 		setNumeroPaginaPalabraClave(1);
 	};
 
-  /* Para cualquier tipo de paginacion */
+	/* Para cualquier tipo de paginacion */
 	const handlePageChange = (pageNumber) => {
 		setState((prev) => ({ ...prev, activePage: pageNumber }));
 
@@ -291,7 +280,7 @@ export const PaginaPrincipal = () => {
 							</Accordion.Body>
 						</Accordion.Item>
 
-						<Accordion.Item eventKey='3' className='acordion'>
+						{/* <Accordion.Item eventKey='3' className='acordion'>
 							<Accordion.Header>
 								<button className='btn'>
 									<span className='text'>Prueba pagination</span>
@@ -300,15 +289,13 @@ export const PaginaPrincipal = () => {
 							<Accordion.Body>
 								<Navegacion handlePaginacion={handlePaginacion} />
 							</Accordion.Body>
-						</Accordion.Item>
+						</Accordion.Item> */}
 
 						<Accordion.Item eventKey='4' className='acordion'>
 							<Accordion.Header>Filtrar por Fecha</Accordion.Header>
 
 							<Accordion.Body>
-								<FiltroFecha
-									actualizarCantidadDeDias={actualizarCantidadDeDias}
-								/>
+								<FiltroFecha onSelectFecha={handleSeleccionFecha} />
 							</Accordion.Body>
 						</Accordion.Item>
 

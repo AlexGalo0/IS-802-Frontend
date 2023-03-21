@@ -50,7 +50,7 @@ export const RegistroProducto = () => {
 		try {
 			const response = await enviarProductos(productInfo);
 			setSuccesfullResponse(true);
-
+			
 			setTimeout(() => {
 				navigate("/");
 			}, 1500);

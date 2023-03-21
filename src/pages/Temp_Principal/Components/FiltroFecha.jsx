@@ -1,37 +1,19 @@
 import { useState, useEffect } from "react";
 
-export const FiltroFecha = (props) => {
-    function handleClick(event) {
-        const nuevaPeticion = event.target.name;
-        const nuevaCantidadDeDias = {
-          semana: false,
-          mes: false,
-          tres_meses: false,
-          seis_meses: false,
-          anio: false,
-          [nuevaPeticion]: true,
-        };
-        props.actualizarCantidadDeDias(nuevaCantidadDeDias);
-       
-      }
+export const FiltroFecha = ({onSelectFecha}) => {
+
+const seleccionFecha=(event)=>{
+  const fechaSeleccionada = event.target.value
+  onSelectFecha(fechaSeleccionada)
+}
 
       return (
-        <div>
-          <button name="semana" onClick={handleClick}>
-            Hace 7 días
-          </button>
-          <button name="mes" onClick={handleClick}>
-            Hace 30 días
-          </button>
-          <button name="tres_meses" onClick={handleClick}>
-            Hace 3 meses
-          </button>
-          <button name="seis_meses" onClick={handleClick}>
-            Últimos 6 meses
-          </button>
-          <button name="anio" onClick={handleClick}>
-            Último año
-          </button>
-        </div>
+        <select onChange={seleccionFecha}>
+          <option value="" hidden>Selecciona una fecha</option>
+          <option value="last7days">Últimos 7 Dias</option>
+          <option value="last15days">Ultimos 15 Dias</option>
+          <option value="last20days">Ultimos 20 Dias</option>
+          <option value="last30days">Ultimos 30 Dias</option>
+        </select>
       );
 };
