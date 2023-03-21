@@ -33,14 +33,32 @@ export const FiltroPrecio = ({preciosMaxMinSeleccionados}) => {
 				<input
 				className="inPrecio"
 					type='text'
-					{...register("precioMin")}
+					{...register("precioMin", {
+						pattern:/^[\d,\.]+$/,
+						required:true
+					})}
 				/>
+				{errors.precioMin?.type==="pattern" && (
+					<p>Ingresa solo numeros en formato XX.XX</p>
+				)}
+				{errors.precioMin?.type==="required" && (
+					<p>El precio minimo es obligatorio</p>
+				)}
 				<label htmlFor='' className="labelPrecio">Precio Maximo:</label>
 				<input
 				className="inPrecio"
 					type='text'
-					{...register("precioMax")}
+					{...register("precioMax",{
+						pattern:/^[\d,\.]+$/,
+						required:true
+					})}
 				/>
+					{errors.precioMax?.type==="pattern" && (
+					<p>Ingresa solo numeros en formato XX.XX</p>
+				)}
+				{errors.precioMax?.type==="required" && (
+					<p>El precio maximo es obligatorio</p>
+				)}
 				<button
 				type="submit"
                       className="buttonProducto"
