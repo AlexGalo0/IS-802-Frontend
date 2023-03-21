@@ -52,7 +52,7 @@ export const RegistroProducto = () => {
 			setSuccesfullResponse(true);
 
 			setTimeout(() => {
-				navigate("/productos");
+				navigate("/");
 			}, 1500);
 		} catch (error) {
 			console.log(error);
