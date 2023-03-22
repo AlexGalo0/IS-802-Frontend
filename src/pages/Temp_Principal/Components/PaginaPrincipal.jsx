@@ -107,7 +107,10 @@ export const PaginaPrincipal = () => {
 	useEffect(() => {
 		console.log("El ultimo ejecutandose es categoria");
 		setLongitudPaginacion(4)
-
+		setState(prevState => ({
+			...prevState,
+			activePage: numeroPaginaCategoria
+		  }));
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaCategoria}/find-categories/${categoriaSeleccionada}`
 		)
@@ -121,7 +124,10 @@ export const PaginaPrincipal = () => {
 	/* Renderizado por Departamento */
 	useEffect(() => {
 		setLongitudPaginacion(2)
-
+		setState(prevState => ({
+			...prevState,
+			activePage: 1
+		  }));
 		console.log("El ultimo ejecutandose es departamento");
 
 		fetch(
@@ -137,7 +143,10 @@ export const PaginaPrincipal = () => {
 	/* Renderizado por rango de precio */
 	useEffect(() => {
 		console.log("El ultimo ejecutandose es precio");
-
+		setState(prevState => ({
+			...prevState,
+			activePage: 1
+		  }));
 		if (preciosCargado) {
 			fetch(
 				`http://localhost:4000/product/${numeroPaginaPrecio}/find-range-price/${precioMinimo}/${precioMaximo}`
@@ -153,6 +162,10 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por palabras clave */
 	useEffect(() => {
+		setState(prevState => ({
+			...prevState,
+			activePage: 1
+		  }));
 		console.log("El ultimo ejecutandose es palabras clave");
 
 		fetch(
@@ -177,6 +190,10 @@ export const PaginaPrincipal = () => {
 				setProductos(product);
 				setUltimaPeticionHecha(peticionHecha.fecha);
 			});
+			setState(prevState => ({
+				...prevState,
+				activePage: 1
+			  }));
 	}, [fechaSeleccionada, numeroPaginaFecha]);
 
 	/* Handlers para comunicacion entre componentes */
@@ -276,6 +293,7 @@ export const PaginaPrincipal = () => {
 				setProductos(product);
 				setUltimaPeticionHecha(peticionHecha.principal);
 			});
+		
 	}, [numeroPaginaPrincipal, reiniciar]);
 
 	return (
