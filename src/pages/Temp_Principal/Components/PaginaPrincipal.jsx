@@ -14,7 +14,6 @@ import { FaFilter } from "react-icons/fa";
 import { CartaProducto } from "./CartaProducto";
 import { useEffect, useState } from "react";
 
-import { Navegacion } from "./Navegacion";
 import {
 	FiltroCategorias,
 	FiltroDepartamento,
@@ -31,6 +30,7 @@ import primera from "../../../assets/4.png";
 import { useContext } from "react";
 import { UserContext, AdminContext } from "../../../context";
 import Pagination from "react-bootstrap/Pagination";
+import { Paginacion } from "./Paginacion";
 export const PaginaPrincipal = () => {
 	const { userAuth } = useContext(UserContext);
 	/* Objeto para la verificacion de ultima peticion hecha */
@@ -51,13 +51,10 @@ export const PaginaPrincipal = () => {
 	const [precioMinimo, setPrecioMinimo] = useState(0);
 	const [precioMaximo, setPrecioMaximo] = useState(0);
 	const [preciosCargado, setPreciosCargado] = useState(false);
-	// const [cantidadDeDias, setCantidadDeDias] = useState({
-	// 	semana: false,
-	// 	mes: false,
-	// 	tres_meses: false,
-	// 	seis_meses: false,
-	// 	anio: false,
-	// });
+	const [longitudPaginacion, setLongitudPaginacion] = useState(5);
+	/* 
+		Es necesario hacer un fetch para la longitud inicial
+	*/
 
 	const [fechaSeleccionada, setFechaSeleccionada] = useState("");
 
@@ -79,24 +76,38 @@ export const PaginaPrincipal = () => {
 		activePage: 1,
 	});
 
+
 	/* **** Fetching de Datos ****  */
+
+	/* Idea de Fetch para componente de paginacion
+	
+		fetch(.../cantidadPaginasCategoria).then((response=>response.json()).then((
+			(paginasDeCategoria)=>{
+				setLongitudPaginacion(paginasDeCategoria)
+			}
+		)))
+	*/
 
 	/* Renderizado de primera vez */
 
-	useEffect(() => {
-		//
-		fetch(`http://localhost:4000/product/pagination/${numeroPaginaPrincipal}`)
-			.then((response) => response.json())
-			.then((product) => {
-				setProductos(product);
-				setUltimaPeticionHecha(peticionHecha.principal);
-			});
+	// useEffect(() => {
+	// 	console.log("El ultimo ejecutandose es principal");
+	// 	setLongitudPaginacion(10)
 
-		console.log(ultimaPeticionHecha);
-	}, [numeroPaginaPrincipal, reiniciar]);
+	// 	//
+	// 	fetch(`http://localhost:4000/product/pagination/${numeroPaginaPrincipal}`)
+	// 		.then((response) => response.json())
+	// 		.then((product) => {
+	// 			setProductos(product);
+	// 			setUltimaPeticionHecha(peticionHecha.principal);
+	// 		});
+	// }, [numeroPaginaPrincipal, reiniciar]);
 
 	/* Renderizado de Categoria */
 	useEffect(() => {
+		console.log("El ultimo ejecutandose es categoria");
+		setLongitudPaginacion(4)
+
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaCategoria}/find-categories/${categoriaSeleccionada}`
 		)
@@ -109,6 +120,10 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por Departamento */
 	useEffect(() => {
+		setLongitudPaginacion(2)
+
+		console.log("El ultimo ejecutandose es departamento");
+
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaDepartamento}/find-dpto/${departamentoSeleccionado}`
 		)
@@ -121,8 +136,9 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por rango de precio */
 	useEffect(() => {
+		console.log("El ultimo ejecutandose es precio");
+
 		if (preciosCargado) {
-			console.log("se esta haciendo el fetch de precio");
 			fetch(
 				`http://localhost:4000/product/${numeroPaginaPrecio}/find-range-price/${precioMinimo}/${precioMaximo}`
 			)
@@ -137,6 +153,8 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por palabras clave */
 	useEffect(() => {
+		console.log("El ultimo ejecutandose es palabras clave");
+
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaPalabraClave}/find-keyword/${palabraClave}`
 		)
@@ -149,6 +167,8 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por Fecha */
 	useEffect(() => {
+		console.log("El ultimo ejecutandose es fecha");
+
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaFecha}/${fechaSeleccionada}`
 		)
@@ -202,6 +222,10 @@ export const PaginaPrincipal = () => {
 		setNumeroPaginaFecha(1);
 		setNumeroPaginaPrecio(1);
 		setNumeroPaginaPalabraClave(1);
+		setState(prevState => ({
+			...prevState,
+			activePage: 1
+		  }));
 	};
 
 	/* Para cualquier tipo de paginacion */
@@ -240,6 +264,19 @@ export const PaginaPrincipal = () => {
 			setNumeroPaginaPrecio(pageNumber);
 		}
 	};
+
+	useEffect(() => {
+		console.log("El ultimo ejecutandose es principal");
+		setLongitudPaginacion(10)
+		
+		//
+		fetch(`http://localhost:4000/product/pagination/${numeroPaginaPrincipal}`)
+			.then((response) => response.json())
+			.then((product) => {
+				setProductos(product);
+				setUltimaPeticionHecha(peticionHecha.principal);
+			});
+	}, [numeroPaginaPrincipal, reiniciar]);
 
 	return (
 		<Container fluid className='container-grid'>
@@ -331,17 +368,17 @@ export const PaginaPrincipal = () => {
 				<article>
 					<Row xs={1} md={3} className='g-3'>
 						{productos.map((producto) => (
-							<CartaProducto {...producto} />
+							<CartaProducto {...producto} key={producto.idProducto} />
 						))}
+						{/* Cambiar lo de idProducto */}
 						{productos.length === 0 ? (
 							<p>No pudimos encontrar ningún producto</p>
 						) : (
 							""
 						)}
 					</Row>
-
 					<Pagination className='py-4'>
-						{Array.from({ length: 5 }).map((_, index) => {
+						{Array.from({ length: longitudPaginacion }).map((_, index) => {
 							/* Necesito la cantidad de paginas desde el back */
 							return (
 								<Pagination.Item
