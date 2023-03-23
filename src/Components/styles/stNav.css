@@ -13,6 +13,7 @@
 
 
 .top-header {
+  padding: 5px;
   height: 32px;
   width: 100%;
   background-color: var(--blue5);
@@ -27,7 +28,7 @@
 .ulRedes {
   position: relative;
   display: flex;
-  gap: 25px;
+  gap: 15px;
   margin-top: 15px;
 }
 
@@ -309,3 +310,19 @@
          0 0 .75em .5em var(--glow-spread-color),
          inset 0 0 .2em .10em var(--glow-color);
  }
+
+ /* Boton Cerrar Sesion */
+ .buttonCerrarSesion {
+  height: 45px;
+  width: 160px;
+  border-radius: 30px;
+  border: none;
+  background-color: hsla(0, 0%, 100%, 0.15);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  font-size: large;
+  color: var(--white);
+  margin-top: 5px;
+}

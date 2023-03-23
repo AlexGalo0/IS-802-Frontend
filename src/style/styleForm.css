@@ -113,7 +113,8 @@
     width: 450px;
     height: 70px;
     margin: auto;
-  margin-top: -17px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   color: #0d0d0d;
   text-transform: none;
   font-size: larger;

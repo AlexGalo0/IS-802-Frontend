@@ -17,9 +17,9 @@ import { BsFacebook, BsInstagram, BsDiscord, } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { FaBoxes, FaStar, FaUserCircle } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
-
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context";
+
 export const NavbarsLogueado = () => {
 	const {userAuth,setUserAuth}  = useContext(UserContext)
   const pruebaDesloguear=()=>{
@@ -123,7 +123,7 @@ export const NavbarsLogueado = () => {
         </div>
 
         <div>
-          <button onClick={pruebaDesloguear}>Desloguearme</button>
+          <button onClick={pruebaDesloguear} className="buttonCerrarSesion">Cerrar Sesión</button>
         </div>
 
 

@@ -341,6 +341,18 @@ footer{ /*
     box-shadow: 0 0.10rem 0.75rem var(--blue5);
   }
 
+  .item a {
+    color: var(--white);
+    background-color: var(--blue4);
+    border: 1px solid var(--blue2);
+  }
+
+  .item:hover a{
+    border-color: var(--blue5);
+    color: var(--blue2);
+    background-color: var(--blue3);
+  }
+
   /* Acordion */
   .acordion {
     background-color: var(--blue5) !important;
@@ -395,4 +407,27 @@ footer{ /*
     margin-bottom: -5px;
     text-shadow: 0 3px 3px var(--blue1);
 
+  }
+
+  /* Boton limpiar filtros */
+  .btnFiltros {
+    width: 120px;
+    height: 45px;
+    border-radius: 20px;
+    border: 2px solid var(--blue2);
+    transition: all 0.5s ease-in-out;
+    font-size: 25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 2px 2px var(--blue4);
+    background-color: var(--blue3);
+    color: var(--white);
+    margin: auto;
+    margin-top: 10px;
+  }
+  
+  .btnFiltros:hover {
+    box-shadow: 0 0 5px 0px var(--blue4);
+    background-color: var(--hover);
   }

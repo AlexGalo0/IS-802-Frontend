@@ -317,6 +317,19 @@ export const RegistroProducto = () => {
 							</p>
 						)}
 						<CloudinaryUploadWidget recibirURL={recibirURL} />
+						{imagenesVacias ? (
+						<p className='font-cloud'>¡Debes enviar por lo menos una imagen!</p>
+					) : (
+						""
+					)}
+
+					{succesfullResponse ? (
+						<Alert variant='success' style={{marginTop: '20px'}}>
+							Se registro el producto exitosamente
+						</Alert>
+					) : (
+						""
+					)}
 						<div>
 							<button
 								className='Button'
@@ -330,19 +343,7 @@ export const RegistroProducto = () => {
 
 					{/* <div className="conWhite"></div> */}
 
-					{imagenesVacias ? (
-						<p className='font-cloud'>¡Debes enviar por lo menos una imagen!</p>
-					) : (
-						""
-					)}
-
-					{succesfullResponse ? (
-						<Alert variant='success'>
-							Se registro el producto exitosamente
-						</Alert>
-					) : (
-						""
-					)}
+					
 				</Container>
 			</header>
 		</>

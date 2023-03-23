@@ -305,7 +305,7 @@ export const PaginaPrincipal = () => {
 					<h4 className='py-3 fil'>
 						<FaFilter /> Filtros
 					</h4>
-					<button onClick={handlerReiniciar}>Limpiar Filtros</button>
+
 					<Accordion defaultActiveKey='' flush>
 						<Accordion.Item eventKey='0' className='acordion'>
 							<Accordion.Header>
@@ -381,10 +381,14 @@ export const PaginaPrincipal = () => {
 							</Accordion.Body>
 						</Accordion.Item>
 					</Accordion>
+          
+					<button onClick={handlerReiniciar} className="btnFiltros"> 
+          <span className="textBuscar">Limpiar Filtros</span> 
+          </button>
 				</aside>
 
 				<article>
-					<Row xs={1} md={3} className='g-3'>
+					<Row xs={1} md={3} className='g-4'>
 						{productos.map((producto) => (
 							<CartaProducto {...producto} key={producto.idProducto} />
 						))}
@@ -395,7 +399,7 @@ export const PaginaPrincipal = () => {
 							""
 						)}
 					</Row>
-					<Pagination className='py-4'>
+					<Pagination className='py-4' size="lg" bsPrefix="pagination" style={{marginBottom: '-10px'}} >
 						{Array.from({ length: longitudPaginacion }).map((_, index) => {
 							/* Necesito la cantidad de paginas desde el back */
 							return (
@@ -403,6 +407,7 @@ export const PaginaPrincipal = () => {
 									onClick={() => handlePageChange(index + 1)}
 									key={index + 1}
 									active={index + 1 === state.activePage}
+                  className="item"
 								>
 									{index + 1}
 								</Pagination.Item>
