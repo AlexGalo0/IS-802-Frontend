@@ -301,6 +301,9 @@ export const PaginaPrincipal = () => {
 			{userAuth ? <NavbarsLogueado /> : <NavbarsLR />}
 
 			<main>
+      <FiltroPalabrasClave
+									manejadorPalabraClave={handlePalabraClave}
+								/>
 				<aside className='text-center'>
 					<h4 className='py-3 fil'>
 						<FaFilter /> Filtros
@@ -368,25 +371,13 @@ export const PaginaPrincipal = () => {
 							</Accordion.Body>
 						</Accordion.Item>
 
-						<Accordion.Item eventKey='5' className='acordion'>
-							<Accordion.Header>
-								<button className='btn'>
-									<span className='text'>Palabra clave</span>
-								</button>
-							</Accordion.Header>
-							<Accordion.Body>
-								<FiltroPalabrasClave
-									manejadorPalabraClave={handlePalabraClave}
-								/>
-							</Accordion.Body>
-						</Accordion.Item>
 					</Accordion>
           
 					<button onClick={handlerReiniciar} className="btnFiltros"> 
           <span className="textBuscar">Limpiar Filtros</span> 
           </button>
 				</aside>
-
+                
 				<article>
 					<Row xs={1} md={3} className='g-4'>
 						{productos.map((producto) => (

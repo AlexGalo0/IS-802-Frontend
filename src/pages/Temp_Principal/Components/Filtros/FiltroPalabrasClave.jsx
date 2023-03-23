@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { BiSearchAlt, BiUser } from "react-icons/bi"; 
 
 export const FiltroPalabrasClave = ({ manejadorPalabraClave }) => {
   const {
@@ -12,23 +13,29 @@ export const FiltroPalabrasClave = ({ manejadorPalabraClave }) => {
     manejadorPalabraClave(data.keyword);
   };
   return (
-    <form onSubmit={handleSubmit(enviarPalabrasClave)}>
-      <label htmlFor="" className="labelPrecio">
-        Palabra clave:
-      </label>
-      <input type="text" {...register("keyword",{
+    <form className="palabrasClave" onSubmit={handleSubmit(enviarPalabrasClave)}>
+
+      <input className="buscador" type="text" {...register("keyword",{
         required:true
-      })} className="inPrecio" />
-      {errors.keyword?.type==="required" && (
+      })} />
+      {/* {errors.keyword?.type==="required" && (
 					<p>Ingresa la palabra clave</p>
-				)}
+				)} */}
       <button
         type="submit"
-        className="buttonProducto"
-        style={{ color: "#f7f7f7", fontSize: "medium", margin: "auto" }}
+        className="btnBuscar"
+        /* style={{ color: "#f7f7f7", fontSize: "medium", margin: "auto" }} */
       >
-        <span className="box">Filtrar</span>
+        <BiSearchAlt className="iconBuscar" />
+        <span className="textBuscar">Buscar</span>
       </button>
+
+          {/* <Form.Control className="buscador" type="text"  />
+          <button className="btnBuscar">
+            <BiSearchAlt className="iconBuscar" />
+            <span className="textBuscar">Buscar</span>
+          </button> */}
+
     </form>
   );
 };

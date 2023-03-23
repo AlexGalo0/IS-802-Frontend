@@ -19,6 +19,7 @@ import { FaBoxes, FaStar, FaUserCircle } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context";
+import {FiltroPalabrasClave} from '../pages/Temp_Principal/Components/Filtros/FiltroPalabrasClave'
 
 export const NavbarsLogueado = () => {
 	const {userAuth,setUserAuth}  = useContext(UserContext)
@@ -108,12 +109,12 @@ export const NavbarsLogueado = () => {
             {/* Navbar */}
       <div className="navbar">
         <Image src={logo} className="image-logo" />
-        <div className="buscador-div" style={{display:"none"}}>
-          <Form.Control className="buscador" type="text"  />
+        <div className="buscador-div2" /* style={{display:"none"}} */>
+          {/* <Form.Control className="buscador" type="text"  />
           <button className="btnBuscar">
             <BiSearchAlt className="iconBuscar" />
             <span className="textBuscar">Buscar</span>
-          </button>
+          </button> */}
         </div>
 
         <div>

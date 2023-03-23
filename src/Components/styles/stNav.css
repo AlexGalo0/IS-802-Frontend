@@ -163,6 +163,16 @@
   align-items: baseline;
   justify-content: center;
   height: 35px;
+  width: 550px;
+  border-radius: 30px;
+  padding: 5px 0px;
+}
+
+.buscador-div2 {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  height: 35px;
   width: 450px;
   border-radius: 30px;
   padding: 5px 0px;
@@ -170,12 +180,13 @@
 
 .buscador {
   display: flex;
+  color: var(--white);
   align-items: center;
   height: 45px;
   width: 350px;
   background-color: hsla(0, 0%, 100%, 0.15);
   border-radius: 30px;
-  padding: 0px 4px;
+  padding: 0px 10px;
 }
 
 .cuenta {
@@ -209,6 +220,15 @@
   margin-top: 5px;
 }
 
+.trampa {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  height: 35px;
+  width: 20px;
+  border-radius: 30px;
+  padding: 5px 0px;
+}
 /* Boton Buscar */
 .btnBuscar {
   width: 90px;
@@ -325,4 +345,12 @@
   font-size: large;
   color: var(--white);
   margin-top: 5px;
+}
+
+.palabrasClave {
+  display: flex;
+  margin-top: -57px;
+  z-index: 5;
+  margin-left: 275px;
+  position: fixed;
 }

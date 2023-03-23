@@ -75,15 +75,15 @@ export const NavbarsLR = () => {
             {/* Navbar */}
       <div className="navbar">
         <Image src={logo} className="image-logo" />
-        <div className="buscador-div" style={{display:"none"}}>
-          <Form.Control className="buscador" type="text" />
+        <div className="buscador-div">
+          {/* <Form.Control className="buscador" type="text" />
           <button className="btnBuscar">
             <BiSearchAlt className="iconBuscar" />
             <span className="textBuscar">Buscar</span>
-          </button>
+          </button> */}
         </div>
 
-        <div>
+        <div style={{marginLeft: '-100px'}}>
         <Link to='/login'>
           <button className="regis">Inicia sesion</button>
           </Link>
@@ -92,17 +92,22 @@ export const NavbarsLR = () => {
           <button className="regis">Registrate</button>
           </Link>
         </div>
+        <div className="trampa">
+          {/* <Form.Control className="buscador" type="text" />
+          <button className="btnBuscar">
+            <BiSearchAlt className="iconBuscar" />
+            <span className="textBuscar">Buscar</span>
+          </button> */}
+        </div>
         <div>
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
             overlay={renderTooltip}
           >
-            <Link to='/construyendo'>
             <button className="button-cuenta">
               <BiUser />
             </button>
-            </Link>
           </OverlayTrigger>
         </div>
       </div>
