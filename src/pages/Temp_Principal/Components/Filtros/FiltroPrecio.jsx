@@ -5,14 +5,14 @@ export const FiltroPrecio = ({preciosMaxMinSeleccionados}) => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm();
 
     const [precioMinimo, setPrecioMinimo] = useState(0)
     const [precioMaximo, setPrecioMaximo] = useState(0)
 
     const handlePrecioMinYMax = (min,max)=>{
-    
-        preciosMaxMinSeleccionados(min,max)
+    	preciosMaxMinSeleccionados(min,max)
     }
 
 
@@ -23,7 +23,7 @@ export const FiltroPrecio = ({preciosMaxMinSeleccionados}) => {
         const precioMaximo = parseFloat(precioMax)
         setPrecioMinimo(precioMinimo)
         setPrecioMaximo(precioMaximo)
-        handlePrecioMinYMax(precioMinimo,precioMaximo)
+        handlePrecioMinYMax(precioMinimo,precioMaximo)		//reset();
     };
 
 	return (
@@ -61,7 +61,7 @@ export const FiltroPrecio = ({preciosMaxMinSeleccionados}) => {
 				)}
 				<button
 				type="submit"
-                      className="buttonProducto"
+                    className="buttonProducto"
                       style={{ color: "#f7f7f7", fontSize: "medium", margin: 'auto'}}
                     >
                       <span className="box">Filtrar</span>

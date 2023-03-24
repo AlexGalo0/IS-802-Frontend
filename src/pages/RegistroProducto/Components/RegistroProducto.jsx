@@ -140,7 +140,8 @@ export const RegistroProducto = () => {
 								name='text'
 								className='inNombre'
 								{...register("nombreProducto", {
-									pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]{4,50}$/,
+									pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s!@#$%^&*()-_+={}[\]|;:'",.<>/?]{4,50}$/
+									,
 									required: true,
 								})}
 							/>

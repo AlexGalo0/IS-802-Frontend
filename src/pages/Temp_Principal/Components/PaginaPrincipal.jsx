@@ -13,6 +13,7 @@ import imagen from "../../../assets/1.png";
 import { FaFilter } from "react-icons/fa";
 import { CartaProducto } from "./CartaProducto";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 import {
 	FiltroCategorias,
@@ -31,6 +32,7 @@ import { useContext } from "react";
 import { UserContext, AdminContext } from "../../../context";
 import Pagination from "react-bootstrap/Pagination";
 import { Paginacion } from "./Paginacion";
+
 export const PaginaPrincipal = () => {
 	const { userAuth } = useContext(UserContext);
 	/* Objeto para la verificacion de ultima peticion hecha */
@@ -91,13 +93,14 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado de Categoria */
 	useEffect(() => {
+		if(!categoriaSeleccionada) return ;
 		fetch(`http://localhost:4000/product/total-pages/${categoriaSeleccionada}`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
 			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
 		})
 		setState(prevState => ({
 			...prevState,
 			activePage: numeroPaginaCategoria
-		  }));
+		}));
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaCategoria}/find-categories/${categoriaSeleccionada}`
 		)
@@ -110,13 +113,14 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por Departamento */
 	useEffect(() => {
+		if(!departamentoSeleccionado) return ;
 		fetch(`http://localhost:4000/product/total-pages/dpto/${departamentoSeleccionado}`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
 			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
 		})
 		setState(prevState => ({
 			...prevState,
-			activePage: 1
-		  }));
+			activePage: numeroPaginaDepartamento
+		}));
 
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaDepartamento}/find-dpto/${departamentoSeleccionado}`
@@ -130,14 +134,17 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por rango de precio */
 	useEffect(() => {
+		if(!precioMinimo || !precioMaximo)  return ;
+		console.log("Precio minimo: ", precioMinimo);
+		console.log("Precio maximo: ", precioMaximo);
 		fetch(`http://localhost:4000/product/total-pages/range-price/${precioMinimo}/${precioMaximo}`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
 			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
 		})
-		setState(prevState => ({
-			...prevState,
-			activePage: 1
-		  }));
-		if (preciosCargado) {
+		// setState(prevState => ({
+		// 	...prevState,
+		// 	activePage: numeroPaginaPrecio
+		// }));
+		// if (preciosCargado) {
 			fetch(
 				`http://localhost:4000/product/${numeroPaginaPrecio}/find-range-price/${precioMinimo}/${precioMaximo}`
 			)
@@ -145,13 +152,18 @@ export const PaginaPrincipal = () => {
 				.then((product) => {
 					setProductos(product);
 					setUltimaPeticionHecha(peticionHecha.precio);
+					setState(prevState => ({
+						...prevState,
+						activePage: numeroPaginaPrecio
+					}));
 				});
-		}
+		// }
 		// setPreciosCargado(false);
-	}, [preciosCargado, numeroPaginaPrecio]);
+	}, [precioMinimo, precioMaximo, numeroPaginaPrecio]);//preciosCargado
 
 	/* Renderizado por palabras clave */
 	useEffect(() => {
+		if(palabraClave === "") return;
 
 		fetch(`http://localhost:4000/product/total-pages/${palabraClave}`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
 			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
@@ -160,8 +172,8 @@ export const PaginaPrincipal = () => {
 		
 		setState(prevState => ({
 			...prevState,
-			activePage: 1
-		  }));
+			activePage: numeroPaginaPalabraClave
+		}));
 
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaPalabraClave}/find-keyword/${palabraClave}`
@@ -175,6 +187,9 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por Fecha */
 	useEffect(() => {
+		if(fechaSeleccionada === "") {
+			return;
+		}
 		fetch(`http://localhost:4000/product/total-pages/days/${fechaSeleccionada}`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
 			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
 		})
@@ -189,8 +204,8 @@ export const PaginaPrincipal = () => {
 			});
 			setState(prevState => ({
 				...prevState,
-				activePage: 1
-			  }));
+				activePage: numeroPaginaFecha
+			}));
 	}, [fechaSeleccionada, numeroPaginaFecha]);
 
 	/* Handlers para comunicacion entre componentes */
@@ -354,7 +369,7 @@ export const PaginaPrincipal = () => {
 				<article>
 					<Row xs={1} md={3} className='g-4'>
 						{productos.map((producto) => (
-							<CartaProducto {...producto} key={producto.idProducto} />
+							<CartaProducto {...producto} key={uuidv4()} />
 						))}
 						{/* Cambiar lo de idProducto */}
 						{productos.length === 0 ? (

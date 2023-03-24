@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import '../../Style/Temp_Principal.css';
-
+import { v4 as uuidv4 } from 'uuid';
 export const FiltroDepartamento = ({onSelectDepartamentos}) => {
   
 	const [departamentos, setDepartamentos] = useState([]);
