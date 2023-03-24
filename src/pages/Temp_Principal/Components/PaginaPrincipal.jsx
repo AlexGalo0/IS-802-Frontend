@@ -250,7 +250,9 @@ export const PaginaPrincipal = () => {
 	};
 
 	useEffect(() => {
-		setLongitudPaginacion(10)
+		fetch(`http://localhost:4000/product/total-pages`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
+			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
+		})
 		
 		//
 		fetch(`http://localhost:4000/product/pagination/${numeroPaginaPrincipal}`)
