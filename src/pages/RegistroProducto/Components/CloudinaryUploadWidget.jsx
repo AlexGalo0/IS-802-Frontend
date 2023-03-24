@@ -97,7 +97,7 @@ export const CloudinaryUploadWidget = ({recibirURL}) => {
 		disabled={disabledButton}
 		className='learn-more'
 		>
-			Subir Imagenes
+			Subir Imágenes
 		</button>
 	);
 };

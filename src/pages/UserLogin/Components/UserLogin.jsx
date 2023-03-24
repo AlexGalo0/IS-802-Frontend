@@ -104,7 +104,7 @@ export const UserLogin = () => {
 								marginLeft: "10px",
 							}}
 						>
-							Inicia sesion
+							Inicia sesión
 						</h1>
 
             <Form.Group

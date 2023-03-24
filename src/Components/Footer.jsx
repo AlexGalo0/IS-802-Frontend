@@ -43,7 +43,7 @@ export const Footers = () => {
           >
             <div>
               <button className="buttonFooter" onClick={handleShow}>
-                Terminos y condiciones
+              Términos y condiciones
               </button>
 
               {/* Modal de Terminos y Condiciones */}

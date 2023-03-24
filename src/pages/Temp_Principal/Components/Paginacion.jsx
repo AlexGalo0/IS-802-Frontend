@@ -8,7 +8,7 @@ export const Paginacion = ({longitudPaginacion,state}) => {
   return (
     <Pagination className='py-4'>
     {Array.from({ length: longitudPaginacion }).map((_, index) => {
-        /* Necesito la cantidad de paginas desde el back */
+       
         return (
             <Pagination.Item
                 onClick={() => handlePageChange(index + 1)}

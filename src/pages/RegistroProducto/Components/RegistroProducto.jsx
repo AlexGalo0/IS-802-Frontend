@@ -197,7 +197,7 @@ export const RegistroProducto = () => {
 							/>
 							<Form.Label htmlFor='' className='user-label'>
 								<MdOutlineDescription />
-								Descripcion
+								Descripción
 							</Form.Label>
 							{errors.descripcion?.type === "required" && (
 								<p className='FontAlert'>
@@ -281,7 +281,7 @@ export const RegistroProducto = () => {
 						>
 							<Form.Label className='letterMedium' htmlFor=''>
 								<BiCategoryAlt />
-								Categoria:{" "}
+								Categoría:{" "}
 							</Form.Label>
 							<Form.Select
 								style={{
@@ -297,7 +297,7 @@ export const RegistroProducto = () => {
 								{...register("idCategoria", { required: true })}
 							>
 								<option value='' disabled selected hidden>
-									Seleccione una categoria
+									Seleccione una categoría
 								</option>
 								<option value='Inmuebles'>Inmuebles</option>
 								<option value='Vehículos'>Vehículos</option>

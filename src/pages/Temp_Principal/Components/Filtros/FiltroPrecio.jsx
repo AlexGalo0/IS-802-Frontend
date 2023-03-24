@@ -29,7 +29,7 @@ export const FiltroPrecio = ({preciosMaxMinSeleccionados}) => {
 	return (
 		<>
 			<form onSubmit={handleSubmit(enviarPrecios)}>
-				<label htmlFor='' className="labelPrecio">Precio Minimo:</label>
+				<label htmlFor='' className="labelPrecio">Precio Mínimo:</label>
 				<input
 				className="inPrecio"
 					type='text'
@@ -39,12 +39,12 @@ export const FiltroPrecio = ({preciosMaxMinSeleccionados}) => {
 					})}
 				/>
 				{errors.precioMin?.type==="pattern" && (
-					<p>Ingresa solo numeros en formato XX.XX</p>
+					<p>Ingresa solo números en formato XX.XX</p>
 				)}
 				{errors.precioMin?.type==="required" && (
-					<p>El precio minimo es obligatorio</p>
+					<p>El precio mínimo es obligatorio</p>
 				)}
-				<label htmlFor='' className="labelPrecio">Precio Maximo:</label>
+				<label htmlFor='' className="labelPrecio">Precio Máximo:</label>
 				<input
 				className="inPrecio"
 					type='text'
@@ -54,10 +54,10 @@ export const FiltroPrecio = ({preciosMaxMinSeleccionados}) => {
 					})}
 				/>
 					{errors.precioMax?.type==="pattern" && (
-					<p>Ingresa solo numeros en formato XX.XX</p>
+					<p>Ingresa solo números en formato XX.XX</p>
 				)}
 				{errors.precioMax?.type==="required" && (
-					<p>El precio maximo es obligatorio</p>
+					<p>El precio máximo es obligatorio</p>
 				)}
 				<button
 				type="submit"

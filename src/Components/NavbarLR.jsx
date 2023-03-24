@@ -85,7 +85,7 @@ export const NavbarsLR = () => {
 
         <div style={{marginLeft: '-100px'}}>
         <Link to='/login'>
-          <button className="regis">Inicia sesion</button>
+          <button className="regis">Inicia sesión</button>
           </Link>
           <Link to='/registrarUsuario'>
 

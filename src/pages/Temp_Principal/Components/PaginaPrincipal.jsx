@@ -88,24 +88,10 @@ export const PaginaPrincipal = () => {
 		)))
 	*/
 
-	/* Renderizado de primera vez */
-
-	// useEffect(() => {
-	// 	console.log("El ultimo ejecutandose es principal");
-	// 	setLongitudPaginacion(10)
-
-	// 	//
-	// 	fetch(`http://localhost:4000/product/pagination/${numeroPaginaPrincipal}`)
-	// 		.then((response) => response.json())
-	// 		.then((product) => {
-	// 			setProductos(product);
-	// 			setUltimaPeticionHecha(peticionHecha.principal);
-	// 		});
-	// }, [numeroPaginaPrincipal, reiniciar]);
 
 	/* Renderizado de Categoria */
 	useEffect(() => {
-		console.log("El ultimo ejecutandose es categoria");
+	
 		setLongitudPaginacion(4)
 		setState(prevState => ({
 			...prevState,
@@ -128,7 +114,6 @@ export const PaginaPrincipal = () => {
 			...prevState,
 			activePage: 1
 		  }));
-		console.log("El ultimo ejecutandose es departamento");
 
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaDepartamento}/find-dpto/${departamentoSeleccionado}`
@@ -142,7 +127,6 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por rango de precio */
 	useEffect(() => {
-		console.log("El ultimo ejecutandose es precio");
 		setState(prevState => ({
 			...prevState,
 			activePage: 1
@@ -166,7 +150,6 @@ export const PaginaPrincipal = () => {
 			...prevState,
 			activePage: 1
 		  }));
-		console.log("El ultimo ejecutandose es palabras clave");
 
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaPalabraClave}/find-keyword/${palabraClave}`
@@ -180,7 +163,6 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por Fecha */
 	useEffect(() => {
-		console.log("El ultimo ejecutandose es fecha");
 
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaFecha}/${fechaSeleccionada}`
@@ -219,14 +201,6 @@ export const PaginaPrincipal = () => {
 		setCantidadDeDias(nuevaCantidadDeDias);
 	};
 
-	// const handlePaginacion = (numeroDePagina) => {
-	// 	setNumeroPaginaCategoria(numeroDePagina);
-	// };
-
-	// const handleNDias = (cantidadDeDias) => {
-	// 	setCantidadDias(cantidadDeDias);
-	// };
-
 	const handlePalabraClave = (palabraClave) => {
 		setPalabraClave(palabraClave);
 	};
@@ -247,43 +221,35 @@ export const PaginaPrincipal = () => {
 
 	/* Para cualquier tipo de paginacion */
 	const handlePageChange = (pageNumber) => {
-		console.log("La peticion inicial es ", ultimaPeticionHecha);
 		setState((prev) => ({ ...prev, activePage: pageNumber }));
 
 		if (ultimaPeticionHecha === peticionHecha.principal) {
-			console.log("La ultima peticion fue principal");
 			setNumeroPaginaPrincipal(pageNumber);
 		}
 		if (ultimaPeticionHecha === peticionHecha.categoria) {
-			console.log("La ultima peticion fue categoria");
 
 			setNumeroPaginaCategoria(pageNumber);
 		}
 
 		if (ultimaPeticionHecha === peticionHecha.departamento) {
-			console.log("La ultima peticion fue departamento");
 
 			setNumeroPaginaDepartamento(pageNumber);
 		}
 		if (ultimaPeticionHecha === peticionHecha.fecha) {
-			console.log("La ultima peticion fue fecha");
 
 			setNumeroPaginaFecha(pageNumber);
 		}
 		if (ultimaPeticionHecha === peticionHecha.keyword) {
-			console.log("La ultima peticion fue keyword");
 
 			setNumeroPaginaPalabraClave(pageNumber);
 		}
 		if (ultimaPeticionHecha === peticionHecha.precio) {
-			console.log("La ultima peticion fue precio");
 
 			setNumeroPaginaPrecio(pageNumber);
 		}
 	};
 
 	useEffect(() => {
-		console.log("El ultimo ejecutandose es principal");
 		setLongitudPaginacion(10)
 		
 		//
@@ -313,7 +279,7 @@ export const PaginaPrincipal = () => {
 						<Accordion.Item eventKey='0' className='acordion'>
 							<Accordion.Header>
 								<button className='btn'>
-									<span className='text'>Categorias</span>
+									<span className='text'>Categorías</span>
 								</button>
 							</Accordion.Header>
 							<Accordion.Body>
@@ -349,17 +315,7 @@ export const PaginaPrincipal = () => {
 							</Accordion.Body>
 						</Accordion.Item>
 
-						{/* <Accordion.Item eventKey='3' className='acordion'>
-							<Accordion.Header>
-								<button className='btn'>
-									<span className='text'>Prueba pagination</span>
-								</button>
-							</Accordion.Header>
-							<Accordion.Body>
-								<Navegacion handlePaginacion={handlePaginacion} />
-							</Accordion.Body>
-						</Accordion.Item> */}
-
+						
 						<Accordion.Item eventKey='4' className='acordion'>
 							<Accordion.Header>
 								<button className='btn'>

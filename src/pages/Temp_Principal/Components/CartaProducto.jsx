@@ -12,7 +12,7 @@ export const CartaProducto = ({
 	nombrecategoria,
 	departamento,
 }) => {
-	// console.log(JSON.parse(product[0].imagenes[0]))
+	
 	const [primeraImagen, setPrimeraImagen] = useState("");
 	useEffect(() => {
 		const primeraImagen = JSON.parse(imagenes);
@@ -21,16 +21,7 @@ export const CartaProducto = ({
 
 	return (
 		<Col>
-			{/* <Card>
-				<Card.Body>
-					<Card.Title>{nombre}</Card.Title>
-					<Card.Img src={primeraImagen}></Card.Img>
-					<Card.Text className='card-medium'>Precio: LPS. {precio}</Card.Text>
-					<Card.Text>Categoria : {nombrecategoria}</Card.Text>
-					<Card.Text>Departamento : {departamento}</Card.Text>
-					<Card.Subtitle>Disponibles en Inventario: {cantidad}</Card.Subtitle>
-				</Card.Body>
-			</Card> */}
+			
 
 			<Card className="card">
               <Container className="card-container">

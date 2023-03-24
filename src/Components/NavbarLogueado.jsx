@@ -124,7 +124,7 @@ export const NavbarsLogueado = () => {
         </div>
 
         <div>
-          <button onClick={pruebaDesloguear} className="buttonCerrarSesion">Cerrar Sesión</button>
+          <button onClick={pruebaDesloguear} className="buttonCerrarSesion">Cerrar sesión</button>
         </div>
 
 
