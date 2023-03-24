@@ -91,8 +91,9 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado de Categoria */
 	useEffect(() => {
-	
-		setLongitudPaginacion(4)
+		fetch(`http://localhost:4000/product/total-pages/${categoriaSeleccionada}`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
+			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
+		})
 		setState(prevState => ({
 			...prevState,
 			activePage: numeroPaginaCategoria
@@ -109,7 +110,9 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por Departamento */
 	useEffect(() => {
-		setLongitudPaginacion(2)
+		fetch(`http://localhost:4000/product/total-pages/dpto/${departamentoSeleccionado}`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
+			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
+		})
 		setState(prevState => ({
 			...prevState,
 			activePage: 1
@@ -127,6 +130,9 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por rango de precio */
 	useEffect(() => {
+		fetch(`http://localhost:4000/product/total-pages/range-price/${precioMinimo}/${precioMaximo}`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
+			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
+		})
 		setState(prevState => ({
 			...prevState,
 			activePage: 1
@@ -146,6 +152,12 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por palabras clave */
 	useEffect(() => {
+
+		fetch(`http://localhost:4000/product/total-pages/${palabraClave}`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
+			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
+		})
+
+		
 		setState(prevState => ({
 			...prevState,
 			activePage: 1
@@ -163,6 +175,9 @@ export const PaginaPrincipal = () => {
 
 	/* Renderizado por Fecha */
 	useEffect(() => {
+		fetch(`http://localhost:4000/product/total-pages/days/${fechaSeleccionada}`).then((response)=>response.json()).then((numeroItemsPaginacion)=>{
+			setLongitudPaginacion(numeroItemsPaginacion[0].cantidad)
+		})
 
 		fetch(
 			`http://localhost:4000/product/${numeroPaginaFecha}/${fechaSeleccionada}`
