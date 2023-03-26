@@ -1,1 +1,1 @@
-export * from './MostrarProductosPrincipal'
+export * from './Components'
