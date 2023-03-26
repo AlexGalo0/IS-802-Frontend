@@ -9,7 +9,7 @@ import {
 	Alert,
 } from "react-bootstrap";
 import "../../../style/styleForm.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState , useEffect } from "react";
 import { get, useForm } from "react-hook-form";
 import { CiUser, CiCalendarDate } from "react-icons/ci";
 import { IoMdPhonePortrait } from "react-icons/io";
@@ -19,46 +19,70 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 import { BiLeftArrow } from "react-icons/bi";
 import { comprobarEdad } from "../helpers";
-import { createUser } from "../../../api";
+import { crearUsuario, obtenerDepartamentos } from "../../../api";
 import { Contrato } from "./Contrato";
 import { useNavigate } from "react-router";
 import logo from "../../../assets/logoV2.png";
+import { useMutation, useQuery } from "react-query";
 
-export const RegistroUsuario = () => {
+export const RegistroUsuario = () => {	
+
 	const navigate = useNavigate(); //Para redireccion
 	const {
 		register,
-		formState: { errors, isSubmitSuccessful  },
+		formState: { errors },
 		handleSubmit,
-		getValues,
-		setError,
 		watch,
-		reset,
 	} = useForm();
+	const { data:departamentos, isLoading, isSuccess, isError } = useQuery({
+		queryKey: ["departamentos"],
+		queryFn: obtenerDepartamentos
+	});
+	
+
+
+
+	const mutationRegistro = useMutation({
+		mutationFn: crearUsuario,
+		onSuccess: () => {
+			console.log("Se Registro");
+		},
+		onError: () => {
+			console.log("No se registro");
+		},
+	});
+
+	const enviarDatosRegistro = (datosRegistro) => {
+		mutationRegistro.mutate({
+			...datosRegistro,
+		});
+	};
 
 	const [succesfullResponse, setSuccesfullResponse] = useState(false);
-	const [existenAmbosDNI, setExistenAmbosDNI] = useState()
-	const enviarInfo = async (data) => {
-		if(!data.dniExtranjero && !data.dniHondurenio) {
-			setExistenAmbosDNI(true)
-			return ; 
-		} else {
-			setExistenAmbosDNI(false)
-		}
-		try {
-			const response = await createUser(data);
-			setTimeout(() => {
-				navigate("/login");
-			}, 2500);
-			setSuccesfullResponse(true);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	const [existenAmbosDNI, setExistenAmbosDNI] = useState();
+	// const enviarInfo = async (data) => {
+	// 	if (!data.dniExtranjero && !data.dniHondurenio) {
+	// 		setExistenAmbosDNI(true);
+	// 		return;
+	// 	} else {
+	// 		setExistenAmbosDNI(false);
+	// 	}
+	// 	try {
+	// 		const response = await crearUsuario(data);
+	// 		setTimeout(() => {
+	// 			navigate("/login");
+	// 		}, 2500);
+	// 		setSuccesfullResponse(true);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
 
 	const handleRedirection = () => {
 		navigate("/");
 	};
+
+
 
 	/* Manejo de Modal */
 	const [show, setShow] = useState(false);
@@ -69,9 +93,7 @@ export const RegistroUsuario = () => {
 	const password = useRef({});
 	password.current = watch("password", "");
 
-	// useEffect(() => {
-	// 	reset();
-	// }, [isSubmitSuccessful]);
+	
 
 	return (
 		<>
@@ -80,7 +102,7 @@ export const RegistroUsuario = () => {
 					<Form
 						fluid='true'
 						className='Form'
-						onSubmit={handleSubmit(enviarInfo)}
+						onSubmit={handleSubmit(enviarDatosRegistro)}
 					>
 						<Row>
 							<Col
@@ -112,13 +134,18 @@ export const RegistroUsuario = () => {
 										width: "110px",
 										paddingRight: "10px",
 										paddingTop: "20px",
-										marginRight: '-8px'
+										marginRight: "-8px",
 									}}
 								/>
 							</Col>
 						</Row>
-						<h1 style={{ color: "#0d0d0d", textAlign: "left", 
-								marginLeft: "10px" }}>
+						<h1
+							style={{
+								color: "#0d0d0d",
+								textAlign: "left",
+								marginLeft: "10px",
+							}}
+						>
 							Crea tu cuenta
 						</h1>
 
@@ -351,17 +378,17 @@ export const RegistroUsuario = () => {
 							</Col>
 						)}
 
-						{errors.dniExtranjero?.type === "required" && errors.dniHondurenio?.type==="required" (
+						{
+							errors.dniExtranjero?.type === "required" &&
+								errors.dniHondurenio?.type === "required"()
 							// <p className='FontAlert'>Necesitamos al menos un DNI!</p>
-						)}
+						}
 
 						{errors.dniExtranjero?.type === "maxLength" && (
 							<p className='maxLength'>
 								El DNI Extranjero no debe exceder 20 caracteres!
 							</p>
 						)}
-
-						
 
 						<Form.Group
 							style={{ position: "relative" }}
@@ -430,9 +457,7 @@ export const RegistroUsuario = () => {
 								</p>
 							)}
 						</Form.Group>
-						{
-							existenAmbosDNI ? <p>Debes enviar por lo menos un DNI</p> : ''
-						}
+						{existenAmbosDNI ? <p>Debes enviar por lo menos un DNI</p> : ""}
 
 						<Form.Group
 							style={{ position: "relative" }}
@@ -469,22 +494,32 @@ export const RegistroUsuario = () => {
 							<GoLocation />
 							Elige tu departamento
 						</Form.Label>
+
 						<Form.Select
 							style={{
 								border: "2px solid #365662",
 								boxShadow: "0 0.4rem #94BFD1",
 								borderRadius: "12px",
 								height: "45px",
-								width: '550px',
-								margin: 'auto',
-								marginBottom: '10px'
+								width: "550px",
+								margin: "auto",
+								marginBottom: "10px",
 							}}
 							px
 							aria-label='Departamentos'
 							{...register("departamentos", { required: true })}
 						>
-							<option value="" disabled selected hidden>Seleccione un departamento</option>
-							<option value='1'>Atlántida</option>
+							<option value='' hidden>
+								Seleccione un departamento
+							</option>
+							{
+								departamentos?.map((departamento)=>(
+									<option value={departamento.id_dpto}>{departamento.nombre}</option>
+								))
+							}
+						
+
+							{/* <option value='1'>Atlántida</option>
 							<option value='2'>Colón</option>
 							<option value='3'>Comayagua</option>
 							<option value='4'>Copán</option>
@@ -501,7 +536,7 @@ export const RegistroUsuario = () => {
 							<option value='15'>Olancho</option>
 							<option value='16'>Santa Bárbara</option>
 							<option value='17'>Valle</option>
-							<option value='18'>Yoro</option>
+							<option value='18'>Yoro</option> */}
 						</Form.Select>
 						{errors.departamentos?.type === "required" && (
 							<p className='FontAlert'>¡El campo departamentos es requerido!</p>

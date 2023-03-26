@@ -45,11 +45,6 @@ export const RegistroProducto = () => {
 				setDepartamentos(departamentos);
 			});
 	}, []);
-
-	/* 
-
-	*/
-
 	const enviarProducto = async (productInfo) => {
 		console.log(productInfo);
 		productInfo.imagenes = urls;

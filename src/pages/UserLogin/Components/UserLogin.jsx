@@ -42,6 +42,10 @@ export const UserLogin = () => {
 		});
 	};
 
+	const handleRedirection=()=>{
+		navigate(-1)
+	}
+
 	return (
 		<>
 			<header className='App-header'>
