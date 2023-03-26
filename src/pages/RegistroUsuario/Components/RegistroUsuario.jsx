@@ -9,8 +9,8 @@ import {
 	Alert,
 } from "react-bootstrap";
 import "../../../style/styleForm.css";
-import { useRef, useState , useEffect } from "react";
-import { get, useForm } from "react-hook-form";
+import { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 import { CiUser, CiCalendarDate } from "react-icons/ci";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { HiOutlineIdentification } from "react-icons/hi";
@@ -25,8 +25,7 @@ import { useNavigate } from "react-router";
 import logo from "../../../assets/logoV2.png";
 import { useMutation, useQuery } from "react-query";
 
-export const RegistroUsuario = () => {	
-
+export const RegistroUsuario = () => {
 	const navigate = useNavigate(); //Para redireccion
 	const {
 		register,
@@ -34,13 +33,10 @@ export const RegistroUsuario = () => {
 		handleSubmit,
 		watch,
 	} = useForm();
-	const { data:departamentos, isLoading, isSuccess, isError } = useQuery({
+	const { data: departamentos } = useQuery({
 		queryKey: ["departamentos"],
-		queryFn: obtenerDepartamentos
+		queryFn: obtenerDepartamentos,
 	});
-	
-
-
 
 	const mutationRegistro = useMutation({
 		mutationFn: crearUsuario,
@@ -82,8 +78,6 @@ export const RegistroUsuario = () => {
 		navigate("/");
 	};
 
-
-
 	/* Manejo de Modal */
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
@@ -92,8 +86,6 @@ export const RegistroUsuario = () => {
 	/* Para verificacion de los dos inputs de password */
 	const password = useRef({});
 	password.current = watch("password", "");
-
-	
 
 	return (
 		<>
@@ -512,12 +504,11 @@ export const RegistroUsuario = () => {
 							<option value='' hidden>
 								Seleccione un departamento
 							</option>
-							{
-								departamentos?.map((departamento)=>(
-									<option value={departamento.id_dpto}>{departamento.nombre}</option>
-								))
-							}
-						
+							{departamentos?.map((departamento) => (
+								<option value={departamento.id_dpto}>
+									{departamento.nombre}
+								</option>
+							))}
 
 							{/* <option value='1'>Atlántida</option>
 							<option value='2'>Colón</option>
