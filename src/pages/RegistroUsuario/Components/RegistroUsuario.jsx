@@ -33,6 +33,9 @@ export const RegistroUsuario = () => {
 		handleSubmit,
 		watch,
 	} = useForm();
+
+	const [existenAmbosDNI, setExistenAmbosDNI] = useState();
+
 	const { data: departamentos } = useQuery({
 		queryKey: ["departamentos"],
 		queryFn: obtenerDepartamentos,
@@ -41,10 +44,10 @@ export const RegistroUsuario = () => {
 	const mutationRegistro = useMutation({
 		mutationFn: crearUsuario,
 		onSuccess: () => {
-			console.log("Se Registro");
+			console.log("Exito!");
 		},
 		onError: () => {
-			console.log("No se registro");
+			console.log("Hubo un error");
 		},
 	});
 
@@ -53,26 +56,6 @@ export const RegistroUsuario = () => {
 			...datosRegistro,
 		});
 	};
-
-	const [succesfullResponse, setSuccesfullResponse] = useState(false);
-	const [existenAmbosDNI, setExistenAmbosDNI] = useState();
-	// const enviarInfo = async (data) => {
-	// 	if (!data.dniExtranjero && !data.dniHondurenio) {
-	// 		setExistenAmbosDNI(true);
-	// 		return;
-	// 	} else {
-	// 		setExistenAmbosDNI(false);
-	// 	}
-	// 	try {
-	// 		const response = await crearUsuario(data);
-	// 		setTimeout(() => {
-	// 			navigate("/login");
-	// 		}, 2500);
-	// 		setSuccesfullResponse(true);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// };
 
 	const handleRedirection = () => {
 		navigate("/");
@@ -509,25 +492,6 @@ export const RegistroUsuario = () => {
 									{departamento.nombre}
 								</option>
 							))}
-
-							{/* <option value='1'>Atlántida</option>
-							<option value='2'>Colón</option>
-							<option value='3'>Comayagua</option>
-							<option value='4'>Copán</option>
-							<option value='5'>Cortés</option>
-							<option value='6'>Choluteca</option>
-							<option value='7'>El Paraíso</option>
-							<option value='8'>Francisco Morazán</option>
-							<option value='9'>Gracias a Dios</option>
-							<option value='10'>Intibucá</option>
-							<option value='11'>Islas de la Bahía</option>
-							<option value='12'>La Paz</option>
-							<option value='13'>Lempira</option>
-							<option value='14'>Ocotepeque</option>
-							<option value='15'>Olancho</option>
-							<option value='16'>Santa Bárbara</option>
-							<option value='17'>Valle</option>
-							<option value='18'>Yoro</option> */}
 						</Form.Select>
 						{errors.departamentos?.type === "required" && (
 							<p className='FontAlert'>¡El campo departamentos es requerido!</p>
@@ -587,13 +551,19 @@ export const RegistroUsuario = () => {
 								</button>
 							</Modal.Footer>
 						</Modal>
-						{succesfullResponse ? (
+						{mutationRegistro.isSuccess ? (
 							<Alert variant='success'>
-								Se creo de forma correcta su usuario
+								Se creo de forma correcta su usuario,
+							</Alert>
+						) : null}
+						{mutationRegistro.isError ? (
+							<Alert variant='danger'>
+								Hubo un problema al crear su usuario. Intenta de nuevo.
 							</Alert>
 						) : (
 							""
 						)}
+						{mutationRegistro.isLoading ? <p>........</p> : ""}
 						<button className='Button' type='submit'>
 							<span className='boxForm'>Crear cuenta</span>
 						</button>
