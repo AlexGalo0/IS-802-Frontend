@@ -28,6 +28,7 @@ export const UserLogin = () => {
 	const mutationLogin = useMutation({
 		mutationFn: iniciarSesion,
 		onSuccess:()=>{
+			setUserAuth(true)
 			setTimeout(()=>{
 				navigate('/')
 			},1000)

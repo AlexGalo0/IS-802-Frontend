@@ -18,51 +18,46 @@ import {
 	FormGroup,
 	FormLabel,
 } from "react-bootstrap";
-import { useEffect, useState } from "react";
-import { enviarProductos } from "../../../api";
+import { useState } from "react";
+import { obtenerDepartamentos, obtenerCategorias } from "../../../api";
 import { useNavigate } from "react-router";
-
+import { useMutation, useQuery } from "react-query";
 export const RegistroProducto = () => {
-
-
-	const [departamentos,setDepartamentos]=useState([])
 	const navigate = useNavigate(); //Para redireccion
 	const {
 		register,
 		formState: { errors },
 		handleSubmit,
-		reset,
 	} = useForm();
+
+	const { data: categorias } = useQuery({
+		queryKey: ["categorias"],
+		queryFn: obtenerCategorias,
+	});
+	const { data: departamentos } = useQuery({
+		queryKey: ["departamentos"],
+		queryFn: obtenerDepartamentos,
+	});
 
 	const [urls, setURLS] = useState([]);
 	const [imagenesVacias, setImagenesVacias] = useState(false);
-	const [succesfullResponse, setSuccesfullResponse] = useState(false);
 
-	useEffect(() => {
-		fetch("http://localhost:4000/departamentos")
-			.then((response) => response.json())
-			.then((departamentos) => {
-				setDepartamentos(departamentos);
-			});
-	}, []);
 	const enviarProducto = async (productInfo) => {
-		console.log(productInfo);
-		productInfo.imagenes = urls;
-		if (productInfo.imagenes.length === 0) {
-			setImagenesVacias(true);
-			return;
-		}
-
-		try {
-			const response = await enviarProductos(productInfo);
-			setSuccesfullResponse(true);
-
-			setTimeout(() => {
-				navigate("/");
-			}, 1500);
-		} catch (error) {
-			console.log(error);
-		}
+		// console.log(productInfo);
+		// productInfo.imagenes = urls;
+		// if (productInfo.imagenes.length === 0) {
+		// 	setImagenesVacias(true);
+		// 	return;
+		// }
+		// try {
+		// 	const response = await enviarProductos(productInfo);
+		// 	setSuccesfullResponse(true);
+		// 	setTimeout(() => {
+		// 		navigate("/");
+		// 	}, 1500);
+		// } catch (error) {
+		// 	console.log(error);
+		// }
 	};
 	const recibirURL = (url) => {
 		setURLS(url);
@@ -135,8 +130,8 @@ export const RegistroProducto = () => {
 								name='text'
 								className='inNombre'
 								{...register("nombreProducto", {
-									pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s!@#$%^&*()-_+={}[\]|;:'",.<>/?]{4,50}$/
-									,
+									pattern:
+										/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s!@#$%^&*()-_+={}[\]|;:'",.<>/?]{4,50}$/,
 									required: true,
 								})}
 							/>
@@ -255,15 +250,14 @@ export const RegistroProducto = () => {
 								aria-label='Departamentos'
 								{...register("dptoVenta", { required: true })}
 							>
-								<option value='' disabled selected hidden>
+								<option value=''  hidden>
 									Seleccione un departamento
 								</option>
-								{
-									departamentos.map((departamento)=>(
-										<option value={departamento.id_dpto}>{departamento.nombre}</option>
-									))
-								}
-							
+								{departamentos?.map((departamento) => (
+									<option value={departamento.id_dpto} key={departamento.id_dpto} >
+										{departamento.nombre}
+									</option>
+								))}
 							</Form.Select>
 						</Form.Group>
 
@@ -292,18 +286,14 @@ export const RegistroProducto = () => {
 								aria-label='categorias'
 								{...register("idCategoria", { required: true })}
 							>
-								<option value='' disabled selected hidden>
+								<option value='' hidden>
 									Seleccione una categoría
 								</option>
-								<option value='Inmuebles'>Inmuebles</option>
-								<option value='Vehículos'>Vehículos</option>
-								<option value='Hogar'>Hogar</option>
-								<option value='Futuros padres'>Futuros Padres</option>
-								<option value='Mascotas'>Mascotas</option>
-								<option value='Electrónica'>Electrónica</option>
-								<option value='Servicios'>Servicios</option>
-								<option value='Negocios'>Negocios</option>
-								<option value='Empleos'>Empleos</option>
+								{categorias?.map((categoria) => (
+									<option key={categoria.idCategoria.data} value={categoria.nombre}>
+										{categoria.nombre}
+									</option>
+								))}
 							</Form.Select>
 						</Form.Group>
 
@@ -314,18 +304,12 @@ export const RegistroProducto = () => {
 						)}
 						<CloudinaryUploadWidget recibirURL={recibirURL} />
 						{imagenesVacias ? (
-						<p className='font-cloud'>¡Debes enviar por lo menos una imagen!</p>
-					) : (
-						""
-					)}
-
-					{succesfullResponse ? (
-						<Alert variant='success' style={{marginTop: '20px'}}>
-							Se registro el producto exitosamente
-						</Alert>
-					) : (
-						""
-					)}
+							<p className='font-cloud'>
+								¡Debes enviar por lo menos una imagen!
+							</p>
+						) : (
+							""
+						)}
 						<div>
 							<button
 								className='Button'
@@ -338,8 +322,6 @@ export const RegistroProducto = () => {
 					</Form>
 
 					{/* <div className="conWhite"></div> */}
-
-					
 				</Container>
 			</header>
 		</>

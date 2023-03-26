@@ -27,6 +27,7 @@ export const obtenerDepartamentos = async () => {
 }
 
 export const obtenerCategorias = async () => {
-    await axios.get('http://localhost:4000/categories')
+   const res =  await axios.get('http://localhost:4000/categories')
+   return res.data
 }
 
