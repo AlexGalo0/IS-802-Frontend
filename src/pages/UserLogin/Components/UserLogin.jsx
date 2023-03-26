@@ -8,7 +8,7 @@ import { BiLeftArrow, } from "react-icons/bi";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import {useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { useMutation } from "react-query";
 export const UserLogin = () => {
@@ -25,13 +25,16 @@ export const UserLogin = () => {
 		setUserAuth(false); //Borrar si no se quiere desloguear a usuario al ingresar al Login
 	}, []);
 
+	const [disableButton , setDisableButton] = useState(false)
+
 	const mutationLogin = useMutation({
 		mutationFn: iniciarSesion,
 		onSuccess:()=>{
 			setUserAuth(true)
+			setDisableButton(true)
 			setTimeout(()=>{
 				navigate('/')
-			},1000)
+			},2000)
 		}
 		
 	});
@@ -167,7 +170,7 @@ export const UserLogin = () => {
 						)}
 
 						<div>
-							<button className='Button' type='submit'>
+							<button className='Button' type='submit' disabled={disableButton}>
 								<span className='boxForm'>Iniciar sesión</span>
 							</button>
 						</div>

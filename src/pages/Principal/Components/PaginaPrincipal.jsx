@@ -1,41 +1,42 @@
-import {
-	Container,
-	Accordion,
-	Form,
-	Card,
-	Row,
-	Col,
-	Carousel,
-	Image,
-} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "../Style/Temp_Principal.css";
-import imagen from "../../../assets/1.png";
 import { FaFilter } from "react-icons/fa";
-import { CartaProducto } from "./CartaProducto";
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-
-import {
-	FiltroCategorias,
-	FiltroDepartamento,
-	FiltroFecha,
-	FiltroPalabrasClave,
-	FiltroPrecio,
-} from "./Filtros";
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { Footers } from "../../../Components/Footer";
-import ejem from "../../../assets/ejem.jpeg";
-import segunda from "../../../assets/3.png";
-import primera from "../../../assets/4.png";
-import { useContext } from "react";
-import { UserContext, AdminContext } from "../../../context";
-import Pagination from "react-bootstrap/Pagination";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../context";
 import { SidebarFiltros } from "./SidebarFiltros";
+import { useQuery } from "react-query";
+import { obtenerDepartamentos, obtenerCategorias } from "../../../api";
+import { useForm } from "react-hook-form";
 
 export const PaginaPrincipal = () => {
 	const { userAuth } = useContext(UserContext);
+	const [numeroPagina , setNumeroPagina] = useState(0)
 
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+
+	const { data: categorias } = useQuery({
+		queryKey: ["categorias"],
+		queryFn: obtenerCategorias,
+	});
+	const { data: departamentos } = useQuery({
+		queryKey: ["departamentos"],
+		queryFn: obtenerDepartamentos,
+	});
+
+	
+
+	
+
+	const filtrarProductos = (data) => {
+		console.log(data);
+	};
 	return (
 		<Container fluid className='container-grid'>
 			{userAuth ? <NavbarsLogueado /> : <NavbarsLR />}
@@ -45,10 +46,80 @@ export const PaginaPrincipal = () => {
 					<h4 className='py-3 fil'>
 						<FaFilter /> Filtros
 					</h4>
-					<SidebarFiltros/>
+					<SidebarFiltros />
 					<span className='textBuscar'>Limpiar Filtros</span>
+					<br />
+					<form onSubmit={handleSubmit(filtrarProductos)}>
+						{categorias?.map((categoria) => (
+							<div key={categoria.idCategoria.data}>
+								<input
+									type='checkbox'
+									value={categoria.nombre}
+									{...register(`${categoria.nombre}`)}
+								/>
+								<label htmlFor=''>{categoria.nombre}</label>
+								<br />
+							</div>
+						))}
+
+						<br />
+						{departamentos?.map((departamento) => (
+							<div key={departamento.id_dpto}>
+								<input
+									type='checkbox'
+									value={departamento.nombre}
+									{...register(`${departamento.nombre}`)}
+								/>
+								<label htmlFor=''>{departamento.nombre}</label>
+								<br />
+							</div>
+						))}
+
+						{
+							<>
+								<input
+									type='number'
+									placeholder='Precio Minimo'
+									{...register("precioMinimo")}
+								/>
+								<input
+									type='number'
+									placeholder='Precio Maximo'
+									{...register("precioMaximo")}
+								/>
+							</>
+						}
+						{
+							<>
+								<input
+									type='text'
+									placeholder='Palabras Clave'
+									{...register("palabraClave")}
+								/>
+							</>
+						}
+
+						{
+							<>
+								<br />
+								<input type='checkbox' name='' id='' {...register("7Days")}/>
+								<label htmlFor=''>7 Dias</label>
+								<br />
+								<input type='checkbox' name='' id='' {...register("15Days")}/>
+								<label htmlFor=''>15 Dias</label>
+								<br />
+								<input type='checkbox' name='' id='' {...register("20Days")}/>
+								<label htmlFor=''>20 Dias</label>
+								<br />
+								<input type='checkbox' name='' id='' {...register("30Days")}/>
+								<label htmlFor=''>30 Dias</label>
+								<br />
+							</>
+						}
+						<button type='submit'>Filtrar</button>
+					</form>
 				</aside>
-					
+
 				<article>
 					{/* <Row xs={1} md={3} className='g-4'>
 						{productos.map((producto) => (

@@ -23,7 +23,9 @@ export const RegistroProducto = () => {
 		register,
 		formState: { errors },
 		handleSubmit,
-	} = useForm();
+	} = useForm(); //Para react-hook-form
+
+	//Para React Query
 
 	const { data: categorias } = useQuery({
 		queryKey: ["categorias"],
@@ -33,28 +35,30 @@ export const RegistroProducto = () => {
 		queryKey: ["departamentos"],
 		queryFn: obtenerDepartamentos,
 	});
-
-	const [urls, setURLS] = useState([]);
-	const [imagenesVacias, setImagenesVacias] = useState(false);
-
 	const mutationRegistrarProducto = useMutation({
 		mutationFn: crearProducto,
 		onSuccess: () => {}, //Agregar en el body funcion cuando funcione correctamente
 		onError: () => {},
 	});
 
-	const enviarProducto = (productInfo) => {
-		productInfo.imagenes = urls;
-		mutationRegistrarProducto.mutate({
-			...productInfo,
-		});
-	};
+	const [urls, setURLS] = useState([]);
+	const [imagenesVacias, setImagenesVacias] = useState(false);
+
 	const recibirURL = (url) => {
 		setURLS(url);
 	};
 	const handleRedirection = () => {
 		navigate("/");
 	};
+
+	/* Funcion onSubmit */
+	const enviarProducto = (productInfo) => {
+		productInfo.imagenes = urls;
+		mutationRegistrarProducto.mutate({
+			...productInfo,
+		});
+	};
+
 	return (
 		<>
 			<header className='App-header'>
