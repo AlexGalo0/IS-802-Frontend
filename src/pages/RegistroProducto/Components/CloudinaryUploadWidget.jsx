@@ -13,7 +13,6 @@ export const CloudinaryUploadWidget = ({recibirURL}) => {
 
 	
 	useEffect(() => {
-		console.log('La cantidad disponbile a subir es' , maxFiles	);
 		cloudinaryRef.current = window.cloudinary;
 		//console.log(cloudinaryRef.current)
 		widgetRef.current = cloudinaryRef.current.createUploadWidget(

@@ -6,22 +6,17 @@ import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
 import { MdDriveFileRenameOutline, MdOutlineDescription } from "react-icons/md";
 import { FaSortAmountDownAlt } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
-import { BsCalendarDay } from "react-icons/bs";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Alert } from "react-bootstrap";
-import {
-	Col,
-	Container,
-	Form,
-	Row,
-	Image,
-	FormGroup,
-	FormLabel,
-} from "react-bootstrap";
+import { Col, Container, Form, Row, Image } from "react-bootstrap";
 import { useState } from "react";
-import { obtenerDepartamentos, obtenerCategorias } from "../../../api";
 import { useNavigate } from "react-router";
 import { useMutation, useQuery } from "react-query";
+import {
+	obtenerDepartamentos,
+	obtenerCategorias,
+	crearProducto,
+} from "../../../api";
 export const RegistroProducto = () => {
 	const navigate = useNavigate(); //Para redireccion
 	const {
@@ -42,22 +37,17 @@ export const RegistroProducto = () => {
 	const [urls, setURLS] = useState([]);
 	const [imagenesVacias, setImagenesVacias] = useState(false);
 
-	const enviarProducto = async (productInfo) => {
-		// console.log(productInfo);
-		// productInfo.imagenes = urls;
-		// if (productInfo.imagenes.length === 0) {
-		// 	setImagenesVacias(true);
-		// 	return;
-		// }
-		// try {
-		// 	const response = await enviarProductos(productInfo);
-		// 	setSuccesfullResponse(true);
-		// 	setTimeout(() => {
-		// 		navigate("/");
-		// 	}, 1500);
-		// } catch (error) {
-		// 	console.log(error);
-		// }
+	const mutationRegistrarProducto = useMutation({
+		mutationFn: crearProducto,
+		onSuccess: () => {}, //Agregar en el body funcion cuando funcione correctamente
+		onError: () => {},
+	});
+
+	const enviarProducto = (productInfo) => {
+		productInfo.imagenes = urls;
+		mutationRegistrarProducto.mutate({
+			...productInfo,
+		});
 	};
 	const recibirURL = (url) => {
 		setURLS(url);
@@ -250,11 +240,14 @@ export const RegistroProducto = () => {
 								aria-label='Departamentos'
 								{...register("dptoVenta", { required: true })}
 							>
-								<option value=''  hidden>
+								<option value='' hidden>
 									Seleccione un departamento
 								</option>
 								{departamentos?.map((departamento) => (
-									<option value={departamento.id_dpto} key={departamento.id_dpto} >
+									<option
+										value={departamento.id_dpto}
+										key={departamento.id_dpto}
+									>
 										{departamento.nombre}
 									</option>
 								))}
@@ -290,7 +283,10 @@ export const RegistroProducto = () => {
 									Seleccione una categoría
 								</option>
 								{categorias?.map((categoria) => (
-									<option key={categoria.idCategoria.data} value={categoria.nombre}>
+									<option
+										key={categoria.idCategoria.data}
+										value={categoria.nombre}
+									>
 										{categoria.nombre}
 									</option>
 								))}
@@ -310,6 +306,19 @@ export const RegistroProducto = () => {
 						) : (
 							""
 						)}
+
+						{mutationRegistrarProducto.isLoading ? (
+							<p> Registrando Producto....</p>
+						) : null}
+
+						{mutationRegistrarProducto.isSuccess ? (
+							<Alert variant='success'>¡Producto Añadido!</Alert>
+						) : null}
+						{mutationRegistrarProducto.isError ? (
+							<Alert variant='danger'>
+								Hubo un problema. Intenta de nuevo.
+							</Alert>
+						) : null}
 						<div>
 							<button
 								className='Button'
