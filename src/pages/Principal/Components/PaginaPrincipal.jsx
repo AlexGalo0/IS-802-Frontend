@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Container , Row } from "react-bootstrap";
 import "../Style/Temp_Principal.css";
 import { FaFilter } from "react-icons/fa";
 import { NavbarsLR } from "../../../Components/NavbarLR";
@@ -7,10 +7,10 @@ import { Footers } from "../../../Components/Footer";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../context";
 import { SidebarFiltros } from "./SidebarFiltros";
-import { useQuery } from "react-query";
-import { obtenerDepartamentos, obtenerCategorias } from "../../../api";
+import { useQuery, useQueryClient } from "react-query";
+import { obtenerDepartamentos, obtenerCategorias, obtenerProductos } from "../../../api";
 import { useForm } from "react-hook-form";
-
+import { CartaProducto } from "./CartaProducto";
 export const PaginaPrincipal = () => {
 	const { userAuth } = useContext(UserContext);
 	const [numeroPagina , setNumeroPagina] = useState(0)
@@ -21,6 +21,7 @@ export const PaginaPrincipal = () => {
 		formState: { errors },
 	} = useForm();
 
+	const queryClient = useQueryClient()
 	const { data: categorias } = useQuery({
 		queryKey: ["categorias"],
 		queryFn: obtenerCategorias,
@@ -30,12 +31,18 @@ export const PaginaPrincipal = () => {
 		queryFn: obtenerDepartamentos,
 	});
 
+	const {data:productos} = useQuery({
+		queryKey:["productos"],
+		queryFn: obtenerProductos,
+		
+	})
+
 	
 
 	
 
 	const filtrarProductos = (data) => {
-		console.log(data);
+		queryClient.invalidateQueries('productos')
 	};
 	return (
 		<Container fluid className='container-grid'>
@@ -121,17 +128,17 @@ export const PaginaPrincipal = () => {
 				</aside>
 
 				<article>
-					{/* <Row xs={1} md={3} className='g-4'>
-						{productos.map((producto) => (
-							<CartaProducto {...producto} key={uuidv4()} />
+					<Row xs={1} md={3} className='g-4'>
+						{productos?.map((producto) => (
+							<CartaProducto {...producto} />
 						))}
 						
-						{productos.length === 0 ? (
+						{productos?.length === 0 ? (
 							<p>No pudimos encontrar ningún producto</p>
 						) : (
 							""
 						)}
-					</Row> */}
+					</Row>
 
 					{/* <Pagination className='py-4' size="lg" bsPrefix="pagination" style={{marginBottom: '-10px'}} >
 						{Array.from({ length: longitudPaginacion }).map((_, index) => {

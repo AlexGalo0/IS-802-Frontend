@@ -7,6 +7,7 @@ import {
 	UserLogin,
 	PaginaPrincipal,
 	Construyendo,
+	EdicionCategorias
 } from "../pages";
 import { useContext } from "react";
 import { RutaProtegida, NavbarsLR } from "../Components";
@@ -22,7 +23,7 @@ export const Router = () => {
 				<Route path='/login' element={<UserLogin />} />
 				<Route path='/login-admin' element={<LoginAdministrador />} />
 				{/* <RutaProtegida isAllowed={userAuth}>  	</RutaProtegida>*/}
-
+				<Route path="/crudCategorias" element={<EdicionCategorias/>}/>
 				<Route
 					path='/registrarProducto'
 					element={

@@ -4,10 +4,10 @@ import "../../../style/styleForm.css";
 import logo from "../../../assets/logoV2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Form, Row, Image, Alert } from "react-bootstrap";
-import { BiLeftArrow, } from "react-icons/bi";
+import { BiLeftArrow } from "react-icons/bi";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { useMutation } from "react-query";
@@ -19,24 +19,23 @@ export const UserLogin = () => {
 		formState: { errors },
 	} = useForm();
 
-	const {setUserAuth } = useContext(UserContext); //Borrar si no se quiere desloguear a usuario al ingresar al Login
+	const { setUserAuth } = useContext(UserContext); //Borrar si no se quiere desloguear a usuario al ingresar al Login
 
 	useEffect(() => {
 		setUserAuth(false); //Borrar si no se quiere desloguear a usuario al ingresar al Login
 	}, []);
 
-	const [disableButton , setDisableButton] = useState(false)
+	const [disableButton, setDisableButton] = useState(false);
 
 	const mutationLogin = useMutation({
 		mutationFn: iniciarSesion,
-		onSuccess:()=>{
-			setUserAuth(true)
-			setDisableButton(true)
-			setTimeout(()=>{
-				navigate('/')
-			},2000)
-		}
-		
+		onSuccess: () => {
+			setUserAuth(true);
+			setDisableButton(true);
+			setTimeout(() => {
+				navigate("/");
+			}, 2000);
+		},
 	});
 
 	const envioDatosLogin = (datosUsuario) => {
@@ -46,9 +45,9 @@ export const UserLogin = () => {
 		});
 	};
 
-	const handleRedirection=()=>{
-		navigate(-1)
-	}
+	const handleRedirection = () => {
+		navigate(-1);
+	};
 
 	return (
 		<>

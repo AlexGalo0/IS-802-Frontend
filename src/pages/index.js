@@ -4,4 +4,5 @@ export * from './RegistroProducto'
 export * from './RegistroUsuario'
 export * from './Principal'
 export * from './UserLogin'
+export * from './CRUD-Categorias'
 
