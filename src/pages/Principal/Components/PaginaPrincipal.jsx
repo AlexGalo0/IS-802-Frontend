@@ -42,6 +42,7 @@ export const PaginaPrincipal = () => {
 	
 
 	const filtrarProductos = (data) => {
+		console.log(data);
 		queryClient.invalidateQueries('productos')
 	};
 	return (
@@ -161,3 +162,15 @@ export const PaginaPrincipal = () => {
 		</Container>
 	);
 };
+
+
+/* 
+	Funcion para Filtrar: 
+	const objetoFiltrado = Object.keys(objeto)
+  .filter(key => objeto[key] !== false)
+  .reduce((obj, key) => {
+    obj[key] = objeto[key];
+    return obj;
+  }, {});
+
+*/
