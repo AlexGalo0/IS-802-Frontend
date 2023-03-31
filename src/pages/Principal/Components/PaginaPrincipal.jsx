@@ -30,12 +30,9 @@ export const PaginaPrincipal = () => {
 		queryFn: obtenerDepartamentos,
 	});
 
-	
-
-	
 
 	const filtrarProductos = (data) => {
-		console.log(data);
+		
 	};
 	return (
 		<Container fluid className='container-grid'>

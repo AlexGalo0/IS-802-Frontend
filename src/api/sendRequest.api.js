@@ -28,6 +28,7 @@ export const crearProducto = async (infoProducto) => {
     await axios.post('http://localhost:4000/product', infoProducto)
 }
 
+
 /* **POST: Inicio Sesiones** */
 export const iniciarSesion = async (loginData) => {
     await axios.post('http://localhost:4000/login/cliente', loginData)
@@ -36,7 +37,6 @@ export const iniciarSesion = async (loginData) => {
 export const iniciarSesionAdmin = async (loginData) => {
     await axios.post('http://localhost:4000/login/admin', loginData)
 }
-
 
 
 
