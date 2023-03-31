@@ -31,11 +31,11 @@ export const crearProducto = async (infoProducto) => {
 
 export const enviarFiltros = async (datosFiltrado) => {
     console.log(datosFiltrado);
-    
-    const res = await axios.get('http://localhost:4000/product/1/filters', datosFiltrado)
+    const res = await axios.post('http://localhost:4000/product/1/filters', datosFiltrado)
+    console.log(res.data);
     return res.data ;
-
 }
+
 /* **POST: Inicio Sesiones** */
 export const iniciarSesion = async (loginData) => {
     await axios.post('http://localhost:4000/login/cliente', loginData)

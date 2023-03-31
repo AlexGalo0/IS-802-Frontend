@@ -65,7 +65,7 @@ export const PaginaPrincipal = () => {
 								<input
 									type='checkbox'
 									value={categoria.nombre}
-									{...register(`${categoria.nombre}`)}
+									{...register(`categorias`)} //${categoria.nombre}
 								/>
 								<label htmlFor=''>{categoria.nombre}</label>
 								<br />
@@ -78,7 +78,7 @@ export const PaginaPrincipal = () => {
 								<input
 									type='checkbox'
 									value={departamento.nombre}
-									{...register(`${departamento.nombre}`)}
+									{...register(`departamentos`)}//${departamento.nombre}
 								/>
 								<label htmlFor=''>{departamento.nombre}</label>
 								<br />
@@ -112,16 +112,16 @@ export const PaginaPrincipal = () => {
 						{
 							<>
 								<br />
-								<input type='checkbox' name='' id='' {...register("7Days")}/>
+								<input type='checkbox' name='' id='' value={"7Days"} {...register("days")}/>
 								<label htmlFor=''>7 Dias</label>
 								<br />
-								<input type='checkbox' name='' id='' {...register("15Days")}/>
+								<input type='checkbox' name='' id='' value={"15Days"} {...register("days")}/>
 								<label htmlFor=''>15 Dias</label>
 								<br />
-								<input type='checkbox' name='' id='' {...register("20Days")}/>
+								<input type='checkbox' name='' id='' value={"20Days"} {...register("days")}/>
 								<label htmlFor=''>20 Dias</label>
 								<br />
-								<input type='checkbox' name='' id='' {...register("30Days")}/>
+								<input type='checkbox' name='' id='' value={"30Days"} {...register("days")}/>
 								<label htmlFor=''>30 Dias</label>
 								<br />
 							</>
