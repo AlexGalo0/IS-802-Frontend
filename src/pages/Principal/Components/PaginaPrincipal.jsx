@@ -7,8 +7,8 @@ import { Footers } from "../../../Components/Footer";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../context";
 import { SidebarFiltros } from "./SidebarFiltros";
-import { useQuery } from "react-query";
-import { obtenerDepartamentos, obtenerCategorias } from "../../../api";
+import { useMutation, useQuery } from "react-query";
+import { obtenerDepartamentos, obtenerCategorias , enviarFiltros } from "../../../api";
 import { useForm } from "react-hook-form";
 
 export const PaginaPrincipal = () => {
@@ -30,9 +30,22 @@ export const PaginaPrincipal = () => {
 		queryFn: obtenerDepartamentos,
 	});
 
+	const mutationFiltros = useMutation({
+		mutationFn: enviarFiltros ,  
+		onSuccess:()=>{
+			console.log("Funciono !")
+		},
+		onError:()=>{
+			console.log("Hubo un error");
+		}
+	})
 
-	const filtrarProductos = (data) => {
+
+	const filtrarProductos = (datosFiltrado) => {
 		
+		mutationFiltros.mutate({
+			...datosFiltrado
+		})
 	};
 	return (
 		<Container fluid className='container-grid'>

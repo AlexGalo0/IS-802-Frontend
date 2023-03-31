@@ -55,7 +55,7 @@ export const RegistroProducto = () => {
 	const enviarProducto = (productInfo) => {
 		productInfo.imagenes = urls;
 		mutationRegistrarProducto.mutate({
-			...productInfo,
+			...productInfo
 			/* 
 				Devoler el JWT al registrar el producto.
 			*/

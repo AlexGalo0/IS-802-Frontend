@@ -12,8 +12,8 @@ export const obtenerCategorias = async () => {
 }
 
 export const obtenerProductos = async () => {
-   const res =  await axios.get('http://localhost:4000/product')
-   return res.data
+    const res = await axios.get('http://localhost:4000/product')
+    return res.data
 }
 export const obtenerProductoPorCategoria = async (nombreCategoria) => {
     await axios.get(`http://localhost:4000/product/1/find-categories/${nombreCategoria}`)
@@ -25,10 +25,17 @@ export const crearUsuario = async (userData) => {
 }
 
 export const crearProducto = async (infoProducto) => {
+    console.log(infoProducto);
     await axios.post('http://localhost:4000/product', infoProducto)
 }
 
+export const enviarFiltros = async (datosFiltrado) => {
+    console.log(datosFiltrado);
+    
+    const res = await axios.get('http://localhost:4000/product/1/filters', datosFiltrado)
+    return res.data ;
 
+}
 /* **POST: Inicio Sesiones** */
 export const iniciarSesion = async (loginData) => {
     await axios.post('http://localhost:4000/login/cliente', loginData)
