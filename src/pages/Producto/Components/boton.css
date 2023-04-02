@@ -1,0 +1,48 @@
+:root{/* 
+    --color1: #1b325f;
+    --color2: #9cc4e4;
+    --color3: #e9f2f9;
+    --color4: #3a89c0;
+    --color5: #f26c4f; */
+    --white: #f7f7f7;
+    --blue1: #94BFD1;
+    --blue2: #75E8E5;
+    --blue3: #365662;
+    --blue4: #153B4B;
+    --blue5: #E6F6FF;
+    --hover: #416b7a;
+    --letter: #02050A;
+    --shadow: #42a19e;
+  }
+
+.like button {
+    height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-color: hsla(0, 0%, 100%, 0.15);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 30px;
+  color: var(--blue4);
+  transition: all 1s;
+  border: none;
+}
+
+.like button:hover {
+    background-color: hsla(0, 0%, 100%, 0.15);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin: 5px;
+    border: none;
+    color: var(--shadow);
+  }
+  
+  .like button.active {
+    color: var(--blue2);
+    transform: scale(1.2);
+    border: none;
+  }

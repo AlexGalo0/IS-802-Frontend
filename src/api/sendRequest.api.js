@@ -12,7 +12,7 @@ export const obtenerCategorias = async () => {
 }
 
 export const obtenerProductos = async () => {
-    const res = await axios.get('http://localhost:4000/product')
+    const res = await axios.get('http://localhost:4000/product/pagination/1')
     return res.data
 }
 export const obtenerProductoPorCategoria = async (nombreCategoria) => {
@@ -30,9 +30,7 @@ export const crearProducto = async (infoProducto) => {
 }
 
 export const enviarFiltros = async (datosFiltrado) => {
-    console.log(datosFiltrado);
     const res = await axios.post('http://localhost:4000/product/1/filters', datosFiltrado)
-    console.log(res.data);
     return res.data ;
 }
 

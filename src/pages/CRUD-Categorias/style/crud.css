@@ -1,0 +1,124 @@
+:root{/* 
+    --color1: #1b325f;
+    --color2: #9cc4e4;
+    --color3: #e9f2f9;
+    --color4: #3a89c0;
+    --color5: #f26c4f; */
+    --white: #f7f7f7;
+    --blue1: #94BFD1;
+    --blue2: #75E8E5;
+    --blue3: #365662;
+    --blue4: #153B4B;
+    --blue5: #E6F6FF;
+    --hover: #416b7a;
+    --letter: #02050A;
+    --shadow: #42a19e;
+  }
+  
+  
+  * {
+    font-family: "Mulish", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: var(--blue1);
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--blue2);
+    border-radius: 20px;
+    border: 4px solid var(--blue3);
+  }
+
+  .headerCrud {
+    background: var(--white);
+    color: var(--letter);
+    background-size: 200% 200%;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: initial;
+    /* font-size: calc(10px + 2vmin); */
+  }
+
+  .conCrud {
+    background-color: var(--blue5);
+    width: auto;
+    border-radius: 20px;
+    padding: 15px;
+    outline-style: outset;
+    outline-color: var(--blue2);
+  }
+
+  /* Botones editar y eliminar */
+  /* Boton chat */
+.buttonEdiBo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 45px;
+    background-color: var(--blue3);
+    border-radius: 25px;
+    border: none;
+    margin-top: 2px;
+    text-shadow: 0 2px 2px var(--blue4);
+  }
+  
+      .buttonEdiBo:hover {
+          text-shadow: 0 1px 1px var(--blue4);
+          background: var(--hover);
+      }
+
+.buttonGuardar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    padding: 10px;
+    width: auto;
+    background-color: var(--blue3);
+    border-radius: 25px;
+    border: none;
+    margin-top: 2px;
+    text-shadow: 0 2px 2px var(--blue4);
+    color: var(--white);
+}
+
+.buttonGuardar:hover {
+    text-shadow: 0 1px 1px var(--blue4);
+    background: var(--hover);
+}
+
+/* Modal */
+.inModal {
+    border-radius: 1rem;
+      background: var(--white);
+      padding: 1.2rem;
+      font-size: medium;
+      color: #0d0d0d;
+      transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+      border: 2px solid #365662;
+      width: 450px;
+      height: 60px;
+      box-shadow: 0 0.4rem #94BFD1;
+      margin: 15px;
+      
+  }
+     
+  .labelModal {
+    position: absolute;
+    left: 50px;
+    color: var(--letter);
+    pointer-events: none;
+    transform: translateY(0.9rem);
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);
+   }

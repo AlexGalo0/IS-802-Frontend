@@ -1,0 +1,188 @@
+:root{/* 
+    --color1: #1b325f;
+    --color2: #9cc4e4;
+    --color3: #e9f2f9;
+    --color4: #3a89c0;
+    --color5: #f26c4f; */
+    --white: #f7f7f7;
+    --blue1: #94BFD1;
+    --blue2: #75E8E5;
+    --blue3: #365662;
+    --blue4: #153B4B;
+    --blue5: #E6F6FF;
+    --hover: #416b7a;
+    --letter: #02050A;
+    --shadow: #42a19e;
+  }
+  
+  
+  * {
+    font-family: "Mulish", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: var(--blue1);
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--blue2);
+    border-radius: 20px;
+    border: 4px solid var(--blue3);
+  }
+
+  .headerLanding {
+    background: var(--blue3);
+    color: var(--white);
+    background-size: 200% 200%;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* font-size: calc(10px + 2vmin); */
+  }
+
+  .logo {
+    width: 450px;
+  }
+
+  /* Animacion */
+  .word {
+    font-size: 36px;
+    font-weight: 500;/* 
+    animation: moveDown 2s ease-in infinite; */
+  }
+  
+  /* @keyframes moveDown {
+    0% {
+      transform: translateY(-10px);
+    }
+    14% {
+      transform: translateY(-4px);
+    }
+    28% {
+        transform: translateY(1px);
+      }
+    42% {
+        transform: translateY(6px);
+      }
+    56% {
+        transform: translateY(10px);
+      }
+    70% {
+        transform: translateY(3px);
+      }
+    84% {
+        transform: translateY(-3px);
+      }
+    100% {
+        transform: translateY(-9px);
+      }
+  } */
+
+  /* Redes */
+  .ulRedes {
+    position: relative;
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    margin-left: -30px;
+  }
+  
+  .ulRedes .liRedes {
+    position: relative;
+    list-style: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 60px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+    border: 2px solid var(--blue2);
+    box-shadow: 0 20px 50px var(--shadow);
+  }
+  
+  .ulRedes .liRedes:hover {
+    width: 180px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
+  }
+  
+  .ulRedes .liRedes::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    background: linear-gradient(45deg, var(--shadow), var(--blue2));
+    opacity: 0;
+    transition: 0.5s;
+  }
+  
+  .ulRedes .liRedes:hover::before {
+    opacity: 1;
+  }
+  
+  .ulRedes .liRedesi::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    top: 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 60px;
+    background: linear-gradient(45deg, var(--shadow), var(--blue2));
+    opacity: 0;
+    transition: 0.5s;
+    z-index: 1;
+    filter: blur(15px);
+  
+  }
+  
+  .ulRedes .liRedes:hover::after {
+    opacity: 0;
+  }
+  
+  .ulRedes .liRedes .iLanding {
+    color: var(--white);
+    font-size: 1.75em !important;
+    transition: 0.5s;
+    transition-delay: 0.25s;
+  }
+  
+  .ulRedes .liRedes:hover .iLanding {
+    transform: scale(0);
+    font-size: 1.75em;
+    font-weight: bold;
+    transition-delay: 0.25s;
+  }
+  
+  .ulRedes .liRedes .redes {
+    position: absolute;
+  }
+  
+  .ulRedes .liRedes .tituloLanding {
+    color: var(--white);
+    font-size: 1.1em !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transform: scale(0);
+    transition: 0.5s;
+    transition-delay: 0s;
+  }
+  
+  .ulRedes .liRedes:hover .tituloLanding {
+    transform: scale(1);
+    color: var(--white);
+    transition-delay: 0.25s;
+    font-weight: bold;
+  }
