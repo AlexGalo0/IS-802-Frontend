@@ -1,5 +1,4 @@
 import { Container, Row } from "react-bootstrap";
-import { Container, Row } from "react-bootstrap";
 import "../Style/Temp_Principal.css";
 import { FaFilter } from "react-icons/fa";
 import { NavbarsLR } from "../../../Components/NavbarLR";
@@ -16,7 +15,6 @@ import {
 	obtenerProductos,
 } from "../../../api";
 import { useForm } from "react-hook-form";
-import { CartaProducto } from "./CartaProducto";
 import { CartaProducto } from "./CartaProducto";
 
 export const PaginaPrincipal = () => {
@@ -45,9 +43,6 @@ export const PaginaPrincipal = () => {
 	const { data: productos } = useQuery({
 		queryKey: ["productos"],
 		queryFn: obtenerProductos,
-    onSuccess:()=>{
-      console.log('Me ejecute');
-    }
 	});
 
 	const mutationFiltros = useMutation({
@@ -55,12 +50,7 @@ export const PaginaPrincipal = () => {
 		onSuccess: (data) => {
 			queryClient.setQueryData("productos", data);
 		},
-		onError: () => {
-		onError: () => {
-			console.log("Hubo un error");
-		},
-	});
-		},
+		onError: () => {},
 	});
 
 	const filtrarProductos = (datosFiltrado) => {
@@ -73,8 +63,8 @@ export const PaginaPrincipal = () => {
 
 	const handleReiniciar = () => {
 		reset(valoresIniciales);
-    queryClient.invalidateQueries('productos')
-    queryClient.fetchQuery("productos");
+		queryClient.invalidateQueries("productos");
+		queryClient.fetchQuery("productos");
 	};
 
 	return (
@@ -90,7 +80,9 @@ export const PaginaPrincipal = () => {
 					<span className='textBuscar'>Limpiar Filtros</span>
 					<br />
 					<form onSubmit={handleSubmit(filtrarProductos)}>
-						<button onClick={handleReiniciar} type="reset">Reiniciar</button>
+						<button onClick={handleReiniciar} type='reset'>
+							Reiniciar
+						</button>
 						{categorias?.map((categoria) => (
 							<div key={categoria.idCategoria.data}>
 								<input
@@ -109,7 +101,6 @@ export const PaginaPrincipal = () => {
 								<input
 									type='checkbox'
 									value={departamento.nombre}
-									{...register(`departamentos`)} //${departamento.nombre}
 									{...register(`departamentos`)} //${departamento.nombre}
 								/>
 								<label htmlFor=''>{departamento.nombre}</label>
@@ -151,13 +142,7 @@ export const PaginaPrincipal = () => {
 									value={"7Days"}
 									{...register("days")}
 								/>
-								<input
-									type='checkbox'
-									name=''
-									id=''
-									value={"7Days"}
-									{...register("days")}
-								/>
+
 								<label htmlFor=''>7 Dias</label>
 								<br />
 								<input
@@ -167,13 +152,7 @@ export const PaginaPrincipal = () => {
 									value={"15Days"}
 									{...register("days")}
 								/>
-								<input
-									type='checkbox'
-									name=''
-									id=''
-									value={"15Days"}
-									{...register("days")}
-								/>
+
 								<label htmlFor=''>15 Dias</label>
 								<br />
 
@@ -185,13 +164,6 @@ export const PaginaPrincipal = () => {
 									{...register("days")}
 								/>
 
-								<input
-									type='checkbox'
-									name=''
-									id=''
-									value={"30Days"}
-									{...register("days")}
-								/>
 								<label htmlFor=''>30 Dias</label>
 								<br />
 							</>
@@ -207,13 +179,10 @@ export const PaginaPrincipal = () => {
 						))}
 
 						{productos?.length === 0 ? (
-
-						{productos?.length === 0 ? (
 							<p>No pudimos encontrar ningún producto</p>
 						) : (
 							""
 						)}
-					</Row>
 					</Row>
 
 					{/* <Pagination className='py-4' size="lg" bsPrefix="pagination" style={{marginBottom: '-10px'}} >
