@@ -1,10 +1,11 @@
 import { Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import "../Style/Temp_Principal.css";
 import { FaFilter } from "react-icons/fa";
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { Footers } from "../../../Components/Footer";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context";
 import { SidebarFiltros } from "./SidebarFiltros";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -15,6 +16,7 @@ import {
 	obtenerProductos,
 } from "../../../api";
 import { useForm } from "react-hook-form";
+import { CartaProducto } from "./CartaProducto";
 import { CartaProducto } from "./CartaProducto";
 
 export const PaginaPrincipal = () => {
@@ -54,7 +56,10 @@ export const PaginaPrincipal = () => {
 			queryClient.setQueryData("productos", data);
 		},
 		onError: () => {
+		onError: () => {
 			console.log("Hubo un error");
+		},
+	});
 		},
 	});
 
@@ -105,6 +110,7 @@ export const PaginaPrincipal = () => {
 									type='checkbox'
 									value={departamento.nombre}
 									{...register(`departamentos`)} //${departamento.nombre}
+									{...register(`departamentos`)} //${departamento.nombre}
 								/>
 								<label htmlFor=''>{departamento.nombre}</label>
 								<br />
@@ -145,6 +151,13 @@ export const PaginaPrincipal = () => {
 									value={"7Days"}
 									{...register("days")}
 								/>
+								<input
+									type='checkbox'
+									name=''
+									id=''
+									value={"7Days"}
+									{...register("days")}
+								/>
 								<label htmlFor=''>7 Dias</label>
 								<br />
 								<input
@@ -154,8 +167,23 @@ export const PaginaPrincipal = () => {
 									value={"15Days"}
 									{...register("days")}
 								/>
+								<input
+									type='checkbox'
+									name=''
+									id=''
+									value={"15Days"}
+									{...register("days")}
+								/>
 								<label htmlFor=''>15 Dias</label>
 								<br />
+
+								<input
+									type='checkbox'
+									name=''
+									id=''
+									value={"30Days"}
+									{...register("days")}
+								/>
 
 								<input
 									type='checkbox'
@@ -179,10 +207,13 @@ export const PaginaPrincipal = () => {
 						))}
 
 						{productos?.length === 0 ? (
+
+						{productos?.length === 0 ? (
 							<p>No pudimos encontrar ningún producto</p>
 						) : (
 							""
 						)}
+					</Row>
 					</Row>
 
 					{/* <Pagination className='py-4' size="lg" bsPrefix="pagination" style={{marginBottom: '-10px'}} >

@@ -25,7 +25,6 @@ export const crearUsuario = async (userData) => {
 }
 
 export const crearProducto = async (infoProducto) => {
-    console.log(infoProducto);
     await axios.post('http://localhost:4000/product', infoProducto)
 }
 
