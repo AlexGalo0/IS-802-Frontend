@@ -12,12 +12,12 @@ export const obtenerCategorias = async () => {
 }
 
 export const obtenerProductos = async () => {
-    const res = await axios.get('http://localhost:4000/product/pagination/1')
+    const res = await axios.get(`http://localhost:4000/product/pagination/1`)
     return res.data
 }
-export const obtenerProductoPorCategoria = async (nombreCategoria) => {
-    await axios.get(`http://localhost:4000/product/1/find-categories/${nombreCategoria}`)
-}
+// export const obtenerProductoPorCategoria = async (nombreCategoria ) => {
+//     await axios.get(`http://localhost:4000/product/1/find-categories/${nombreCategoria}`)
+// }
 
 /* ******** POST ********** */
 export const crearUsuario = async (userData) => {
@@ -30,7 +30,7 @@ export const crearProducto = async (infoProducto) => {
 
 export const enviarFiltros = async (datosFiltrado) => {
     const res = await axios.post('http://localhost:4000/product/1/filters', datosFiltrado)
-    return res.data ;
+    return res.data;
 }
 
 /* **POST: Inicio Sesiones** */
