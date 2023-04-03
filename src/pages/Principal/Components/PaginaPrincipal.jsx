@@ -19,7 +19,7 @@ import { CartaProducto } from "./CartaProducto";
 
 export const PaginaPrincipal = () => {
 	const { userAuth } = useContext(UserContext);
-	const [numeroPagina, setNumeroPagina] = useState(0);
+	const [numeroPagina, setNumeroPagina] = useState(1);
 	const [valoresIniciales, setValoresIniciales] = useState({
 		categorias: [],
 		departamentos: [],
@@ -28,6 +28,7 @@ export const PaginaPrincipal = () => {
 		palabraClave: "",
 		days: [],
 	});
+
 	const { register, handleSubmit, reset } = useForm({
 		defaultValues: valoresIniciales,
 	});
@@ -40,32 +41,40 @@ export const PaginaPrincipal = () => {
 		queryKey: ["departamentos"],
 		queryFn: obtenerDepartamentos,
 	});
-	const { data: productos } = useQuery({
-		queryKey: ["productos"],
-		queryFn: obtenerProductos,
+	const {
+		data: productos,
+		isLoading,
+		isError,
+		error,
+	} = useQuery({
+		queryKey: ["productos", numeroPagina],
+		queryFn: () => obtenerProductos(numeroPagina),
+		keepPreviousData: true,
 	});
 
 	const mutationFiltros = useMutation({
-		mutationFn: enviarFiltros,
+		mutationFn: (datosFiltrados) => enviarFiltros(datosFiltrados, numeroPagina),
 		onSuccess: (data) => {
-			queryClient.setQueryData("productos", data);
+			queryClient.setQueryData(["productos", numeroPagina], data);
 		},
 		onError: () => {},
 	});
-
 	const filtrarProductos = (datosFiltrado) => {
-		queryClient.cancelQueries("productos");
-		mutationFiltros.mutate({
-			...datosFiltrado,
-		});
-		queryClient.fetchQuery("productos");
+		setNumeroPagina(1);
+		console.log("Me ejecute filtrar productos");
+		queryClient.cancelQueries(["productos", numeroPagina]);
+		mutationFiltros.mutate(datosFiltrado);
 	};
 
 	const handleReiniciar = () => {
 		reset(valoresIniciales);
-		queryClient.invalidateQueries("productos");
-		queryClient.fetchQuery("productos");
+		queryClient.invalidateQueries(["productos", numeroPagina]);
+		setNumeroPagina(1);
+		queryClient.fetchQuery(["productos", numeroPagina]);
 	};
+	const nextPage = () => setNumeroPagina((prev) => prev + 1);
+
+	const prevPage = () => setNumeroPagina((prev) => prev - 1);
 
 	return (
 		<Container fluid className='container-grid'>
@@ -173,6 +182,13 @@ export const PaginaPrincipal = () => {
 				</aside>
 
 				<article>
+					{isLoading ? (
+						<div>Loading...</div>
+					) : isError ? (
+						<div>Error: {error.message}</div>
+					) : (
+						""
+					)}
 					<Row xs={1} md={3} className='g-4'>
 						{productos?.map((producto) => (
 							<CartaProducto {...producto} key={producto.idProducto.data} />
@@ -184,22 +200,11 @@ export const PaginaPrincipal = () => {
 							""
 						)}
 					</Row>
-
-					{/* <Pagination className='py-4' size="lg" bsPrefix="pagination" style={{marginBottom: '-10px'}} >
-						{Array.from({ length: longitudPaginacion }).map((_, index) => {
-					
-							return (
-								<Pagination.Item
-									onClick={() => handlePageChange(index + 1)}
-									key={index + 1}
-									active={index + 1 === state.activePage}
-                  className="item"
-								>
-									{index + 1}
-								</Pagination.Item>
-							);
-						})}
-					</Pagination> */}
+					<span> Numero de Pagina : {numeroPagina}</span>
+					<button onClick={prevPage} disabled={numeroPagina === 1}>
+						Prev Page
+					</button>
+					<button onClick={nextPage}>Next Page</button>
 				</article>
 				<Footers />
 			</main>
