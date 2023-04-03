@@ -46,8 +46,18 @@ export const iniciarSesionAdmin = async (loginData) => {
 }
 
 
+export const crearCategoria = async (categoria)=>{
+    console.log("Categoria desde api creada")
+}
 
+export const borrarCategorias = async (idCategoria)=>{
+    await axios.delete(`http://localhost:4000/categories/${idCategoria}`)
+    console.log(`Borraste la categoria ${idCategoria}`);
+}
 
+export const editarCategoria = async (categoria)=>{
+    console.log(`Se edito la categoria ${categoria.nombre} desde la API`);
+}
 
 
 
