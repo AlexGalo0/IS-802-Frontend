@@ -61,7 +61,7 @@ export const PaginaPrincipal = () => {
 	});
 	const filtrarProductos = (datosFiltrado) => {
 		setNumeroPagina(1);
-		console.log("Me ejecute filtrar productos");
+		
 		queryClient.cancelQueries(["productos", numeroPagina]);
 		mutationFiltros.mutate(datosFiltrado);
 	};
