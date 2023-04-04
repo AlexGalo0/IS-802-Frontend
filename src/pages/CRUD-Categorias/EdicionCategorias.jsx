@@ -3,9 +3,9 @@ import { Modal, Row, Table, Button } from "react-bootstrap";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
 	obtenerCategorias,
-	crearCategoria,
 	borrarCategorias,
 	editarCategoria,
+	crearCategoria,
 } from "../../api";
 import { useForm } from "react-hook-form";
 export const EdicionCategorias = () => {
@@ -13,25 +13,33 @@ export const EdicionCategorias = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm();
+	const handleReiniciar = () => {
+		handleClose();
+		reset();
+	};
+	const handleReiniciarCreacion = () => {
+		handleCloseModalCreacion();
+		reset();
+	};
 	const [showEditModal, setShowEditModal] = useState(false);
 	const [categoriaAEditar, setCategoriaAEditar] = useState("");
 
 	const handleClose = () => setShowEditModal(false);
 	const handleShow = () => setShowEditModal(true);
+
+	const [showCreacionModal, setShowCreacionModal] = useState(false);
+
+	const handleCloseModalCreacion = () => setShowCreacionModal(false);
+	const handleShowModalCreacion = () => setShowCreacionModal(true);
 	const queryClient = useQueryClient();
 	const { data: categorias } = useQuery({
 		queryKey: ["obtenerCategorias"],
 		queryFn: obtenerCategorias,
 	});
 
-	const añadirCategoriaMutation = useMutation({
-		mutationFn: crearCategoria,
-		onSuccess: () => {
-			console.log("Categoria creada");
-			queryClient.invalidateQueries("obtenerCategorias");
-		},
-	});
+	
 
 	const borrarCategoriaMutation = useMutation({
 		mutationFn: borrarCategorias,
@@ -45,21 +53,39 @@ export const EdicionCategorias = () => {
 		mutationFn: (idCategoriaAEditar, datosNuevaCategoria) =>
 			editarCategoria(idCategoriaAEditar, datosNuevaCategoria),
 		onSuccess: () => {
-			console.log('Funciono , la categoria fue editada');
+		
 			queryClient.invalidateQueries("obtenerCategorias");
 		},
 	});
 
 	const enviarEdicionCategoria = (datosNuevaCategoria) => {
-	
+		console.log(categoriaAEditar.nombre);
+
 		editarCategoriaMutation.mutate({
-				categoriaAEditar,
+			categoriaAEditar,
 			...datosNuevaCategoria,
 		});
 	};
+
+	const crearNuevaCategoriaMutation = useMutation({
+		mutationFn:(datosCategoriaACrear)=>crearCategoria(datosCategoriaACrear),
+		onSuccess:()=>{
+			queryClient.invalidateQueries('obtenerCategorias')
+		}
+	})
+
+	const handleCrearCategoria=(datosCategoriaACrear)=>{
+		crearNuevaCategoriaMutation.mutate(datosCategoriaACrear)
+	}
 	return (
 		<div className='container-table'>
-			<button>Añadir Nueva Categoria</button>
+			<button
+				onClick={() => {
+					handleShowModalCreacion(true);
+				}}
+			>
+				Añadir Nueva Categoria
+			</button>
 			<table>
 				<tr>
 					<th>Nombre de Categoria</th>
@@ -91,6 +117,34 @@ export const EdicionCategorias = () => {
 				</tbody>
 			</table>
 
+			{/* Modal de crear nuevo producto */}
+
+			<Modal
+				show={showCreacionModal}
+				onHide={handleCloseModalCreacion}
+				backdrop='static'
+				keyboard={false}
+			>
+				<Modal.Header closeButton>
+					<Modal.Title>Crea una nueva categoria </Modal.Title>
+				</Modal.Header>
+				<form onSubmit={handleSubmit(handleCrearCategoria)}>
+					<label htmlFor=''>Ingresa el nombre de la nueva categoria: </label>
+					<input type='text' {...register("nombreCategoria")} />
+					<label htmlFor=''>
+						Ingresa la descripcion de la nueva categoria:{" "}
+					</label>
+					<input type='text' {...register("descripcionCategoria")} />
+					{/* // handleCloseModalCreacion(true); */}
+					<Modal.Footer>
+						<button type='submit'>Guarda tu nueva categoria</button>
+						<button onClick={handleReiniciarCreacion} type='reset'>
+							Cerrar
+						</button>
+					</Modal.Footer>
+				</form>
+			</Modal>
+						{/* Modal de Editar Categoria */}
 			<Modal
 				show={showEditModal}
 				onHide={handleClose}
@@ -107,11 +161,13 @@ export const EdicionCategorias = () => {
 					<input type='text' {...register("descripcionCategoria")} />
 					{/* // handleClose(true); */}
 					<button type='submit'>Guarda tu nueva categoria</button>
-				</form>
 
-				<Modal.Footer>
-					<button onClick={handleClose}>Cerrar</button>
-				</Modal.Footer>
+					<Modal.Footer>
+						<button onClick={handleReiniciar} type='reset'>
+							Cerrar
+						</button>
+					</Modal.Footer>
+				</form>
 			</Modal>
 		</div>
 	);

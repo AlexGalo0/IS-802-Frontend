@@ -57,7 +57,7 @@ export const iniciarSesionAdmin = async (loginData) => {
 }
 
 export const crearCategoria = async (categoria) => {
-    console.log('');
+    await axios.post('http://localhost:4000/categories',categoria)
 }
 
 export const borrarCategorias = async (idCategoria) => {
