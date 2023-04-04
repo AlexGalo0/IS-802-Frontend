@@ -1,5 +1,10 @@
 import axios from "axios";
-
+const config = {
+    headers: {
+        "Content-Type": "application/json"
+    },
+    withCredentials: true
+}
 /* ******** GET ********** */
 export const obtenerDepartamentos = async () => {
     const res = await axios.get(`http://localhost:4000/departamentos`)
@@ -28,7 +33,7 @@ export const crearProducto = async (infoProducto) => {
     await axios.post('http://localhost:4000/product', infoProducto)
 }
 
-export const enviarFiltros = async ( datosFiltrado , numeroPagina) => {
+export const enviarFiltros = async (datosFiltrado, numeroPagina) => {
     console.log(datosFiltrado);
     console.log(numeroPagina);
 
@@ -38,7 +43,12 @@ export const enviarFiltros = async ( datosFiltrado , numeroPagina) => {
 
 /* **POST: Inicio Sesiones** */
 export const iniciarSesion = async (loginData) => {
-    await axios.post('http://localhost:4000/login/cliente', loginData)
+    console.log('Me ejecute');
+    const res = await axios.post('http://localhost:4000/login/cliente', loginData)
+    const token = res.data.token
+    console.log('El token es : ' , token);
+    return res;
+
 }
 
 export const iniciarSesionAdmin = async (loginData) => {
@@ -46,16 +56,16 @@ export const iniciarSesionAdmin = async (loginData) => {
 }
 
 
-export const crearCategoria = async (categoria)=>{
+export const crearCategoria = async (categoria) => {
     console.log("Categoria desde api creada")
 }
 
-export const borrarCategorias = async (idCategoria)=>{
+export const borrarCategorias = async (idCategoria) => {
     await axios.delete(`http://localhost:4000/categories/${idCategoria}`)
     console.log(`Borraste la categoria ${idCategoria}`);
 }
 
-export const editarCategoria = async (categoria)=>{
+export const editarCategoria = async (categoria) => {
     console.log(`Se edito la categoria ${categoria.nombre} desde la API`);
 }
 
