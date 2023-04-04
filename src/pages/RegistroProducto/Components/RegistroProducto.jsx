@@ -54,11 +54,10 @@ export const RegistroProducto = () => {
 	/* Funcion onSubmit */
 	const enviarProducto = (productInfo) => {
 		productInfo.imagenes = urls;
+		productInfo.idUsuario  = localStorage.getItem("token")
+		console.log(productInfo);
 		mutationRegistrarProducto.mutate({
 			...productInfo
-			/* 
-				Devoler el JWT al registrar el producto.
-			*/
 		});
 	};
 

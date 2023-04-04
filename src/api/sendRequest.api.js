@@ -30,6 +30,7 @@ export const crearUsuario = async (userData) => {
 }
 
 export const crearProducto = async (infoProducto) => {
+    console.log('Esta es la info que recibo');
     await axios.post('http://localhost:4000/product', infoProducto)
 }
 
@@ -43,10 +44,10 @@ export const enviarFiltros = async (datosFiltrado, numeroPagina) => {
 
 /* **POST: Inicio Sesiones** */
 export const iniciarSesion = async (loginData) => {
-    console.log('Me ejecute');
+
     const res = await axios.post('http://localhost:4000/login/cliente', loginData)
     const token = res.data.token
-    console.log('El token es : ' , token);
+    localStorage.setItem("token", token)
     return res;
 
 }
