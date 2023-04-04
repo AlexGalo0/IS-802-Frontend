@@ -7,7 +7,8 @@ import {
 	UserLogin,
 	PaginaPrincipal,
 	Construyendo,
-	EdicionCategorias
+	EdicionCategorias,
+	Producto,
 } from "../pages";
 import { useContext } from "react";
 import { RutaProtegida, NavbarsLR } from "../Components";
@@ -23,7 +24,7 @@ export const Router = () => {
 				<Route path='/login' element={<UserLogin />} />
 				<Route path='/login-admin' element={<LoginAdministrador />} />
 				{/* <RutaProtegida isAllowed={userAuth}>  	</RutaProtegida>*/}
-				<Route path="/crudCategorias" element={<EdicionCategorias/>}/>
+				<Route path='/crudCategorias' element={<EdicionCategorias />} />
 				<Route
 					path='/registrarProducto'
 					element={
@@ -34,16 +35,10 @@ export const Router = () => {
 				/>
 				<Route path='/construyendo' element={<Construyendo />} />
 
-				<Route
-					path='/registrarUsuario'
-					element={
-						
-							<RegistroUsuario />
-					
-					}
-				/>
+				<Route path='/registrarUsuario' element={<RegistroUsuario />} />
 
 				<Route path='/dashboard-admin' element={<DashboardAdministrador />} />
+				<Route path='/producto/:idProducto' element={<Producto />} />
 			</Routes>
 		</>
 	);

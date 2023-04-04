@@ -16,18 +16,12 @@ export const CartaProducto = ({
 	useEffect(() => {
 		const primeraImagen = JSON.parse(imagenes);
 		setPrimeraImagen(primeraImagen[0]);
-		
 	});
+	
 
-	const navigate = useNavigate()
+	
 
-	const verPaginaProducto=()=>{
-		const rutaFormateada = idProducto.data.join('')
-		console.log(rutaFormateada);
-		/* navigate to */
-		navigate(`/product/` + rutaFormateada)
 
-	}
 
 	return (
 		<Col>
@@ -47,15 +41,15 @@ export const CartaProducto = ({
 					<Card.Text className='card-medium'>
 						Disponibles en Inventario: {cantidad}
 					</Card.Text>
-				
+					<Link to={`/producto/${idProducto.data.join('')}`}>
 						<button
 							className='buttonProducto'
 							style={{ color: "#f7f7f7", fontSize: "medium" }}
-							onClick={verPaginaProducto}
+							
 						>
 							<span className='box'>Ver producto</span>
 						</button>
-		
+					</Link>
 				</Card.Body>
 			</Card>
 		</Col>
