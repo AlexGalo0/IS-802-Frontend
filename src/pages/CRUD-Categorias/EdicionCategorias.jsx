@@ -7,9 +7,15 @@ import {
 	borrarCategorias,
 	editarCategoria,
 } from "../../api";
+import { useForm } from "react-hook-form";
 export const EdicionCategorias = () => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 	const [show, setShow] = useState(false);
-	const [nombreCategoriaEditar, setNombreCategoriaEditar] = useState("");
+	const [categoriaAEditar, setCategoriaAEditar] = useState("");
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -36,12 +42,21 @@ export const EdicionCategorias = () => {
 	});
 
 	const editarCategoriaMutation = useMutation({
-		mutationFn: editarCategoria,
+		mutationFn: (idCategoriaAEditar, datosNuevaCategoria) =>
+			editarCategoria(idCategoriaAEditar, datosNuevaCategoria),
 		onSuccess: () => {
-			console.log("Categoria Editada");
+			console.log('Funciono , la categoria fue editada');
 			queryClient.invalidateQueries("obtenerCategorias");
 		},
 	});
+
+	const enviarEdicionCategoria = (datosNuevaCategoria) => {
+		const idCategoriaAEditar = categoriaAEditar.idCategoria.data.join("");
+		editarCategoriaMutation.mutate({
+			idCategoriaAEditar,
+			...datosNuevaCategoria,
+		});
+	};
 	return (
 		<div className='container-table'>
 			<table>
@@ -57,10 +72,8 @@ export const EdicionCategorias = () => {
 							<td>{categoria.descripcion}</td>
 							<button
 								onClick={() => {
-									handleShow(true), setNombreCategoriaEditar(categoria.nombre);
-									editarCategoriaMutation.mutate({
-										...categoria,
-									});
+									handleShow(true);
+									setCategoriaAEditar(categoria);
 								}}
 							>
 								Editar
@@ -84,21 +97,18 @@ export const EdicionCategorias = () => {
 				keyboard={false}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>{`Edita la categoria ${nombreCategoriaEditar}`}</Modal.Title>
+					<Modal.Title>{`Edita la categoria ${categoriaAEditar.nombre}`}</Modal.Title>
 				</Modal.Header>
-				<label htmlFor=''>Edita el nombre de la categoria: </label>
-				<input type='text' />
-				<label htmlFor=''>Edita la descripcion de la categoria: </label>
-				<input type='text' />
+				<form onSubmit={handleSubmit(enviarEdicionCategoria)}>
+					<label htmlFor=''>Edita el nombre de la categoria: </label>
+					<input type='text' {...register("nombreCategoria")} />
+					<label htmlFor=''>Edita la descripcion de la categoria: </label>
+					<input type='text' {...register("descripcionCategoria")} />
+					{/* // handleClose(true); */}
+					<button type='submit'>Guarda tu nueva categoria</button>
+				</form>
+
 				<Modal.Footer>
-					<button
-						onClick={() => {
-							handleClose(true);
-							console.log("Hey");
-						}}
-					>
-						Guarda tu nueva categoria
-					</button>
 					<button onClick={handleClose}>Cerrar</button>
 				</Modal.Footer>
 			</Modal>
