@@ -9,7 +9,7 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../../context/UserContext";
+import {  AdminContext } from "../../../context";
 
 export const LoginAdministrador = () => {
   const {
@@ -18,14 +18,13 @@ export const LoginAdministrador = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  const { setAdminAuth } = useContext(AdminContext);
 
 	const [succesfullResponse, setSuccesfullResponse] = useState(false);
 	const [requestError, setRequestError] = useState(false);
-	const {userAuth,setUserAuth}  = useContext(UserContext)
+	
 
-	useEffect(()=>{
-		setUserAuth(false)
-	},[])
+
 
 	const enviarDatosLogin = async (userData) => {
 		
@@ -33,7 +32,7 @@ export const LoginAdministrador = () => {
 			const response = await iniciarSesionAdmin(userData);
 			setRequestError(false)
 			setSuccesfullResponse(true)
-			// setUserAuth(true) /* Loguear al Usuario */
+			setAdminAuth(true) /* Loguear al Usuario */
 			setTimeout(()=>{
 				navigate("/")
 			},1500)

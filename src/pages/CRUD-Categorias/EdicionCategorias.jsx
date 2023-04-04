@@ -14,11 +14,11 @@ export const EdicionCategorias = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	const [show, setShow] = useState(false);
+	const [showEditModal, setShowEditModal] = useState(false);
 	const [categoriaAEditar, setCategoriaAEditar] = useState("");
 
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	const handleClose = () => setShowEditModal(false);
+	const handleShow = () => setShowEditModal(true);
 	const queryClient = useQueryClient();
 	const { data: categorias } = useQuery({
 		queryKey: ["obtenerCategorias"],
@@ -51,14 +51,15 @@ export const EdicionCategorias = () => {
 	});
 
 	const enviarEdicionCategoria = (datosNuevaCategoria) => {
-		const idCategoriaAEditar = categoriaAEditar.idCategoria.data.join("");
+	
 		editarCategoriaMutation.mutate({
-			idCategoriaAEditar,
+				categoriaAEditar,
 			...datosNuevaCategoria,
 		});
 	};
 	return (
 		<div className='container-table'>
+			<button>Añadir Nueva Categoria</button>
 			<table>
 				<tr>
 					<th>Nombre de Categoria</th>
@@ -91,7 +92,7 @@ export const EdicionCategorias = () => {
 			</table>
 
 			<Modal
-				show={show}
+				show={showEditModal}
 				onHide={handleClose}
 				backdrop='static'
 				keyboard={false}

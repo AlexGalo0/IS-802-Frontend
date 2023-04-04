@@ -66,9 +66,10 @@ export const borrarCategorias = async (idCategoria) => {
 }
 
 export const editarCategoria = async (nuevaCategoria) => {
-    const idCategoriaAntigua = nuevaCategoria.idCategoriaAEditar
-    delete nuevaCategoria.idCategoriaAEditar
-    await axios.put(`http://localhost:4000/categories/${idCategoriaAntigua}`,nuevaCategoria)
+    const nombreCategoriaAnterior = nuevaCategoria.categoriaAEditar.nombre 
+    console.log(nombreCategoriaAnterior);
+    delete nuevaCategoria.categoriaAEditar
+    await axios.put(`http://localhost:4000/categories/${nombreCategoriaAnterior}`,nuevaCategoria)
 }
 
 
