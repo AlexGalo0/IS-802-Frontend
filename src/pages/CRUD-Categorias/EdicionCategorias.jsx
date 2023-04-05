@@ -17,6 +17,7 @@ import { Footers } from "../../Components/Footer";
 import "./style/crud.css";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { BiLeftArrow } from "react-icons/bi";
+import { useNavigate } from "react-router";
 
 export const EdicionCategorias = () => {
 	const { userAuth } = useContext(UserContext);
@@ -90,9 +91,10 @@ export const EdicionCategorias = () => {
   };
 
   const handleRedirection = () => {
-    navigate("/");
+    navigate(-1);
   };
 
+  const navigate = useNavigate()
   return (
     <Container fluid className="container-grid">
       {userAuth ? <NavbarsLogueado /> : <NavbarsLR />}
