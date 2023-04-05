@@ -50,7 +50,6 @@ export const Producto = ({}) => {
 		navigate("/");
 	};
 	const obtenerProducto = async (idProducto) => {
-		console.log(idProducto);
 		const res = await axios.get(`http://localhost:4000/producto/${idProducto}`);
 		console.log(res.data);
 	};
@@ -66,6 +65,11 @@ export const Producto = ({}) => {
 			Compartir
 		</Tooltip>
 	);
+
+	const generarEnlace=()=>{
+		navigator.clipboard.writeText('http://127.0.0.1:5173/producto/'+idProducto)
+	
+	}
 
 	return (
 		<>
@@ -188,7 +192,7 @@ export const Producto = ({}) => {
 											delay={{ show: 250, hide: 400 }}
 											overlay={renderTooltipButtomShare}
 										>
-											<button>
+											<button onClick={generarEnlace}>
 												<FaShare className='heart' />
 											</button>
 										</OverlayTrigger>
