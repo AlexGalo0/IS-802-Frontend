@@ -318,10 +318,10 @@ export const RegistroProducto = () => {
 						) : null}
 
 						{mutationRegistrarProducto.isSuccess ? (
-							<Alert variant='success'>¡Producto Añadido!</Alert>
+							<Alert variant='success' style={{margin: 'auto'}}>¡Producto Añadido!</Alert>
 						) : null}
 						{mutationRegistrarProducto.isError ? (
-							<Alert variant='danger'>
+							<Alert variant='danger' style={{margin: 'auto'}}>
 								Hubo un problema. Intenta de nuevo.
 							</Alert>
 						) : null}

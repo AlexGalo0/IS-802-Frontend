@@ -41,10 +41,9 @@
     background: var(--white);
     color: var(--letter);
     background-size: 200% 200%;
-    padding: 20px;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: initial;
     /* font-size: calc(10px + 2vmin); */
   }

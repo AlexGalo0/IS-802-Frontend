@@ -32,9 +32,9 @@ export const CartaProducto = ({
               <Card.Body className="card-body">
                 <Card.Title className="card-title">{nombre}</Card.Title>
                 <Card.Text className="card-medium"><BsCurrencyDollar style={{marginTop: '-2px', fontSize: '20px'}}/> {precio}</Card.Text>
-				{/* <Card.Text className="card-medium">Categoria : {nombrecategoria}</Card.Text>
+				<Card.Text className="card-medium">Categoria : {nombrecategoria}</Card.Text>
 				<Card.Text className="card-medium">Departamento : {departamento}</Card.Text>
-				<Card.Text className="card-medium">Disponibles en Inventario: {cantidad}</Card.Text> */}
+				<Card.Text className="card-medium">Disponibles en Inventario: {cantidad}</Card.Text>
 				<Link to={`/producto/${idProducto.data.join('')}`} style={{textDecoration: 'none'}}>
                 <button
                   className="buttonProducto"

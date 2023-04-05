@@ -1,10 +1,19 @@
-:root{
+:root{/* 
     --color1: #1b325f;
     --color2: #9cc4e4;
     --color3: #e9f2f9;
     --color4: #3a89c0;
-    --color5: #f26c4f;
-}
+    --color5: #f26c4f; */
+    --white: #f7f7f7;
+    --blue1: #94BFD1;
+    --blue2: #75E8E5;
+    --blue3: #365662;
+    --blue4: #153B4B;
+    --blue5: #E6F6FF;
+    --hover: #416b7a;
+    --letter: #02050A;
+    --shadow: #42a19e;
+  }
 
 .dash{
     display: grid;
@@ -15,14 +24,14 @@
     grid-template-rows: 50px auto 75px;
     grid-template-columns: 250px auto auto;
     gap: 0px;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /*estilos nav lateral*/
-.center-nav,
+/* .center-nav,
 .bottom-nav {
     list-style: none;
-    color: var(--color3);
+    color: var(--blue3);
 }
 
 .bottom-nav {
@@ -32,7 +41,7 @@
 
 .center-nav a,
 .bottom-nav a {
-    color: var(--color3);
+    color: var(--blue3);
     text-decoration: none;
     margin-left: 5px;
 }
@@ -63,7 +72,7 @@ hr {
     background-color: #2f2c2c1d;
     outline: none;
     border: none;
-}
+} */
 
 /*Fin estilos nav lateral*/
 
@@ -72,7 +81,8 @@ hr {
 .main-content {
     padding: 10px;
     width: 100%;
-    background-color: var(--color2);
+    height: 100%;
+    background-color: var(--blue1);
 }
 .main-top {
     display: flex;

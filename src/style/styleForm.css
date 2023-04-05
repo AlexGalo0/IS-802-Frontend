@@ -407,3 +407,17 @@ padding-left: 0px;
 padding-right: 0px;
 }
   
+/* Boton fr administrador */
+.buttonAdmin {
+  font-size: medium;
+  border: none;
+  color: #365662;
+  background-color: transparent;
+}
+
+.buttonAdmin:hover {
+  font-size: medium;
+  border: none;
+  color: #7093a1;
+  background-color: transparent;
+}

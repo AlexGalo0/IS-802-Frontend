@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { iniciarSesionAdmin } from "../../../api";
 import '../Style/LoginAdministrador.css';
-import logo from "../../../assets/logo.png";
+import logo from "../../../assets/logoV2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Form, Row, Image, Alert } from "react-bootstrap";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
@@ -49,18 +49,18 @@ export const LoginAdministrador = () => {
 		
 	};
 	const handleRedirection = () => {
-		navigate('/');
+		navigate(-1);
 	  };
 	
 	return (
         
 		<>
-			<header className='App-headerLogin'>
-				<Container className='ContainerProduct'>
+			<header className='App-header'>
+				<Container className='Container'>
 					<form
 						onSubmit={handleSubmit(enviarDatosLogin)}
 						fluid='true'
-						className='Form-Login'
+						className='Form'
 					>
 						<Row>
 							<Col
@@ -72,7 +72,7 @@ export const LoginAdministrador = () => {
 									alignItems: "center",
 									paddingTop: "40px",
 									paddingBottom: "10px",
-								}}
+								  }}
 							>
 								<button
 									className='Button-backProductLogin'
@@ -81,8 +81,8 @@ export const LoginAdministrador = () => {
 									style={{
 										marginTop: "-45px",
 										paddingTop: "1px",
-										marginLeft: "10px",
-									}}
+										marginLeft: "-10px",
+									  }}
 								>
 									<BiLeftArrow />
 								</button>
@@ -92,7 +92,8 @@ export const LoginAdministrador = () => {
 										width: "110px",
 										paddingRight: "10px",
 										paddingTop: "20px",
-									}}
+										marginRight: "-20px",
+									  }}
 								/>
 							</Col>
 						</Row>
@@ -103,7 +104,7 @@ export const LoginAdministrador = () => {
 								marginLeft: "10px",
 							}}
 						>
-							Ingresa tus credenciales
+							Administrador
 						</h1>
 
             <Form.Group
@@ -153,14 +154,14 @@ export const LoginAdministrador = () => {
               <p className="FontAlert">¡La contraseña es requerida!</p>
             )}
             {requestError ? (
-              <Alert variant="danger">
+              <Alert variant="danger" style={{margin: 'auto'}}>
                 ¡No estás registrado! ¡Crea una cuenta a continuación!
               </Alert>
             ) : (
               ""
             )}
             {succesfullResponse ? (
-              <Alert variant="success">¡Se accedió de forma correcta!</Alert>
+              <Alert variant="success" style={{margin: 'auto'}}>¡Se accedió de forma correcta!</Alert>
             ) : (
               ""
             )}

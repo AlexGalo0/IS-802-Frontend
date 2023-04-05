@@ -552,13 +552,13 @@ export const RegistroUsuario = () => {
 							</Modal.Footer>
 						</Modal>
 						{mutationRegistro.isSuccess ? (
-							<Alert variant='success'>
-								Se creo de forma correcta su usuario,
+							<Alert variant='success' style={{margin: 'auto'}}>
+								Se creo de forma correcta su usuario!
 							</Alert>
 						) : null}
 						{mutationRegistro.isError ? (
-							<Alert variant='danger'>
-								Hubo un problema al crear su usuario. Intenta de nuevo.
+							<Alert variant='danger' style={{margin: 'auto'}}>
+								Hubo un problema al crear su usuario. Intenta de nuevo!
 							</Alert>
 						) : (
 							""
