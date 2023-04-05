@@ -2,10 +2,10 @@ import { useContext, useState } from "react";
 import { Modal, Row, Table, Button, Container, Image } from "react-bootstrap";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
-  obtenerCategorias,
-  borrarCategorias,
-  editarCategoria,
-  crearCategoria,
+	obtenerCategorias,
+	borrarCategorias,
+	editarCategoria,
+	crearCategoria,
 } from "../../api";
 
 import { useForm } from "react-hook-form";
@@ -33,75 +33,92 @@ export const EdicionCategorias = () => {
   const [show, setShow] = useState(false);
   const [nombreCategoriaEditar, setNombreCategoriaEditar] = useState("");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
-  const handleReiniciar = () => {
-    handleClose();
-    reset();
-  };
-  const handleReiniciarCreacion = () => {
-    handleCloseModalCreacion();
-    reset();
-  };
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [categoriaAEditar, setCategoriaAEditar] = useState("");
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset,
+	} = useForm();
+	const handleReiniciar = () => {
+		handleClose();
+		reset();
+	};
+	const handleReiniciarCreacion = () => {
+		handleCloseModalCreacion();
+		reset();
+	};
+	const [showEditModal, setShowEditModal] = useState(false);
+	const [categoriaAEditar, setCategoriaAEditar] = useState("");
+	const [disableButton, setDisableButton] = useState(false);
+	const [showCreacionModal, setShowCreacionModal] = useState(false);
 
-  const handleClose = () => setShowEditModal(false);
-  const handleShow = () => setShowEditModal(true);
+	const handleCloseModalCreacion = () => setShowCreacionModal(false);
+	const handleShowModalCreacion = () => setShowCreacionModal(true);
 
-  const [showCreacionModal, setShowCreacionModal] = useState(false);
+	const handleClose = () => setShowEditModal(false);
+	const handleShow = () => setShowEditModal(true);
 
-  const handleCloseModalCreacion = () => setShowCreacionModal(false);
-  const handleShowModalCreacion = () => setShowCreacionModal(true);
-  const queryClient = useQueryClient();
-  const { data: categorias } = useQuery({
-    queryKey: ["obtenerCategorias"],
-    queryFn: obtenerCategorias,
-  });
+  const [mostrarAlert , setMostrarAlert] = useState(false)
+	const queryClient = useQueryClient();
+	const { data: categorias } = useQuery({
+		queryKey: ["obtenerCategorias"],
+		queryFn: obtenerCategorias,
+	});
 
-  const borrarCategoriaMutation = useMutation({
-    mutationFn: borrarCategorias,
-    onSuccess: () => {
-      console.log("Categoria Borrada");
-      queryClient.invalidateQueries("obtenerCategorias");
-    },
-  });
+	const borrarCategoriaMutation = useMutation({
+		mutationFn: borrarCategorias,
+		onSuccess: () => {
+			console.log("Categoria Borrada");
+			queryClient.invalidateQueries("obtenerCategorias");
+		},
+	});
 
-  const editarCategoriaMutation = useMutation({
-    mutationFn: (idCategoriaAEditar, datosNuevaCategoria) =>
-      editarCategoria(idCategoriaAEditar, datosNuevaCategoria),
-    onSuccess: () => {
-      queryClient.invalidateQueries("obtenerCategorias");
-    },
-  });
+	const editarCategoriaMutation = useMutation({
+		mutationFn: (idCategoriaAEditar, datosNuevaCategoria) =>
+			editarCategoria(idCategoriaAEditar, datosNuevaCategoria),
+		onSuccess: () => {
+			queryClient.invalidateQueries("obtenerCategorias");
+      setDisableButton(true)
+      setMostrarAlert(true)
+      setTimeout(() => {
+        handleClose(true)
+        setMostrarAlert(false)
+        handleReiniciar()
+        setDisableButton(false)
+      }, 1000);
+		},
+	});
 
-  const enviarEdicionCategoria = (datosNuevaCategoria) => {
-    console.log(categoriaAEditar.nombre);
+	const enviarEdicionCategoria = (datosNuevaCategoria) => {
 
-    editarCategoriaMutation.mutate({
-      categoriaAEditar,
-      ...datosNuevaCategoria,
-    });
-  };
+		editarCategoriaMutation.mutate({
+			categoriaAEditar,
+			...datosNuevaCategoria,
+		});
+	};
 
-  const crearNuevaCategoriaMutation = useMutation({
-    mutationFn: (datosCategoriaACrear) => crearCategoria(datosCategoriaACrear),
-    onSuccess: () => {
-      queryClient.invalidateQueries("obtenerCategorias");
-    },
-  });
+	const crearNuevaCategoriaMutation = useMutation({
+		mutationFn: (datosCategoriaACrear) => crearCategoria(datosCategoriaACrear),
+		onSuccess: () => {
+			queryClient.invalidateQueries("obtenerCategorias");
+      setDisableButton(true);
+      setMostrarAlert(true)
+      setTimeout(() => {
+        handleCloseModalCreacion(true)
+        setMostrarAlert(false)
+        handleReiniciar()
+        setDisableButton(false)
+      }, 1000);
+		},
+	});
 
-  const handleCrearCategoria = (datosCategoriaACrear) => {
-    crearNuevaCategoriaMutation.mutate(datosCategoriaACrear);
-  };
+	const handleCrearCategoria = (datosCategoriaACrear) => {
+		crearNuevaCategoriaMutation.mutate(datosCategoriaACrear);
+	};
 
-  const handleRedirection = () => {
-    navigate(-1);
-  };
+	const handleRedirection = () => {
+		navigate(-1);
+	};
 
   const navigate = useNavigate();
 
@@ -260,7 +277,7 @@ export const EdicionCategorias = () => {
 
       {/* <Footers /> */}
 
-      {/* Modal de crear nuevo producto */}
+			{/* Modal de crear nuevo producto */}
 
       <Modal
         show={showCreacionModal}
@@ -377,7 +394,7 @@ export const EdicionCategorias = () => {
         </form>
       </Modal>
 
-      {/* <Modal
+			{/* <Modal
 				show={showEditModal}
 				onHide={handleClose}
 				backdrop='static'
@@ -401,8 +418,8 @@ export const EdicionCategorias = () => {
           </Modal.Footer>
         </form>
       </Modal> */}
-    </Container>
-  );
+		</Container>
+	);
 };
 
 /* 
