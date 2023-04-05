@@ -196,6 +196,7 @@ export const EdicionCategorias = () => {
         </aside>
 
         <article style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px", marginTop: '-20px', marginBottom: '40px' }}>
         <button
           className="Button-back"
           type="submit"
@@ -203,6 +204,11 @@ export const EdicionCategorias = () => {
         >
           <BiLeftArrow />
         </button>
+                    
+            <h1 style={{marginTop: '-8px'}}>Apartado de categorías:</h1>
+          </div>
+
+
         <button
           style={{
             width: "400px",
