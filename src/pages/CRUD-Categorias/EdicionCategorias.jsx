@@ -140,12 +140,10 @@ export const EdicionCategorias = () => {
                         className="buttonEdiBo"
                         style={{ color: "#f7f7f7", fontSize: "medium" }}
                         onClick={() => {
-                          handleShow(true),
-                            setNombreCategoriaEditar(categoria.nombre);
-                          editarCategoriaMutation.mutate({
-                            ...categoria,
-                          });
+                          handleShow(true);
+                          setCategoriaAEditar(categoria);
                         }}
+                       
                       >
                         <span className="box">
                           <AiOutlineEdit style={{ fontSize: "25px" }} />
@@ -155,9 +153,7 @@ export const EdicionCategorias = () => {
                         className="buttonEdiBo"
                         style={{ color: "#f7f7f7", fontSize: "medium" }}
                         onClick={() => {
-                          borrarCategoriaMutation.mutate(
-                            categoria.idCategoria.data
-                          );
+                          borrarCategoriaMutation.mutate(categoria.idCategoria.data);
                         }}
                       >
                         <span className="box">
@@ -223,7 +219,7 @@ export const EdicionCategorias = () => {
         <Modal.Header closeButton>
           <Modal.Title
             style={{ fontSize: "25px" }}
-          >{`Edita la categoria ${nombreCategoriaEditar}`}</Modal.Title>
+          >{`Edita la categoria ${categoriaAEditar.nombre}`}</Modal.Title>
         </Modal.Header>
         <form
           style={{
