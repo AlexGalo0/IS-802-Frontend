@@ -35,7 +35,7 @@ export const CartaProducto = ({
 				{/* <Card.Text className="card-medium">Categoria : {nombrecategoria}</Card.Text>
 				<Card.Text className="card-medium">Departamento : {departamento}</Card.Text>
 				<Card.Text className="card-medium">Disponibles en Inventario: {cantidad}</Card.Text> */}
-				<Link to={`/producto/${idProducto.data.join('')}`} style={{textDecoration: 'none'}}>
+				<Link to={`/producto/${idProducto.data}`} style={{textDecoration: 'none'}}>
                 <button
                   className="buttonProducto"
                   style={{ color: "#f7f7f7", fontSize: "medium" }}

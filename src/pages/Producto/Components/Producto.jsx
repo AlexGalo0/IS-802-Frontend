@@ -38,30 +38,34 @@ import { Link } from "react-router-dom";
 import { BiSearchAlt, BiUser } from "react-icons/bi";
 import Boton from "../Components/botonLike";
 import { FaShare } from "react-icons/fa";
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export const Producto = ({}) => {
-
 	const { userAuth } = useContext(UserContext);
-  let {idProducto}  = useParams()
+	let { idProducto } = useParams();
 	const navigate = useNavigate(); //Para redireccion
 
 	const handleRedirection = () => {
 		navigate("/");
 	};
+	const obtenerProducto = async (idProducto) => {
+		console.log(idProducto);
+		const res = await axios.get(`http://localhost:4000/producto/${idProducto}`);
+		console.log(res.data);
+	};
+	const { data: infoProducto } = useQuery({
+		queryKey: ["producto"],
+		queryFn: obtenerProducto,
+	});
+	//La funcion de query deberia ser axios.get('/api/producto/idProducto')
 
-  const {data:infoProducto} = useQuery({
-    queryKey:["producto"],
-    queryFn:()=>{console.log(idProducto)},
-    //La funcion de query deberia ser axios.get('/api/producto/idProducto')
-  })
-
-  /* Elementos de los overlays (AL poner cursor sobre el simbolo de corazon dice que inicimos sesion) */
-  const renderTooltipButtomShare = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      Compartir
-    </Tooltip>
-  );
+	/* Elementos de los overlays (AL poner cursor sobre el simbolo de corazon dice que inicimos sesion) */
+	const renderTooltipButtomShare = (props) => (
+		<Tooltip id='button-tooltip' {...props}>
+			Compartir
+		</Tooltip>
+	);
 
 	return (
 		<>
@@ -175,21 +179,21 @@ export const Producto = ({}) => {
 									</div>
 								</div>
 
-								<div style={{display: 'flex', gap: '10px'}}>
-                <Boton />
-                {/* Boton de compartir */}
-                <div className="like">
-                  <OverlayTrigger
-                    placement="top"
-                    delay={{ show: 250, hide: 400 }}
-                    overlay={renderTooltipButtomShare}
-                  >
-                    <button>
-                      <FaShare className="heart" />
-                    </button>
-                  </OverlayTrigger>
-                </div>
-                </div>
+								<div style={{ display: "flex", gap: "10px" }}>
+									<Boton />
+									{/* Boton de compartir */}
+									<div className='like'>
+										<OverlayTrigger
+											placement='top'
+											delay={{ show: 250, hide: 400 }}
+											overlay={renderTooltipButtomShare}
+										>
+											<button>
+												<FaShare className='heart' />
+											</button>
+										</OverlayTrigger>
+									</div>
+								</div>
 
 								<Link to='/construyendo' style={{ textDecoration: "none" }}>
 									<button
@@ -199,7 +203,7 @@ export const Producto = ({}) => {
 										<span className='box'>Chatea sobre este articulo</span>
 									</button>
 								</Link>
-                <Link to='/construyendo' style={{ textDecoration: "none" }}>
+								<Link to='/construyendo' style={{ textDecoration: "none" }}>
 									<button
 										className='buttonChat'
 										style={{ color: "#f7f7f7", fontSize: "medium" }}
