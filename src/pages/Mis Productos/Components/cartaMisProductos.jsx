@@ -12,7 +12,7 @@ import {
 import "../Style/Temp_Principal.css";
 import { Link } from "react-router-dom";
 import { BsCurrencyDollar } from "react-icons/bs";
-import { TiDelete } from "react-icons/ti";
+import { AiOutlineDelete } from "react-icons/ai";
 
 export const CartaFavoritos = ({
   nombre,
@@ -29,9 +29,9 @@ export const CartaFavoritos = ({
     setPrimeraImagen(primeraImagen[0]);
   });
 
-  const renderTooltipQuitar = (props) => (
+  const renderTooltipBorrar = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      Quitar de lista favoritos
+      Borrar producto
     </Tooltip>
   );
 
@@ -63,19 +63,21 @@ export const CartaFavoritos = ({
             <OverlayTrigger
               placement="right"
               delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltipQuitar}
+              overlay={renderTooltipBorrar}
             >
               <button
                 className="buttonProducto"
                 style={{ color: "#f7f7f7", fontSize: "medium", width: "45px" }}
               >
                 <span className="box">
-                  <TiDelete style={{ fontSize: "45px" }} />
+                  <AiOutlineDelete style={{ fontSize: "35px" }} />
                 </span>
               </button>
             </OverlayTrigger>
           </div>
         </Card.Body>
+
+
       </Card>
     </Col>
   );

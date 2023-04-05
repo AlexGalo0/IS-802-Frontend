@@ -80,106 +80,201 @@ export const PaginaPrincipal = () => {
 		<Container fluid className='container-grid'>
 			{userAuth ? <NavbarsLogueado /> : <NavbarsLR />}
 
-			<main>
-				<aside className='text-center'>
-					<h4 className='py-3 fil'>
-						<FaFilter /> Filtros
-					</h4>
-					<SidebarFiltros />
-					<span className='textBuscar'>Limpiar Filtros</span>
-					<br />
-					<form onSubmit={handleSubmit(filtrarProductos)}>
-						<button onClick={handleReiniciar} type='reset'>
-							Reiniciar
-						</button>
-						{categorias?.map((categoria) => (
-							<div key={categoria.idCategoria.data}>
-								<input
-									type='checkbox'
-									value={categoria.nombre}
-									{...register(`categorias`)} //${categoria.nombre}
-								/>
-								<label htmlFor=''>{categoria.nombre}</label>
-								<br />
-							</div>
-						))}
+			<main className="principal">
+      <aside className="text-center">
+          <h4 className="py-3 fil">
+            <FaFilter /> Filtros
+          </h4>
+          <SidebarFiltros />
+          <button onClick={handleReiniciar} className="btnFiltros" style={{marginTop: '-5px'}}>
+            <span className="textBuscar">Limpiar Filtros</span>
+          </button>
+		<div style={{padding: '5px'}} className="scroll">
 
-						<br />
-						{departamentos?.map((departamento) => (
-							<div key={departamento.id_dpto}>
-								<input
-									type='checkbox'
-									value={departamento.nombre}
-									{...register(`departamentos`)} //${departamento.nombre}
-								/>
-								<label htmlFor=''>{departamento.nombre}</label>
-								<br />
-							</div>
-						))}
+          <form onSubmit={handleSubmit(filtrarProductos)}>
+            <h5 className="py-3 cate">Categorias</h5>
+            {categorias?.map((categoria) => (
+              <div
+                key={categoria.idCategoria.data}
+                className="checkbox-apple"
+                style={{ width: "auto" }}
+              >
+                <input
+                  style={{ marginTop: "3px" }}
+                  className="yep"
+                  id={categoria.nombre}
+                  type="checkbox"
+                  value={categoria.nombre}
+                  {...register(`${categoria.nombre}`)}
+                />
+                <label
+                  htmlFor=""
+                  for={categoria.nombre}
+                  style={{ marginTop: "3px" }}
+                ></label>
+                <p className="checkP">{categoria.nombre}</p>
+                <br />
+              </div>
+            ))}
 
-						{
-							<>
-								<input
-									type='number'
-									placeholder='Precio Minimo'
-									{...register("precioMinimo")}
-								/>
-								<input
-									type='number'
-									placeholder='Precio Maximo'
-									{...register("precioMaximo")}
-								/>
-							</>
-						}
-						{
-							<>
-								<input
-									type='text'
-									placeholder='Palabras Clave'
-									{...register("palabraClave")}
-								/>
-							</>
-						}
+            <br />
+            <h5 className="py-3 cate">Departamentos</h5>
+            {departamentos?.map((departamento) => (
+              <div
+                key={departamento.id_dpto}
+                className="checkbox-apple"
+                style={{ width: "auto" }}
+              >
+                <input
+                  style={{ marginTop: "3px" }}
+                  className="yep"
+                  id={departamento.nombre}
+                  type="checkbox"
+                  value={departamento.nombre}
+                  {...register(`${departamento.nombre}`)}
+                />
+                <label
+                  htmlFor=""
+                  for={departamento.nombre}
+                  style={{ marginTop: "3px" }}
+                ></label>
+                <p className="checkP">{departamento.nombre}</p>
+                <br />
+              </div>
+            ))}
 
-						{
-							<>
-								<br />
-								<input
-									type='checkbox'
-									name=''
-									id=''
-									value={"7Days"}
-									{...register("days")}
-								/>
+<br />
+            <h5 className="py-3 cate">Fecha</h5>
+            {
+              <>
+                <div className="checkbox-apple" style={{ width: "auto" }}>
+                  <input
+                    type="checkbox"
+                    name=""
+                    id="7"
+                    {...register("7Days")}
+                    style={{ marginTop: "3px" }}
+                    className="yep"
+                  />
+                  <label
+                    htmlFor=""
+                    for="7"
+                    style={{ marginTop: "3px" }}
+                  ></label>
+                  <p className="checkP">7 Dias</p>
+                  <br />
+                </div>
+                <div className="checkbox-apple" style={{ width: "auto" }}>
+                  <input
+                    type="checkbox"
+                    name=""
+                    id="15"
+                    {...register("15Days")}
+                    style={{ marginTop: "3px" }}
+                    className="yep"
+                  />
+                  <label
+                    htmlFor=""
+                    for="15"
+                    style={{ marginTop: "3px" }}
+                  ></label>
+                  <p className="checkP">15 Dias</p>
+                  <br />
+                </div>
+                <div className="checkbox-apple" style={{ width: "auto" }}>
+                  <input
+                    type="checkbox"
+                    name=""
+                    id="20"
+                    {...register("20Days")}
+                    style={{ marginTop: "3px" }}
+                    className="yep"
+                  />
+                  <label
+                    htmlFor=""
+                    for="20"
+                    style={{ marginTop: "3px" }}
+                  ></label>
+                  <p className="checkP">20 Dias</p>
+                  <br />
+                </div>
+                <div className="checkbox-apple" style={{ width: "auto" }}>
+                  <input
+                    type="checkbox"
+                    name=""
+                    id="30"
+                    {...register("30Days")}
+                    style={{ marginTop: "3px" }}
+                    className="yep"
+                  />
+                  <label
+                    htmlFor=""
+                    for="30"
+                    style={{ marginTop: "3px" }}
+                  ></label>
+                  <p className="checkP">30 Dias</p>
+                  <br />
+                </div>
 
-								<label htmlFor=''>7 Dias</label>
-								<br />
-								<input
-									type='checkbox'
-									name=''
-									id=''
-									value={"15Days"}
-									{...register("days")}
-								/>
+              </>
+            }
 
-								<label htmlFor=''>15 Dias</label>
-								<br />
+            <br />
+            <h5 className="py-3 cate">Precios</h5>
+            {
+              <>
+                <label htmlFor="" className="labelPrecio">
+                  Precio Mínimo:
+                </label>
+                <input
+                  className="inPrecio"
+                  type="number"
+                  {...register("precioMinimo")}
+                />
+				
+                <label htmlFor="" className="labelPrecio">
+                  Precio Máximo:
+                </label>
+                <input
+                  className="inPrecio"
+                  type="number"
+                  {...register("precioMaximo")}
+                />
+              </>
+            }
 
-								<input
-									type='checkbox'
-									name=''
-									id=''
-									value={"30Days"}
-									{...register("days")}
-								/>
+            <br />
+            <h5 className="py-3 cate">Buscador</h5>
+            {
+              <>
+                <label htmlFor="" className="labelPrecio">
+                  Palabras Clave:
+                </label>
+                <input
+                  className="inPrecio"
+                  type="text"
+                  {...register("palabraClave")}
+                />
+              </>
+            }
 
-								<label htmlFor=''>30 Dias</label>
-								<br />
-							</>
-						}
-						<button type='submit'>Filtrar</button>
-					</form>
-				</aside>
+            
+          </form>
+              </div>
+            <button
+              type="submit"
+              className="buttonProducto"
+              style={{
+                color: "#f7f7f7",
+                fontSize: "medium",
+                margin: "auto",
+                backgroundColor: "#365662",
+                marginTop: "10px",
+              }}
+            >
+              <span className="box">Filtrar</span>
+            </button>
+        </aside>
 
 				<article>
 					{isLoading ? (

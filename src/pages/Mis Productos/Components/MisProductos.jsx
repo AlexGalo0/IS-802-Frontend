@@ -14,12 +14,12 @@ import {
   obtenerProductos,
 } from "../../../api";
 import { useForm } from "react-hook-form";
-import { CartaFavoritos } from "./cartaFavoritos";
+import { CartaFavoritos } from "./cartaMisProductos";
 
 import { useNavigate } from "react-router";
 import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
 
-export const PaginaFavoritos = () => {
+export const PaginaMisProductos = () => {
   const navigate = useNavigate(); //Para redireccion
   const { userAuth } = useContext(UserContext);
   const [numeroPagina, setNumeroPagina] = useState(0);
@@ -276,7 +276,7 @@ export const PaginaFavoritos = () => {
             >
               <BiLeftArrow />
             </button>
-            <h1>Tus productos favoritos:</h1>
+            <h1>Mis productos en venta:</h1>
           </div>
 
           <Row xs={1} md={3} className="g-4">

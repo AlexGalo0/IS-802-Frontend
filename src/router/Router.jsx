@@ -10,6 +10,10 @@ import {
 	EdicionCategorias,
 	Producto,
 } from "../pages";
+import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginFavoritos";
+import { PaginaMisProductos } from "../pages/Mis Productos/Components/MisProductos";
+import { LandingPage } from "../pages/Landing/Components/LandingPage";
+
 import { useContext } from "react";
 import { RutaProtegida, NavbarsLR } from "../Components";
 import { Route, Routes } from "react-router-dom";
@@ -34,6 +38,10 @@ export const Router = () => {
 					}
 				/>
 				<Route path='/construyendo' element={<Construyendo />} />
+				<Route path='/landing' element={<LandingPage />} />
+				<Route path='/principal' element={<PaginaPrincipal />} />
+				<Route path='/favoritos' element={<PaginaFavoritos />} />
+				<Route path='/misProductos' element={<PaginaMisProductos />} />
 
 				<Route path='/registrarUsuario' element={<RegistroUsuario />} />
 

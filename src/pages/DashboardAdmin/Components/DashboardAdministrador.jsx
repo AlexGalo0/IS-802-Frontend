@@ -12,22 +12,21 @@ import { BsFillGearFill } from "react-icons/bs";
 export const DashboardAdministrador = () => {
     return (
         <Container fluid className="container-grid">
-            <main>
-                <aside>
+            <main className="dash">
+                <aside  >
                     <div className="text-center py-3">
                         <Image src={logo} width="100px" />
                     </div>
                     <ul className="center-nav pt-4">
-                        <li><a href="#"><FaHouseDamage /> Panel principal</a></li>
-                        <li><a href="#"><FaBoxes /> Productos</a></li>
-                        <li><a href="#"><AiOutlineAreaChart /> Estadisticas</a></li>
-                        <li><a href="#"><AiFillWarning /> Denuncias</a></li>
-                        <li><a href="#"> hola </a></li>
+                        <li><a href="#" style={{color: 'black'}}><FaHouseDamage /> Panel principal</a></li>
+                        <li><a href="#" style={{color: 'black'}}><FaBoxes /> Productos</a></li>
+                        <li><a href="#" style={{color: 'black'}}><AiOutlineAreaChart /> Estadisticas</a></li>
+                        <li><a href="#" style={{color: 'black'}}><AiFillWarning /> Denuncias</a></li>
                     </ul>
                     <ul className="bottom-nav">
                         <hr />
-                        <li><a href="#"><BsFillGearFill /> Configuraciones</a></li>
-                        <li><a href="#"> <AiOutlinePoweroff /> Cerrar sesión</a></li>
+                        <li><a href="#" style={{color: 'black'}}><BsFillGearFill /> Configuraciones</a></li>
+                        <li><a href="#" style={{color: 'black'}}> <AiOutlinePoweroff /> Cerrar sesión</a></li>
                     </ul>
                 </aside>
 
@@ -111,16 +110,6 @@ export const DashboardAdministrador = () => {
                     </div>
                 </article>
 
-                <footer className="d-flex justify-content-around align-items-center">
-                    <div>
-                        <h5>Contactanos</h5>
-                        <p>admi.correo@marketplace.com</p>
-                    </div>
-                    <div className="w-25 d-flex justify-content-around">
-                        <h6>Iconos</h6>
-                    </div>
-                    <div>Marketplace 2023</div>
-                </footer>
             </main>
         </Container>
     );

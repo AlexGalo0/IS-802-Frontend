@@ -83,13 +83,13 @@ export const NavbarsLR = () => {
           </button> */}
         </div>
 
-        <div style={{marginLeft: '-100px'}}>
-        <Link to='/login'>
-          <button className="regis">Inicia sesión</button>
+        <div style={{marginLeft: '-100px', display: 'flex', margin: 'auto'}}>
+        <Link to='/login' style={{textDecoration: 'none'}}>
+          <button className="btnregis"> <span className="textBuscar">Inicia sesión</span></button>
           </Link>
-          <Link to='/registrarUsuario'>
+          <Link to='/registrarUsuario' style={{textDecoration: 'none'}}>
 
-          <button className="regis">Registrate</button>
+          <button className="btnregis">Registrate</button>
           </Link>
         </div>
         <div className="trampa">

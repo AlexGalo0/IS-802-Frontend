@@ -6,6 +6,17 @@
     --color5: #f26c4f;
 }
 
+.dash{
+    display: grid;
+    grid-template-areas: 
+    'side contenido contenido'
+    'side contenido contenido' 
+    'foot foot foot';
+    grid-template-rows: 50px auto 75px;
+    grid-template-columns: 250px auto auto;
+    gap: 0px;
+    height: 100vh;
+}
 
 /*estilos nav lateral*/
 .center-nav,

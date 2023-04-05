@@ -37,7 +37,9 @@ import { AiFillHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { BiSearchAlt, BiUser } from "react-icons/bi";
 import Boton from "../Components/botonLike";
+import { FaShare } from "react-icons/fa";
 import { useParams} from "react-router-dom";
+
 export const Producto = ({}) => {
 
 	const { userAuth } = useContext(UserContext);
@@ -53,6 +55,13 @@ export const Producto = ({}) => {
     queryFn:()=>{console.log(idProducto)},
     //La funcion de query deberia ser axios.get('/api/producto/idProducto')
   })
+
+  /* Elementos de los overlays (AL poner cursor sobre el simbolo de corazon dice que inicimos sesion) */
+  const renderTooltipButtomShare = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Compartir
+    </Tooltip>
+  );
 
 	return (
 		<>
@@ -166,7 +175,21 @@ export const Producto = ({}) => {
 									</div>
 								</div>
 
-								<Boton />
+								<div style={{display: 'flex', gap: '10px'}}>
+                <Boton />
+                {/* Boton de compartir */}
+                <div className="like">
+                  <OverlayTrigger
+                    placement="top"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderTooltipButtomShare}
+                  >
+                    <button>
+                      <FaShare className="heart" />
+                    </button>
+                  </OverlayTrigger>
+                </div>
+                </div>
 
 								<Link to='/construyendo' style={{ textDecoration: "none" }}>
 									<button

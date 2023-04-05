@@ -229,8 +229,8 @@
   border-radius: 30px;
   padding: 5px 0px;
 }
-/* Boton Buscar */
-.btnBuscar {
+/* Boton Buscar Codigo importante*/
+/* .btnBuscar {
   width: 90px;
   height: 45px;
   border-radius: 20px;
@@ -278,7 +278,7 @@
 
 .btnBuscar:active .iconBuscar {
   transform: scale(0.85);
-}
+} */
 
 /* Boton de registrarse y login */
 .regis {
@@ -353,4 +353,44 @@
   z-index: 5;
   margin-left: 275px;
   position: fixed;
+}
+
+/* New Btn regis */
+.btnregis {
+  width: 130px;
+  height: 45px;
+  border-radius: 30px;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  color: var(--blue5);
+  font-size: larger;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 2px 2px var(--blue4);
+  background-color: var(--blue3);
+  color: var(--white);
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.btnregis:hover {
+  box-shadow: 0 0 20px 0px var(--blue4);
+  background-color: var(--hover);
+}
+
+/* Canvas */
+.formCategory {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 50px;
+  flex-direction: column;
+  background: var(--blue3);
+  height:100%;
+  margin: auto;
+  padding: 5px;
+  box-shadow: 1px 1px 1px 1px rgba(32, 32, 32, 0.3);
+  text-align: center;
 }
