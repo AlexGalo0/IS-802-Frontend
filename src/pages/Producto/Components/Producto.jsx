@@ -20,14 +20,9 @@ import {
 } from "react-bootstrap";
 import segunda from "../../../assets/4.png";
 import primera from "../../../assets/3.png";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useMutation, useQuery } from "react-query";
-import {
-	obtenerDepartamentos,
-	obtenerCategorias,
-	crearProducto,
-} from "../../../api";
 
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
@@ -45,19 +40,19 @@ export const Producto = ({}) => {
 	const { userAuth } = useContext(UserContext);
 	let { idProducto } = useParams();
 	const navigate = useNavigate(); //Para redireccion
-
+	// const [arregloImagenes, setArregloImagenes] = useState([]);
 	const handleRedirection = () => {
 		navigate("/");
 	};
-	const obtenerProducto = async (idProducto) => {
-		const res = await axios.get(`http://localhost:4000/producto/${idProducto}`);
-		console.log(res.data);
+	const obtenerProductoPorId = async (idProducto) => {
+		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
+
+		return res.data[0];
 	};
-	const { data: infoProducto } = useQuery({
+	const { data: infoProductos } = useQuery({
 		queryKey: ["producto"],
-		queryFn: obtenerProducto,
+		queryFn: () => obtenerProductoPorId(idProducto),
 	});
-	//La funcion de query deberia ser axios.get('/api/producto/idProducto')
 
 	/* Elementos de los overlays (AL poner cursor sobre el simbolo de corazon dice que inicimos sesion) */
 	const renderTooltipButtomShare = (props) => (
@@ -66,10 +61,11 @@ export const Producto = ({}) => {
 		</Tooltip>
 	);
 
-	const generarEnlace=()=>{
-		navigator.clipboard.writeText('http://127.0.0.1:5173/producto/'+idProducto)
-	
-	}
+	const generarEnlace = () => {
+		navigator.clipboard.writeText(
+			"http://127.0.0.1:5173/producto/" + idProducto
+		);
+	};
 
 	return (
 		<>
@@ -85,44 +81,27 @@ export const Producto = ({}) => {
 					</button>
 					<div style={{ display: "flex", flexDirection: "row" }}>
 						<div>
-							{/* Carusel */}
 							<Carousel variant='dark' className='carruselStyle'>
-								<Carousel.Item>
-									<Container className='conCarrusel'>
-										<Image src={primera} className='imageCarrusel' />
-									</Container>
-								</Carousel.Item>
-								<Carousel.Item>
-									<Container className='conCarrusel'>
-										<Image src={primera} className='imageCarrusel' />
-									</Container>
-								</Carousel.Item>
-								<Carousel.Item>
-									<Container className='conCarrusel'>
-										<Image src={segunda} className='imageCarrusel' />
-									</Container>
-								</Carousel.Item>
-								<Carousel.Item>
-									<Container className='conCarrusel'>
-										<Image src={segunda} className='imageCarrusel' />
-									</Container>
-								</Carousel.Item>
+								{JSON.parse(infoProductos.imagenes)?.map((imagen) => (
+									<Carousel.Item>
+										<Container className='conCarrusel'>
+											<Image src={imagen} className='imageCarrusel' />
+										</Container>
+									</Carousel.Item>
+								))}
 							</Carousel>
 						</div>
+
 						<div className='spects'>
 							<div className='spectsMedium'>
-								<h1>Nombre</h1>
-								<h4>
-									Descripcion del producto: asjdoasjaslkdj askdja sdjlka jslja
-									lksjdlkas lka fsakjdhfkljas fljshda jdfashklsdf jkdsj akajh
-									kjshkjf sakjh kjhf kjsahkjahdkfj sakdjfh kjahf kjsdhf kjh{" "}
-								</h4>
-								<h4>Ctegoria</h4>
-								<h4>Departamento</h4>
-								<h4>Disponibles</h4>
+								<h1>{infoProductos?.nombre}</h1>
+								<h4>{infoProductos?.descripcion}</h4>
+								<h4>{infoProductos?.departamento}</h4>
+								<h4>{infoProductos?.categoria}</h4>
+
 								<h1>
 									<BsCurrencyDollar style={{ marginTop: "-8px" }} />
-									Precio
+									{infoProductos?.cantidad}
 								</h1>
 							</div>
 

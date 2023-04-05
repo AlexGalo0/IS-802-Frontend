@@ -24,6 +24,12 @@ export const obtenerProductos = async (numeroPagina) => {
 //     await axios.get(`http://localhost:4000/product/1/find-categories/${nombreCategoria}`)
 // }
 
+export const obtenerProductoPorId = async (idProducto)=>{
+    console.log(idProducto);
+    // const res = await axios.get(`http://localhost:4000/product/${idProducto}`)
+    // return res.data
+}
+
 /* ******** POST ********** */
 export const crearUsuario = async (userData) => {
     await axios.post("http://localhost:4000/user", userData);
