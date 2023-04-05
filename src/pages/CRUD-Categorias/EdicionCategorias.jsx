@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Modal, Row, Table, Button, Container  , Alert} from "react-bootstrap";
+import { Modal, Row, Table, Button, Container, Alert } from "react-bootstrap";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
 	obtenerCategorias,
@@ -21,8 +21,6 @@ import { useNavigate } from "react-router";
 
 export const EdicionCategorias = () => {
 	const { userAuth } = useContext(UserContext);
-	const [show, setShow] = useState(false);
-	const [nombreCategoriaEditar, setNombreCategoriaEditar] = useState("");
 
 	const {
 		register,
@@ -38,68 +36,29 @@ export const EdicionCategorias = () => {
 		handleCloseModalCreacion();
 		reset();
 	};
-	const [showEditModal, setShowEditModal] = useState(false);
-	const [categoriaAEditar, setCategoriaAEditar] = useState("");
-	const [disableButton, setDisableButton] = useState(false);
-	const [showCreacionModal, setShowCreacionModal] = useState(false);
 
+  const handleReiniciarBorrar = ()=>{
+    handleCloseBorrarModal()
+    reset()
+  }
+
+	/* ***** CREACION DE CATEGORIA ***** */
+	const [showCreacionModal, setShowCreacionModal] = useState(false);
 	const handleCloseModalCreacion = () => setShowCreacionModal(false);
 	const handleShowModalCreacion = () => setShowCreacionModal(true);
-
-	const handleClose = () => setShowEditModal(false);
-	const handleShow = () => setShowEditModal(true);
-
-  const [mostrarAlert , setMostrarAlert] = useState(false)
-	const queryClient = useQueryClient();
-	const { data: categorias } = useQuery({
-		queryKey: ["obtenerCategorias"],
-		queryFn: obtenerCategorias,
-	});
-
-	const borrarCategoriaMutation = useMutation({
-		mutationFn: borrarCategorias,
-		onSuccess: () => {
-			console.log("Categoria Borrada");
-			queryClient.invalidateQueries("obtenerCategorias");
-		},
-	});
-
-	const editarCategoriaMutation = useMutation({
-		mutationFn: (idCategoriaAEditar, datosNuevaCategoria) =>
-			editarCategoria(idCategoriaAEditar, datosNuevaCategoria),
-		onSuccess: () => {
-			queryClient.invalidateQueries("obtenerCategorias");
-      setDisableButton(true)
-      setMostrarAlert(true)
-      setTimeout(() => {
-        handleClose(true)
-        setMostrarAlert(false)
-        handleReiniciar()
-        setDisableButton(false)
-      }, 1000);
-		},
-	});
-
-	const enviarEdicionCategoria = (datosNuevaCategoria) => {
-
-		editarCategoriaMutation.mutate({
-			categoriaAEditar,
-			...datosNuevaCategoria,
-		});
-	};
 
 	const crearNuevaCategoriaMutation = useMutation({
 		mutationFn: (datosCategoriaACrear) => crearCategoria(datosCategoriaACrear),
 		onSuccess: () => {
 			queryClient.invalidateQueries("obtenerCategorias");
-      setDisableButton(true);
-      setMostrarAlert(true)
-      setTimeout(() => {
-        handleCloseModalCreacion(true)
-        setMostrarAlert(false)
-        handleReiniciar()
-        setDisableButton(false)
-      }, 1000);
+			setDisableButton(true);
+			setMostrarAlert(true);
+			setTimeout(() => {
+				handleCloseModalCreacion(true);
+				setMostrarAlert(false);
+				handleReiniciar();
+				setDisableButton(false);
+			}, 500);
 		},
 	});
 
@@ -107,6 +66,70 @@ export const EdicionCategorias = () => {
 		crearNuevaCategoriaMutation.mutate(datosCategoriaACrear);
 	};
 
+	/******  EDICION DE CATEGORIA *********/
+	const [showEditModal, setShowEditModal] = useState(false);
+	const [categoriaAEditar, setCategoriaAEditar] = useState("");
+	const handleClose = () => setShowEditModal(false);
+	const handleShow = () => setShowEditModal(true);
+
+	const editarCategoriaMutation = useMutation({
+		mutationFn: (idCategoriaAEditar, datosNuevaCategoria) =>
+			editarCategoria(idCategoriaAEditar, datosNuevaCategoria),
+		onSuccess: () => {
+			queryClient.invalidateQueries("obtenerCategorias");
+			setDisableButton(true);
+			setMostrarAlert(true);
+			setTimeout(() => {
+				handleClose(true);
+				setMostrarAlert(false);
+				handleReiniciar();
+				setDisableButton(false);
+			}, 500);
+		},
+	});
+
+	const enviarEdicionCategoria = (datosNuevaCategoria) => {
+		editarCategoriaMutation.mutate({
+			categoriaAEditar,
+			...datosNuevaCategoria,
+		});
+	};
+
+	/* **********BORRAR CATEGORIA**********/
+	const [showBorrarModal, setShowBorrarModal] = useState(false);
+	const [categoriaABorrar, setCategoriaABorrar] = useState("");
+	const handleShowBorrarModal = () => setShowBorrarModal(true);
+	const handleCloseBorrarModal = () => setShowBorrarModal(false);
+
+	const borrarCategoriaMutation = useMutation({
+		mutationFn: (nombreCategoriaABorrar) =>
+			borrarCategorias(nombreCategoriaABorrar),
+		onSuccess: () => {
+      setMostrarAlert(true)
+      setDisableButton(true)
+      setTimeout(() => {
+       handleCloseBorrarModal(true)
+        setMostrarAlert(false)
+        setDisableButton(false)
+      }, 500);
+			queryClient.invalidateQueries("obtenerCategorias");
+		},
+	});
+
+	const borrarCategoria = (nombreCategoria) => {
+		borrarCategoriaMutation.mutate(nombreCategoria);
+	};
+
+	/* Estados para alerta y boton */
+	const [disableButton, setDisableButton] = useState(false);
+	const [mostrarAlert, setMostrarAlert] = useState(false);
+
+	const queryClient = useQueryClient();
+
+	const { data: categorias } = useQuery({
+		queryKey: ["obtenerCategorias"],
+		queryFn: obtenerCategorias,
+	});
 	const handleRedirection = () => {
 		navigate(-1);
 	};
@@ -176,9 +199,8 @@ export const EdicionCategorias = () => {
 												className='buttonEdiBo'
 												style={{ color: "#f7f7f7", fontSize: "medium" }}
 												onClick={() => {
-													borrarCategoriaMutation.mutate(
-														categoria.idCategoria.data
-													);
+													handleShowBorrarModal(true);
+													setCategoriaABorrar(categoria);
 												}}
 											>
 												<span className='box'>
@@ -239,17 +261,20 @@ export const EdicionCategorias = () => {
 						{...register("descripcionCategoria")}
 						className='inModal'
 					/>
-          	{mostrarAlert ? (
-							<Alert variant='success'>Nueva categoria añadida!</Alert>
-						) : (
-							""
-						)}
+					{mostrarAlert ? (
+						<Alert variant='success'>Nueva categoria añadida!</Alert>
+					) : (
+						""
+					)}
 					{/* // handleCloseModalCreacion(true); */}
 					<Modal.Footer style={{ margin: "auto" }}>
-						<button type='submit' className='buttonGuardar' disabled={disableButton}>
+						<button
+							type='submit'
+							className='buttonGuardar'
+							disabled={disableButton}
+						>
 							Guarda tu nueva categoria
 						</button>
-					
 
 						<button
 							onClick={handleReiniciarCreacion}
@@ -305,13 +330,11 @@ export const EdicionCategorias = () => {
 						className='inModal'
 						{...register("descripcionCategoria")}
 					/>
-          {
-            mostrarAlert?  (
-							<Alert variant='success'>Edición de categoria completada!</Alert>
-						) : (
-							""
-						)
-          }
+					{mostrarAlert ? (
+						<Alert variant='success'>Edición de categoria completada!</Alert>
+					) : (
+						""
+					)}
 					<Modal.Footer style={{ margin: "auto" }}>
 						<button type='submit' className='buttonGuardar'>
 							Guarda tu nueva categoria
@@ -320,7 +343,6 @@ export const EdicionCategorias = () => {
 							onClick={handleReiniciar}
 							className='buttonGuardar'
 							type='reset'
-            
 						>
 							Cerrar
 						</button>
@@ -328,39 +350,36 @@ export const EdicionCategorias = () => {
 				</form>
 			</Modal>
 
-			{/* <Modal
-				show={showEditModal}
-				onHide={handleClose}
+			{/* Modal de Borrar Categoria */}
+			<Modal
+				show={showBorrarModal}
+				onHide={handleCloseBorrarModal}
 				backdrop='static'
 				keyboard={false}
 			>
-				<Modal.Header closeButton>
-					<Modal.Title>{`Edita la categoria ${categoriaAEditar.nombre}`}</Modal.Title>
+				<Modal.Header>
+					<Modal.Title
+						style={{ fontSize: "25px" }}
+					>{`Estas seguro que quieres borrar la categoria ${categoriaABorrar.nombre} ? `}</Modal.Title>
 				</Modal.Header>
-				<form onSubmit={handleSubmit(enviarEdicionCategoria)}>
-					<label htmlFor=''>Edita el nombre de la categoria: </label>
-					<input type='text' {...register("nombreCategoria")} />
-					<label htmlFor=''>Edita la descripcion de la categoria: </label>
-					<input type='text' {...register("descripcionCategoria")} /> */}
-			{/* // handleClose(true); */}
-			{/* <button type="submit">Guarda tu nueva categoria</button>
-
-          <Modal.Footer>
-            <button onClick={handleReiniciar} type="reset">
-              Cerrar
-            </button>
-          </Modal.Footer>
-        </form>
-      </Modal> */}
+			
+					{mostrarAlert ? (
+						<Alert variant='success'>Categoria Eliminada</Alert>
+					) : (
+						""
+					)}
+					<Modal.Footer style={{ margin: "auto" }}>
+						<button className='buttonGuardar' disabled={disableButton} onClick={()=>{borrarCategoria(categoriaABorrar.nombre)}}>Eliminar</button>
+						<button
+							onClick={handleReiniciarBorrar}
+							className='buttonGuardar'
+							type='reset'
+						>
+							Cancelar
+						</button>
+					</Modal.Footer>
+			
+			</Modal>
 		</Container>
 	);
 };
-
-/* 
-1. Botón + para añadir una categoria que levante modal C
-2. Mostrar las categorias que ya estan en una tabla. R
-3. Que la tabla tenga el boton de "Actualizar" U
-4. Boton de Borrar D
-
-
-*/

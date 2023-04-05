@@ -60,9 +60,10 @@ export const crearCategoria = async (categoria) => {
     await axios.post('http://localhost:4000/categories',categoria)
 }
 
-export const borrarCategorias = async (idCategoria) => {
-    await axios.delete(`http://localhost:4000/categories/${idCategoria}`)
-    console.log(`Borraste la categoria ${idCategoria}`);
+export const borrarCategorias = async (categoriaABorrar) => {
+    console.log(categoriaABorrar);
+    await axios.delete(`http://localhost:4000/categories/${categoriaABorrar}`)
+    // console.log(`Borraste la categoria ${idCategoria}`);
 }
 
 export const editarCategoria = async (nuevaCategoria) => {
