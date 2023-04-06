@@ -47,6 +47,7 @@ export const PaginaPrincipal = () => {
 		queryFn: obtenerDepartamentos,
 	});
 
+	const [pageParam, setPageParam] = useState(1);
 	const {
 		fetchNextPage, //function
 		hasNextPage, //boolean
@@ -94,8 +95,19 @@ export const PaginaPrincipal = () => {
 		});
 	});
 
-	const mutationFiltros = useMutation({});
-	const filtrarProductos = (datosFiltrado) => {};
+	const mutationFiltros = useMutation({
+		mutationFn: (datosFiltrado) => enviarFiltros(datosFiltrado, pageParam),
+		onSuccess: (data) => {
+			queryClient.setQueryData({
+				pages: [data],
+				pageParam: [1],
+			});
+      setPageParam(1)
+		},
+	});
+	const filtrarProductos = (datosFiltrado) => {
+		mutationFiltros.mutate(datosFiltrado);
+	};
 
 	const handleReiniciar = () => {};
 
@@ -131,7 +143,7 @@ export const PaginaPrincipal = () => {
 										id={categoria.nombre}
 										type='checkbox'
 										value={categoria.nombre}
-										{...register(`${categoria.nombre}`)}
+										{...register(`categoria`)}
 									/>
 									<label
 										htmlFor=''
@@ -157,7 +169,7 @@ export const PaginaPrincipal = () => {
 										id={departamento.nombre}
 										type='checkbox'
 										value={departamento.nombre}
-										{...register(`${departamento.nombre}`)}
+										{...register(`departamentos`)}
 									/>
 									<label
 										htmlFor=''
@@ -178,7 +190,8 @@ export const PaginaPrincipal = () => {
 											type='checkbox'
 											name=''
 											id='7'
-											{...register("7Days")}
+                      value={'7Days'}
+											{...register("days")}
 											style={{ marginTop: "3px" }}
 											className='yep'
 										/>
@@ -195,7 +208,8 @@ export const PaginaPrincipal = () => {
 											type='checkbox'
 											name=''
 											id='15'
-											{...register("15Days")}
+                      value={'15Days'}
+											{...register("days")}
 											style={{ marginTop: "3px" }}
 											className='yep'
 										/>
@@ -207,29 +221,14 @@ export const PaginaPrincipal = () => {
 										<p className='checkP'>15 Dias</p>
 										<br />
 									</div>
-									<div className='checkbox-apple' style={{ width: "auto" }}>
-										<input
-											type='checkbox'
-											name=''
-											id='20'
-											{...register("20Days")}
-											style={{ marginTop: "3px" }}
-											className='yep'
-										/>
-										<label
-											htmlFor=''
-											for='20'
-											style={{ marginTop: "3px" }}
-										></label>
-										<p className='checkP'>20 Dias</p>
-										<br />
-									</div>
+									
 									<div className='checkbox-apple' style={{ width: "auto" }}>
 										<input
 											type='checkbox'
 											name=''
 											id='30'
-											{...register("30Days")}
+                      value={'30Days'}
+											{...register("days")}
 											style={{ marginTop: "3px" }}
 											className='yep'
 										/>
@@ -282,21 +281,21 @@ export const PaginaPrincipal = () => {
 									/>
 								</>
 							}
+							<button
+								type='submit'
+								className='buttonProducto'
+								style={{
+									color: "#f7f7f7",
+									fontSize: "medium",
+									margin: "auto",
+									backgroundColor: "#365662",
+									marginTop: "10px",
+								}}
+							>
+								<span className='box'>Filtrar</span>
+							</button>
 						</form>
 					</div>
-					<button
-						type='submit'
-						className='buttonProducto'
-						style={{
-							color: "#f7f7f7",
-							fontSize: "medium",
-							margin: "auto",
-							backgroundColor: "#365662",
-							marginTop: "10px",
-						}}
-					>
-						<span className='box'>Filtrar</span>
-					</button>
 				</aside>
 
 				<article>

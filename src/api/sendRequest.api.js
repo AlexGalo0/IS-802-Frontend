@@ -40,12 +40,11 @@ export const crearProducto = async (infoProducto) => {
     await axios.post('http://localhost:4000/product', infoProducto)
 }
 
-export const enviarFiltros = async (datosFiltrado, numeroPagina) => {
+export const enviarFiltros = async (datosFiltrado, pageParam) => {
+ 
     console.log(datosFiltrado);
-    console.log(numeroPagina);
-
-    const res = await axios.post(`http://localhost:4000/product/${numeroPagina}/filters`, datosFiltrado)
-    return res.data;
+    // const res = await axios.post(`http://localhost:4000/product/${pageParam}/filters`, datosFiltrado)
+    // return res.data;
 }
 
 /* **POST: Inicio Sesiones** */
