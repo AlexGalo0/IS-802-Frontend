@@ -110,8 +110,9 @@ export const Producto = ({}) => {
               <div className="spectsMedium">
                 <h1>{infoProductos?.nombre}</h1>
                 <h4>{infoProductos?.descripcion}</h4>
-                <h4>{infoProductos?.departamento}</h4>
-                <h4>{infoProductos?.categoria}</h4>
+                <h4>Departamento: {infoProductos?.departamento}</h4>
+                <h4>Categoria: {infoProductos?.categoria}</h4>
+                <h4>Cantidad en inventario: {infoProductos?.cantidad}</h4>
 
 				<h4 style={{marginBottom: '-10px'}}>Calificacion del vendedor:</h4>
                 <div className="conCalificacion">
@@ -171,7 +172,7 @@ export const Producto = ({}) => {
 
                 <h1>
                   <BsCurrencyDollar style={{ marginTop: "-8px" }} />
-                  {infoProductos?.cantidad}
+                  {infoProductos?.precio}
                 </h1>
               </div>
 
