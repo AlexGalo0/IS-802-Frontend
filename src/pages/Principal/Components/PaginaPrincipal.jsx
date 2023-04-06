@@ -76,6 +76,11 @@ export const PaginaPrincipal = () => {
 
 	const prevPage = () => setNumeroPagina((prev) => prev - 1);
 
+    /* Funcion para que las pantallas aparezcan al inicio */
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
 	return (
 		<Container fluid className='container-grid'>
 			{userAuth ? <NavbarsLogueado /> : <NavbarsLR />}
@@ -296,10 +301,10 @@ export const PaginaPrincipal = () => {
 						)}
 					</Row>
 					<span> Numero de Pagina : {numeroPagina}</span>
-					<button onClick={prevPage} disabled={numeroPagina === 1}>
+					<button onClick={ () => { scrollToTop(); prevPage()}} disabled={numeroPagina === 1} > 
 						Prev Page
 					</button>
-					<button onClick={nextPage}>Next Page</button>
+					<button onClick={ () => { scrollToTop(); nextPage()}}>Next Page</button>
 				</article>
 				<Footers />
 			</main>
