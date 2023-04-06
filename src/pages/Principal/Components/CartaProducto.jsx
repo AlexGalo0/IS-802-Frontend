@@ -10,12 +10,14 @@ export const CartaProducto = React.forwardRef(({ producto }, ref) => {
 	// // 	const primeraImagen = JSON.parse(imagenes);
 	// // 	setPrimeraImagen(primeraImagen[0]);
 	// // });
+
+	const imagen = JSON.parse(producto.imagenes)
 	const postBody = (
 		<>
 			<Col>
 				<Card className='card'>
 					<Container className='card-container'>
-						{/* <Card.Img variant='top' src={primeraImagen} className='card-image' /> */}
+						<Card.Img variant='top' src={imagen[0]} className='card-image' />
 					</Container>
 					<Card.Body className='card-body'>
 						<Card.Title className='card-title'>{producto.nombre}</Card.Title>
