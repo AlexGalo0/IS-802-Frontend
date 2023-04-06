@@ -16,8 +16,8 @@ export const obtenerCategorias = async () => {
     return res.data
 }
 
-export const obtenerProductos = async (numeroPagina) => {
-    const res = await axios.get(`http://localhost:4000/product/pagination/${numeroPagina}`)
+export const obtenerProductos = async (pageParam,options={}) => {
+    const res = await axios.get(`http://localhost:4000/product/pagination/${pageParam}`,options)
     return res.data
 }
 // export const obtenerProductoPorCategoria = async (nombreCategoria ) => {
