@@ -65,6 +65,7 @@ export const Producto = ({}) => {
 		navigator.clipboard.writeText(
 			"http://127.0.0.1:5173/producto/" + idProducto
 		);
+		console.log(infoProductos);
 	};
 
 	return (
@@ -81,15 +82,19 @@ export const Producto = ({}) => {
 					</button>
 					<div style={{ display: "flex", flexDirection: "row" }}>
 						<div>
-							<Carousel variant='dark' className='carruselStyle'>
-								{JSON.parse(infoProductos.imagenes)?.map((imagen) => (
-									<Carousel.Item>
-										<Container className='conCarrusel'>
-											<Image src={imagen} className='imageCarrusel' />
-										</Container>
-									</Carousel.Item>
-								))}
-							</Carousel>
+							{infoProductos?.imagenes && (
+								<div>
+									<Carousel variant='dark' className='carruselStyle'>
+										{JSON.parse(infoProductos.imagenes)?.map((imagen) => (
+											<Carousel.Item>
+												<Container className='conCarrusel'>
+													<Image src={imagen} className='imageCarrusel' />
+												</Container>
+											</Carousel.Item>
+										))}
+									</Carousel>
+								</div>
+							)}
 						</div>
 
 						<div className='spects'>
