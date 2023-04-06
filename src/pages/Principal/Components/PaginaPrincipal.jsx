@@ -64,7 +64,6 @@ export const PaginaPrincipal = () => {
 	});
 
 	/* Codigo para infinity scrolling */
-
 	const intObserver = useRef();
 	const lastPostRef = useCallback(
 		(productos) => {
@@ -73,7 +72,6 @@ export const PaginaPrincipal = () => {
 
 			intObserver.current = new IntersectionObserver((productos) => {
 				if (productos[0].isIntersecting && hasNextPage) {
-					console.log("Crca del ultimo elemento");
 					fetchNextPage();
 				}
 			});
@@ -98,14 +96,18 @@ export const PaginaPrincipal = () => {
 	const mutationFiltros = useMutation({
 		mutationFn: (datosFiltrado) => enviarFiltros(datosFiltrado, pageParam),
 		onSuccess: (data) => {
-			queryClient.setQueryData({
+      queryClient.setQueryData(["productos"],null)
+			queryClient.setQueryData(["productos"], {
 				pages: [data],
 				pageParam: [1],
 			});
-      setPageParam(1)
+			setPageParam(1);
 		},
 	});
 	const filtrarProductos = (datosFiltrado) => {
+
+
+
 		mutationFiltros.mutate(datosFiltrado);
 	};
 
@@ -190,7 +192,7 @@ export const PaginaPrincipal = () => {
 											type='checkbox'
 											name=''
 											id='7'
-                      value={'7Days'}
+											value={"7Days"}
 											{...register("days")}
 											style={{ marginTop: "3px" }}
 											className='yep'
@@ -208,7 +210,7 @@ export const PaginaPrincipal = () => {
 											type='checkbox'
 											name=''
 											id='15'
-                      value={'15Days'}
+											value={"15Days"}
 											{...register("days")}
 											style={{ marginTop: "3px" }}
 											className='yep'
@@ -221,13 +223,13 @@ export const PaginaPrincipal = () => {
 										<p className='checkP'>15 Dias</p>
 										<br />
 									</div>
-									
+
 									<div className='checkbox-apple' style={{ width: "auto" }}>
 										<input
 											type='checkbox'
 											name=''
 											id='30'
-                      value={'30Days'}
+											value={"30Days"}
 											{...register("days")}
 											style={{ marginTop: "3px" }}
 											className='yep'

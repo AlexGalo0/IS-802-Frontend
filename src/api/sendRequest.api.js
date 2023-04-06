@@ -42,9 +42,8 @@ export const crearProducto = async (infoProducto) => {
 
 export const enviarFiltros = async (datosFiltrado, pageParam) => {
  
-    console.log(datosFiltrado);
-    // const res = await axios.post(`http://localhost:4000/product/${pageParam}/filters`, datosFiltrado)
-    // return res.data;
+    const res = await axios.post(`http://localhost:4000/product/${pageParam}/filters`, datosFiltrado)
+    return res.data
 }
 
 /* **POST: Inicio Sesiones** */
