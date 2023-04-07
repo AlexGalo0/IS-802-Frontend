@@ -62,7 +62,7 @@ export const Producto = ({}) => {
 
 	const agregarFavoritos=()=>{
 		const tokenUsuario= localStorage.getItem('token')
-		agregarProductoWishlist(idProducto,tokenUsuario)
+		agregarProductoWishlist(tokenUsuario,idProducto)
 	}
 
 	const [texto, setTexto] = useState("");

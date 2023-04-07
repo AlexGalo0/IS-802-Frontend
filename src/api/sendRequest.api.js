@@ -78,8 +78,9 @@ export const editarCategoria = async (nuevaCategoria) => {
 }
 
 
-export const agregarProductoWishlist = async (idProducto,token)=>{
-    console.log('Aqui: ' , idProducto,token);
-    // const res = await axios.get(`/wishlist/${token}/${idProducto}`)
-    // return res.data
+export const agregarProductoWishlist = async (token,idProducto)=>{
+    console.log(token);
+    console.log(idProducto);
+    const res = await axios.get(`http://localhost:4000/wishlist/${token}/${idProducto}`)
+    return res.data
 }
