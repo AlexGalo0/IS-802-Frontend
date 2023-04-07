@@ -21,6 +21,11 @@ export const CartaProducto = ({
 		setPrimeraImagen(primeraImagen[0]);
 	});
 
+	/* Funcion para que las pantallas aparezcan al inicio */
+	function scrollToTop() {
+		window.scrollTo(0, 0);
+	  }
+
 	return (
 		<Col>
 			
@@ -40,7 +45,7 @@ export const CartaProducto = ({
                   className="buttonProducto"
                   style={{ color: "#f7f7f7", fontSize: "medium" }}
                 >
-                  <span className="box">Ver producto</span>
+                  <span className="box" onClick={() => { scrollToTop()}}>Ver producto</span>
                 </button>
 				</Link>
               </Card.Body>

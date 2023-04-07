@@ -20,6 +20,10 @@ export const NavbarsLR = () => {
     </Tooltip>
   );
 
+  /* Funcion para que las pantallas aparezcan al inicio */
+	function scrollToTop() {
+		window.scrollTo(0, 0);
+	  }
 
   return (
     <>
@@ -85,11 +89,11 @@ export const NavbarsLR = () => {
 
         <div style={{marginLeft: '-100px', display: 'flex', margin: 'auto'}}>
         <Link to='/login' style={{textDecoration: 'none'}}>
-          <button className="btnregis"> <span className="textBuscar">Inicia sesión</span></button>
+          <button className="btnregis"> <span className="textBuscar" onClick={() => { scrollToTop()}}>Inicia sesión</span></button>
           </Link>
           <Link to='/registrarUsuario' style={{textDecoration: 'none'}}>
 
-          <button className="btnregis">Registrate</button>
+          <button className="btnregis" onClick={() => { scrollToTop()}}>Registrate</button>
           </Link>
         </div>
         <div className="trampa">

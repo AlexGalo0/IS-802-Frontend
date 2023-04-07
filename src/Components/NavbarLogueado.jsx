@@ -52,6 +52,11 @@ export const NavbarsLogueado = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  /* Funcion para que las pantallas aparezcan al inicio */
+	function scrollToTop() {
+		window.scrollTo(0, 0);
+	  }
+
   return (
     <>
       <div className="top-header">
@@ -124,7 +129,7 @@ export const NavbarsLogueado = () => {
         <div style={{ display: "flex", margin: "auto" }}>
           <Link to="/registrarProducto" style={{ textDecoration: "none" }}>
             <button className="btnregis" style={{ width: "250px" }}>
-              <span className="textBuscar">Agregar producto </span>
+              <span className="textBuscar" onClick={() => { scrollToTop()}}>Agregar producto </span>
             </button>
           </Link>
         </div>
@@ -136,7 +141,7 @@ export const NavbarsLogueado = () => {
             overlay={renderTooltipMessaje}
           >
             <Link to="/construyendo">
-              <button className="button-cuenta">
+              <button className="button-cuenta" onClick={() => { scrollToTop()}}>
                 <AiOutlineMessage />
               </button>
             </Link>
@@ -148,7 +153,7 @@ export const NavbarsLogueado = () => {
             overlay={renderTooltipLike}
           >
             <Link to="/favoritos">
-              <button className="button-cuenta">
+              <button className="button-cuenta" onClick={() => { scrollToTop()}}>
                 <AiOutlineHeart />
               </button>
             </Link>
@@ -159,7 +164,7 @@ export const NavbarsLogueado = () => {
             delay={{ show: 250, hide: 400 }}
             overlay={renderTooltip}
           >
-            <button className="button-cuenta" onClick={handleShow}>
+            <button className="button-cuenta" onClick={() => { scrollToTop(), handleShow()}}>
               <BiUser />
             </button>
 

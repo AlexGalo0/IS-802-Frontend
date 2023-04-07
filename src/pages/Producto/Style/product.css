@@ -221,14 +221,18 @@ transform: scale(0.85);
 } 
 
 /* Calificacion */
-.conCalificacion {
+/* .conCalificacion {
 border: 2px solid var(--blue4);
 border-radius: 30px;
 box-shadow:
 inset 4px 4px 1px -3px var(--blue1),
 -2px -2px 8px var(--blue1),
 inset 4px 4px 14px var(--hover);
-}
+} */
+
+.conCalificacion {
+  margin-top: -30px;
+  }
 
 .conCalificacion .starWitget .inStar {
 display: none;
