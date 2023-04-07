@@ -111,16 +111,13 @@ export const PaginaPrincipal = () => {
 		mutationFn: (datosFiltrado) => enviarFiltros(datosFiltrado, pageParam),
 		onSuccess: (data) => {
 			/* Here is the big problem , the last thing i try was setting it on null */
-			// queryClient.setQueryData(["productos"],null)
+			queryClient.setQueryData(["productos"],null)
 			// queryClient.setQueryData(["productos"], {
 			// 	pages: [data],
 			// 	pageParam: [1],
 			// });
 
-			queryClient.invalidateQueries({
-				queryKey:["productos"],
-				refetchType:'none'
-			});
+		
 
 			queryClient.setQueryData(["productos"], {
 				pages: [data],
