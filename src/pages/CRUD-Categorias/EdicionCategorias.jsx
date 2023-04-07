@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { Modal, Row, Table, Button, Container, Image , Alert } from "react-bootstrap";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { Modal, Row, Table, Button, Container, Alert , Image } from "react-bootstrap";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
 	obtenerCategorias,
 	borrarCategorias,

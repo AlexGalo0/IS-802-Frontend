@@ -23,7 +23,7 @@ import { crearUsuario, obtenerDepartamentos } from "../../../api";
 import { Contrato } from "./Contrato";
 import { useNavigate } from "react-router";
 import logo from "../../../assets/logoV2.png";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 export const RegistroUsuario = () => {
 	const navigate = useNavigate(); //Para redireccion

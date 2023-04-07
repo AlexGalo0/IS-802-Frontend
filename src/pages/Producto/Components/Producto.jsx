@@ -22,7 +22,7 @@ import segunda from "../../../assets/4.png";
 import primera from "../../../assets/3.png";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";

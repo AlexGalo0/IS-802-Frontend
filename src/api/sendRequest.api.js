@@ -16,8 +16,8 @@ export const obtenerCategorias = async () => {
     return res.data
 }
 
-export const obtenerProductos = async (numeroPagina) => {
-    const res = await axios.get(`http://localhost:4000/product/pagination/${numeroPagina}`)
+export const obtenerProductos = async (pageParam,options={}) => {
+    const res = await axios.get(`http://localhost:4000/product/pagination/${pageParam}`,options)
     return res.data
 }
 // export const obtenerProductoPorCategoria = async (nombreCategoria ) => {
@@ -40,12 +40,10 @@ export const crearProducto = async (infoProducto) => {
     await axios.post('http://localhost:4000/product', infoProducto)
 }
 
-export const enviarFiltros = async (datosFiltrado, numeroPagina) => {
-    console.log(datosFiltrado);
-    console.log(numeroPagina);
-
-    const res = await axios.post(`http://localhost:4000/product/${numeroPagina}/filters`, datosFiltrado)
-    return res.data;
+export const enviarFiltros = async (datosFiltrado, pageParam) => {
+ 
+    const res = await axios.post(`http://localhost:4000/product/${pageParam}/filters`, datosFiltrado)
+    return res.data
 }
 
 /* **POST: Inicio Sesiones** */

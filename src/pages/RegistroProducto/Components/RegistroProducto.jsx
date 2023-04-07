@@ -11,7 +11,7 @@ import { Alert } from "react-bootstrap";
 import { Col, Container, Form, Row, Image } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from '@tanstack/react-query';
 import {
 	obtenerDepartamentos,
 	obtenerCategorias,

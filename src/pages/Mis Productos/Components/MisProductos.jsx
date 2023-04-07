@@ -7,7 +7,7 @@ import { Footers } from "../../../Components/Footer";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../context";
 import { SidebarFiltros } from "./SidebarFiltros";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   obtenerDepartamentos,
   obtenerCategorias,
