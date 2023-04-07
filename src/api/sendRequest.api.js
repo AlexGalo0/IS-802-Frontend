@@ -78,4 +78,8 @@ export const editarCategoria = async (nuevaCategoria) => {
 }
 
 
-
+export const agregarProductoWishlist = async (idProducto,token)=>{
+    console.log('Aqui: ' , idProducto,token);
+    // const res = await axios.get(`/wishlist/${token}/${idProducto}`)
+    // return res.data
+}

@@ -26,6 +26,7 @@ import { Link, useParams } from "react-router-dom";
 import Boton from "../Components/botonLike";
 import { FaShare } from "react-icons/fa";
 import axios from "axios";
+import { agregarProductoWishlist } from "../../../api/sendRequest.api";
 
 export const Producto = ({}) => {
 	const { userAuth } = useContext(UserContext);
@@ -54,9 +55,15 @@ export const Producto = ({}) => {
 
 	const generarEnlace = () => {
 		navigator.clipboard.writeText(
+			/* Depende la maquina */
 			"http://127.0.0.1:5173/producto/" + idProducto
 		);
 	};
+
+	const agregarFavoritos=()=>{
+		const tokenUsuario= localStorage.getItem('token')
+		agregarProductoWishlist(idProducto,tokenUsuario)
+	}
 
 	const [texto, setTexto] = useState("");
 
@@ -224,7 +231,8 @@ export const Producto = ({}) => {
 								</div>
 
 								<div style={{ display: "flex", gap: "10px" }}>
-									<Boton />
+									{/* <Boton /> */}
+									<button onClick={agregarFavoritos}>Agregar a Favoritos</button>
 									{/* Boton de compartir */}
 									<div className='like'>
 										<OverlayTrigger
@@ -266,7 +274,7 @@ export const Producto = ({}) => {
 					<div className='comments'>
 						<h1>Comentarios</h1>
 
-						<h4>Aniadir un comentario:</h4>
+						<h4>Añadir un comentario:</h4>
 						<div style={{ display: "flex", flexDirection: "row" }}>
 							<Form.Control className='comment' type='text' />
 							<button className='btnComent'>
