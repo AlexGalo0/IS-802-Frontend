@@ -48,7 +48,7 @@ export const RegistroProducto = () => {
 		setURLS(url);
 	};
 	const handleRedirection = () => {
-		navigate("/");
+		navigate("/principal");
 	};
 
 	/* Funcion onSubmit */
@@ -60,6 +60,9 @@ export const RegistroProducto = () => {
 			...productInfo
 		});
 	};
+	const checkKeyDown = (e) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
 
 	return (
 		<>
@@ -71,6 +74,7 @@ export const RegistroProducto = () => {
 						onSubmit={(e) => {
 							e.preventDefault();
 						}}
+						onKeyDown={(e) => checkKeyDown(e)}
 					>
 						<Row>
 							<Col

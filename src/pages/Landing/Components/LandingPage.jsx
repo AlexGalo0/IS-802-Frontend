@@ -25,7 +25,7 @@ export const LandingPage = () => {
             Bienvenido a
           </p>
           <Image src={logo} className="logo" />
-          <Link to="/">
+          <Link to="/principal">
             <button
               className="regis"
               style={{ width: "250px", margin: "25px" }}

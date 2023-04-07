@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { iniciarSesionAdmin } from "../../../api";
-import '../Style/LoginAdministrador.css';
+import "../Style/LoginAdministrador.css";
 import logo from "../../../assets/logoV2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Form, Row, Image, Alert } from "react-bootstrap";
@@ -9,51 +9,43 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import {  AdminContext } from "../../../context";
+import { AdminContext } from "../../../context";
 
 export const LoginAdministrador = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const navigate = useNavigate();
-  const { setAdminAuth } = useContext(AdminContext);
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+	const navigate = useNavigate();
+	const { setAdminAuth } = useContext(AdminContext);
 
 	const [succesfullResponse, setSuccesfullResponse] = useState(false);
 	const [requestError, setRequestError] = useState(false);
-	
-
-
 
 	const enviarDatosLogin = async (userData) => {
-		
 		try {
 			const response = await iniciarSesionAdmin(userData);
-			setRequestError(false)
-			setSuccesfullResponse(true)
-			setAdminAuth(true) /* Loguear al Usuario */
-			setTimeout(()=>{
-				navigate("/")
-			},1500)
-			
+			setRequestError(false);
+			setSuccesfullResponse(true);
+			setAdminAuth(true); /* Loguear al Usuario */
+			setTimeout(() => {
+				navigate("/admin/crudCategorias");
+			}, 1500);
 		} catch (error) {
 			console.log(error);
-			setSuccesfullResponse(false)
+			setSuccesfullResponse(false);
 			setRequestError(true);
-			setTimeout(()=>{
-				navigate("/registrarUsuario")
-			},2500)
-			
+			setTimeout(() => {
+				navigate("/registrarUsuario");
+			}, 2500);
 		}
-		
 	};
 	const handleRedirection = () => {
 		navigate(-1);
-	  };
-	
+	};
+
 	return (
-        
 		<>
 			<header className='App-header'>
 				<Container className='Container'>
@@ -72,7 +64,7 @@ export const LoginAdministrador = () => {
 									alignItems: "center",
 									paddingTop: "40px",
 									paddingBottom: "10px",
-								  }}
+								}}
 							>
 								<button
 									className='Button-backProductLogin'
@@ -82,7 +74,7 @@ export const LoginAdministrador = () => {
 										marginTop: "-45px",
 										paddingTop: "1px",
 										marginLeft: "-10px",
-									  }}
+									}}
 								>
 									<BiLeftArrow />
 								</button>
@@ -93,7 +85,7 @@ export const LoginAdministrador = () => {
 										paddingRight: "10px",
 										paddingTop: "20px",
 										marginRight: "-20px",
-									  }}
+									}}
 								/>
 							</Col>
 						</Row>
@@ -107,73 +99,75 @@ export const LoginAdministrador = () => {
 							Administrador
 						</h1>
 
-            <Form.Group
-              style={{ position: "relative" }}
-              controlId="formBasicNombre"
-            >
-              <input
-                type="text"
-                name="text"
-                className="inNombre"
-                {...register("correo", {
-                  required: true,
-                  maxLength: 50,
-                  pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/,
-                })}
-              />
-              <Form.Label htmlFor="" className="user-label">
-                <MdOutlineAlternateEmail />
-                Correo
-              </Form.Label>
-            </Form.Group>
-            {errors.correo?.type === "required" && (
-              <p className="FontAlert">¡El campo correo es requerido!</p>
-            )}
-            {errors.correo?.type === "pattern" && (
-              <p className="FontAlert">¡Debes ingresar un correo valido!</p>
-            )}
+						<Form.Group
+							style={{ position: "relative" }}
+							controlId='formBasicNombre'
+						>
+							<input
+								type='text'
+								name='text'
+								className='inNombre'
+								{...register("correo", {
+									required: true,
+									maxLength: 50,
+									pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/,
+								})}
+							/>
+							<Form.Label htmlFor='' className='user-label'>
+								<MdOutlineAlternateEmail />
+								Correo
+							</Form.Label>
+						</Form.Group>
+						{errors.correo?.type === "required" && (
+							<p className='FontAlert'>¡El campo correo es requerido!</p>
+						)}
+						{errors.correo?.type === "pattern" && (
+							<p className='FontAlert'>¡Debes ingresar un correo valido!</p>
+						)}
 
-            <Form.Group
-              style={{ position: "relative" }}
-              controlId="formBasicNombre"
-            >
-              <input
-                type="password"
-                name="password"
-                className="inNombre"
-                {...register("password", {
-                  required: true,
-                })}
-              />
-              <Form.Label htmlFor="" className="user-label">
-                <RiLockPasswordLine />
-                Contraseña
-              </Form.Label>
-            </Form.Group>
-            {errors.password?.type === "required" && (
-              <p className="FontAlert">¡La contraseña es requerida!</p>
-            )}
-            {requestError ? (
-              <Alert variant="danger" style={{margin: 'auto'}}>
-                ¡No estás registrado! ¡Crea una cuenta a continuación!
-              </Alert>
-            ) : (
-              ""
-            )}
-            {succesfullResponse ? (
-              <Alert variant="success" style={{margin: 'auto'}}>¡Se accedió de forma correcta!</Alert>
-            ) : (
-              ""
-            )}
+						<Form.Group
+							style={{ position: "relative" }}
+							controlId='formBasicNombre'
+						>
+							<input
+								type='password'
+								name='password'
+								className='inNombre'
+								{...register("password", {
+									required: true,
+								})}
+							/>
+							<Form.Label htmlFor='' className='user-label'>
+								<RiLockPasswordLine />
+								Contraseña
+							</Form.Label>
+						</Form.Group>
+						{errors.password?.type === "required" && (
+							<p className='FontAlert'>¡La contraseña es requerida!</p>
+						)}
+						{requestError ? (
+							<Alert variant='danger' style={{ margin: "auto" }}>
+								¡No estás registrado! ¡Crea una cuenta a continuación!
+							</Alert>
+						) : (
+							""
+						)}
+						{succesfullResponse ? (
+							<Alert variant='success' style={{ margin: "auto" }}>
+								¡Se accedió de forma correcta!
+							</Alert>
+						) : (
+							""
+						)}
 
-            <div>
-              <button className="Button-Login" type="submit">
-			  <span className="boxLogin">Iniciar sesión</span>
-              </button>
-            </div>
-          </form>
-        </Container>
-      </header>
-    </>
-  );
+						<div>
+							<button className='Button-Login' type='submit'>
+								<span className='boxLogin'>Iniciar sesión</span>
+							</button>
+						</div>
+					</form>
+				</Container>
+			</header>
+		</>
+	);
 };

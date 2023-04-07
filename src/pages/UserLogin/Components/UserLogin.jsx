@@ -35,7 +35,7 @@ export const UserLogin = () => {
       setUserAuth(true);
       setDisableButton(true);
       setTimeout(() => {
-        navigate("/");
+        navigate("/principal");
       }, 2000);
     },
   });
@@ -51,6 +51,10 @@ export const UserLogin = () => {
     navigate(-1);
   };
 
+  const checkKeyDown = (e) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
+
   return (
     <>
       <header className="App-header">
@@ -59,6 +63,7 @@ export const UserLogin = () => {
             onSubmit={handleSubmit(envioDatosLogin)}
             fluid="true"
             className="Form"
+            onKeyDown={(e) => checkKeyDown(e)}
           >
             <Row>
               <Col

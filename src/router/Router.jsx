@@ -24,11 +24,10 @@ export const Router = () => {
 		<>
 			{/* <NavbarsLR /> */}
 			<Routes>
-				<Route index element={<PaginaPrincipal />} />
+				<Route index element={<LandingPage />} />
 				<Route path='/login' element={<UserLogin />} />
 				<Route path='/login-admin' element={<LoginAdministrador />} />
-				{/* <RutaProtegida isAllowed={userAuth}>  	</RutaProtegida>*/}
-				<Route path='/crudCategorias' element={<EdicionCategorias />} />
+				<Route path='/admin/crudCategorias' element={<EdicionCategorias />} />
 				<Route
 					path='/registrarProducto'
 					element={
@@ -38,7 +37,7 @@ export const Router = () => {
 					}
 				/>
 				<Route path='/construyendo' element={<Construyendo />} />
-				<Route path='/landing' element={<LandingPage />} />
+
 				<Route path='/principal' element={<PaginaPrincipal />} />
 				<Route path='/favoritos' element={<PaginaFavoritos />} />
 				<Route path='/misProductos' element={<PaginaMisProductos />} />

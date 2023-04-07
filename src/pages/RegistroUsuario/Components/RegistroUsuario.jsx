@@ -58,7 +58,7 @@ export const RegistroUsuario = () => {
 	};
 
 	const handleRedirection = () => {
-		navigate("/");
+		navigate("/principal");
 	};
 
 	/* Manejo de Modal */

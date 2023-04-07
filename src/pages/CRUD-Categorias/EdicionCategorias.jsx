@@ -1,6 +1,14 @@
 import { useContext, useState } from "react";
-import { Modal, Row, Table, Button, Container, Alert , Image } from "react-bootstrap";
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+	Modal,
+	Row,
+	Table,
+	Button,
+	Container,
+	Alert,
+	Image,
+} from "react-bootstrap";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
 	obtenerCategorias,
 	borrarCategorias,
@@ -22,9 +30,9 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../context";
 import { FaHouseDamage, FaBoxes } from "react-icons/fa";
 import {
-  AiOutlineAreaChart,
-  AiFillWarning,
-  AiOutlinePoweroff,
+	AiOutlineAreaChart,
+	AiFillWarning,
+	AiOutlinePoweroff,
 } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
 
@@ -46,10 +54,10 @@ export const EdicionCategorias = () => {
 		reset();
 	};
 
-  const handleReiniciarBorrar = ()=>{
-    handleCloseBorrarModal()
-    reset()
-  }
+	const handleReiniciarBorrar = () => {
+		handleCloseBorrarModal();
+		reset();
+	};
 
 	/* ***** CREACION DE CATEGORIA ***** */
 	const [showCreacionModal, setShowCreacionModal] = useState(false);
@@ -114,13 +122,13 @@ export const EdicionCategorias = () => {
 		mutationFn: (nombreCategoriaABorrar) =>
 			borrarCategorias(nombreCategoriaABorrar),
 		onSuccess: () => {
-      setMostrarAlert(true)
-      setDisableButton(true)
-      setTimeout(() => {
-       handleCloseBorrarModal(true)
-        setMostrarAlert(false)
-        setDisableButton(false)
-      }, 500);
+			setMostrarAlert(true);
+			setDisableButton(true);
+			setTimeout(() => {
+				handleCloseBorrarModal(true);
+				setMostrarAlert(false);
+				setDisableButton(false);
+			}, 500);
 			queryClient.invalidateQueries("obtenerCategorias");
 		},
 	});
@@ -143,285 +151,300 @@ export const EdicionCategorias = () => {
 		navigate(-1);
 	};
 
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  /* const { userAuth, setUserAuth } = useContext(UserContext);
+	/* const { userAuth, setUserAuth } = useContext(UserContext);
   const pruebaDesloguear = () => {
     setUserAuth(false);
   }; */
 
-  return (
-    <Container fluid className="container-grid">
-      {/* {userAuth ? <NavbarsLogueado /> : <NavbarsLR />} */}
-      <header className="headerCrud" /* style={{ paddingTop: "122px" }} */>
-        <aside
-          style={{
-            height: "100vh",
-            backgroundColor: "#365662",
-            color: "#f7f7f7",
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            flexDirection: "column",
-            padding: "10px",
-          }}
-        >
-          <div className="text-center py-3">
-            <Image src={logo} width="230px" />
-          </div>
-          {/* <ul className="center-nav pt-4">
-                        <li><a href="#" style={{color: '#f7f7f7'}}><FaBoxes /> Productos</a></li>
-                        <li><a href="#" style={{color: '#f7f7f7'}}><AiOutlineAreaChart /> Estadisticas</a></li>
-                        <li><a href="#" style={{color: '#f7f7f7'}}><AiFillWarning /> Denuncias</a></li>
-                        <li><a href="#" style={{color: '#f7f7f7'}}><FaHouseDamage /> Categorias</a></li>
-                    </ul>
-                    <ul className="bottom-nav">
-                        <hr />
-                        <li><a href="#" style={{color: '#f7f7f7'}}><BsFillGearFill /> Configuraciones</a></li>
-                        <li><a href="#" style={{color: '#f7f7f7'}}> <AiOutlinePoweroff /> Cerrar sesión</a></li>
-                    </ul> */}
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "20px" }}
-          >
-            <Link to="/construyendo" style={{ textDecoration: "none" }}>
-              <button className="buttonCerrarSesion">
-                <FaBoxes style={{ marginRight: "5px" }} />
-                Productos
-              </button>
-            </Link>
-            <Link to="/construyendo" style={{ textDecoration: "none" }}>
-              <button className="buttonCerrarSesion">
-                <AiOutlineAreaChart style={{ marginRight: "5px" }} />
-                Estadisticas
-              </button>
-            </Link>
-            <Link to="/construyendo" style={{ textDecoration: "none" }}>
-              <button className="buttonCerrarSesion">
-                <AiFillWarning style={{ marginRight: "5px" }} />
-                Denuncias
-              </button>
-            </Link>
-            <Link to="/crudCategorias" style={{ textDecoration: "none" }}>
-              <button className="buttonCerrarSesion">
-                <BiCategory style={{ marginRight: "5px" }} />
-                Categorias
-              </button>
-            </Link>
-          </div>
+	return (
+		<Container fluid className='container-grid'>
+			{/* {userAuth ? <NavbarsLogueado /> : <NavbarsLR />} */}
+			<header className='headerCrud' /* style={{ paddingTop: "122px" }} */>
+				<aside
+					style={{
+						height: "100vh",
+						backgroundColor: "#365662",
+						color: "#f7f7f7",
+						display: "flex",
+						justifyContent: "space-around",
+						alignItems: "center",
+						flexDirection: "column",
+						padding: "10px",
+					}}
+				>
+					<div className='text-center py-3'>
+						<Image src={logo} width='230px' />
+					</div>
 
-          <button
-            /* onClick={pruebaDesloguear} */
-            className="buttonCerrarSesion"
-          >
-            <AiOutlinePoweroff style={{ marginRight: "5px" }} />
-            Cerrar sesión
-          </button>
-        </aside>
+					<div
+						style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+					>
+						<Link to='/construyendo' style={{ textDecoration: "none" }}>
+							<button className='buttonCerrarSesion'>
+								<FaBoxes style={{ marginRight: "5px" }} />
+								Productos
+							</button>
+						</Link>
+						<Link to='/construyendo' style={{ textDecoration: "none" }}>
+							<button className='buttonCerrarSesion'>
+								<AiOutlineAreaChart style={{ marginRight: "5px" }} />
+								Estadisticas
+							</button>
+						</Link>
+						<Link to='/construyendo' style={{ textDecoration: "none" }}>
+							<button className='buttonCerrarSesion'>
+								<AiFillWarning style={{ marginRight: "5px" }} />
+								Denuncias
+							</button>
+						</Link>
+						<Link to='/crudCategorias' style={{ textDecoration: "none" }}>
+							<button className='buttonCerrarSesion'>
+								<BiCategory style={{ marginRight: "5px" }} />
+								Categorias
+							</button>
+						</Link>
+					</div>
 
-        <article style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px", marginTop: '-20px', marginBottom: '40px' }}>
-        <button
-          className="Button-back"
-          type="submit"
-          onClick={handleRedirection}
-        >
-          <BiLeftArrow />
-        </button>
-                    
-            <h1 style={{marginTop: '-8px'}}>Apartado de categorías:</h1>
-          </div>
+					<button
+						/* onClick={pruebaDesloguear} */
+						className='buttonCerrarSesion'
+					>
+						<AiOutlinePoweroff style={{ marginRight: "5px" }} />
+						Cerrar sesión
+					</button>
+				</aside>
 
+				<article
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						flexDirection: "column",
+					}}
+				>
+					<div
+						style={{
+							display: "flex",
+							alignItems: "center",
+							gap: "20px",
+							marginTop: "-20px",
+							marginBottom: "40px",
+						}}
+					>
+						<button
+							className='Button-back'
+							type='submit'
+							onClick={handleRedirection}
+						>
+							<BiLeftArrow />
+						</button>
 
-        <button
-          style={{
-            width: "400px",
-            margin: "auto",
-            marginBottom: "25px",
-            marginTop: "-35px",
-          }}
-          className="buttonGuardar"
-          onClick={() => {
-            handleShowModalCreacion(true);
-          }}
-        >
-          Añadir Nueva Categoria
-        </button>
-        <Container className="conCrud">
-          <div className="container-table">
-            <table>
-              <tr
-                style={{
-                  width: "20%",
-                  borderBottom: "1px solid black",
-                  fontSize: "large",
-                }}
-              >
-                <th>Nombre de Categoria</th>
-                <th>Descripción</th>
-              </tr>
+						<h1 style={{ marginTop: "-8px" }}>Apartado de categorías:</h1>
+					</div>
 
-              <tbody>
-                {categorias?.map((categoria) => (
-                  <tr
-                    key={categoria.idCategoria.data}
-                    style={{ height: "50px", borderBottom: "1px solid black" }}
-                  >
-                    <td style={{ width: "200px" }}>{categoria.nombre}</td>
-                    <td>{categoria.descripcion}</td>
-                    <div style={{ display: "flex", gap: "5px" }}>
-                      <button
-                        className="buttonEdiBo"
-                        style={{ color: "#f7f7f7", fontSize: "medium" }}
-                        onClick={() => {
-                          handleShow(true);
-                          setCategoriaAEditar(categoria);
-                        }}
-                      >
-                        <span className="box">
-                          <AiOutlineEdit style={{ fontSize: "25px" }} />
-                        </span>
-                      </button>
-                      <button
-                        className="buttonEdiBo"
-                        style={{ color: "#f7f7f7", fontSize: "medium" }}
-                        onClick={() => {
-                          borrarCategoriaMutation.mutate(
-                            categoria.idCategoria.data
-                          );
-                        }}
-                      >
-                        <span className="box">
-                          <AiOutlineDelete style={{ fontSize: "25px" }} />
-                        </span>
-                      </button>
-                    </div>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Container>
-        </article>
-      </header>
+					<button
+						style={{
+							width: "400px",
+							margin: "auto",
+							marginBottom: "25px",
+							marginTop: "-35px",
+						}}
+						className='buttonGuardar'
+						onClick={() => {
+							handleShowModalCreacion(true);
+						}}
+					>
+						Añadir Nueva Categoria
+					</button>
+					<Container className='conCrud'>
+						<div className='container-table'>
+							<table>
+								<tr
+									style={{
+										width: "20%",
+										borderBottom: "1px solid black",
+										fontSize: "large",
+									}}
+								>
+									<th>Nombre de Categoria</th>
+									<th>Descripción</th>
+								</tr>
 
-      {/* <Footers /> */}
+								<tbody>
+									{categorias?.map((categoria) => (
+										<tr
+											key={categoria.idCategoria.data}
+											style={{
+												height: "50px",
+												borderBottom: "1px solid black",
+											}}
+										>
+											<td style={{ width: "200px" }}>{categoria.nombre}</td>
+											<td>{categoria.descripcion}</td>
+											<div style={{ display: "flex", gap: "5px" }}>
+												<button
+													className='buttonEdiBo'
+													style={{ color: "#f7f7f7", fontSize: "medium" }}
+													onClick={() => {
+														handleShow(true);
+														setCategoriaAEditar(categoria);
+													}}
+												>
+													<span className='box'>
+														<AiOutlineEdit style={{ fontSize: "25px" }} />
+													</span>
+												</button>
+												<button
+													className='buttonEdiBo'
+													style={{ color: "#f7f7f7", fontSize: "medium" }}
+													onClick={() => {
+														handleShowBorrarModal(true);
+														setCategoriaABorrar(categoria);
+													}}
+												>
+													<span className='box'>
+														<AiOutlineDelete style={{ fontSize: "25px" }} />
+													</span>
+												</button>
+											</div>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					</Container>
+				</article>
+			</header>
+
+			{/* <Footers /> */}
 
 			{/* Modal de crear nuevo producto */}
 
-      <Modal
-        show={showCreacionModal}
-        onHide={handleCloseModalCreacion}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title style={{ fontSize: "25px" }}>
-            Crea una nueva categoria{" "}
-          </Modal.Title>
-        </Modal.Header>
-        <form
-          onSubmit={handleSubmit(handleCrearCategoria)}
-          style={{
-            padding: "15px",
-            display: "flex",
-            justifyContent: "initial",
-            alignItems: "initial",
-            flexDirection: "column",
-          }}
-        >
-          <label htmlFor="" className="labelModal">
-            Ingresa el nombre de la nueva categoria:{" "}
-          </label>
-          <input
-            type="text"
-            {...register("nombreCategoria")}
-            className="inModal"
-          />
-          <label
-            htmlFor=""
-            className="labelModal"
-            style={{ marginTop: "90px" }}
-          >
-            Ingresa la descripcion de la nueva categoria:{" "}
-          </label>
-          <input
-            type="text"
-            {...register("descripcionCategoria")}
-            className="inModal"
-          />
-          {/* // handleCloseModalCreacion(true); */}
-          <Modal.Footer style={{ margin: "auto" }}>
-            <button type="submit" className="buttonGuardar">
-              Guarda tu nueva categoria
-            </button>
-            <button
-              onClick={handleReiniciarCreacion}
-              type="reset"
-              className="buttonGuardar"
-            >
-              Cerrar
-            </button>
-          </Modal.Footer>
-        </form>
-      </Modal>
+			<Modal
+				show={showCreacionModal}
+				onHide={handleCloseModalCreacion}
+				backdrop='static'
+				keyboard={false}
+			>
+				<Modal.Header closeButton>
+					<Modal.Title style={{ fontSize: "25px" }}>
+						Crea una nueva categoria{" "}
+					</Modal.Title>
+				</Modal.Header>
+				<form
+					onSubmit={handleSubmit(handleCrearCategoria)}
+					style={{
+						padding: "15px",
+						display: "flex",
+						justifyContent: "initial",
+						alignItems: "initial",
+						flexDirection: "column",
+					}}
+				>
+					<label htmlFor='' className='labelModal'>
+						Ingresa el nombre de la nueva categoria:{" "}
+					</label>
+					<input
+						type='text'
+						{...register("nombreCategoria")}
+						className='inModal'
+					/>
+					<label
+						htmlFor=''
+						className='labelModal'
+						style={{ marginTop: "90px" }}
+					>
+						Ingresa la descripcion de la nueva categoria:{" "}
+					</label>
+					<input
+						type='text'
+						{...register("descripcionCategoria")}
+						className='inModal'
+					/>
+					{mostrarAlert ? (
+						<Alert variant='success'>Nueva categoria añadida!</Alert>
+					) : (
+						""
+					)}
+					{/* // handleCloseModalCreacion(true); */}
+					<Modal.Footer style={{ margin: "auto" }}>
+						<button type='submit' className='buttonGuardar'>
+							Guarda tu nueva categoria
+						</button>
+						<button
+							onClick={handleReiniciarCreacion}
+							type='reset'
+							className='buttonGuardar'
+						>
+							Cerrar
+						</button>
+					</Modal.Footer>
+				</form>
+			</Modal>
 
-      {/* Modal de Editar Categoria */}
-      <Modal
-        show={showEditModal}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title
-            style={{ fontSize: "25px" }}
-          >{`Edita la categoria ${categoriaAEditar.nombre}`}</Modal.Title>
-        </Modal.Header>
-        <form
-          style={{
-            padding: "15px",
-            display: "flex",
-            justifyContent: "initial",
-            alignItems: "initial",
-            flexDirection: "column",
-          }}
-          onSubmit={handleSubmit(enviarEdicionCategoria)}
-        >
-          <label htmlFor="" className="labelModal">
-            Edita el nombre de la categoria:{" "}
-          </label>
-          <input
-            type="text"
-            className="inModal"
-            {...register("nombreCategoria")}
-          />
+			{/* Modal de Editar Categoria */}
+			<Modal
+				show={showEditModal}
+				onHide={handleClose}
+				backdrop='static'
+				keyboard={false}
+			>
+				<Modal.Header closeButton>
+					<Modal.Title
+						style={{ fontSize: "25px" }}
+					>{`Edita la categoria ${categoriaAEditar.nombre}`}</Modal.Title>
+				</Modal.Header>
+				<form
+					style={{
+						padding: "15px",
+						display: "flex",
+						justifyContent: "initial",
+						alignItems: "initial",
+						flexDirection: "column",
+					}}
+					onSubmit={handleSubmit(enviarEdicionCategoria)}
+				>
+					<label htmlFor='' className='labelModal'>
+						Edita el nombre de la categoria:{" "}
+					</label>
+					<input
+						type='text'
+						className='inModal'
+						{...register("nombreCategoria")}
+					/>
 
-          <label
-            htmlFor=""
-            className="labelModal"
-            style={{ marginTop: "90px" }}
-          >
-            Edita la descripcion de la categoria:{" "}
-          </label>
-          <input
-            type="text"
-            className="inModal"
-            {...register("descripcionCategoria")}
-          />
-          <Modal.Footer style={{ margin: "auto" }}>
-            <button type="submit" className="buttonGuardar">
-              Guarda tu nueva categoria
-            </button>
-            <button
-              onClick={handleReiniciar}
-              className="buttonGuardar"
-              type="reset"
-            >
-              Cerrar
-            </button>
-          </Modal.Footer>
-        </form>
-      </Modal>
+					<label
+						htmlFor=''
+						className='labelModal'
+						style={{ marginTop: "90px" }}
+					>
+						Edita la descripcion de la categoria:{" "}
+					</label>
+					<input
+						type='text'
+						className='inModal'
+						{...register("descripcionCategoria")}
+					/>
+					{mostrarAlert ? (
+						<Alert variant='success'>Edición de categoria completada!</Alert>
+					) : (
+						""
+					)}
+					<Modal.Footer style={{ margin: "auto" }}>
+						<button type='submit' className='buttonGuardar'>
+							Guarda tu nueva categoria
+						</button>
+						<button
+							onClick={handleReiniciar}
+							className='buttonGuardar'
+							type='reset'
+						>
+							Cerrar
+						</button>
+					</Modal.Footer>
+				</form>
+			</Modal>
 
 			{/* Modal de Borrar Categoria */}
 			<Modal
@@ -435,23 +458,30 @@ export const EdicionCategorias = () => {
 						style={{ fontSize: "25px" }}
 					>{`Estas seguro que quieres borrar la categoria ${categoriaABorrar.nombre} ? `}</Modal.Title>
 				</Modal.Header>
-			
-					{mostrarAlert ? (
-						<Alert variant='success'>Categoria Eliminada</Alert>
-					) : (
-						""
-					)}
-					<Modal.Footer style={{ margin: "auto" }}>
-						<button className='buttonGuardar' disabled={disableButton} onClick={()=>{borrarCategoria(categoriaABorrar.nombre)}}>Eliminar</button>
-						<button
-							onClick={handleReiniciarBorrar}
-							className='buttonGuardar'
-							type='reset'
-						>
-							Cancelar
-						</button>
-					</Modal.Footer>
-			
+
+				{mostrarAlert ? (
+					<Alert variant='success'>Categoria Eliminada</Alert>
+				) : (
+					""
+				)}
+				<Modal.Footer style={{ margin: "auto" }}>
+					<button
+						className='buttonGuardar'
+						disabled={disableButton}
+						onClick={() => {
+							borrarCategoria(categoriaABorrar.nombre);
+						}}
+					>
+						Eliminar
+					</button>
+					<button
+						onClick={handleReiniciarBorrar}
+						className='buttonGuardar'
+						type='reset'
+					>
+						Cancelar
+					</button>
+				</Modal.Footer>
 			</Modal>
 		</Container>
 	);
