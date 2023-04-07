@@ -10,7 +10,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
-import { useMutation } from "react-query";
+import { useMutation }  from '@tanstack/react-query';
 export const UserLogin = () => {
 	const navigate = useNavigate();
 	const {

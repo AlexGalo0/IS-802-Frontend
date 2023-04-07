@@ -12,7 +12,8 @@ import {
 	useQuery,
 	useQueryClient,
 	useInfiniteQuery,
-} from "react-query";
+	QueryCache,
+} from "@tanstack/react-query";
 import {
 	obtenerDepartamentos,
 	obtenerCategorias,
@@ -38,6 +39,18 @@ export const PaginaPrincipal = () => {
 		defaultValues: valoresIniciales,
 	});
 	const queryClient = useQueryClient();
+	const queryCache = new QueryCache({
+		onError: (error) => {
+			console.log(error);
+		},
+		onSuccess: (data) => {
+			console.log(data);
+		},
+		onSettled: (data, error) => {
+			console.log(data, error);
+		},
+	});
+
 	const { data: categorias } = useQuery({
 		queryKey: ["categorias"],
 		queryFn: obtenerCategorias,
@@ -55,6 +68,7 @@ export const PaginaPrincipal = () => {
 		data,
 		status,
 		error,
+		refetch,
 	} = useInfiniteQuery({
 		queryKey: ["productos"],
 		queryFn: ({ pageParam = 1 }) => obtenerProductos(pageParam),
@@ -63,7 +77,7 @@ export const PaginaPrincipal = () => {
 		},
 	});
 
-	/* Codigo para infinity scrolling */
+	/* code para infinity scrolling */
 	const intObserver = useRef();
 	const lastPostRef = useCallback(
 		(productos) => {
@@ -96,18 +110,28 @@ export const PaginaPrincipal = () => {
 	const mutationFiltros = useMutation({
 		mutationFn: (datosFiltrado) => enviarFiltros(datosFiltrado, pageParam),
 		onSuccess: (data) => {
-      queryClient.setQueryData(["productos"],null)
+			/* Here is the big problem , the last thing i try was setting it on null */
+			// queryClient.setQueryData(["productos"],null)
+			// queryClient.setQueryData(["productos"], {
+			// 	pages: [data],
+			// 	pageParam: [1],
+			// });
+
+			queryClient.invalidateQueries({
+				queryKey:["productos"],
+				refetchType:'none'
+			});
+
 			queryClient.setQueryData(["productos"], {
 				pages: [data],
 				pageParam: [1],
 			});
+
 			setPageParam(1);
 		},
 	});
 	const filtrarProductos = (datosFiltrado) => {
-
-
-
+		/* onSubmit function , that sends the params for filtering the data on the backend */
 		mutationFiltros.mutate(datosFiltrado);
 	};
 
@@ -145,7 +169,7 @@ export const PaginaPrincipal = () => {
 										id={categoria.nombre}
 										type='checkbox'
 										value={categoria.nombre}
-										{...register(`categoria`)}
+										{...register(`categorias`)}
 									/>
 									<label
 										htmlFor=''
