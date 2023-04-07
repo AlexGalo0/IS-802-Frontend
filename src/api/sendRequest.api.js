@@ -16,17 +16,21 @@ export const obtenerCategorias = async () => {
     return res.data
 }
 
-export const obtenerProductos = async (pageParam,options={}) => {
-    const res = await axios.get(`http://localhost:4000/product/pagination/${pageParam}`,options)
+export const obtenerProductos = async (pageParam, options = {}) => {
+    console.log('I get executed');
+    const res = await axios.get(`http://localhost:4000/product/pagination/${pageParam}`, options)
     return res.data
 }
 export const enviarFiltros = async (datosFiltrado, pageParam) => {
+    console.log('I get executed');
+    console.log(datosFiltrado);
+    console.log(pageParam);
     const res = await axios.post(`http://localhost:4000/product/${pageParam}/filters`, datosFiltrado)
     return res.data
 }
 
 
-export const obtenerProductoPorId = async (idProducto)=>{
+export const obtenerProductoPorId = async (idProducto) => {
     const res = await axios.get(`http://localhost:4000/product/${idProducto}`)
     return res.data
 }
@@ -56,7 +60,7 @@ export const iniciarSesionAdmin = async (loginData) => {
 }
 
 export const crearCategoria = async (categoria) => {
-    await axios.post('http://localhost:4000/categories',categoria)
+    await axios.post('http://localhost:4000/categories', categoria)
 }
 
 export const borrarCategorias = async (categoriaABorrar) => {
@@ -65,19 +69,19 @@ export const borrarCategorias = async (categoriaABorrar) => {
 }
 
 export const editarCategoria = async (nuevaCategoria) => {
-    const nombreCategoriaAnterior = nuevaCategoria.categoriaAEditar.nombre 
+    const nombreCategoriaAnterior = nuevaCategoria.categoriaAEditar.nombre
     delete nuevaCategoria.categoriaAEditar
-    await axios.put(`http://localhost:4000/categories/${nombreCategoriaAnterior}`,nuevaCategoria)
+    await axios.put(`http://localhost:4000/categories/${nombreCategoriaAnterior}`, nuevaCategoria)
 }
 
 
-export const agregarProductoWishlist = async (token,idProducto)=>{
+export const agregarProductoWishlist = async (token, idProducto) => {
 
     const res = await axios.get(`http://localhost:4000/wishlist/${token}/${idProducto}`)
     return res.data
 }
 
-export const obtenerListaDeseosUsuario = async (tokenUser)=>{
+export const obtenerListaDeseosUsuario = async (tokenUser) => {
     const res = await axios.get(`http://localhost:4000/wishlist/${tokenUser}/`)
     return res.data
 }

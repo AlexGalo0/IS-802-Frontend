@@ -61,6 +61,9 @@ export const PaginaPrincipal = () => {
 	});
 
 	const [pageParam, setPageParam] = useState(1);
+
+
+	const [filters, setFilters] = useState();
 	const {
 		fetchNextPage, //function
 		hasNextPage, //boolean
@@ -70,8 +73,11 @@ export const PaginaPrincipal = () => {
 		error,
 		refetch,
 	} = useInfiniteQuery({
-		queryKey: ["productos"],
-		queryFn: ({ pageParam = 1 }) => obtenerProductos(pageParam),
+		queryKey: ["productos", filters],
+		queryFn: ({ pageParam = 1 }) =>
+			!!filters
+				? enviarFiltros(filters, pageParam)
+				: obtenerProductos(pageParam),
 		getNextPageParam: (lastPage, allPages) => {
 			return lastPage.length ? allPages.length + 1 : undefined;
 		},
@@ -107,22 +113,26 @@ export const PaginaPrincipal = () => {
 		});
 	});
 
-	const mutationFiltros = useMutation({
-		mutationFn: (datosFiltrado) => enviarFiltros(datosFiltrado, pageParam),
-		onSuccess: (data) => {
-			/* Here is the big problem , the last thing i try was setting it on null */
-			queryClient.setQueryData(["productos"],null)
-			queryClient.setQueryData(["productos"], {
-				pages: [data],
-				pageParam: [1],
-			});
+	// const mutationFiltros = useMutation({
+	// 	mutationFn: (datosFiltrado) => enviarFiltros(datosFiltrado, pageParam),
+	// 	onSuccess: (data) => {
+	// 		/* Here is the big problem , the last thing i try was setting it on null */
+	// 		queryClient.setQueryData(["productos"],null)
+	// 		queryClient.setQueryData(["productos"], {
+	// 			pages: [data],
+	// 			pageParam: [1],
+	// 		});
 
-			setPageParam(1);
-		},
-	});
+	// 		setPageParam(1);
+	// 	},
+	// });
 	const filtrarProductos = (datosFiltrado) => {
 		/* onSubmit function , that sends the params for filtering the data on the backend */
-		mutationFiltros.mutate(datosFiltrado);
+		// mutationFiltros.mutate(datosFiltrado);
+		console.log("Me ejecute");
+		setFilters(datosFiltrado);
+
+		// setFilters
 	};
 
 	const handleReiniciar = () => {};
