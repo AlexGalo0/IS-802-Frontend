@@ -10,7 +10,7 @@ import {
 	EdicionCategorias,
 	Producto,
 } from "../pages";
-import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginFavoritos";
+import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginaFavoritos";
 import { PaginaMisProductos } from "../pages/Mis Productos/Components/MisProductos";
 import { LandingPage } from "../pages/Landing/Components/LandingPage";
 
