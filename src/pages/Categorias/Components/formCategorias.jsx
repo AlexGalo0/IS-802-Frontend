@@ -173,6 +173,9 @@ export const FormCategorias = () => {
 						<button
 							className='buttonAdmin'
 							style={{ marginTop: "30px", marginBottom: "-10px" }}
+							onClick={()=>{
+								navigate("/principal")
+							}}
 						>
 							!No quiero publicidad!
 						</button>

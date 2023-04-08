@@ -52,13 +52,14 @@ export const RegistroUsuario = () => {
 	});
 
 	const enviarDatosRegistro = (datosRegistro) => {
+		console.log('Me ejecuto');
 		mutationRegistro.mutate({
 			...datosRegistro,
 		});
 	};
 
 	const handleRedirection = () => {
-		navigate("/principal");
+		navigate("/categorias");
 	};
 
 	/* Manejo de Modal */
@@ -129,7 +130,7 @@ export const RegistroUsuario = () => {
 							controlId='formBasicNombre'
 						>
 							<input
-								name='text'
+								name='nombre'
 								className='inNombre'
 								type='text'
 								{...register("nombre", {
@@ -162,7 +163,7 @@ export const RegistroUsuario = () => {
 							controlId='formBasicApellido'
 						>
 							<input
-								name='text'
+								name='apellido'
 								className='inNombre'
 								type='text'
 								{...register("apellido", {
@@ -195,7 +196,7 @@ export const RegistroUsuario = () => {
 							controlId='formBasicPhone'
 						>
 							<input
-								name='text'
+								name='telefono'
 								className='inNombre'
 								type='text'
 								{...register("telefono", {
@@ -307,7 +308,7 @@ export const RegistroUsuario = () => {
 									controlId='formBasicDNI'
 								>
 									<input
-										name='number'
+										name='dnihondurenio'
 										className='inNombre'
 										type='text'
 										{...register("dniHondurenio", {
@@ -439,7 +440,7 @@ export const RegistroUsuario = () => {
 							controlId='formBasicConfirmPassword'
 						>
 							<input
-								name='password'
+								name='cpassword'
 								className='inNombre'
 								type='password'
 								{...register("confirmPassword", {
