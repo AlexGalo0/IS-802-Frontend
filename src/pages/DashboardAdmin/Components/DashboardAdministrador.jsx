@@ -1,7 +1,7 @@
 import { Container, Image, Table, Form, Button } from "react-bootstrap";
 import "../Style/DashboardAdmin.css";
 import logo from "../../../assets/logo.png";
-import { FaHouseDamage, FaBoxes } from "react-icons/fa";
+import {  FaBoxes } from "react-icons/fa";
 import {
     AiOutlineAreaChart,
     AiFillWarning,
@@ -11,13 +11,22 @@ import { BiCategory } from "react-icons/bi";
 
 
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../../context";
-import { Link } from "react-router-dom";
+import { AdminContext } from "../../../context";
+import { Link, useNavigate } from "react-router-dom";
 
 export const DashboardAdministrador = () => {
-    const { userAuth, setUserAuth } = useContext(UserContext);
-    const pruebaDesloguear = () => {
-      setUserAuth(false);
+    const navigate = useNavigate()
+    const { adminAuth, setAdminAuth } = useContext(AdminContext);
+
+    const deslogearAdmin = () => {
+        console.log('Me');
+    //   setAdminAuth(false);
+    //   if (localStorage.getItem("token-admin") !== null) {
+    //     localStorage.removeItem("token-admin");
+    //     setTimeout(() => {
+    //         navigate("/")
+    //     }, 1000);
+    //   }
     };
 
     return (
@@ -40,14 +49,14 @@ export const DashboardAdministrador = () => {
                     </ul> */}
                     <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
                     <button
-                      onClick={pruebaDesloguear}
+                     
                       className="buttonCerrarSesion"
                     >
                      <FaBoxes style={{marginRight: '5px'}}/>Productos
                     </button>
                     <Link to='/construyendo' style={{textDecoration: 'none'}}>
                     <button
-                      onClick={pruebaDesloguear}
+                    
                       className="buttonCerrarSesion"
                     >
                      <AiOutlineAreaChart style={{marginRight: '5px'}}/>Estadisticas
@@ -55,7 +64,7 @@ export const DashboardAdministrador = () => {
                     </Link>
                     <Link to='/construyendo' style={{textDecoration: 'none'}}>
                     <button
-                      onClick={pruebaDesloguear}
+                  
                       className="buttonCerrarSesion"
                     >
                      <AiFillWarning style={{marginRight: '5px'}}/>Denuncias
@@ -63,7 +72,7 @@ export const DashboardAdministrador = () => {
                     </Link>
                     <Link to='/crudCategorias' style={{textDecoration: 'none'}}>
                     <button
-                      onClick={pruebaDesloguear}
+                      
                       className="buttonCerrarSesion"
                     >
                      <BiCategory style={{marginRight: '5px'}}/>Categorias
@@ -72,7 +81,7 @@ export const DashboardAdministrador = () => {
                     </div>
 
                     <button
-                      onClick={pruebaDesloguear}
+                      onClick={deslogearAdmin}
                       className="buttonCerrarSesion"
                     >
                      <AiOutlinePoweroff style={{marginRight: '5px'}}/>Cerrar sesión

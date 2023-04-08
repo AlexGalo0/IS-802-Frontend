@@ -22,13 +22,14 @@ export const LoginAdministrador = () => {
 
 	const [succesfullResponse, setSuccesfullResponse] = useState(false);
 	const [requestError, setRequestError] = useState(false);
-
+	
 	const enviarDatosLogin = async (userData) => {
 		try {
 			const response = await iniciarSesionAdmin(userData);
 			setRequestError(false);
 			setSuccesfullResponse(true);
-			setAdminAuth(true); /* Loguear al Usuario */
+			setAdminAuth(true);
+
 			setTimeout(() => {
 				navigate("/admin/crudCategorias");
 			}, 1500);
@@ -36,9 +37,6 @@ export const LoginAdministrador = () => {
 			console.log(error);
 			setSuccesfullResponse(false);
 			setRequestError(true);
-			setTimeout(() => {
-				navigate("/registrarUsuario");
-			}, 2500);
 		}
 	};
 	const handleRedirection = () => {
@@ -147,7 +145,7 @@ export const LoginAdministrador = () => {
 						)}
 						{requestError ? (
 							<Alert variant='danger' style={{ margin: "auto" }}>
-								¡No estás registrado! ¡Crea una cuenta a continuación!
+								¡No eres un administrador registrado!
 							</Alert>
 						) : (
 							""

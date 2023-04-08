@@ -1,11 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  Form,
-  Image,
-  OverlayTrigger,
-  Tooltip,
-  Offcanvas,
-  Nav,
+	Form,
+	Image,
+	OverlayTrigger,
+	Tooltip,
+	Offcanvas,
+	Nav,
 } from "react-bootstrap";
 import "./styles/stNav.css";
 // import { get, useForm } from "react-hook-form";
@@ -21,153 +21,178 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context";
 
 export const NavbarsLogueado = () => {
-  const { userAuth, setUserAuth } = useContext(UserContext);
-  const pruebaDesloguear = () => {
-    setUserAuth(false);
-  };
+	const { userAuth, setUserAuth } = useContext(UserContext);
+	const pruebaDesloguear = () => {
+		setUserAuth(false);
+		if (localStorage.getItem("token") !== null) {
+			localStorage.removeItem("token");
+		}
+	};
 
-  /* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
-  const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      Perfil
-    </Tooltip>
-  );
+	/* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
+	const renderTooltip = (props) => (
+		<Tooltip id='button-tooltip' {...props}>
+			Perfil
+		</Tooltip>
+	);
 
-  const renderTooltipLike = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      Lista de favoritos
-    </Tooltip>
-  );
+	const renderTooltipLike = (props) => (
+		<Tooltip id='button-tooltip' {...props}>
+			Lista de favoritos
+		</Tooltip>
+	);
 
-  const renderTooltipMessaje = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      Mensajeria
-    </Tooltip>
-  );
+	const renderTooltipMessaje = (props) => (
+		<Tooltip id='button-tooltip' {...props}>
+			Mensajeria
+		</Tooltip>
+	);
 
-  /* Elentos del perfil */
-  const [show, setShow] = useState(false);
+	/* Elentos del perfil */
+	const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
-  /* Funcion para que las pantallas aparezcan al inicio */
+	/* Funcion para que las pantallas aparezcan al inicio */
 	function scrollToTop() {
 		window.scrollTo(0, 0);
-	  }
+	}
 
-  return (
-    <>
-      <div className="top-header">
-        <div>
-          <span className="letterHeader">
-            ¿Ya sigues nuestras redes sociales?
-          </span>
-        </div>
+	return (
+		<>
+			<div className='top-header'>
+				<div>
+					<span className='letterHeader'>
+						¿Ya sigues nuestras redes sociales?
+					</span>
+				</div>
 
-        <div>
-          <span className="letterLightHeader">
-            Si quieres mantenerte informado de todas las novedades y
-            promociones, no olvides visitar nuestras redes sociales.......
-          </span>
-        </div>
+				<div>
+					<span className='letterLightHeader'>
+						Si quieres mantenerte informado de todas las novedades y
+						promociones, no olvides visitar nuestras redes sociales.......
+					</span>
+				</div>
 
-        <div>
-          <ul className="ulRedes">
-            <Link
-              to="https://www.facebook.com/"
-              style={{ textDecoration: "none" }}
-            >
-              <li className="liRedes">
-                <span className="redes">
-                  <BsFacebook className="i" />
-                </span>
-                <span className="titulo">Facebook</span>
-              </li>
-            </Link>
-            {/* <li className="liRedes">
+				<div>
+					<ul className='ulRedes'>
+						<Link
+							to='https://www.facebook.com/'
+							style={{ textDecoration: "none" }}
+						>
+							<li className='liRedes'>
+								<span className='redes'>
+									<BsFacebook className='i' />
+								</span>
+								<span className='titulo'>Facebook</span>
+							</li>
+						</Link>
+						{/* <li className="liRedes">
               <span className="redes">
                 <BsTwitter className="i" />
               </span>
               <span className="titulo">twitter</span>
             </li> */}
-            <Link
-              to="https://www.instagram.com/"
-              style={{ textDecoration: "none" }}
-            >
-              <li className="liRedes">
-                <span className="redes">
-                  <BsInstagram className="i" />
-                </span>
-                <span className="titulo">instagram</span>
-              </li>
-            </Link>
-            <Link to="https://discord.com/" style={{ textDecoration: "none" }}>
-              <li className="liRedes">
-                <span className="redes">
-                  <BsDiscord className="i" />
-                </span>
-                <span className="titulo">discord</span>
-              </li>
-            </Link>
-          </ul>
-        </div>
-      </div>
+						<Link
+							to='https://www.instagram.com/'
+							style={{ textDecoration: "none" }}
+						>
+							<li className='liRedes'>
+								<span className='redes'>
+									<BsInstagram className='i' />
+								</span>
+								<span className='titulo'>instagram</span>
+							</li>
+						</Link>
+						<Link to='https://discord.com/' style={{ textDecoration: "none" }}>
+							<li className='liRedes'>
+								<span className='redes'>
+									<BsDiscord className='i' />
+								</span>
+								<span className='titulo'>discord</span>
+							</li>
+						</Link>
+					</ul>
+				</div>
+			</div>
 
-      {/* Navbar */}
-      <div className="navbar">
-        <Image src={logo} className="image-logo" />
-        <div className="buscador-div2" /* style={{display:"none"}} */>
-          {/* <Form.Control className="buscador" type="text"  />
+			{/* Navbar */}
+			<div className='navbar'>
+				<Image src={logo} className='image-logo' />
+				<div className='buscador-div2' /* style={{display:"none"}} */>
+					{/* <Form.Control className="buscador" type="text"  />
           <button className="btnBuscar">
             <BiSearchAlt className="iconBuscar" />
             <span className="textBuscar">Buscar</span>
           </button> */}
-        </div>
+				</div>
 
-        <div style={{ display: "flex", margin: "auto" }}>
-          <Link to="/registrarProducto" style={{ textDecoration: "none" }}>
-            <button className="btnregis" style={{ width: "250px" }}>
-              <span className="textBuscar" onClick={() => { scrollToTop()}}>Agregar producto </span>
-            </button>
-          </Link>
-        </div>
+				<div style={{ display: "flex", margin: "auto" }}>
+					<Link to='/registrarProducto' style={{ textDecoration: "none" }}>
+						<button className='btnregis' style={{ width: "250px" }}>
+							<span
+								className='textBuscar'
+								onClick={() => {
+									scrollToTop();
+								}}
+							>
+								Agregar producto{" "}
+							</span>
+						</button>
+					</Link>
+				</div>
 
-        <div style={{ display: "flex", gap: "10px" }}>
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={renderTooltipMessaje}
-          >
-            <Link to="/construyendo">
-              <button className="button-cuenta" onClick={() => { scrollToTop()}}>
-                <AiOutlineMessage />
-              </button>
-            </Link>
-          </OverlayTrigger>
+				<div style={{ display: "flex", gap: "10px" }}>
+					<OverlayTrigger
+						placement='left'
+						delay={{ show: 250, hide: 400 }}
+						overlay={renderTooltipMessaje}
+					>
+						<Link to='/construyendo'>
+							<button
+								className='button-cuenta'
+								onClick={() => {
+									scrollToTop();
+								}}
+							>
+								<AiOutlineMessage />
+							</button>
+						</Link>
+					</OverlayTrigger>
 
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={renderTooltipLike}
-          >
-            <Link to="/favoritos">
-              <button className="button-cuenta" onClick={() => { scrollToTop()}}>
-                <AiOutlineHeart />
-              </button>
-            </Link>
-          </OverlayTrigger>
+					<OverlayTrigger
+						placement='left'
+						delay={{ show: 250, hide: 400 }}
+						overlay={renderTooltipLike}
+					>
+						<Link to='/favoritos'>
+							<button
+								className='button-cuenta'
+								onClick={() => {
+									scrollToTop();
+								}}
+							>
+								<AiOutlineHeart />
+							</button>
+						</Link>
+					</OverlayTrigger>
 
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={renderTooltip}
-          >
-            <button className="button-cuenta" onClick={() => { scrollToTop(), handleShow()}}>
-              <BiUser />
-            </button>
+					<OverlayTrigger
+						placement='left'
+						delay={{ show: 250, hide: 400 }}
+						overlay={renderTooltip}
+					>
+						<button
+							className='button-cuenta'
+							onClick={() => {
+								scrollToTop(), handleShow();
+							}}
+						>
+							<BiUser />
+						</button>
 
-            {/* <Offcanvas show={show} onHide={handleClose} className="canvas">
+						{/* <Offcanvas show={show} onHide={handleClose} className="canvas">
                 <Form className="formCategory">
                   <Offcanvas.Header closeButton closeVariant="white">
                     <Offcanvas.Title>
@@ -190,7 +215,7 @@ export const NavbarsLogueado = () => {
                   </Form>
               </Offcanvas> */}
 
-            {/* <Offcanvas
+						{/* <Offcanvas
               id={`offcanvasNavbar-expand`}
               aria-labelledby={`offcanvasNavbarLabel-expand`}
               placement="end"
@@ -214,56 +239,62 @@ export const NavbarsLogueado = () => {
                 </Nav>
               </Offcanvas.Body>
             </Offcanvas> */}
-          </OverlayTrigger>
+					</OverlayTrigger>
 
-          {
-            <Offcanvas
-              show={show}
-              onHide={handleClose}
-              className="canvas"
-              placement="end"
-              bsPrefix="offcanvas"
-            >
-              <Form className="formCategory">
-                <Offcanvas.Header closeButton closeVariant="white">
-                  <Offcanvas.Title>
-                    <p
-                      style={{
-                        color: "#f7f7f7",
-                        textAlign: "left",
-                        marginLeft: "-5px",
-                        marginRight: "10px",
-                        fontSize: "26px",
-                        fontWeight: "400",
-                        marginBottom: "-55px",
-                        marginTop: "-20px",
-                      }}
-                    >
-                      Perfil de usuario:
-                    </p>
-                  </Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <div style={{gap: '10px', display: 'flex', flexDirection: 'column'}}>
-                    <Link to="/misProductos" style={{ textDecoration: "none" }}>
-                      <button className="buttonCerrarSesion">
-                        Mis productos
-                      </button>
-                    </Link>
+					{
+						<Offcanvas
+							show={show}
+							onHide={handleClose}
+							className='canvas'
+							placement='end'
+							bsPrefix='offcanvas'
+						>
+							<Form className='formCategory'>
+								<Offcanvas.Header closeButton closeVariant='white'>
+									<Offcanvas.Title>
+										<p
+											style={{
+												color: "#f7f7f7",
+												textAlign: "left",
+												marginLeft: "-5px",
+												marginRight: "10px",
+												fontSize: "26px",
+												fontWeight: "400",
+												marginBottom: "-55px",
+												marginTop: "-20px",
+											}}
+										>
+											Perfil de usuario:
+										</p>
+									</Offcanvas.Title>
+								</Offcanvas.Header>
+								<Offcanvas.Body>
+									<div
+										style={{
+											gap: "10px",
+											display: "flex",
+											flexDirection: "column",
+										}}
+									>
+										<Link to='/misProductos' style={{ textDecoration: "none" }}>
+											<button className='buttonCerrarSesion'>
+												Mis productos
+											</button>
+										</Link>
 
-                    <button
-                      onClick={pruebaDesloguear}
-                      className="buttonCerrarSesion"
-                    >
-                      Cerrar sesión
-                    </button>
-                  </div>
-                </Offcanvas.Body>
-              </Form>
-            </Offcanvas>
-          }
-        </div>
-      </div>
-    </>
-  );
+										<button
+											onClick={pruebaDesloguear}
+											className='buttonCerrarSesion'
+										>
+											Cerrar sesión
+										</button>
+									</div>
+								</Offcanvas.Body>
+							</Form>
+						</Offcanvas>
+					}
+				</div>
+			</div>
+		</>
+	);
 };

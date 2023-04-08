@@ -27,7 +27,7 @@ import { BiLeftArrow } from "react-icons/bi";
 import { useNavigate } from "react-router";
 import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../context";
+import { AdminContext } from "../../context";
 import { FaHouseDamage, FaBoxes } from "react-icons/fa";
 import {
 	AiOutlineAreaChart,
@@ -37,7 +37,6 @@ import {
 import { BiCategory } from "react-icons/bi";
 
 export const EdicionCategorias = () => {
-	const { userAuth } = useContext(UserContext);
 
 	const {
 		register,
@@ -153,10 +152,16 @@ export const EdicionCategorias = () => {
 
 	const navigate = useNavigate();
 
-	/* const { userAuth, setUserAuth } = useContext(UserContext);
-  const pruebaDesloguear = () => {
-    setUserAuth(false);
-  }; */
+    const {  setAdminAuth } = useContext(AdminContext);
+	const deslogearAdmin = () => {
+      setAdminAuth(false);
+      if (localStorage.getItem("token-admin") !== null) {
+        localStorage.removeItem("token-admin");
+        setTimeout(() => {
+            navigate("/")
+        }, 1000);
+      }
+    };
 
 	return (
 		<Container fluid className='container-grid'>
@@ -208,7 +213,7 @@ export const EdicionCategorias = () => {
 					</div>
 
 					<button
-						/* onClick={pruebaDesloguear} */
+						onClick={deslogearAdmin}
 						className='buttonCerrarSesion'
 					>
 						<AiOutlinePoweroff style={{ marginRight: "5px" }} />

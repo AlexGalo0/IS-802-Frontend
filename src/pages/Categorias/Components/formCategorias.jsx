@@ -9,23 +9,15 @@ import {
 	Alert,
 } from "react-bootstrap";
 import "../../../style/styleForm.css";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { CiUser, CiCalendarDate } from "react-icons/ci";
-import { IoMdPhonePortrait } from "react-icons/io";
-import { HiOutlineIdentification } from "react-icons/hi";
-import { MdOutlineAlternateEmail } from "react-icons/md";
-import { RiLockPasswordLine } from "react-icons/ri";
-import { GoLocation } from "react-icons/go";
+
 import { BiLeftArrow } from "react-icons/bi";
-import { crearUsuario, obtenerDepartamentos } from "../../../api";
 import { useNavigate } from "react-router";
 import logo from "../../../assets/logoV2.png";
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from "@tanstack/react-query";
 
-import {
-	obtenerCategorias,
-} from "../../../api";
+import { obtenerCategorias, suscripcionACategoria, verCategorias } from "../../../api";
 
 export const FormCategorias = () => {
 	const navigate = useNavigate(); //Para redireccion
@@ -33,17 +25,13 @@ export const FormCategorias = () => {
 	const handleRedirection = () => {
 		navigate("/principal");
 	};
-
-	const enviarDatosRegistro = (datosRegistro) => {
-		mutationRegistro.mutate({
-			...datosRegistro,
-		});
-	};
-
+	const token = localStorage.getItem("token")
 	/* Elementos de la categoria */
 	const [valoresIniciales, setValoresIniciales] = useState({
 		categorias: [],
 	});
+
+	const [suscripcionExitosa, setSuscripcionExitosa] = useState(false)
 
 	const { data: categorias } = useQuery({
 		queryKey: ["categorias"],
@@ -54,13 +42,27 @@ export const FormCategorias = () => {
 		defaultValues: valoresIniciales,
 	});
 
-	const filtrarProductos = (datosFiltrado) => {
-		/* onSubmit function , that sends the params for filtering the data on the backend */
-		// mutationFiltros.mutate(datosFiltrado);
-		console.log("Me ejecute");
-		setFilters(datosFiltrado);
+	const {data:categoriasPorUsuario} = useQuery({
+		queryKey:["categoriasDeUsuario"],
+		queryFn:()=>verCategorias(token)
+	})
 
-		// setFilters
+	const mostrarCategorias =()=>{
+		console.log(categoriasPorUsuario);
+	}
+
+	const mutationSuscripcionCategoria = useMutation({
+		mutationFn: (categorias) => suscripcionACategoria(categorias,token),
+		onSuccess: () => {
+			setSuscripcionExitosa(true)
+			setTimeout(() => {
+				handleRedirection()
+				setSuscripcionExitosa(false)
+			}, 2000);
+		},
+	});
+	const enviarCategorias = (categorias) => {
+		mutationSuscripcionCategoria.mutate(categorias);
 	};
 
 	return (
@@ -70,8 +72,8 @@ export const FormCategorias = () => {
 					<Form
 						fluid='true'
 						className='Form'
-						onSubmit={handleSubmit(enviarDatosRegistro)}
-						style={{ position: "relative", width: '550px' }}
+						onSubmit={handleSubmit(enviarCategorias)}
+						style={{ position: "relative", width: "550px" }}
 					>
 						<Row>
 							<Col
@@ -119,47 +121,66 @@ export const FormCategorias = () => {
 						</h1>
 
 						<Form.Group
-							style={{ position: "relative", width: '490px' }}
+							style={{ position: "relative", width: "490px" }}
 							controlId='formBasicNombre'
 						>
-							
-								{/* Categorias */}
-								<form onSubmit={handleSubmit(filtrarProductos)} style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'/* , alignItems: 'initial' */}}>
-								<h4 className='py-3' style={{color: 'black'}}>Selecciona las categorias de las cuales te gustaria recibir publicidad:</h4>
-							{categorias?.map((categoria) => (
-								<div
-									key={categoria.idCategoria.data}
-									className='checkboxCate'
-									style={{ width: "auto", marginLeft: '140px' }}
-								>
-									<input
-										style={{ marginTop: "3px" }}
-										className='yepCate'
-										id={categoria.nombre}
-										type='checkbox'
-										value={categoria.nombre}
-										{...register(`categorias`)}
-									/>
-									<label
-										htmlFor=''
-										for={categoria.nombre}
-										style={{ marginTop: "3px" }}
-									></label>
-									<p className='checkPCate'>{categoria.nombre}</p>
-									<br />
-									
-								</div>
-							))}
+							{/* Categorias */}
+							<form
+								onSubmit={handleSubmit(enviarCategorias)}
+								style={{
+									display: "flex",
+									justifyContent: "center",
+									flexDirection: "column" /* , alignItems: 'initial' */,
+								}}
+							>
+								<h4 className='py-3' style={{ color: "black" }}>
+									Selecciona las categorias de las cuales te gustaria recibir
+									publicidad:
+								</h4>
+								{categorias?.map((categoria) => (
+									<div
+										key={categoria.idCategoria.data}
+										className='checkboxCate'
+										style={{ width: "auto", marginLeft: "140px" }}
+									>
+										<input
+											style={{ marginTop: "3px" }}
+											className='yepCate'
+											id={categoria.nombre}
+											type='checkbox'
+											value={categoria.nombre}
+											{...register(`categorias`)}
+										/>
+										<label
+											htmlFor=''
+											for={categoria.nombre}
+											style={{ marginTop: "3px" }}
+										></label>
+										<p className='checkPCate'>{categoria.nombre}</p>
+										<br />
+									</div>
+								))}
 							</form>
-
 						</Form.Group>
+						{
+							suscripcionExitosa ? <Alert variant="success">Suscripciones Completadas.</Alert> : ''
+						}
 						<button className='Button' type='submit'>
-							<span className='boxForm' style={{fontSize: '20px'}}>Continuar</span>
+							<span className='boxForm' style={{ fontSize: "20px" }}>
+								Continuar
+							</span>
 						</button>
-						<button  className="buttonAdmin" style={{marginTop: '30px', marginBottom: '-10px'}}>
-                  !No quiero publicidad!
-                </button>
+						<button
+							className='buttonAdmin'
+							style={{ marginTop: "30px", marginBottom: "-10px" }}
+						>
+							!No quiero publicidad!
+						</button>
+						
 					</Form>
+					<button onClick={mostrarCategorias}>
+						Mostrar
+						</button>
 				</Container>
 			</header>
 		</>
