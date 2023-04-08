@@ -173,8 +173,14 @@ export const Producto = ({}) => {
 								</h1>
 							</div>
 
+
+							
 							<div className='spectsMedium2'>
-								<h3>Califica el producto:</h3>
+								
+								{userAuth ? <h3>Califica el producto:</h3> : ''}
+
+								{userAuth?
+								<>
 								<div className='conCalificacion'>
 									<div className='starWitget'>
 										<input
@@ -229,7 +235,10 @@ export const Producto = ({}) => {
 										</label>
 									</div>
 								</div>
-
+								</>	
+							: ''} 
+								
+							
 								<div style={{ display: "flex", gap: "10px" }}>
 									{userAuth ? <Boton /> : ""}
 									{/* 
