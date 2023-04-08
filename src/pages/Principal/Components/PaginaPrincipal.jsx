@@ -13,6 +13,7 @@ import {
 	useQueryClient,
 	useInfiniteQuery,
 	QueryCache,
+	QueryClient,
 } from "@tanstack/react-query";
 import {
 	obtenerDepartamentos,
@@ -62,7 +63,6 @@ export const PaginaPrincipal = () => {
 
 	const [pageParam, setPageParam] = useState(1);
 
-
 	const [filters, setFilters] = useState();
 	const {
 		fetchNextPage, //function
@@ -72,6 +72,7 @@ export const PaginaPrincipal = () => {
 		status,
 		error,
 		refetch,
+		isLoading
 	} = useInfiniteQuery({
 		queryKey: ["productos", filters],
 		queryFn: ({ pageParam = 1 }) =>
@@ -113,29 +114,16 @@ export const PaginaPrincipal = () => {
 		});
 	});
 
-	// const mutationFiltros = useMutation({
-	// 	mutationFn: (datosFiltrado) => enviarFiltros(datosFiltrado, pageParam),
-	// 	onSuccess: (data) => {
-	// 		/* Here is the big problem , the last thing i try was setting it on null */
-	// 		queryClient.setQueryData(["productos"],null)
-	// 		queryClient.setQueryData(["productos"], {
-	// 			pages: [data],
-	// 			pageParam: [1],
-	// 		});
-
-	// 		setPageParam(1);
-	// 	},
-	// });
 	const filtrarProductos = (datosFiltrado) => {
-		/* onSubmit function , that sends the params for filtering the data on the backend */
-		// mutationFiltros.mutate(datosFiltrado);
-		console.log("Me ejecute");
 		setFilters(datosFiltrado);
 
 		// setFilters
 	};
 
-	const handleReiniciar = () => {};
+	const handleReiniciar = () => {
+		reset();
+		setFilters()
+	};
 
 	return (
 		<Container fluid className='container-grid'>
@@ -316,9 +304,8 @@ export const PaginaPrincipal = () => {
 									margin: "auto",
 									backgroundColor: "#365662",
 									marginTop: "-860px",
-									marginLeft: '50px',
-									position: 'absolute',
-
+									marginLeft: "50px",
+									position: "absolute",
 								}}
 							>
 								<span className='box'>Filtrar</span>
@@ -327,10 +314,20 @@ export const PaginaPrincipal = () => {
 					</div>
 				</aside>
 
-				<article >
-					<Row xs={1} md={3} className='g-2' style={{marginTop: '-20px'}}>
-						{content}
-					</Row>
+				<article>
+					{
+						isLoading ?  <div>Cargando...</div> : ''
+					}
+					
+					{!content ? (
+						''
+					) : content[0].length === 0 ? (
+						<div>No pudimos encontrar ningún producto.</div>
+					) : (
+						<Row xs={1} md={3} className='g-2' style={{ marginTop: "-20px" }}>
+							{content}
+						</Row>
+					)}
 				</article>
 				<Footers />
 			</main>
