@@ -25,7 +25,7 @@ import { Footers } from "../../../Components/Footer";
 import { Link, useParams } from "react-router-dom";
 import Boton from "../Components/botonLike";
 import { FaShare } from "react-icons/fa";
-import axios from "axios";/* 
+import axios from "axios"; /* 
 import { agregarProductoWishlist } from "../../../api/sendRequest.api"; */
 
 export const Producto = ({}) => {
@@ -231,7 +231,8 @@ export const Producto = ({}) => {
 								</div>
 
 								<div style={{ display: "flex", gap: "10px" }}>
-									<Boton />{/* 
+									{userAuth ? <Boton /> : ""}
+									{/* 
 									<button onClick={agregarFavoritos}>Agregar a Favoritos</button> */}
 									{/* Boton de compartir */}
 									<div className='like'>
@@ -251,23 +252,28 @@ export const Producto = ({}) => {
 									</div>
 								</div>
 								<div>{texto}</div>
-
-								<Link to='/construyendo' style={{ textDecoration: "none" }}>
-									<button
-										className='buttonChat'
-										style={{ color: "#f7f7f7", fontSize: "medium" }}
-									>
-										<span className='box'>Chatea sobre este articulo</span>
-									</button>
-								</Link>
-								<Link to='/construyendo' style={{ textDecoration: "none" }}>
-									<button
-										className='buttonChat'
-										style={{ color: "#f7f7f7", fontSize: "medium" }}
-									>
-										<span className='box'>Escribe al vendedor</span>
-									</button>
-								</Link>
+								{userAuth ? (
+									<>
+										<Link to='/construyendo' style={{ textDecoration: "none" }}>
+											<button
+												className='buttonChat'
+												style={{ color: "#f7f7f7", fontSize: "medium" }}
+											>
+												<span className='box'>Chatea sobre este articulo</span>
+											</button>
+										</Link>
+										<Link to='/construyendo' style={{ textDecoration: "none" }}>
+											<button
+												className='buttonChat'
+												style={{ color: "#f7f7f7", fontSize: "medium" }}
+											>
+												<span className='box'>Escribe al vendedor</span>
+											</button>
+										</Link>
+									</>
+								) : (
+									""
+								)}
 							</div>
 						</div>
 					</div>
