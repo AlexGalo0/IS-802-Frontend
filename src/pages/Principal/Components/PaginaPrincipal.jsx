@@ -315,7 +315,10 @@ export const PaginaPrincipal = () => {
 									fontSize: "medium",
 									margin: "auto",
 									backgroundColor: "#365662",
-									marginTop: "10px",
+									marginTop: "-860px",
+									marginLeft: '50px',
+									position: 'absolute',
+
 								}}
 							>
 								<span className='box'>Filtrar</span>
@@ -324,8 +327,8 @@ export const PaginaPrincipal = () => {
 					</div>
 				</aside>
 
-				<article>
-					<Row xs={1} md={3} className='g-4'>
+				<article >
+					<Row xs={1} md={3} className='g-2' style={{marginTop: '-20px'}}>
 						{content}
 					</Row>
 				</article>

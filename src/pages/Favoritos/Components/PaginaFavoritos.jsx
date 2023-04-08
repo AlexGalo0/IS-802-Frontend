@@ -46,7 +46,7 @@ export const PaginaFavoritos = () => {
 	const content = data?.pages.map((pg) => {
 		return pg.map((post, i) => {
 			if (pg.length === i + 1) {
-				return <ProductoFavorito ref={lastPostRef} producto={post} />;  
+				return <ProductoFavorito ref={lastPostRef} producto={post}/>;  
 			}
 			return <ProductoFavorito producto={post} />; 
 		});
@@ -56,7 +56,7 @@ export const PaginaFavoritos = () => {
 	return (
 		<>
 		
-		<article>
+		<article >
 					<Row xs={1} md={3} className='g-4'>
 						{content}
 					</Row>

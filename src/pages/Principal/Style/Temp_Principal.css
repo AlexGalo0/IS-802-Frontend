@@ -75,7 +75,7 @@ aside{
 
 .scroll {
 overflow-y: scroll;
-height: 530px;
+height: 490px;
 
 }
 
@@ -538,3 +538,67 @@ margin-top: 25px;
 margin-bottom: 20px;
 }
 */
+
+/* Slider de checkbox para suscripcion de categorias */
+.checkboxCate {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  margin-bottom: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  }
+  
+  .checkboxCate label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 30px;
+  border-radius: 50px;
+  background: linear-gradient(to bottom, var(--blue1), var(--blue5));
+  cursor: pointer;
+  transition: all 0.3s ease;
+  }
+  
+  .checkboxCate label:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 1px;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background-color: var(--blue4);
+  border: 2px solid var(--shadow);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  }
+  
+  .checkboxCate input[type="checkbox"]:checked + label {
+  background: linear-gradient(to bottom, var(--blue3), var(--hover));
+  }
+  
+  .checkboxCate input[type="checkbox"]:checked + label:after {
+  transform: translateX(29px);
+  }
+  
+  .checkboxCate label:hover:after {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .yepCate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 30px;
+  }
+  
+  .checkPCate {
+  font-size: larger;
+  padding-left: 80px;
+  text-align: initial;
+  } 

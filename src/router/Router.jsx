@@ -13,6 +13,7 @@ import {
 import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginaFavoritos";
 import { PaginaMisProductos } from "../pages/Mis Productos/Components/MisProductos";
 import { LandingPage } from "../pages/Landing/Components/LandingPage";
+import { FormCategorias } from "../pages/Categorias/Components/formCategorias";
 
 import { useContext } from "react";
 import { RutaProtegida, NavbarsLR } from "../Components";
@@ -43,6 +44,7 @@ export const Router = () => {
 				<Route path='/misProductos' element={<PaginaMisProductos />} />
 
 				<Route path='/registrarUsuario' element={<RegistroUsuario />} />
+				<Route path='/categorias' element={<FormCategorias />} />
 
 				<Route path='/dashboard-admin' element={<DashboardAdministrador />} />
 				<Route path='/producto/:idProducto' element={<Producto />} />

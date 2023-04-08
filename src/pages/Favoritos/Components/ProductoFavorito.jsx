@@ -120,7 +120,9 @@ export const ProductoFavorito = React.forwardRef(({ producto }, ref) => {
             <h1>Tus productos favoritos:</h1>
           </div>
 
-          {content}
+          <Row xs={1} md={3} className='g-4'>
+						{content}
+					</Row>
         </article>
         <Footers style={{ marginRight: "15px" }}/>
       </main>
