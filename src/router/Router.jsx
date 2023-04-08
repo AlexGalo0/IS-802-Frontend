@@ -23,12 +23,42 @@ export const Router = () => {
 	const { adminAuth } = useContext(AdminContext);
 	return (
 		<>
-			{/* <NavbarsLR /> */}
 			<Routes>
-				<Route index element={<LandingPage />} />
-				<Route path='/login' element={<UserLogin />} />
-				<Route path='/login-admin' element={<LoginAdministrador />} />
-				<Route path='/admin/crudCategorias' element={<EdicionCategorias />} />
+				{/* RUTAS PROTEGIDAS DEL ADMINISTRADOR */}
+				<Route
+					path='/admin/crudCategorias'
+					element={
+						<RutaProtegida isAllowed={adminAuth}>
+							<EdicionCategorias />
+						</RutaProtegida>
+					}
+				/>
+				{/* <Route
+					path='/dashboard-admin'
+					element={
+						<RutaProtegida isAllowed={adminAuth}>
+							<DashboardAdministrador />
+						</RutaProtegida>
+					}
+				/> */}
+
+				{/* RUTAS PROTEGIDAS DE USUARIO */}
+				<Route
+					path='/misProductos'
+					element={
+						<RutaProtegida isAllowed={userAuth}>
+							<PaginaMisProductos />
+						</RutaProtegida>
+					}
+				/>
+				<Route
+					path='/favoritos'
+					element={
+						<RutaProtegida isAllowed={userAuth}>
+							<PaginaFavoritos />
+						</RutaProtegida>
+					}
+				/>
 				<Route
 					path='/registrarProducto'
 					element={
@@ -37,16 +67,28 @@ export const Router = () => {
 						</RutaProtegida>
 					}
 				/>
-				<Route path='/construyendo' element={<Construyendo />} />
+
+				<Route
+					path='/categorias'
+					element={
+						<RutaProtegida isAllowed={userAuth}>
+							<FormCategorias />
+						</RutaProtegida>
+					}
+				/>
+
+				{/* Rutas para cualquier usuario */}
+
+				<Route index element={<LandingPage />} />
+				<Route path='/login' element={<UserLogin />} />
+				<Route path='/login-admin' element={<LoginAdministrador />} />
 
 				<Route path='/principal' element={<PaginaPrincipal />} />
-				<Route path='/favoritos' element={<PaginaFavoritos />} />
-				<Route path='/misProductos' element={<PaginaMisProductos />} />
+
+				<Route path='/construyendo' element={<Construyendo />} />
 
 				<Route path='/registrarUsuario' element={<RegistroUsuario />} />
-				<Route path='/categorias' element={<FormCategorias />} />
 
-				<Route path='/dashboard-admin' element={<DashboardAdministrador />} />
 				<Route path='/producto/:idProducto' element={<Producto />} />
 			</Routes>
 		</>
