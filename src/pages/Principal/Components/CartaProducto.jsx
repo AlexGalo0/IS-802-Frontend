@@ -45,7 +45,7 @@ export const CartaProducto = React.forwardRef(({ producto }, ref) => {
 						>
 							<button
 								className='buttonProducto'
-								style={{ color: "#f7f7f7", fontSize: "medium" }}
+								style={{ color: "#f7f7f7", fontSize: "medium" }} onClick={() => { scrollToTop()}}
 							>
 								<span className='box'>Ver producto</span>
 							</button>

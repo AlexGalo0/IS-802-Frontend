@@ -25,8 +25,8 @@ import { Footers } from "../../../Components/Footer";
 import { Link, useParams } from "react-router-dom";
 import Boton from "../Components/botonLike";
 import { FaShare } from "react-icons/fa";
-import axios from "axios";
-import { agregarProductoWishlist } from "../../../api/sendRequest.api";
+import axios from "axios";/* 
+import { agregarProductoWishlist } from "../../../api/sendRequest.api"; */
 
 export const Producto = ({}) => {
 	const { userAuth } = useContext(UserContext);
@@ -60,10 +60,10 @@ export const Producto = ({}) => {
 		);
 	};
 
-	const agregarFavoritos=()=>{
+	/* const agregarFavoritos=()=>{
 		const tokenUsuario= localStorage.getItem('token')
 		agregarProductoWishlist(tokenUsuario,idProducto)
-	}
+	} */
 
 	const [texto, setTexto] = useState("");
 
@@ -231,8 +231,8 @@ export const Producto = ({}) => {
 								</div>
 
 								<div style={{ display: "flex", gap: "10px" }}>
-									{/* <Boton /> */}
-									<button onClick={agregarFavoritos}>Agregar a Favoritos</button>
+									<Boton />{/* 
+									<button onClick={agregarFavoritos}>Agregar a Favoritos</button> */}
 									{/* Boton de compartir */}
 									<div className='like'>
 										<OverlayTrigger

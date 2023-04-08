@@ -3,8 +3,17 @@ import "./Boton.css";
 import { AiFillHeart } from "react-icons/ai";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { agregarProductoWishlist } from "../../../api/sendRequest.api";
+import { Link, useParams } from "react-router-dom";
 
 export default function Boton() {
+	let { idProducto } = useParams();
+
+  const agregarFavoritos=()=>{
+		const tokenUsuario= localStorage.getItem('token')
+		agregarProductoWishlist(tokenUsuario,idProducto)
+	}
+
   const [active, setActive] = useState(false);
 
   function handleClick() {
@@ -25,7 +34,7 @@ export default function Boton() {
         delay={{ show: 250, hide: 400 }}
         overlay={renderTooltipButtomLike}
       >
-        <button className={active ? "active" : ""} onClick={handleClick}>
+        <button className={active ? "active" : ""} onClick={() => { handleClick(); agregarFavoritos()}}>
           {active ? (
             <AiFillHeart className="heart" />
           ) : (
