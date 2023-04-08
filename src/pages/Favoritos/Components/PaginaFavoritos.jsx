@@ -16,7 +16,7 @@ export const PaginaFavoritos = () => {
 		refetch,
 	} = useInfiniteQuery({
 		queryKey: ["productoListaDeseos"],
-		queryFn: ({ pageParam = 1 }) => obtenerListaDeseosUsuario(token),
+		queryFn: ({ pageParam = 1 }) => obtenerListaDeseosUsuario(pageParam,token),
 		getNextPageParam: (lastPage, allPages) => {
 			return lastPage.length ? allPages.length + 1 : undefined;
 		},

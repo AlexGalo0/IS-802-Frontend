@@ -76,12 +76,23 @@ export const editarCategoria = async (nuevaCategoria) => {
 
 
 export const agregarProductoWishlist = async (token, idProducto) => {
-
-    const res = await axios.get(`http://localhost:4000/wishlist/${token}/${idProducto}`)
+    console.log(token);
+    console.log(idProducto);
+    const res = await axios.post(`http://localhost:4000/wishlist/${token}/${idProducto}`)
     return res.data
 }
 
-export const obtenerListaDeseosUsuario = async (tokenUser) => {
-    const res = await axios.get(`http://localhost:4000/wishlist/${tokenUser}/`)
+export const obtenerListaDeseosUsuario = async (pageParam,tokenUser) => {
+   
+    const res = await axios.get(`http://localhost:4000/wishlist/${pageParam}/${tokenUser}/`)
+    console.log(res.data);
+    return res.data
+}
+
+export const borrarProductoListaDeseos = async (idProducto,tokenUser)=>{
+    console.log(tokenUser);
+    console.log(idProducto);
+    const res = await axios.delete(`http://localhost:4000/wishlist/${tokenUser}/${idProducto}`)
+    console.log(res);
     return res.data
 }
