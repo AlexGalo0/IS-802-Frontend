@@ -112,12 +112,10 @@ export const obtenerProductosUsuario = async (numeroPagina, token) => {
     return res.data
 }
 
-export const crearComentario = async (tokenUser, idProduct, comentarioAEnviar) => {
-    const comentario = comentarioAEnviar.comentario
-    console.log(tokenUser);
-    console.log(idProduct);
-    console.log(comentario);
-   await axios.post(`http://localhost:4000/comentarios/${tokenUser}/${idProduct}`, comentario)
+export const crearComentario = async (tokenUser, idProduct, comentario) => {
+
+
+    await axios.post(`http://localhost:4000/comentarios/${tokenUser}/${idProduct}`, comentario)
 
 }
 
