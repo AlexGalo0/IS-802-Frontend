@@ -28,7 +28,7 @@ export const CartaProductoFavoritos = React.forwardRef(({ producto }, ref) => {
 	const eliminarListaDeseos = () => {
 		mutationEliminarListaDeseos.mutate(idProducto);
 	};
-
+	
 	const idProducto= producto.id_producto.data.toString()
 	function scrollToTop() {
 		window.scrollTo(0, 0);

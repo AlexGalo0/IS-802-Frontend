@@ -15,7 +15,7 @@ export const MisProductos = () => {
 		error,
 		refetch,
 	} = useInfiniteQuery({
-		queryKey: ["productoListaDeseos"],
+		queryKey: ["misProductos"],
     /* Cambiar a obtenerProductosUsuario, que acepte paginacion */
 		queryFn: ({ pageParam = 1 }) => obtenerProductosUsuario(pageParam,token),
 		getNextPageParam: (lastPage, allPages) => {
