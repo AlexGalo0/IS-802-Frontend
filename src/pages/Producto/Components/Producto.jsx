@@ -28,6 +28,7 @@ import Boton from "../Components/botonLike";
 import { FaShare } from "react-icons/fa";
 import axios from "axios"; /* 
 import { agregarProductoWishlist } from "../../../api/sendRequest.api"; */
+import { Comentarios } from "./Comentarios";
 
 export const Producto = ({}) => {
 	const { userAuth } = useContext(UserContext);
@@ -308,47 +309,7 @@ export const Producto = ({}) => {
 							</div>
 						</div>
 					</div>
-					<div className='comments'>
-						<h1>Comentarios</h1>
-
-						<h4>Añadir un comentario:</h4>
-						<div style={{ display: "flex", flexDirection: "row" }}>
-							<Form.Control className='comment' type='text' />
-							<button className='btnComent'>
-								<MdOutlineInsertComment className='iconBuscar' />
-								<span className='textComent'>Comentar</span>
-							</button>
-						</div>
-						<Table striped bordered hover>
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Username</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td colSpan={2}>Larry the Bird</td>
-									<td>@twitter</td>
-								</tr>
-							</tbody>
-						</Table>
-					</div>
+					<Comentarios productoID={idProducto}/>
 				</header>
 
 				<Footers />

@@ -55,7 +55,7 @@ export const iniciarSesion = async (loginData) => {
 export const iniciarSesionAdmin = async (loginData) => {
     const res = await axios.post('http://localhost:4000/login/admin', loginData)
     const tokenAdministrador = res.data.token
-    localStorage.setItem("token-admin",tokenAdministrador)
+    localStorage.setItem("token-admin", tokenAdministrador)
 }
 
 export const crearCategoria = async (categoria) => {
@@ -91,18 +91,24 @@ export const borrarProductoListaDeseos = async (idProducto, tokenUser) => {
     const res = await axios.delete(`http://localhost:4000/wishlist/${tokenUser}/${idProducto}`)
     return res.data
 }
-export const suscripcionACategoria = async (categorias,tokenUser)=>{
-    const res = await axios.post(`http://localhost:4000/categorySubscription/${tokenUser}`,categorias)
-    return res.data ; 
+export const suscripcionACategoria = async (categorias, tokenUser) => {
+    const res = await axios.post(`http://localhost:4000/categorySubscription/${tokenUser}`, categorias)
+    return res.data;
 }
-export const verCategorias=async (token)=>{
+export const verCategorias = async (token) => {
     const res = await axios.get(`http://localhost:4000/categorySubscription/${token}`)
     return res.data
 }
 
-export const obtenerProductosUsuario = async (numeroPagina,token)=>{
-  
+export const obtenerProductosUsuario = async (numeroPagina, token) => {
+
     const res = await axios.get(`http://localhost:4000/productos/${numeroPagina}/${token}`)
     return res.data
 }
 
+export const crearComentario = async (tokenUsuario, idProducto,comentario) => {
+    const comentarioAEnviar = comentario.comentario
+
+    const res = await axios.post(`http://localhost:4000/comentarios/${tokenUsuario}/${idProducto}`,comentarioAEnviar)
+    return res.data
+}
