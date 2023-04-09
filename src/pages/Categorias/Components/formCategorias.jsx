@@ -177,7 +177,7 @@ export const FormCategorias = () => {
 								navigate("/principal")
 							}}
 						>
-							!No quiero publicidad!
+							¡No quiero publicidad!
 						</button>
 						
 					</Form>

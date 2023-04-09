@@ -124,8 +124,21 @@ export const ProductoFavorito = React.forwardRef(({ producto }, ref) => {
 		<article>{postBody}</article>
 	);
 
-	return content; /* (
-    <Container fluid className="container-grid" style={{marginTop: '5px', marginLeft: '-8px'}}>
+	return /* content; */ (
+		<Container fluid className="container-grid">
+			{userAuth ? <NavbarsLogueado /> : <NavbarsLR />}
+		<article>
+					
+						<Row xs={1} md={3} className='g-2' style={{ marginTop: "-20px" }}>
+							{content}
+						</Row>
+				</article>
+				</Container>
+  );
+});
+
+
+{/* <Container fluid className="container-grid" style={{marginTop: '5px', marginLeft: '-8px'}}>
       {userAuth ? <NavbarsLogueado /> : <NavbarsLR />}
       <main className="principal">
         <article style={{ margin: 'auto' }}>
@@ -147,6 +160,4 @@ export const ProductoFavorito = React.forwardRef(({ producto }, ref) => {
         </article>
         <Footers style={{ marginRight: "15px" }}/>
       </main>
-    </Container>
-  ); */
-});
+    </Container> */}
