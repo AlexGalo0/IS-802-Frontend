@@ -9,10 +9,7 @@ import { borrarProductoListaDeseos } from "../../../api";
 
 
 export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
-	const token = localStorage.getItem("token");
-	const idProducto = producto.id_producto.data.toString();
-	const queryClient = useQueryClient()
-	
+	// const idProducto = producto.id_producto.data.toString();
 
 
 	function scrollToTop() {
@@ -23,13 +20,13 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
 			Quitar de lista favoritos
 		</Tooltip>
 	);
-	const imagen = JSON.parse(producto.imagenes)
+	// const imagen = JSON.parse(producto.imagenes)
 	const postBody = (
 		<>
 			<Col>
 				<Card className='card'>
 					<Container className='card-container'>
-						<Card.Img variant='top' src={imagen[0]} className='card-image' />
+						{/* <Card.Img variant='top' src={imagen[0]} className='card-image' /> */}
 					</Container>
 					<Card.Body className='card-body'>
 						<Card.Title className='card-title'>{producto.nombre}</Card.Title>

@@ -83,7 +83,6 @@ export const agregarProductoWishlist = async (token, idProducto) => {
 export const obtenerListaDeseosUsuario = async (pageParam, tokenUser) => {
 
     const res = await axios.get(`http://localhost:4000/wishlist/${pageParam}/${tokenUser}/`)
-    console.log(res.data);
     return res.data
 }
 

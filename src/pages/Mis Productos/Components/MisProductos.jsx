@@ -1,9 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useRef , useCallback} from "react";
-import { Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { obtenerProductosUsuario } from "../../../api";
 import { CartaMisProducto } from "./CartaMisProducto";
-
+import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 export const MisProductos = () => {
   const token = localStorage.getItem("token");
 	const {
@@ -57,17 +57,19 @@ export const MisProductos = () => {
  
 	return (
 		<>
-		
-		<article >
+		<Container fluid className='container-grid'>
+			 <NavbarsLogueado /> 
+		<article style={{paddingTop:'90px'}} >
 					<Row xs={1} md={3} className='g-4'>
 						{content}
 					</Row>
 				</article>
+				</Container>
 		</>
 	);
 }
 
-
+		
 
 	
 
