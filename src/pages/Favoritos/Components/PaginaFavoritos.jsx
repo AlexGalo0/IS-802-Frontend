@@ -52,12 +52,16 @@ export const PaginaFavoritos = () => {
 		});
 	});
 
+	
 
 	return (
 		<>
+	
 		<Container fluid className='container-grid'>
 			 <NavbarsLogueado /> 
+			
 		<article style={{paddingTop:'90px'}} >
+		<h1 style={{paddingTop:'20px'}} >Estos son tus productos favoritos </h1>
 					<Row xs={1} md={3} className='g-4'>
 						{content}
 					</Row>
