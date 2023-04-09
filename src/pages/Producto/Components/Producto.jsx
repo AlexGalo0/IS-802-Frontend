@@ -36,7 +36,7 @@ export const Producto = ({}) => {
 	const navigate = useNavigate(); //Para redireccion
 	// const [arregloImagenes, setArregloImagenes] = useState([]);
 	const handleRedirection = () => {
-		navigate("/principal");
+		navigate(-1);
 	};
 	const obtenerProductoPorId = async (idProducto) => {
 		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
@@ -124,50 +124,50 @@ export const Producto = ({}) => {
 											className='inStar'
 											type='checkbox'
 											name='rate'
-											id='rate5'
+											id='cal5'
 											value='5'
 										/>
-										<label className='laStar' for='rate5'>
+										<label className='laStar' for='cal5' style={{color: 'black'}}>
 											<AiFillStar />
 										</label>
 										<input
 											className='inStar'
 											type='checkbox'
 											name='rate'
-											id='rate4'
+											id='cal4'
 											value='4'
 										/>
-										<label className='laStar' for='rate4'>
+										<label className='laStar' for='cal4' style={{color: 'black'}}>
 											<AiFillStar />
 										</label>
 										<input
 											className='inStar'
 											type='checkbox'
 											name='rate'
-											id='rate3'
+											id='cal3'
 											value='3'
 										/>
-										<label className='laStar' for='rate3'>
+										<label className='laStar' for='cal3' style={{color: 'black'}}>
 											<AiFillStar />
 										</label>
 										<input
 											className='inStar'
 											type='checkbox'
 											name='rate'
-											id='rate2'
+											id='cal2'
 											value='2'
 										/>
-										<label className='laStar' for='rate2'>
+										<label className='laStar' for='cal2' style={{color: 'black'}}>
 											<AiFillStar />
 										</label>
 										<input
 											className='inStar'
 											type='checkbox'
 											name='rate'
-											id='rate1'
+											id='cal1'
 											value='1'
 										/>
-										<label className='laStar' for='rate1'>
+										<label className='laStar' for='cal1' style={{color: 'black'}}>
 											<AiFillStar />
 										</label>
 									</div>

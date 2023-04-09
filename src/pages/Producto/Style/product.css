@@ -156,7 +156,9 @@ margin-top: 20px;
 padding: 30px;
 width: 100%;
 height: 100%;
-border: 1px solid black;
+outline-style: outset;
+outline-color: var(--blue2);
+border-radius: 20px;
 }
 
 .comment {
@@ -167,6 +169,7 @@ height: 45px;
 width: 100%;
 background-color: hsla(0, 0%, 100%, 0.15);
 border-radius: 30px;
+border: 1px solid var(--blue2);
 padding: 0px 10px;
 }
 
@@ -219,6 +222,10 @@ outline: none;
 .btnComent:active .iconBuscar {
 transform: scale(0.85);
 } 
+
+.tabComments {
+  border-radius: 20px;
+}
 
 /* Calificacion */
 /* .conCalificacion {

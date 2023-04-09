@@ -78,8 +78,11 @@ export const NavbarsLR = () => {
 
             {/* Navbar */}
       <div className="navbar">
+        
+	  <Link to="/principal">
         <Image src={logo} className="image-logo" />
-        <div className="buscador-div">
+        </Link>
+        <div /* className="buscador-div" */>
           {/* <Form.Control className="buscador" type="text" />
           <button className="btnBuscar">
             <BiSearchAlt className="iconBuscar" />
@@ -89,14 +92,17 @@ export const NavbarsLR = () => {
 
         <div style={{marginLeft: '-100px', display: 'flex', margin: 'auto'}}>
         <Link to='/login' style={{textDecoration: 'none'}}>
-          <button className="btnregis"> <span className="textBuscar" onClick={() => { scrollToTop()}}>Inicia sesión</span></button>
-          </Link>
-          <Link to='/registrarUsuario' style={{textDecoration: 'none'}}>
-
-          <button className="btnregis" onClick={() => { scrollToTop()}}>Registrate</button>
+          <button className="btnregis" style={{width: '300px'}}> <span className="textBuscar" onClick={() => { scrollToTop()}}>Inicia sesión</span></button>
           </Link>
         </div>
-        <div className="trampa">
+
+        <div style={{marginLeft: '-100px', display: 'flex', margin: 'auto'}}>
+          <Link to='/registrarUsuario' style={{textDecoration: 'none'}}>
+
+          <button className="btnregis" onClick={() => { scrollToTop()}} style={{width: '300px'}}>Registrate</button>
+          </Link>
+        </div>
+        <div /* className="trampa" */>
           {/* <Form.Control className="buscador" type="text" />
           <button className="btnBuscar">
             <BiSearchAlt className="iconBuscar" />

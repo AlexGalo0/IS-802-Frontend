@@ -63,6 +63,7 @@ export const CartaProductoFavoritos = React.forwardRef(({ producto }, ref) => {
 						<Card.Text className='card-medium'>
 							Disponibles en Inventario: {producto.cantidad}
 						</Card.Text>
+						<div style={{ display: "flex" }}>
 						<Link
 							to={`/producto/${idProducto}`}
 							style={{ textDecoration: "none" }}
@@ -96,6 +97,8 @@ export const CartaProductoFavoritos = React.forwardRef(({ producto }, ref) => {
 								</span>
 							</button>
 						</OverlayTrigger>
+						
+						</div>
 					</Card.Body>
 				</Card>
 			</Col>

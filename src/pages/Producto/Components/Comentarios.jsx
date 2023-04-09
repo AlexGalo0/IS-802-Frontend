@@ -46,11 +46,11 @@ export const Comentarios = ({ productoID }) => {
 		<div className='comments'>
 			<h1>Comentarios</h1>
 
-			<h4>Añadir un comentario:</h4>
-			<div style={{ display: "flex", flexDirection: "row" }}>
+			<h4>Añade un comentario:</h4>
+			<div >
 				{userAuth ? (
 					<>
-						<form onSubmit={handleSubmit(postearComentario)}>
+						<form onSubmit={handleSubmit(postearComentario)} style={{ display: "flex", flexDirection: "row", margin: '15px', marginLeft: '0px', marginRight: '0px' }}>
 							<Form.Control
 								className='comment'
 								type='text'
@@ -65,21 +65,22 @@ export const Comentarios = ({ productoID }) => {
 							</button>
 						</form>
 						{seAgregoComentario ? (
-							<Alert variant='success'>Comentario Añadido</Alert>
+							<Alert variant='success' style={{display: 'flex', justifyContent: "center",alignItems: 'center', width: '200px', margin: 'auto', marginBottom:'15px'}}>Comentario Añadido</Alert>
 						) : (
 							""
 						)}
 					</>
 				) : (
-					<div>Inicia Sesión para comentar</div>
+					<Alert variant="success" style={{margin: 'auto', display: 'flex', justifyContent: 'center', width: '300px'}}>¡Inicia Sesión para comentar!
+					</Alert>
 				)}
 			</div>
-			<Table striped bordered hover>
+			<Table striped bordered hover /* className="tabComments" style={{borderRadius: '20px'}} */>
 				<thead>
 					<tr>
-						<th>Creado por: </th>
+						<th style={{width: '200px'}}>Creado por: </th>
 						<th>Comentario: </th>
-					</tr>
+					</tr >
 				</thead>
 				<tbody>
 					{/* Obtener Comentarios */}
@@ -92,8 +93,8 @@ export const Comentarios = ({ productoID }) => {
                         tr
                         */
                         }
-						<td>Mark</td>
-						<td>Otto</td>
+						<td >Mark</td>
+						<td >Otto</td>
 					</tr>
 					<tr>
 						<td>2</td>
