@@ -12,6 +12,7 @@ import {
 	Table,
 	OverlayTrigger,
 	Tooltip,
+	Alert,
 } from "react-bootstrap";
 
 import { useContext, useState } from "react";
@@ -83,6 +84,10 @@ export const Producto = ({}) => {
 					>
 						<BiLeftArrow />
 					</button>
+
+					{userAuth ? '' : 
+					<Alert variant="success" style={{margin: 'auto', marginBottom: '15px', marginTop: '-50px'}}>Si deseas interactuar de mejor forma con el producto ¡Registrate o inicia sesion!
+					</Alert>}
 
 					<div style={{ display: "flex", flexDirection: "row" }}>
 						<div>
@@ -241,10 +246,8 @@ export const Producto = ({}) => {
 							
 								<div style={{ display: "flex", gap: "10px" }}>
 									{userAuth ? <Boton /> : ""}
-									{/* 
-									<button onClick={agregarFavoritos}>Agregar a Favoritos</button> */}
-									{/* Boton de compartir */}
-									<div className='like'>
+									
+									{userAuth ? <div className='like'>
 										<OverlayTrigger
 											placement='top'
 											delay={{ show: 250, hide: 400 }}
@@ -258,7 +261,26 @@ export const Producto = ({}) => {
 												<FaShare className='heart' />
 											</button>
 										</OverlayTrigger>
-									</div>
+									</div> : <div className='like'>
+										<OverlayTrigger
+											placement='top'
+											delay={{ show: 250, hide: 400 }}
+											overlay={renderTooltipButtomShare}
+										>
+											<button
+												onClick={() => {
+													generarEnlace(), handleClick();
+												}}
+												style={{width: '80px', height: '80px'}}
+											>
+												<FaShare className='heart'  style={{width: '50px', height: '50px'}}/>
+											</button>
+										</OverlayTrigger>
+									</div>}
+									{/* 
+									<button onClick={agregarFavoritos}>Agregar a Favoritos</button> */}
+									{/* Boton de compartir */}
+									
 								</div>
 								<div>{texto}</div>
 								{userAuth ? (
