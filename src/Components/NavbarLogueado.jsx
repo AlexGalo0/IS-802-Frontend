@@ -27,7 +27,19 @@ export const NavbarsLogueado = () => {
 		if (localStorage.getItem("token") !== null) {
 			localStorage.removeItem("token");
 		}
+		if (localStorage.getItem("nombre") !== null) {
+			localStorage.removeItem("nombre");
+		}
+		if (localStorage.getItem("apellido") !== null) {
+			localStorage.removeItem("apellido");
+		}
+		if (localStorage.getItem("correo") !== null) {
+			localStorage.removeItem("correo");
+		}
 	};
+	const nombre = localStorage.getItem("nombre")
+	const apellido = localStorage.getItem("apellido")
+
 
 	/* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
 	const renderTooltip = (props) => (
@@ -123,7 +135,9 @@ export const NavbarsLogueado = () => {
 				<div className='buscador-div2' /* style={{display:"none"}} */>
 					
 				</div>
-
+				<div>
+					Hola {nombre} {apellido}
+				</div>
 				<div style={{ display: "flex", margin: "auto" }}>
 					<Link to='/registrarProducto' style={{ textDecoration: "none" }}>
 						<button className='btnregis' style={{ width: "250px" }}>
