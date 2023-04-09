@@ -90,6 +90,7 @@ export const Router = () => {
 				<Route path='/registrarUsuario' element={<RegistroUsuario />} />
 
 				<Route path='/producto/:idProducto' element={<Producto />} />
+				<Route path='*' element={<Construyendo/>}></Route>
 			</Routes>
 		</>
 	);

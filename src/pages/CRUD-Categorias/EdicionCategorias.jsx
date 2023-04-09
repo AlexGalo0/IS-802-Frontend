@@ -204,7 +204,7 @@ export const EdicionCategorias = () => {
 								Denuncias
 							</button>
 						</Link>
-						<Link to='/crudCategorias' style={{ textDecoration: "none" }}>
+						<Link to='/admin/crudCategorias' style={{ textDecoration: "none" }}>
 							<button className='buttonCerrarSesion'>
 								<BiCategory style={{ marginRight: "5px" }} />
 								Categorias

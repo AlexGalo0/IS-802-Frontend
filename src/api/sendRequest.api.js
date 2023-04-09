@@ -120,9 +120,8 @@ export const crearComentario = async (tokenUser, idProduct, comentario) => {
 }
 
 export const obtenerComentarios = async (idProducto) => {
-
+    console.log(idProducto);
     const res = await axios.get(`http://localhost:4000/comentarios/${idProducto}`)
-    console.log(res.data);
     return res.data
 }
 
