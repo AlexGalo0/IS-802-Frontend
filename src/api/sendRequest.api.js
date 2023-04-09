@@ -51,9 +51,9 @@ export const iniciarSesion = async (loginData) => {
     const correo = res.data.correo
     const apellido = res.data.apellido
     localStorage.setItem("token", token)
-    localStorage.setItem("nombre",nombre)
-    localStorage.setItem("apellido",apellido)
-    localStorage.setItem("correo",correo)
+    localStorage.setItem("nombre", nombre)
+    localStorage.setItem("apellido", apellido)
+    localStorage.setItem("correo", correo)
     return res;
 
 }
@@ -112,14 +112,16 @@ export const obtenerProductosUsuario = async (numeroPagina, token) => {
     return res.data
 }
 
-export const crearComentario = async (tokenUsuario, idProducto,comentario) => {
-    const comentarioAEnviar = comentario.comentario
-
-    const res = await axios.post(`http://localhost:4000/comentarios/${tokenUsuario}/${idProducto}`,comentarioAEnviar)
+export const crearComentario = async (tokenUser, idProduct, comentarioAEnviar) => {
+    const comentario = comentarioAEnviar.comentario
+    console.log(tokenUser);
+    console.log(idProduct);
+    console.log(comentario);
+    const res = await axios.post(`http://localhost:4000/comentarios/${tokenUser}/${idProduct}`, comentario)
     return res.data
 }
 
-export const obtenerComentarios = async ( idProducto) => {
+export const obtenerComentarios = async (idProducto) => {
 
     const res = await axios.get(`http://localhost:4000/comentarios/${idProducto}`)
     console.log(res.data);
