@@ -11,7 +11,7 @@ import {
 	Producto,
 } from "../pages";
 import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginaFavoritos";
-import { PaginaMisProductos } from "../pages/Mis Productos/Components/MisProductos";
+import { MisProductos } from "../pages/Mis Productos/Components/MisProductos";
 import { LandingPage } from "../pages/Landing/Components/LandingPage";
 import { FormCategorias } from "../pages/Categorias/Components/formCategorias";
 
@@ -47,7 +47,7 @@ export const Router = () => {
 					path='/misProductos'
 					element={
 						<RutaProtegida isAllowed={userAuth}>
-							<PaginaMisProductos />
+							<MisProductos />
 						</RutaProtegida>
 					}
 				/>

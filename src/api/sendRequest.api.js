@@ -17,7 +17,6 @@ export const obtenerCategorias = async () => {
 }
 
 export const obtenerProductos = async (pageParam, options = {}) => {
-    console.log('I get executed');
     const res = await axios.get(`http://localhost:4000/product/pagination/${pageParam}`, options)
     return res.data
 }
@@ -84,6 +83,7 @@ export const agregarProductoWishlist = async (token, idProducto) => {
 export const obtenerListaDeseosUsuario = async (pageParam, tokenUser) => {
 
     const res = await axios.get(`http://localhost:4000/wishlist/${pageParam}/${tokenUser}/`)
+    console.log(res.data);
     return res.data
 }
 
@@ -97,8 +97,13 @@ export const suscripcionACategoria = async (categorias,tokenUser)=>{
     return res.data ; 
 }
 export const verCategorias=async (token)=>{
-    console.log(token);
     const res = await axios.get(`http://localhost:4000/categorySubscription/${token}`)
-    console.log(res.data);
     return res.data
 }
+
+export const obtenerProductosUsuario = async (numeroPagina,token)=>{
+  
+    const res = await axios.get(`http://localhost:4000/productos/${numeroPagina}/${token}`)
+    return res.data
+}
+

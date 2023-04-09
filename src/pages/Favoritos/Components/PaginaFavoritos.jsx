@@ -1,9 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { obtenerListaDeseosUsuario } from "../../../api/sendRequest.api";
-import { CartaProducto } from "../../Principal/Components/CartaProducto";
 import { useRef , useCallback} from "react";
-import { Row } from "react-bootstrap";
-import { ProductoFavorito } from "./ProductoFavorito";
+import { Row , Container } from "react-bootstrap";
+import { CartaProductoFavoritos } from "./CartaProductoFavoritos";
+import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 export const PaginaFavoritos = () => {
 	const token = localStorage.getItem("token");
 	const {
@@ -46,21 +46,23 @@ export const PaginaFavoritos = () => {
 	const content = data?.pages.map((pg) => {
 		return pg.map((post, i) => {
 			if (pg.length === i + 1) {
-				return <ProductoFavorito ref={lastPostRef} producto={post}/>;  
+				return <CartaProductoFavoritos ref={lastPostRef} producto={post}/>;  
 			}
-			return <ProductoFavorito producto={post} />; 
+			return <CartaProductoFavoritos producto={post} />; 
 		});
 	});
 
 
 	return (
 		<>
-		
-		<article >
+		<Container fluid className='container-grid'>
+			 <NavbarsLogueado /> 
+		<article style={{paddingTop:'90px'}} >
 					<Row xs={1} md={3} className='g-4'>
 						{content}
 					</Row>
 				</article>
+			</Container>
 		</>
 	);
 };

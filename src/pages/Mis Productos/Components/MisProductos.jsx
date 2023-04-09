@@ -1,7 +1,10 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useRef , useCallback} from "react";
 import { Row } from "react-bootstrap";
-export const PaginaMisProductos = () => {
+import { obtenerProductosUsuario } from "../../../api";
+import { CartaMisProducto } from "./CartaMisProducto";
+
+export const MisProductos = () => {
   const token = localStorage.getItem("token");
 	const {
 		fetchNextPage, //function
@@ -14,7 +17,7 @@ export const PaginaMisProductos = () => {
 	} = useInfiniteQuery({
 		queryKey: ["productoListaDeseos"],
     /* Cambiar a obtenerProductosUsuario, que acepte paginacion */
-		queryFn: ({ pageParam = 1 }) => obtenerListaDeseosUsuario(pageParam,token),
+		queryFn: ({ pageParam = 1 }) => obtenerProductosUsuario(pageParam,token),
 		getNextPageParam: (lastPage, allPages) => {
 			return lastPage.length ? allPages.length + 1 : undefined;
 		},
@@ -44,9 +47,9 @@ export const PaginaMisProductos = () => {
 	const content = data?.pages.map((pg) => {
 		return pg.map((post, i) => {
 			if (pg.length === i + 1) {
-				return <ProductoFavorito ref={lastPostRef} producto={post}/>;  
+				return <CartaMisProducto ref={lastPostRef} producto={post}/>;  
 			}
-			return <ProductoFavorito producto={post} />; 
+			return <CartaMisProducto producto={post} />; 
 		});
 	});
 

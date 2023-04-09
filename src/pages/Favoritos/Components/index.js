@@ -1,1 +1,1 @@
-export * from './PaginFavoritos'
+export * from './CartaProductoFavoritos'
