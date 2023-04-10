@@ -58,7 +58,7 @@ export const Producto = ({}) => {
 	const generarEnlace = () => {
 		navigator.clipboard.writeText(
 			/* Depende la maquina */
-			"http://127.0.0.1:5173/producto/" + idProducto
+			"http://localhost:5173/producto/" + idProducto
 		);
 	};
 
