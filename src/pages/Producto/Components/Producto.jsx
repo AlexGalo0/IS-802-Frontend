@@ -87,7 +87,7 @@ export const Producto = ({}) => {
 					</button>
 
 					{userAuth ? '' : 
-					<Alert variant="success" style={{margin: 'auto', marginBottom: '15px', marginTop: '-50px'}}>Si deseas interactuar de mejor forma con el producto ¡Registrate o inicia sesion!
+					<Alert variant="success" style={{margin: 'auto', marginBottom: '15px', marginTop: '-50px'}}>Si deseas interactuar de mejor forma con el producto ¡Registrate o inicia sesión!
 					</Alert>}
 
 					<div style={{ display: "flex", flexDirection: "row" }}>
@@ -112,7 +112,7 @@ export const Producto = ({}) => {
 								<h1>{infoProductos?.nombre}</h1>
 								<h4>{infoProductos?.descripcion}</h4>
 								<h4>Departamento: {infoProductos?.departamento}</h4>
-								<h4>Categoria: {infoProductos?.nombrecategoria}</h4>
+								<h4>Categoría: {infoProductos?.nombrecategoria}</h4>
 								<h4>Cantidad en inventario: {infoProductos?.cantidad}</h4>
 
 								<h4 style={{ marginBottom: "-10px" }}>
@@ -291,7 +291,7 @@ export const Producto = ({}) => {
 												className='buttonChat'
 												style={{ color: "#f7f7f7", fontSize: "medium" }}
 											>
-												<span className='box'>Chatea sobre este articulo</span>
+												<span className='box'>Pregunta sobre este artículo	</span>
 											</button>
 										</Link>
 										<Link to='/construyendo' style={{ textDecoration: "none" }}>

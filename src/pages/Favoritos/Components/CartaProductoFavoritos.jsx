@@ -55,13 +55,13 @@ export const CartaProductoFavoritos = React.forwardRef(({ producto }, ref) => {
 							{producto.precio}
 						</Card.Text>
 						<Card.Text className='card-medium'>
-							Categoria : {producto.nombrecategoria}
+							Categoría : {producto.nombrecategoria}
 						</Card.Text>
 						<Card.Text className='card-medium'>
 							Departamento : {producto.departamento}
 						</Card.Text>
 						<Card.Text className='card-medium'>
-							Disponibles en Inventario: {producto.cantidad}
+							Disponibles en inventario: {producto.cantidad}
 						</Card.Text>
 						<div style={{ display: "flex" }}>
 						<Link

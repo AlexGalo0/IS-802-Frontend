@@ -140,11 +140,11 @@ export const PaginaPrincipal = () => {
 						className='btnFiltros'
 						style={{ marginTop: "-5px" }}
 					>
-						<span className='textBuscar'>Limpiar Filtros</span>
+						<span className='textBuscar'>Limpiar filtros</span>
 					</button>
 					<div style={{ padding: "5px" }} className='scroll'>
 						<form onSubmit={handleSubmit(filtrarProductos)}>
-							<h5 className='py-3 cate'>Categorias</h5>
+							<h5 className='py-3 cate'>Categorías</h5>
 							{categorias?.map((categoria) => (
 								<div
 									key={categoria.idCategoria.data}
@@ -322,7 +322,7 @@ export const PaginaPrincipal = () => {
 					{!content ? (
 						''
 					) : content[0].length === 0 ? (
-						<div>No pudimos encontrar ningún producto.</div>
+						<div>!No pudimos encontrar ningún producto!</div>
 					) : (
 						<Row xs={1} md={3} className='g-2' style={{ marginTop: "-20px" }}>
 							{content}

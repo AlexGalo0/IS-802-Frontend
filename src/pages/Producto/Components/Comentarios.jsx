@@ -95,7 +95,7 @@ export const Comentarios = ({ productoID }) => {
 									marginBottom: "15px",
 								}}
 							>
-								Comentario Añadido
+								Comentario añadido
 							</Alert>
 						) : (
 							""
@@ -112,7 +112,7 @@ export const Comentarios = ({ productoID }) => {
 							marginBottom:'30px'
 						}}
 					>
-						¡Inicia Sesión para comentar!
+						¡Inicia sesión para comentar!
 					</Alert>
 				)}
 			</div>

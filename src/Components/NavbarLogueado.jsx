@@ -55,7 +55,7 @@ export const NavbarsLogueado = () => {
 
   const renderTooltipMessaje = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      Mensajeria
+      Mensajería
     </Tooltip>
   );
 
