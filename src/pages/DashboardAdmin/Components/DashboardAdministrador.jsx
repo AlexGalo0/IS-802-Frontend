@@ -59,7 +59,7 @@ export const DashboardAdministrador = () => {
                     
                       className="buttonCerrarSesion"
                     >
-                     <AiOutlineAreaChart style={{marginRight: '5px'}}/>Estadisticas
+                     <AiOutlineAreaChart style={{marginRight: '5px'}}/>Estadísticas
                     </button>
                     </Link>
                     <Link to='/construyendo' style={{textDecoration: 'none'}}>
@@ -75,7 +75,7 @@ export const DashboardAdministrador = () => {
                       
                       className="buttonCerrarSesion"
                     >
-                     <BiCategory style={{marginRight: '5px'}}/>Categorias
+                     <BiCategory style={{marginRight: '5px'}}/>Categorías
                     </button>
                     </Link>
                     </div>

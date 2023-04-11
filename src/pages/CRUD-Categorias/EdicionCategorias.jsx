@@ -195,7 +195,7 @@ export const EdicionCategorias = () => {
 						<Link to='/construyendo' style={{ textDecoration: "none" }}>
 							<button className='buttonCerrarSesion'>
 								<AiOutlineAreaChart style={{ marginRight: "5px" }} />
-								Estadisticas
+								Estadísticas
 							</button>
 						</Link>
 						<Link to='/construyendo' style={{ textDecoration: "none" }}>
@@ -207,7 +207,7 @@ export const EdicionCategorias = () => {
 						<Link to='/admin/crudCategorias' style={{ textDecoration: "none" }}>
 							<button className='buttonCerrarSesion'>
 								<BiCategory style={{ marginRight: "5px" }} />
-								Categorias
+								Categorías
 							</button>
 						</Link>
 					</div>
@@ -260,7 +260,7 @@ export const EdicionCategorias = () => {
 							handleShowModalCreacion(true);
 						}}
 					>
-						Añadir Nueva Categoria
+						Añadir nueva categoría
 					</button>
 					<Container className='conCrud'>
 						<div className='container-table'>
@@ -272,7 +272,7 @@ export const EdicionCategorias = () => {
 										fontSize: "large",
 									}}
 								>
-									<th>Nombre de Categoria</th>
+									<th>Nombre de Categoría</th>
 									<th>Descripción</th>
 								</tr>
 
@@ -334,7 +334,7 @@ export const EdicionCategorias = () => {
 			>
 				<Modal.Header closeButton>
 					<Modal.Title style={{ fontSize: "25px" }}>
-						Crea una nueva categoria{" "}
+						Crea una nueva categoría{" "}
 					</Modal.Title>
 				</Modal.Header>
 				<form
@@ -348,7 +348,7 @@ export const EdicionCategorias = () => {
 					}}
 				>
 					<label htmlFor='' className='labelModal'>
-						Ingresa el nombre de la nueva categoria:{" "}
+						Ingresa el nombre de la nueva categoría:{" "}
 					</label>
 					<input
 						type='text'
@@ -360,7 +360,7 @@ export const EdicionCategorias = () => {
 						className='labelModal'
 						style={{ marginTop: "90px" }}
 					>
-						Ingresa la descripcion de la nueva categoria:{" "}
+						Ingresa la descripción de la nueva categoría:{" "}
 					</label>
 					<input
 						type='text'
@@ -368,14 +368,14 @@ export const EdicionCategorias = () => {
 						className='inModal'
 					/>
 					{mostrarAlert ? (
-						<Alert variant='success'>Nueva categoria añadida!</Alert>
+						<Alert variant='success'>¡Nueva categoría añadida!</Alert>
 					) : (
 						""
 					)}
 					{/* // handleCloseModalCreacion(true); */}
 					<Modal.Footer style={{ margin: "auto" }}>
 						<button type='submit' className='buttonGuardar'>
-							Guarda tu nueva categoria
+							Guarda tu nueva categoría
 						</button>
 						<button
 							onClick={handleReiniciarCreacion}
@@ -411,7 +411,7 @@ export const EdicionCategorias = () => {
 					onSubmit={handleSubmit(enviarEdicionCategoria)}
 				>
 					<label htmlFor='' className='labelModal'>
-						Edita el nombre de la categoria:{" "}
+						Edita el nombre de la categoría:{" "}
 					</label>
 					<input
 						type='text'
@@ -424,7 +424,7 @@ export const EdicionCategorias = () => {
 						className='labelModal'
 						style={{ marginTop: "90px" }}
 					>
-						Edita la descripcion de la categoria:{" "}
+						Edita la descripción de la categoría:{" "}
 					</label>
 					<input
 						type='text'
@@ -432,13 +432,13 @@ export const EdicionCategorias = () => {
 						{...register("descripcionCategoria")}
 					/>
 					{mostrarAlert ? (
-						<Alert variant='success'>Edición de categoria completada!</Alert>
+						<Alert variant='success'>¡Edición de categoría completada!</Alert>
 					) : (
 						""
 					)}
 					<Modal.Footer style={{ margin: "auto" }}>
 						<button type='submit' className='buttonGuardar'>
-							Guarda tu nueva categoria
+							Guarda tu nueva categoría
 						</button>
 						<button
 							onClick={handleReiniciar}
@@ -465,7 +465,7 @@ export const EdicionCategorias = () => {
 				</Modal.Header>
 
 				{mostrarAlert ? (
-					<Alert variant='success'>Categoria Eliminada</Alert>
+					<Alert variant='success'>¡Categoría eliminada!</Alert>
 				) : (
 					""
 				)}
