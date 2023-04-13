@@ -59,51 +59,20 @@ export const ModalChatVendedor = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		socket.emit("envio-mensaje", message);
+		console.log(message);
+		// socket.emit("envio-mensaje", message);
 		const newMessage = {
 			body: message,
-			from: "Me",
+			from: nombre,
 		};
+		socket.emit("envio-mensaje", newMessage);
+
 		enviarDatos(message)
 		setMessages([newMessage, ...messages]);
 		setMessage("");
 	};
 
-	// setMessages([newMessage, ...messages]);
-	// 	setMessage("");
-	// };
-
-	// const enviarDatos = async (data) => {
-	// 	console.log(data);
-	// 	await axios.post("http://localhost:4000/saveMessage", data);
-	// };
-	// const handleSubmit = (e) => {
-	// 	e.preventDefault();
-
-	// 	// const newMessage = {
-	// 	//   body: message.mensaje,
-	// 	//   from: "Me",
-	// 	//   tokenActual: message.tokenActual,
-	// 	//   idUsuarioProducto: message.idUsuarioProducto,
-	// 	//   nombreEmisor: message.nombreEmisor
-	// 	// };
-
-	// 	const newMessage = {
-	// 		body: message.mensaje,
-	// 		from: "Me",
-
-	// 	  };
-
-	// 	socket.emit("envio-mensaje", message);
-	// 	enviarDatos(message)
-	// 	setMessages([newMessage, ...messages]);
-	// 	// setMessage({
-	// 	//   ...message,
-	// 	//   mensaje: "",
-	// 	// });
-	// 	setMessage("")
-	//   };
-
+	
 	const enviarDatos = async (mensaje) => {
 		const data = {
 		  tokenActual: localStorage.getItem("token"),
@@ -113,7 +82,6 @@ export const ModalChatVendedor = (props) => {
 		  mensaje: mensaje,
 		  nombreEmisor: localStorage.getItem("nombre"),
 		};
-		console.log(data);
 		await axios.post("http://localhost:4000/saveMessage", data);
 	  };
 	  

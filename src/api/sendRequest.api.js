@@ -93,7 +93,6 @@ export const obtenerListaDeseosUsuario = async (pageParam, tokenUser) => {
 }
 
 export const borrarProductoListaDeseos = async (idProducto, tokenUser) => {
-
     const res = await axios.delete(`http://localhost:4000/wishlist/${tokenUser}/${idProducto}`)
     return res.data
 }

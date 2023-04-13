@@ -22,6 +22,7 @@ import { ChatPerfil } from "../pages/Chat";
 export const Router = () => {
 	const { userAuth } = useContext(UserContext);
 	const { adminAuth } = useContext(AdminContext);
+	console.log('User Auth:', userAuth);
 	return (
 		<>
 			<Routes>
@@ -82,7 +83,7 @@ export const Router = () => {
 
 				<Route path='/login' element={<UserLogin />} />
 				<Route path='/login-admin' element={<LoginAdministrador />} />
-				<Route index element={<PaginaPrincipal />} />
+				<Route path="/" element={<PaginaPrincipal />} />
 
 				<Route path='/construyendo' element={<Construyendo />} />
 
