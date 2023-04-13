@@ -49,9 +49,10 @@ export const ModalChatVendedor = (props) => {
 	// };
 
 	const handleChange = (e) => {
+		const value = e.target.value
 		setDatosDeChat({
-			...message,
-			mensaje:e.target.value
+			...datosDeChat,
+			mensaje:value
 		})
 		setMessage(e.target.value);
 	};
@@ -63,7 +64,7 @@ export const ModalChatVendedor = (props) => {
 			body: message,
 			from: "Me",
 		};
-		enviarDatos(datosDeChat)
+		enviarDatos(message)
 		setMessages([newMessage, ...messages]);
 		setMessage("");
 	};
@@ -72,9 +73,10 @@ export const ModalChatVendedor = (props) => {
 	// 	setMessage("");
 	// };
 
-	const enviarDatos = async (data) => {
-		await axios.post("http://localhost:4000/saveMessage", data);
-	};
+	// const enviarDatos = async (data) => {
+	// 	console.log(data);
+	// 	await axios.post("http://localhost:4000/saveMessage", data);
+	// };
 	// const handleSubmit = (e) => {
 	// 	e.preventDefault();
 
@@ -101,6 +103,20 @@ export const ModalChatVendedor = (props) => {
 	// 	// });
 	// 	setMessage("")
 	//   };
+
+	const enviarDatos = async (mensaje) => {
+		const data = {
+		  tokenActual: localStorage.getItem("token"),
+		  idUsuarioProducto: props.vendedor?.id_vendedor?.toString()
+			? props.vendedor.id_vendedor.toString()
+			: "",
+		  mensaje: mensaje,
+		  nombreEmisor: localStorage.getItem("nombre"),
+		};
+		console.log(data);
+		await axios.post("http://localhost:4000/saveMessage", data);
+	  };
+	  
 	return (
 		<Modal show={props.modalShow}>
 			<Modal.Header closeButton>
