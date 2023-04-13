@@ -7,10 +7,11 @@ const socket = io("http://localhost:4000/");
 
 export const ModalChatVendedor = (props) => {
 	
+
 	const nombre = localStorage.getItem("nombre");
 	const [message, setMessage] = useState({
 		tokenActual : localStorage.getItem("token"),
-		idUsuarioProducto : props.vendedor.id_vendedor.toString() || '' ,
+		idUsuarioProducto : props.vendedor?.id_vendedor?.toString ? props.vendedor.id_vendedor.toString() : '',
 		mensaje: "",
 
 		nombreEmisor: localStorage.getItem("nombre"),
@@ -74,7 +75,7 @@ export const ModalChatVendedor = (props) => {
 		<Modal show={props.modalShow}>
 			<Modal.Header closeButton>
 				<Modal.Title>
-					Establece un chat con : {props.vendedor.nombreVendedor}, tu eres{" "}
+					Establece un chat con : {props.vendedor?.nombreVendedor}, tu eres{" "}
 					{nombre}
 				</Modal.Title>
 			</Modal.Header>
