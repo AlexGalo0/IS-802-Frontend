@@ -18,6 +18,7 @@ import { FormCategorias } from "../pages/Categorias/Components/formCategorias";
 import { useContext } from "react";
 import { RutaProtegida, NavbarsLR } from "../Components";
 import { Route, Routes } from "react-router-dom";
+import { ChatPerfil } from "../pages/Chat";
 export const Router = () => {
 	const { userAuth } = useContext(UserContext);
 	const { adminAuth } = useContext(AdminContext);
@@ -82,7 +83,7 @@ export const Router = () => {
 				<Route index element={<LandingPage />} />
 				<Route path='/login' element={<UserLogin />} />
 				<Route path='/login-admin' element={<LoginAdministrador />} />
-
+				<Route path='/chat' element={<ChatPerfil />} />
 				<Route path='/principal' element={<PaginaPrincipal />} />
 
 				<Route path='/construyendo' element={<Construyendo />} />
