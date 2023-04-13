@@ -19,14 +19,13 @@ export const DashboardAdministrador = () => {
     const { adminAuth, setAdminAuth } = useContext(AdminContext);
 
     const deslogearAdmin = () => {
-        console.log('Me');
-    //   setAdminAuth(false);
-    //   if (localStorage.getItem("token-admin") !== null) {
-    //     localStorage.removeItem("token-admin");
-    //     setTimeout(() => {
-    //         navigate("/")
-    //     }, 1000);
-    //   }
+      setAdminAuth(false);
+      if (localStorage.getItem("token-admin") !== null) {
+        localStorage.removeItem("token-admin");
+        setTimeout(() => {
+            navigate("/")
+        }, 1000);
+      }
     };
 
     return (

@@ -22,7 +22,6 @@ import { ChatPerfil } from "../pages/Chat";
 export const Router = () => {
 	const { userAuth } = useContext(UserContext);
 	const { adminAuth } = useContext(AdminContext);
-	console.log('User Auth:', userAuth);
 	return (
 		<>
 			<Routes>

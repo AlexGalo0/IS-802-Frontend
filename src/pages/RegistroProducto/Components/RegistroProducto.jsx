@@ -55,7 +55,6 @@ export const RegistroProducto = () => {
 	const enviarProducto = (productInfo) => {
 		productInfo.imagenes = urls;
 		productInfo.idUsuario  = localStorage.getItem("token")
-		console.log(productInfo);
 		mutationRegistrarProducto.mutate({
 			...productInfo
 		});

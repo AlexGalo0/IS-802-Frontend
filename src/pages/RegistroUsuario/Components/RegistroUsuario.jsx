@@ -52,7 +52,6 @@ export const RegistroUsuario = () => {
 	});
 
 	const enviarDatosRegistro = (datosRegistro) => {
-		console.log('Me ejecuto');
 		mutationRegistro.mutate({
 			...datosRegistro,
 		});

@@ -39,18 +39,7 @@ export const PaginaPrincipal = () => {
 	const { register, handleSubmit, reset } = useForm({
 		defaultValues: valoresIniciales,
 	});
-	const queryClient = useQueryClient();
-	const queryCache = new QueryCache({
-		onError: (error) => {
-			console.log(error);
-		},
-		onSuccess: (data) => {
-			console.log(data);
-		},
-		onSettled: (data, error) => {
-			console.log(data, error);
-		},
-	});
+	
 
 	const { data: categorias } = useQuery({
 		queryKey: ["categorias"],

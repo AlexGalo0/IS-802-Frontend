@@ -2,7 +2,6 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 export const RutaProtegida = ({ children, isAllowed, redirectTo = "/" }) => {
-	console.log(isAllowed);
 	if (isAllowed === false || isAllowed === "false" || isAllowed===null) {
 		return <Navigate to={redirectTo} />;
 	}

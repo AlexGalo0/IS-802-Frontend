@@ -48,7 +48,6 @@ export const FormCategorias = () => {
 	})
 
 	const mostrarCategorias =()=>{
-		console.log(categoriasPorUsuario);
 	}
 
 	const mutationSuscripcionCategoria = useMutation({
