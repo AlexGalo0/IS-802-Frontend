@@ -14,7 +14,6 @@ import {
 	Tooltip,
 	Alert,
 } from "react-bootstrap";
-
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
@@ -29,6 +28,7 @@ import { FaShare } from "react-icons/fa";
 import axios from "axios"; /* 
 import { agregarProductoWishlist } from "../../../api/sendRequest.api"; */
 import { Comentarios } from "./Comentarios";
+import { ModalChatVendedor } from "./ModalChatVendedor";
 
 export const Producto = ({}) => {
 	const { userAuth } = useContext(UserContext);
@@ -38,6 +38,12 @@ export const Producto = ({}) => {
 	const handleRedirection = () => {
 		navigate(-1);
 	};
+	const [showModal, setShowModal] = useState(false);
+
+	const handleModalOpen = () => setShowModal(true);
+
+	const handleModalClose = () => setShowModal(false);
+
 	const obtenerProductoPorId = async (idProducto) => {
 		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
 
@@ -47,6 +53,12 @@ export const Producto = ({}) => {
 		queryKey: ["producto"],
 		queryFn: () => obtenerProductoPorId(idProducto),
 	});
+
+	const vendedor = {
+		nombreVendedor: '' + infoProductos?.usuarioNombre +' ' +infoProductos?.usuarioApellido ,
+		id_vendedor: infoProductos?.id_usuario.data
+	}
+
 
 	/* Elementos de los overlays (AL poner cursor sobre el simbolo de corazon dice que inicimos sesion) */
 	const renderTooltipButtomShare = (props) => (
@@ -86,9 +98,21 @@ export const Producto = ({}) => {
 						<BiLeftArrow />
 					</button>
 
-					{userAuth ? '' : 
-					<Alert variant="success" style={{margin: 'auto', marginBottom: '15px', marginTop: '-50px'}}>Si deseas interactuar de mejor forma con el producto ¡Registrate o inicia sesión!
-					</Alert>}
+					{userAuth ? (
+						""
+					) : (
+						<Alert
+							variant='success'
+							style={{
+								margin: "auto",
+								marginBottom: "15px",
+								marginTop: "-50px",
+							}}
+						>
+							Si deseas interactuar de mejor forma con el producto ¡Registrate o
+							inicia sesión!
+						</Alert>
+					)}
 
 					<div style={{ display: "flex", flexDirection: "row" }}>
 						<div>
@@ -114,6 +138,10 @@ export const Producto = ({}) => {
 								<h4>Departamento: {infoProductos?.departamento}</h4>
 								<h4>Categoría: {infoProductos?.nombrecategoria}</h4>
 								<h4>Cantidad en inventario: {infoProductos?.cantidad}</h4>
+								<h4>
+									Vendido por:{" "}
+									{vendedor.nombreVendedor}
+								</h4>
 
 								<h4 style={{ marginBottom: "-10px" }}>
 									Calificacion del vendedor:
@@ -127,7 +155,11 @@ export const Producto = ({}) => {
 											id='cal5'
 											value='5'
 										/>
-										<label className='laStar' for='cal5' style={{color: 'black'}}>
+										<label
+											className='laStar'
+											for='cal5'
+											style={{ color: "black" }}
+										>
 											<AiFillStar />
 										</label>
 										<input
@@ -137,7 +169,11 @@ export const Producto = ({}) => {
 											id='cal4'
 											value='4'
 										/>
-										<label className='laStar' for='cal4' style={{color: 'black'}}>
+										<label
+											className='laStar'
+											for='cal4'
+											style={{ color: "black" }}
+										>
 											<AiFillStar />
 										</label>
 										<input
@@ -147,7 +183,11 @@ export const Producto = ({}) => {
 											id='cal3'
 											value='3'
 										/>
-										<label className='laStar' for='cal3' style={{color: 'black'}}>
+										<label
+											className='laStar'
+											for='cal3'
+											style={{ color: "black" }}
+										>
 											<AiFillStar />
 										</label>
 										<input
@@ -157,7 +197,11 @@ export const Producto = ({}) => {
 											id='cal2'
 											value='2'
 										/>
-										<label className='laStar' for='cal2' style={{color: 'black'}}>
+										<label
+											className='laStar'
+											for='cal2'
+											style={{ color: "black" }}
+										>
 											<AiFillStar />
 										</label>
 										<input
@@ -167,7 +211,11 @@ export const Producto = ({}) => {
 											id='cal1'
 											value='1'
 										/>
-										<label className='laStar' for='cal1' style={{color: 'black'}}>
+										<label
+											className='laStar'
+											for='cal1'
+											style={{ color: "black" }}
+										>
 											<AiFillStar />
 										</label>
 									</div>
@@ -179,109 +227,113 @@ export const Producto = ({}) => {
 								</h1>
 							</div>
 
-
-							
 							<div className='spectsMedium2'>
-								
-								{userAuth ? <h3>Califica el producto:</h3> : ''}
+								{userAuth ? <h3>Califica el producto:</h3> : ""}
 
-								{userAuth?
-								<>
-								<div className='conCalificacion'>
-									<div className='starWitget'>
-										<input
-											className='inStar'
-											type='checkbox'
-											name='rate'
-											id='rate5'
-											value='5'
-										/>
-										<label className='laStar' for='rate5'>
-											<AiFillStar />
-										</label>
-										<input
-											className='inStar'
-											type='checkbox'
-											name='rate'
-											id='rate4'
-											value='4'
-										/>
-										<label className='laStar' for='rate4'>
-											<AiFillStar />
-										</label>
-										<input
-											className='inStar'
-											type='checkbox'
-											name='rate'
-											id='rate3'
-											value='3'
-										/>
-										<label className='laStar' for='rate3'>
-											<AiFillStar />
-										</label>
-										<input
-											className='inStar'
-											type='checkbox'
-											name='rate'
-											id='rate2'
-											value='2'
-										/>
-										<label className='laStar' for='rate2'>
-											<AiFillStar />
-										</label>
-										<input
-											className='inStar'
-											type='checkbox'
-											name='rate'
-											id='rate1'
-											value='1'
-										/>
-										<label className='laStar' for='rate1'>
-											<AiFillStar />
-										</label>
-									</div>
-								</div>
-								</>	
-							: ''} 
-								
-							
+								{userAuth ? (
+									<>
+										<div className='conCalificacion'>
+											<div className='starWitget'>
+												<input
+													className='inStar'
+													type='checkbox'
+													name='rate'
+													id='rate5'
+													value='5'
+												/>
+												<label className='laStar' for='rate5'>
+													<AiFillStar />
+												</label>
+												<input
+													className='inStar'
+													type='checkbox'
+													name='rate'
+													id='rate4'
+													value='4'
+												/>
+												<label className='laStar' for='rate4'>
+													<AiFillStar />
+												</label>
+												<input
+													className='inStar'
+													type='checkbox'
+													name='rate'
+													id='rate3'
+													value='3'
+												/>
+												<label className='laStar' for='rate3'>
+													<AiFillStar />
+												</label>
+												<input
+													className='inStar'
+													type='checkbox'
+													name='rate'
+													id='rate2'
+													value='2'
+												/>
+												<label className='laStar' for='rate2'>
+													<AiFillStar />
+												</label>
+												<input
+													className='inStar'
+													type='checkbox'
+													name='rate'
+													id='rate1'
+													value='1'
+												/>
+												<label className='laStar' for='rate1'>
+													<AiFillStar />
+												</label>
+											</div>
+										</div>
+									</>
+								) : (
+									""
+								)}
+
 								<div style={{ display: "flex", gap: "10px" }}>
 									{userAuth ? <Boton /> : ""}
-									
-									{userAuth ? <div className='like'>
-										<OverlayTrigger
-											placement='top'
-											delay={{ show: 250, hide: 400 }}
-											overlay={renderTooltipButtomShare}
-										>
-											<button
-												onClick={() => {
-													generarEnlace(), handleClick();
-												}}
+
+									{userAuth ? (
+										<div className='like'>
+											<OverlayTrigger
+												placement='top'
+												delay={{ show: 250, hide: 400 }}
+												overlay={renderTooltipButtomShare}
 											>
-												<FaShare className='heart' />
-											</button>
-										</OverlayTrigger>
-									</div> : <div className='like'>
-										<OverlayTrigger
-											placement='top'
-											delay={{ show: 250, hide: 400 }}
-											overlay={renderTooltipButtomShare}
-										>
-											<button
-												onClick={() => {
-													generarEnlace(), handleClick();
-												}}
-												style={{width: '80px', height: '80px'}}
+												<button
+													onClick={() => {
+														generarEnlace(), handleClick();
+													}}
+												>
+													<FaShare className='heart' />
+												</button>
+											</OverlayTrigger>
+										</div>
+									) : (
+										<div className='like'>
+											<OverlayTrigger
+												placement='top'
+												delay={{ show: 250, hide: 400 }}
+												overlay={renderTooltipButtomShare}
 											>
-												<FaShare className='heart'  style={{width: '50px', height: '50px'}}/>
-											</button>
-										</OverlayTrigger>
-									</div>}
+												<button
+													onClick={() => {
+														generarEnlace(), handleClick();
+													}}
+													style={{ width: "80px", height: "80px" }}
+												>
+													<FaShare
+														className='heart'
+														style={{ width: "50px", height: "50px" }}
+													/>
+												</button>
+											</OverlayTrigger>
+										</div>
+									)}
 									{/* 
 									<button onClick={agregarFavoritos}>Agregar a Favoritos</button> */}
 									{/* Boton de compartir */}
-									
 								</div>
 								<div>{texto}</div>
 								{userAuth ? (
@@ -291,17 +343,25 @@ export const Producto = ({}) => {
 												className='buttonChat'
 												style={{ color: "#f7f7f7", fontSize: "medium" }}
 											>
-												<span className='box'>Pregunta sobre este artículo	</span>
+												<span className='box'>
+													Pregunta sobre este artículo{" "}
+												</span>
 											</button>
 										</Link>
-										<Link to='/construyendo' style={{ textDecoration: "none" }}>
-											<button
-												className='buttonChat'
-												style={{ color: "#f7f7f7", fontSize: "medium" }}
-											>
-												<span className='box'>Escribe al vendedor</span>
-											</button>
-										</Link>
+
+										<button
+											className='buttonChat'
+											style={{ color: "#f7f7f7", fontSize: "medium" }}
+											onClick={()=>setShowModal(true)}
+										>
+											<ModalChatVendedor
+												modalShow={showModal}
+												setShowModal={setShowModal}
+												vendedor={vendedor}
+												
+											/>
+											<span className='box'>Escribe al vendedor</span>
+										</button>
 									</>
 								) : (
 									""
@@ -309,7 +369,7 @@ export const Producto = ({}) => {
 							</div>
 						</div>
 					</div>
-					<Comentarios productoID={idProducto}/>
+					<Comentarios productoID={idProducto} />
 				</header>
 
 				<Footers />

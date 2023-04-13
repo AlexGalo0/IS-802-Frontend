@@ -238,7 +238,7 @@ export const NavbarsLogueado = () => {
                   <div
                      style={{display: 'flex', justifyContent: "space-between", alignItems: 'center', flexDirection: 'column', gap: '30px'}}
                   >
-                    {/* <Link to="/misProductos" style={{ textDecoration: "none" }}>
+                    <Link to="/misProductos" style={{ textDecoration: "none" }}>
                       <button className="buttonCerrarSesion">
                         Mis productos
                       </button>
@@ -247,7 +247,7 @@ export const NavbarsLogueado = () => {
                       <button className="buttonCerrarSesion">
                         Suscribite a Categorias
                       </button>
-                    </Link> */}
+                    </Link>
                     <button
                       onClick={pruebaDesloguear}
                       className="buttonCerrarSesion"

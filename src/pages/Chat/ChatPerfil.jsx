@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:4000/");
+// const socket = io("http://localhost:4000/");
 export const ChatPerfil = () => {
 	const nombre = localStorage.getItem("nombre");
 	const [message, setMessage] = useState("");
@@ -11,10 +11,10 @@ export const ChatPerfil = () => {
 		const receiveMessage = (message) => {
 			setMessages([message, ...messages]);
 		};
-		socket.on("message", receiveMessage);
+		// socket.on("message", receiveMessage);
 
 		return () => {
-			socket.off("message", receiveMessage);
+			// socket.off("message", receiveMessage);
 		};
 	}, [messages]);
 
@@ -24,7 +24,7 @@ export const ChatPerfil = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		socket.emit("message", message);
+		// socket.emit("message", message);
 		const newMessage = {
 			body: message,
 			from: "Me",
