@@ -152,8 +152,8 @@ export const FormCategorias = () => {
 											{...register(`categorias`)}
 										/>
 										<label
-											htmlFor=''
-											for={categoria.nombre}
+											
+											htmlFor={categoria.nombre}
 											style={{ marginTop: "3px" }}
 										></label>
 										<p className='checkPCate'>{categoria.nombre}</p>

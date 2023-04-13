@@ -129,24 +129,16 @@ export const Comentarios = ({ productoID }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{/* Obtener Comentarios */}
-
-					{/* Hacer un map de los comentarios obtenidos , que me devuelva
-                        
-                        tr
-                        td{nombre}
-                        td{comentario}
-                        tr
-                        */}
+				
 					{comentariosDeProducto?.map((comentario) => (
-						<>
+						
 							<tr key={comentario.id_comentario.data}>
 								<td>
 									{comentario.nombres} {comentario.apellidos}
 								</td>
 								<td>{comentario.comentario}</td>
 							</tr>
-						</>
+						
 					))}
 				</tbody>
 			</Table>

@@ -160,8 +160,7 @@ export const PaginaPrincipal = () => {
 										{...register(`categorias`)}
 									/>
 									<label
-										htmlFor=''
-										for={categoria.nombre}
+										htmlFor={categoria.nombre}
 										style={{ marginTop: "3px" }}
 									></label>
 									<p className='checkP'>{categoria.nombre}</p>
@@ -186,8 +185,8 @@ export const PaginaPrincipal = () => {
 										{...register(`departamentos`)}
 									/>
 									<label
-										htmlFor=''
-										for={departamento.nombre}
+										
+										htmlFor={departamento.nombre}
 										style={{ marginTop: "3px" }}
 									></label>
 									<p className='checkP'>{departamento.nombre}</p>
@@ -210,8 +209,8 @@ export const PaginaPrincipal = () => {
 											className='yep'
 										/>
 										<label
-											htmlFor=''
-											for='7'
+											htmlFor='7'
+											
 											style={{ marginTop: "3px" }}
 										></label>
 										<p className='checkP'>7 Dias</p>
@@ -228,8 +227,7 @@ export const PaginaPrincipal = () => {
 											className='yep'
 										/>
 										<label
-											htmlFor=''
-											for='15'
+											htmlFor='15'
 											style={{ marginTop: "3px" }}
 										></label>
 										<p className='checkP'>15 Dias</p>
@@ -247,8 +245,7 @@ export const PaginaPrincipal = () => {
 											className='yep'
 										/>
 										<label
-											htmlFor=''
-											for='30'
+											htmlFor='30'
 											style={{ marginTop: "3px" }}
 										></label>
 										<p className='checkP'>30 Dias</p>

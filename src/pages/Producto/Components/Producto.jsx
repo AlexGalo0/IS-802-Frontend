@@ -140,7 +140,7 @@ export const Producto = ({}) => {
 								<h4>Cantidad en inventario: {infoProductos?.cantidad}</h4>
 								<h4>
 									Vendido por:{" "}
-									{vendedor.nombreVendedor}
+									{vendedor?.nombreVendedor}
 								</h4>
 
 								<h4 style={{ marginBottom: "-10px" }}>
@@ -157,7 +157,7 @@ export const Producto = ({}) => {
 										/>
 										<label
 											className='laStar'
-											for='cal5'
+											htmlFor='cal5'
 											style={{ color: "black" }}
 										>
 											<AiFillStar />
@@ -171,7 +171,7 @@ export const Producto = ({}) => {
 										/>
 										<label
 											className='laStar'
-											for='cal4'
+											htmlFor='cal4'
 											style={{ color: "black" }}
 										>
 											<AiFillStar />
@@ -185,7 +185,7 @@ export const Producto = ({}) => {
 										/>
 										<label
 											className='laStar'
-											for='cal3'
+											htmlFor='cal3'
 											style={{ color: "black" }}
 										>
 											<AiFillStar />
@@ -199,7 +199,7 @@ export const Producto = ({}) => {
 										/>
 										<label
 											className='laStar'
-											for='cal2'
+											htmlFor='cal2'
 											style={{ color: "black" }}
 										>
 											<AiFillStar />
@@ -213,7 +213,7 @@ export const Producto = ({}) => {
 										/>
 										<label
 											className='laStar'
-											for='cal1'
+											htmlFor='cal1'
 											style={{ color: "black" }}
 										>
 											<AiFillStar />
@@ -241,7 +241,7 @@ export const Producto = ({}) => {
 													id='rate5'
 													value='5'
 												/>
-												<label className='laStar' for='rate5'>
+												<label className='laStar' htmlFor='rate5'>
 													<AiFillStar />
 												</label>
 												<input
@@ -251,7 +251,7 @@ export const Producto = ({}) => {
 													id='rate4'
 													value='4'
 												/>
-												<label className='laStar' for='rate4'>
+												<label className='laStar' htmlFor='rate4'>
 													<AiFillStar />
 												</label>
 												<input
@@ -261,7 +261,7 @@ export const Producto = ({}) => {
 													id='rate3'
 													value='3'
 												/>
-												<label className='laStar' for='rate3'>
+												<label className='laStar' htmlFor='rate3'>
 													<AiFillStar />
 												</label>
 												<input
@@ -271,7 +271,7 @@ export const Producto = ({}) => {
 													id='rate2'
 													value='2'
 												/>
-												<label className='laStar' for='rate2'>
+												<label className='laStar' htmlFor='rate2'>
 													<AiFillStar />
 												</label>
 												<input
@@ -281,7 +281,7 @@ export const Producto = ({}) => {
 													id='rate1'
 													value='1'
 												/>
-												<label className='laStar' for='rate1'>
+												<label className='laStar' htmlFor='rate1'>
 													<AiFillStar />
 												</label>
 											</div>

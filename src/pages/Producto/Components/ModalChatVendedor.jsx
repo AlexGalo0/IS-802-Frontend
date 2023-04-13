@@ -1,22 +1,16 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import io from "socket.io-client";
 
 const socket = io("http://localhost:4000/");
 
-/* 
-	tokenActual
-	id-usuario-producto
-	mensaje
-	nombreEmisor
-	
-*/
 export const ModalChatVendedor = (props) => {
-	console.log(props.vendedor.id_vendedor.toString());
+	
 	const nombre = localStorage.getItem("nombre");
 	const [message, setMessage] = useState({
 		tokenActual : localStorage.getItem("token"),
-		idUsuarioProducto : props.vendedor.id_vendedor.toString(),
+		idUsuarioProducto : props.vendedor.id_vendedor.toString() || '' ,
 		mensaje: "",
 
 		nombreEmisor: localStorage.getItem("nombre"),
@@ -45,10 +39,7 @@ export const ModalChatVendedor = (props) => {
 		  });
 	};
 
-	// const handleSubmit = (e) => {
-	// 	e.preventDefault();
-	// 	console.log(message);
-	// 	// 
+
 	
 	// 	const newMessage = {
 	// 		body: message,
@@ -57,6 +48,10 @@ export const ModalChatVendedor = (props) => {
 	// 	setMessages([newMessage, ...messages]);
 	// 	setMessage("");
 	// };
+
+	const enviarDatos = async (data)=>{
+		await axios.post('http://localhost:4000/saveMessage',data)
+	}
 	const handleSubmit = (e) => {
 		e.preventDefault();
 	  
@@ -68,6 +63,7 @@ export const ModalChatVendedor = (props) => {
 		  nombreEmisor: message.nombreEmisor
 		};
 		socket.emit("envio-mensaje", message);
+		enviarDatos(message)
 		setMessages([newMessage, ...messages]);
 		setMessage({
 		  ...message,

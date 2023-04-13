@@ -80,18 +80,16 @@ export const Router = () => {
 
 				{/* Rutas para cualquier usuario */}
 
-				<Route index element={<LandingPage />} />
 				<Route path='/login' element={<UserLogin />} />
 				<Route path='/login-admin' element={<LoginAdministrador />} />
-				<Route path='/chat' element={<ChatPerfil />} />
-				<Route path='/principal' element={<PaginaPrincipal />} />
+				<Route index element={<PaginaPrincipal />} />
 
 				<Route path='/construyendo' element={<Construyendo />} />
 
 				<Route path='/registrarUsuario' element={<RegistroUsuario />} />
 
 				<Route path='/producto/:idProducto' element={<Producto />} />
-				<Route path='*' element={<Construyendo/>}></Route>
+				<Route path='*' element={<Construyendo />}></Route>
 			</Routes>
 		</>
 	);
