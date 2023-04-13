@@ -1,26 +1,19 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Alert } from "react-bootstrap";
 import io from "socket.io-client";
 
 const socket = io("http://localhost:4000/");
 
-export const ModalChatVendedor = (props) => {
+export const ModalChatVendedor = ({modalShow,setShowModal,vendedor,producto, handleModalClose}) => {
 	const nombre = localStorage.getItem("nombre");
-	// const [message, setMessage] = useState({
-	// 	tokenActual : localStorage.getItem("token"),
-	// 	idUsuarioProducto : props.vendedor?.id_vendedor?.toString ? props.vendedor.id_vendedor.toString() : '',
-	// 	mensaje: "",
 
-	// 	nombreEmisor: localStorage.getItem("nombre"),
-	// });
-	// const [messages, setMessages] = useState([]);
 	const [message, setMessage] = useState("");
 	const [messages, setMessages] = useState([]);
 	const [datosDeChat, setDatosDeChat] = useState({
 		tokenActual: localStorage.getItem("token"),
-		idUsuarioProducto: props.vendedor?.id_vendedor?.toString
-			? props.vendedor.id_vendedor.toString()
+		idUsuarioProducto:vendedor?.id_vendedor?.toString
+			? vendedor.id_vendedor.toString()
 			: "",
 		mensaje: "",
 		nombreEmisor: localStorage.getItem("nombre"),
@@ -32,7 +25,7 @@ export const ModalChatVendedor = (props) => {
 
 	useEffect(() => {
 		const receiveMessage = (message) => {
-			setMessages([message, ...messages]);
+			setMessages([...messages, message]);
 		};
 		socket.on("envio-mensaje", receiveMessage);
 
@@ -41,56 +34,56 @@ export const ModalChatVendedor = (props) => {
 		};
 	}, [messages]);
 
-	// const handleChange = (e) => {
-	// 	setMessage({
-	// 		...message, // copia los valores previos de message
-	// 		mensaje: e.target.value, // actualiza el valor de mensaje
-	// 	  });
-	// };
-
+	const [errorMensaje, setErrorMensaje] = useState(false);
 	const handleChange = (e) => {
-		const value = e.target.value
+		const value = e.target.value;
 		setDatosDeChat({
 			...datosDeChat,
-			mensaje:value
-		})
+			mensaje: value,
+		});
 		setMessage(e.target.value);
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(message);
-		// socket.emit("envio-mensaje", message);
 		const newMessage = {
 			body: message,
 			from: nombre,
 		};
+		if (message.trim() === "") {
+			setErrorMensaje(true);
+			return;
+		}
 		socket.emit("envio-mensaje", newMessage);
 
-		enviarDatos(message)
-		setMessages([newMessage, ...messages]);
+		enviarDatos(message);
+		setMessages([...messages, newMessage]);
+		setErrorMensaje(false)
 		setMessage("");
+		e.target[0].value = "";
 	};
 
-	
 	const enviarDatos = async (mensaje) => {
 		const data = {
-		  tokenActual: localStorage.getItem("token"),
-		  idUsuarioProducto: props.vendedor?.id_vendedor?.toString()
-			? props.vendedor.id_vendedor.toString()
-			: "",
-		  mensaje: mensaje,
-		  nombreEmisor: localStorage.getItem("nombre"),
+			tokenActual: localStorage.getItem("token"),
+			idUsuarioProducto: vendedor?.id_vendedor?.toString()
+				? vendedor.id_vendedor.toString()
+				: "",
+			mensaje: mensaje,
+			nombreEmisor: localStorage.getItem("nombre"),
 		};
 		await axios.post("http://localhost:4000/saveMessage", data);
-	  };
-	  
+	};
+
 	return (
-		<Modal show={props.modalShow}>
+		<Modal show={modalShow} onHide={handleModalClose}>
 			<Modal.Header closeButton>
 				<Modal.Title>
-					Establece un chat con : {props.vendedor?.nombreVendedor}, tu eres{" "}
-					{nombre}
+					Establece un chat con : {vendedor?.nombreVendedor} sobre {
+						producto?.nombre
+					}
+					Cantidad Total: {producto?.cantidad}
+					Precio : {producto?.precio}
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
@@ -106,22 +99,16 @@ export const ModalChatVendedor = (props) => {
 							</li>
 						))}
 					</ul>
-					{/* 					
-					<button onClick={()=>{
-						console.log(object);
-					}}>Imprimir</button> */}
+					{errorMensaje ? (
+						<Alert variant='danger'> No puedes enviar un mensaje vacio</Alert>
+					) : (
+						""
+					)}
+
 					<button type='submit'>Enviar</button>
 				</form>
 			</Modal.Body>
-			<Modal.Footer>
-				<button
-					onClick={() => {
-						props.setShowModal(false);
-					}}
-				>
-					Cerrar
-				</button>
-			</Modal.Footer>
+			<Modal.Footer></Modal.Footer>
 		</Modal>
 	);
 };

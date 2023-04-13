@@ -38,7 +38,7 @@ export const Producto = ({}) => {
 	const handleRedirection = () => {
 		navigate(-1);
 	};
-	const [showModal, setShowModal] = useState(false);
+	 const [showModal,setShowModal] = useState(false)
 
 	const handleModalOpen = () => setShowModal(true);
 
@@ -344,7 +344,7 @@ export const Producto = ({}) => {
 												style={{ color: "#f7f7f7", fontSize: "medium" }}
 											>
 												<span className='box'>
-													Pregunta sobre este artículo{" "}
+													Escribe al Vendedor
 												</span>
 											</button>
 										</Link>
@@ -358,9 +358,10 @@ export const Producto = ({}) => {
 												modalShow={showModal}
 												setShowModal={setShowModal}
 												vendedor={vendedor}
-												
+												producto = {infoProductos}
+												handleModalClose = {handleModalClose}
 											/>
-											<span className='box'>Escribe al vendedor</span>
+											<span className='box'>Pregunta por este articulo</span>
 										</button>
 									</>
 								) : (
