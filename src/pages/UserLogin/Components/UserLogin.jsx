@@ -35,7 +35,7 @@ export const UserLogin = () => {
       setUserAuth(true);
       setDisableButton(true);
       setTimeout(() => {
-        navigate("/principal");
+        navigate("/");
       }, 2000);
     },
   });

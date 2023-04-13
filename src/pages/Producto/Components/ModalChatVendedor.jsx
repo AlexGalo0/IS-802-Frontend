@@ -6,17 +6,26 @@ import io from "socket.io-client";
 const socket = io("http://localhost:4000/");
 
 export const ModalChatVendedor = (props) => {
-	
-
 	const nombre = localStorage.getItem("nombre");
-	const [message, setMessage] = useState({
-		tokenActual : localStorage.getItem("token"),
-		idUsuarioProducto : props.vendedor?.id_vendedor?.toString ? props.vendedor.id_vendedor.toString() : '',
-		mensaje: "",
+	// const [message, setMessage] = useState({
+	// 	tokenActual : localStorage.getItem("token"),
+	// 	idUsuarioProducto : props.vendedor?.id_vendedor?.toString ? props.vendedor.id_vendedor.toString() : '',
+	// 	mensaje: "",
 
+	// 	nombreEmisor: localStorage.getItem("nombre"),
+	// });
+	// const [messages, setMessages] = useState([]);
+	const [message, setMessage] = useState("");
+	const [messages, setMessages] = useState([]);
+	const [datosDeChat, setDatosDeChat] = useState({
+		tokenActual: localStorage.getItem("token"),
+		idUsuarioProducto: props.vendedor?.id_vendedor?.toString
+			? props.vendedor.id_vendedor.toString()
+			: "",
+		mensaje: "",
 		nombreEmisor: localStorage.getItem("nombre"),
 	});
-	const [messages, setMessages] = useState([]);
+
 	const [cerrar, setCerrar] = useState(false);
 
 	const handleCerrar = () => setCerrar(true);
@@ -25,7 +34,6 @@ export const ModalChatVendedor = (props) => {
 		const receiveMessage = (message) => {
 			setMessages([message, ...messages]);
 		};
-	
 		socket.on("envio-mensaje", receiveMessage);
 
 		return () => {
@@ -33,44 +41,66 @@ export const ModalChatVendedor = (props) => {
 		};
 	}, [messages]);
 
+	// const handleChange = (e) => {
+	// 	setMessage({
+	// 		...message, // copia los valores previos de message
+	// 		mensaje: e.target.value, // actualiza el valor de mensaje
+	// 	  });
+	// };
+
 	const handleChange = (e) => {
-		setMessage({
-			...message, // copia los valores previos de message
-			mensaje: e.target.value, // actualiza el valor de mensaje
-		  });
+		setDatosDeChat({
+			...message,
+			mensaje:e.target.value
+		})
+		setMessage(e.target.value);
 	};
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		socket.emit("envio-mensaje", message);
+		const newMessage = {
+			body: message,
+			from: "Me",
+		};
+		enviarDatos(datosDeChat)
+		setMessages([newMessage, ...messages]);
+		setMessage("");
+	};
 
-	
-	// 	const newMessage = {
-	// 		body: message,
-	// 		from: "Me",
-	// 	};
-	// 	setMessages([newMessage, ...messages]);
+	// setMessages([newMessage, ...messages]);
 	// 	setMessage("");
 	// };
 
-	const enviarDatos = async (data)=>{
-		await axios.post('http://localhost:4000/saveMessage',data)
-	}
-	const handleSubmit = (e) => {
-		e.preventDefault();
-	  
-		const newMessage = {
-		  body: message.mensaje,
-		  from: "Me",
-		  tokenActual: message.tokenActual,
-		  idUsuarioProducto: message.idUsuarioProducto,
-		  nombreEmisor: message.nombreEmisor
-		};
-		socket.emit("envio-mensaje", message);
-		enviarDatos(message)
-		setMessages([newMessage, ...messages]);
-		setMessage({
-		  ...message,
-		  mensaje: "",
-		});
-	  };
+	const enviarDatos = async (data) => {
+		await axios.post("http://localhost:4000/saveMessage", data);
+	};
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+
+	// 	// const newMessage = {
+	// 	//   body: message.mensaje,
+	// 	//   from: "Me",
+	// 	//   tokenActual: message.tokenActual,
+	// 	//   idUsuarioProducto: message.idUsuarioProducto,
+	// 	//   nombreEmisor: message.nombreEmisor
+	// 	// };
+
+	// 	const newMessage = {
+	// 		body: message.mensaje,
+	// 		from: "Me",
+
+	// 	  };
+
+	// 	socket.emit("envio-mensaje", message);
+	// 	enviarDatos(message)
+	// 	setMessages([newMessage, ...messages]);
+	// 	// setMessage({
+	// 	//   ...message,
+	// 	//   mensaje: "",
+	// 	// });
+	// 	setMessage("")
+	//   };
 	return (
 		<Modal show={props.modalShow}>
 			<Modal.Header closeButton>
@@ -87,7 +117,7 @@ export const ModalChatVendedor = (props) => {
 						{messages.map((message, index) => (
 							<li key={index}>
 								<p>
-									{message.from} : {message.body.mensaje}
+									{message.from} : {message.body}
 								</p>
 							</li>
 						))}
