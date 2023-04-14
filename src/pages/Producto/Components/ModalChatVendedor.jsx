@@ -12,6 +12,7 @@ export const ModalChatVendedor = ({
 	handleCerrarModal,
 }) => {
 	const nombre = localStorage.getItem("nombre");
+	const token = localStorage.getItem("token")
 
 	const [message, setMessage] = useState("");
 	const [messages, setMessages] = useState([]);
@@ -32,12 +33,16 @@ export const ModalChatVendedor = ({
 		};
 		socket.on("envio-mensaje", receiveMessage);
 		socket.on("confirmarVenta", () => {
-			console.log("Se quiere ejecutar una venta"); //Confirmacion de Venta
 			setShowConfirmSale(true); //Renderizar el Div
 		});
+		socket.on("login",token)
+
 
 		return () => {
 			socket.off("envio-mensaje", receiveMessage);
+			// socket.on("confirmarVenta", () => {
+			// 	setShowConfirmSale(false?'??'); //Renderizar el Div
+			// });
 		};
 	}, [messages]);
 
@@ -89,6 +94,11 @@ export const ModalChatVendedor = ({
 	
 		socket.emit("confirmarVenta");
 	}
+
+
+	const enviarVenta=()=>{
+		console.log('Me vendieron!');
+	}
 	return (
 		<Modal show={showModal} onHide={handleCerrarModal}>
 			<Modal.Header closeButton>
@@ -107,7 +117,7 @@ export const ModalChatVendedor = ({
 				{showConfirmSale && (
 					<alert>
 						<p>Deseas confirmar la venta?</p>
-						<button>Confirmar</button>
+						<button onClick={enviarVenta}>Confirmar</button>
 						<button>Cancelar</button>
 					</alert>
 				)}
