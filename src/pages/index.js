@@ -6,4 +6,4 @@ export * from './Principal'
 export * from './UserLogin'
 export * from './CRUD-Categorias'
 export * from './Producto'
-
+export * from './Chat'

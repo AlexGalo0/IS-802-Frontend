@@ -1,1 +1,1 @@
-export * from './ChatPerfil'
+export * from './ChatGeneral'

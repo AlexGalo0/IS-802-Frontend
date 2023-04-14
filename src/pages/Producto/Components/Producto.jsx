@@ -29,7 +29,6 @@ import axios from "axios"; /*
 import { agregarProductoWishlist } from "../../../api/sendRequest.api"; */
 import { Comentarios } from "./Comentarios";
 import { ModalChatVendedor } from "./ModalChatVendedor";
-
 export const Producto = ({}) => {
 	const { userAuth } = useContext(UserContext);
 	let { idProducto } = useParams();
@@ -338,7 +337,7 @@ export const Producto = ({}) => {
 								<div>{texto}</div>
 								{userAuth ? (
 									<>
-										<Link to='/construyendo' style={{ textDecoration: "none" }}>
+										<Link to={`/chatGeneral/${vendedor.id_vendedor}`} style={{ textDecoration: "none" }}>
 											<button
 												className='buttonChat'
 												style={{ color: "#f7f7f7", fontSize: "medium" }}

@@ -9,6 +9,7 @@ import {
 	Construyendo,
 	EdicionCategorias,
 	Producto,
+	ChatGeneral,
 } from "../pages";
 import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginaFavoritos";
 import { MisProductos } from "../pages/Mis Productos/Components/MisProductos";
@@ -18,7 +19,6 @@ import { FormCategorias } from "../pages/Categorias/Components/formCategorias";
 import { useContext } from "react";
 import { RutaProtegida, NavbarsLR } from "../Components";
 import { Route, Routes } from "react-router-dom";
-import { ChatPerfil } from "../pages/Chat";
 export const Router = () => {
 	const { userAuth } = useContext(UserContext);
 	const { adminAuth } = useContext(AdminContext);
@@ -77,12 +77,15 @@ export const Router = () => {
 						</RutaProtegida>
 					}
 				/>
+				<Route path='/chatGeneral/:idVendedor' element={<ChatGeneral />} />
+
 
 				{/* Rutas para cualquier usuario */}
 
 				<Route path='/login' element={<UserLogin />} />
+
 				<Route path='/login-admin' element={<LoginAdministrador />} />
-				<Route path="/" element={<PaginaPrincipal />} />
+				<Route path='/' element={<PaginaPrincipal />} />
 
 				<Route path='/construyendo' element={<Construyendo />} />
 
