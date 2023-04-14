@@ -13,7 +13,7 @@ export const ModalChatVendedor = ({
 }) => {
 	const nombre = localStorage.getItem("nombre");
 	const token = localStorage.getItem("token")
-
+	const idProducto = producto.idProducto.data
 	const [message, setMessage] = useState("");
 	const [messages, setMessages] = useState([]);
 	const [datosDeChat, setDatosDeChat] = useState({
@@ -23,9 +23,10 @@ export const ModalChatVendedor = ({
 			: "",
 		mensaje: "",
 		nombreEmisor: localStorage.getItem("nombre"),
+		idProducto:idProducto
 	});
 
-	const idProducto = producto.idProducto.data
+
 
 	const [showConfirmSale, setShowConfirmSale] = useState(false); //Confirmacion de Venta
 	useEffect(() => {
