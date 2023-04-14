@@ -35,7 +35,8 @@ export const ModalChatVendedor = ({
 		socket.on("confirmarVenta", () => {
 			setShowConfirmSale(true); //Renderizar el Div
 		});
-		socket.on("login",token)
+		
+		socket.emit("login",token)
 
 
 		return () => {
@@ -128,6 +129,9 @@ export const ModalChatVendedor = ({
 					<ul>
 						{messages.map((message, index) => (
 							<li key={index}>
+								{
+									localStorage.nombre === message.from ? 'Yo envie el mensaje' : ' Yo no '
+								}
 								<p>
 									{message.from} : {message.body}
 								</p>
