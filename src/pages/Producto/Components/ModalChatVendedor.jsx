@@ -36,10 +36,14 @@ export const ModalChatVendedor = ({
 		socket.on("confirmarVenta", () => {
 			setShowConfirmSale(true); //Renderizar el Div
 		});
+
+		const datosInicializacion = {
+			token:token,
+			idProducto:idProducto
+		}
 		
-		socket.emit("login",token)
+		socket.emit("chat-producto",datosInicializacion)
 		
-		socket.emit("id-producto",idProducto)
 
 		return () => {
 			socket.off("envio-mensaje", receiveMessage);
