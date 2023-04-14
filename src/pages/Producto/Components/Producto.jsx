@@ -37,11 +37,13 @@ export const Producto = ({}) => {
 	const handleRedirection = () => {
 		navigate(-1);
 	};
-	 const [showModal,setShowModal] = useState(false)
 
-	const handleModalOpen = () => setShowModal(true);
+	const [showModal, setShowModal] = useState(false);
 
-	const handleModalClose = () => setShowModal(false);
+	const handleCerrarModal = () => {
+		console.log('Hola');
+		setShowModal(false);
+	};
 
 	const obtenerProductoPorId = async (idProducto) => {
 		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
@@ -54,10 +56,10 @@ export const Producto = ({}) => {
 	});
 
 	const vendedor = {
-		nombreVendedor: '' + infoProductos?.usuarioNombre +' ' +infoProductos?.usuarioApellido ,
-		id_vendedor: infoProductos?.id_usuario.data
-	}
-
+		nombreVendedor:
+			"" + infoProductos?.usuarioNombre + " " + infoProductos?.usuarioApellido,
+		id_vendedor: infoProductos?.id_usuario.data,
+	};
 
 	/* Elementos de los overlays (AL poner cursor sobre el simbolo de corazon dice que inicimos sesion) */
 	const renderTooltipButtomShare = (props) => (
@@ -137,10 +139,7 @@ export const Producto = ({}) => {
 								<h4>Departamento: {infoProductos?.departamento}</h4>
 								<h4>Categoría: {infoProductos?.nombrecategoria}</h4>
 								<h4>Cantidad en inventario: {infoProductos?.cantidad}</h4>
-								<h4>
-									Vendido por:{" "}
-									{vendedor?.nombreVendedor}
-								</h4>
+								<h4>Vendido por: {vendedor?.nombreVendedor}</h4>
 
 								<h4 style={{ marginBottom: "-10px" }}>
 									Calificacion del vendedor:
@@ -337,31 +336,32 @@ export const Producto = ({}) => {
 								<div>{texto}</div>
 								{userAuth ? (
 									<>
-										<Link to={`/chatGeneral/${vendedor.id_vendedor}`} style={{ textDecoration: "none" }}>
+										<Link
+											to={`/chatGeneral/${vendedor.id_vendedor}`}
+											style={{ textDecoration: "none" }}
+										>
 											<button
 												className='buttonChat'
 												style={{ color: "#f7f7f7", fontSize: "medium" }}
 											>
-												<span className='box'>
-													Escribe al Vendedor
-												</span>
+												<span className='box'>Escribe al Vendedor</span>
 											</button>
 										</Link>
 
 										<button
 											className='buttonChat'
 											style={{ color: "#f7f7f7", fontSize: "medium" }}
-											onClick={()=>setShowModal(true)}
+											onClick={() => setShowModal(true)}
 										>
-											<ModalChatVendedor
-												modalShow={showModal}
-												setShowModal={setShowModal}
-												vendedor={vendedor}
-												producto = {infoProductos}
-												handleModalClose = {handleModalClose}
-											/>
+											
 											<span className='box'>Pregunta por este articulo</span>
 										</button>
+										<ModalChatVendedor
+												showModal={showModal}
+												handleCerrarModal={handleCerrarModal}
+												vendedor={vendedor}
+												producto={infoProductos}
+											/>
 									</>
 								) : (
 									""

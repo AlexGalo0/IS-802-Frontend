@@ -8,6 +8,7 @@ export const ChatGeneral = () => {
 	const nombre = localStorage.getItem("nombre");
 	const [message, setMessage] = useState("");
 	const [messages, setMessages] = useState([]);
+	const miNombre = localStorage.getItem("nombre")
 	useEffect(() => {
 		const receiveMessage = (message) => {
 			setMessages([...messages, message]);
@@ -58,7 +59,7 @@ export const ChatGeneral = () => {
 	/* Ese idVendedor puede ser util para recuperar  info del servidor*/
 	return (
 		<>
-			<h1>Chat General con --- </h1>
+			<h1>Chat General con --- , soy {miNombre} </h1>
 
 			<form onSubmit={handleSubmit}>
 				<input type='text' onChange={handleChange} value={message.mensaje} />
