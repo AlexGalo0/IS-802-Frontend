@@ -24,15 +24,17 @@ export const ModalChatVendedor = ({
 		nombreEmisor: localStorage.getItem("nombre"),
 	});
 
-	const cerrarModal = () => {
-		handleCerrarModal();
-	};
 
+	const [showConfirmSale, setShowConfirmSale] = useState(false); //Confirmacion de Venta
 	useEffect(() => {
 		const receiveMessage = (message) => {
 			setMessages([...messages, message]);
 		};
 		socket.on("envio-mensaje", receiveMessage);
+		socket.on("confirmarVenta", () => {
+			console.log("Se quiere ejecutar una venta"); //Confirmacion de Venta
+			setShowConfirmSale(true); //Renderizar el Div
+		});
 
 		return () => {
 			socket.off("envio-mensaje", receiveMessage);
@@ -79,17 +81,13 @@ export const ModalChatVendedor = ({
 		};
 		await axios.post("http://localhost:4000/saveMessage", data);
 	};
+
+
+/* Codigo para confirmar venta */
+
+	function handleConfirmSale() {
 	
-
-
-	
-	const [mostrarModalConfirmarVenta, setMostrarModalConfirmarVenta] = useState(false)
-
-
-
-	const confirmarVenta = (e)=>{
-		e.preventDefault()
-		
+		socket.emit("confirmarVenta");
 	}
 	return (
 		<Modal show={showModal} onHide={handleCerrarModal}>
@@ -105,6 +103,15 @@ export const ModalChatVendedor = ({
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
+				<button onClick={handleConfirmSale} disabled={showConfirmSale}>Confirmar venta</button>
+				{showConfirmSale && (
+					<alert>
+						<p>Deseas confirmar la venta?</p>
+						<button>Confirmar</button>
+						<button>Cancelar</button>
+					</alert>
+				)}
+
 				<form onSubmit={handleSubmit}>
 					<input type='text' onChange={handleChange} value={message.mensaje} />
 					<button type='submit'>Enviar Mensaje</button>
@@ -122,7 +129,6 @@ export const ModalChatVendedor = ({
 					) : (
 						""
 					)}
-					<button onClick={confirmarVenta}>Confirmar Venta</button>
 				</form>
 			</Modal.Body>
 			<Modal.Footer></Modal.Footer>
