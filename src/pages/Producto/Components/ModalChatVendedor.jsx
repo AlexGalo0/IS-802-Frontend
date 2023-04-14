@@ -25,6 +25,7 @@ export const ModalChatVendedor = ({
 		nombreEmisor: localStorage.getItem("nombre"),
 	});
 
+	const idProducto = producto.idProducto.data
 
 	const [showConfirmSale, setShowConfirmSale] = useState(false); //Confirmacion de Venta
 	useEffect(() => {
@@ -37,7 +38,8 @@ export const ModalChatVendedor = ({
 		});
 		
 		socket.emit("login",token)
-
+		
+		socket.emit("id-producto",idProducto)
 
 		return () => {
 			socket.off("envio-mensaje", receiveMessage);
@@ -68,7 +70,7 @@ export const ModalChatVendedor = ({
 			return;
 		}
 		socket.emit("envio-mensaje", newMessage);
-
+		
 		enviarDatos(message);
 		setMessages([...messages, newMessage]);
 		setErrorMensaje(false);
