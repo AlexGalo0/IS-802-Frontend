@@ -26,14 +26,13 @@ export const ModalChatVendedor = ({
 		idProducto:idProducto
 	});
 
-
-
 	const [showConfirmSale, setShowConfirmSale] = useState(false); //Confirmacion de Venta
+
 	useEffect(() => {
 		const receiveMessage = (message) => {
 			setMessages([...messages, message]);
 		};
-		socket.on("envio-mensaje", receiveMessage);
+		socket.on("envio-mensaje-producto", receiveMessage);
 		socket.on("confirmarVenta", () => {
 			setShowConfirmSale(true); //Renderizar el Div
 		});
@@ -42,12 +41,11 @@ export const ModalChatVendedor = ({
 			token:token,
 			idProducto:idProducto
 		}
-		
-		socket.emit("chat-producto",datosInicializacion)
-		
+
+		socket.emit("chat-producto", datosInicializacion)//Evento que se dispara cuando un usuario inicia sesión
 
 		return () => {
-			socket.off("envio-mensaje", receiveMessage);
+			socket.off("envio-mensaje-producto", receiveMessage);
 			// socket.on("confirmarVenta", () => {
 			// 	setShowConfirmSale(false?'??'); //Renderizar el Div
 			// });
@@ -74,7 +72,7 @@ export const ModalChatVendedor = ({
 			setErrorMensaje(true);
 			return;
 		}
-		socket.emit("envio-mensaje", newMessage);
+		socket.emit("envio-mensaje-producto", newMessage);
 		
 		enviarDatos(message);
 		setMessages([...messages, newMessage]);
