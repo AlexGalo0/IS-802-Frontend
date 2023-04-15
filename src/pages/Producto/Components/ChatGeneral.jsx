@@ -37,7 +37,7 @@ export const ChatGeneral = ({
 		
 
 		
-		socket.emit("general-envio", datosInicializacion)//Evento que se dispara cuando un usuario inicia sesión
+	
 
 		return () => {
 			socket.off("general-envio-mensaje", receiveMessage);
@@ -70,24 +70,24 @@ export const ChatGeneral = ({
 		}
 		socket.emit("general-envio-mensaje", newMessage);
 		
-		enviarDatos(message);
+		// enviarDatos(message);
 		setMessages([...messages, newMessage]);
 		setErrorMensaje(false);
 		setMessage("");
 		e.target[0].value = "";
 	};
 
-	const enviarDatos = async (mensaje) => {
-		const data = {
-			tokenActual: localStorage.getItem("token"),
-			idUsuarioProducto: vendedor?.id_vendedor?.toString()
-				? vendedor.id_vendedor.toString()
-				: "",
-			mensaje: mensaje,
-			nombreEmisor: localStorage.getItem("nombre"),
-		};
-		await axios.post("http://localhost:4000/saveMessage", data); //Deberia ser ruta distinta?
-	};
+	// const enviarDatos = async (mensaje) => {
+	// 	const data = {
+	// 		tokenActual: localStorage.getItem("token"),
+	// 		idUsuarioProducto: vendedor?.id_vendedor?.toString()
+	// 			? vendedor.id_vendedor.toString()
+	// 			: "",
+	// 		mensaje: mensaje,
+	// 		nombreEmisor: localStorage.getItem("nombre"),
+	// 	};
+	// 	await axios.post("http://localhost:4000/saveMessage", data); //Deberia ser ruta distinta?
+	// };
 
 
 /* Codigo para confirmar venta */
