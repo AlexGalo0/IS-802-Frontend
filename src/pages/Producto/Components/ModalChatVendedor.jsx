@@ -15,7 +15,9 @@ export const ModalChatVendedor = ({
 	const token = localStorage.getItem("token")
 
 	const idResultado = producto?.idProducto?.data
-	const idProducto = idResultado[0].replace(/,/g, '')
+
+	const idProducto = idResultado?.join('') || ''
+	
 	const [message, setMessage] = useState("");
 	const [messages, setMessages] = useState([]);
 	const [datosDeChat, setDatosDeChat] = useState({
