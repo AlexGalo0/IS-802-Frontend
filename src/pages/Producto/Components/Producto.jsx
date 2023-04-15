@@ -14,7 +14,7 @@ import {
 	Tooltip,
 	Alert,
 } from "react-bootstrap";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 
@@ -30,6 +30,9 @@ import { agregarProductoWishlist } from "../../../api/sendRequest.api"; */
 import { Comentarios } from "./Comentarios";
 import { ModalChatVendedor } from "./ModalChatVendedor";
 import { ChatGeneral } from "./ChatGeneral";
+import io from "socket.io-client";
+
+const socket = io("http://localhost:4000/");
 export const Producto = ({}) => {
 	const { userAuth } = useContext(UserContext);
 	let { idProducto } = useParams();
@@ -88,7 +91,15 @@ export const Producto = ({}) => {
 	function handleClick() {
 		setTexto("¡Enlace de producto copiado!");
 	}
+	
+	useEffect(()=>{
+		const datosInicializacion = {
+			token:token,
+			idProducto:idProducto
+		}
+		socket.emit("chat-producto", datosInicializacion)
 
+	},[])
 	return (
 		<>
 			<Container fluid className='container-grid'>

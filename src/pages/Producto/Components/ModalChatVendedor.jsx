@@ -47,7 +47,7 @@ export const ModalChatVendedor = ({
 
 	
 
-		socket.emit("chat-producto", datosInicializacion)//Evento que se dispara cuando un usuario inicia sesión
+		// socket.emit("chat-producto", datosInicializacion)//Evento que se dispara cuando un usuario inicia sesión
 
 		return () => {
 			socket.off("envio-mensaje-producto", receiveMessage);
