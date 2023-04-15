@@ -13,7 +13,9 @@ export const ModalChatVendedor = ({
 }) => {
 	const nombre = localStorage.getItem("nombre");
 	const token = localStorage.getItem("token")
-	const idProducto = producto?.idProducto?.data
+
+	const idResultado = producto?.idProducto?.data
+	const idProducto = idResultado[0].replace(/,/g, '')
 	const [message, setMessage] = useState("");
 	const [messages, setMessages] = useState([]);
 	const [datosDeChat, setDatosDeChat] = useState({
@@ -67,6 +69,7 @@ export const ModalChatVendedor = ({
 		const newMessage = {
 			body: message,
 			from: nombre,
+			idProducto:idProducto
 		};
 		if (message.trim() === "") {
 			setErrorMensaje(true);

@@ -41,7 +41,6 @@ export const Producto = ({}) => {
 	const [showModal, setShowModal] = useState(false);
 
 	const handleCerrarModal = () => {
-		console.log('Hola');
 		setShowModal(false);
 	};
 
