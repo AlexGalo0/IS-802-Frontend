@@ -36,11 +36,7 @@ export const ChatGeneral = ({
 		socket.on("envio-mensaje-producto", receiveMessage);
 		
 
-		const datosInicializacion = {
-			token:token,
-			idProducto:idProducto
-		}
-
+		
 		socket.emit("general-envio", datosInicializacion)//Evento que se dispara cuando un usuario inicia sesión
 
 		return () => {
@@ -66,7 +62,7 @@ export const ChatGeneral = ({
 		const newMessage = {
 			body: message,
 			from: nombre,
-			idProducto:idProducto
+		
 		};
 		if (message.trim() === "") {
 			setErrorMensaje(true);
