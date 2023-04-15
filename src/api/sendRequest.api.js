@@ -123,3 +123,9 @@ export const obtenerComentarios = async (idProducto) => {
 }
 
 // export const borrarComentarios = async = (id)
+
+export const obtenerUsuariosChat=async()=>{
+    const res = await axios.get("http://localhost:4000/user")
+    return res.data
+
+}

@@ -15,9 +15,17 @@ import { BsCurrencyDollar } from "react-icons/bs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AiOutlineDelete } from "react-icons/ai";
 import { borrarProductoListaDeseos } from "../../../api";
+import io from "socket.io-client";
 
+const socket = io("http://localhost:4000/");
 export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
   // const idProducto = producto.id_producto.data.toString();
+
+  
+    socket.on("envio-mensaje",()=>{
+      console.log('Desde Mis Productos recibi el mensaje');
+    })
+ 
 
   function scrollToTop() {
     window.scrollTo(0, 0);
@@ -27,16 +35,16 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
       Borrar producto
     </Tooltip>
   );
-  // const imagen = JSON.parse(producto.imagenes)
+  const imagen = JSON.parse(producto.imagenes)
   const postBody = (
     <>
       <Col>
         <Card className="card">
           <Container className="card-container">
-            {/* <Card.Img variant='top' src={imagen[0]} className='card-image' /> */}
+            <Card.Img variant='top' src={imagen[0]} className='card-image' />
           </Container>
           <Card.Body className="card-body">
-            <Card.Title className="card-title">{producto.nombre}</Card.Title>
+            <Card.Title className="card-title">{producto.producto}</Card.Title>
             <Card.Text className="card-medium">
               <BsCurrencyDollar
                 style={{ marginTop: "-2px", fontSize: "20px" }}

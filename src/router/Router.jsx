@@ -78,6 +78,7 @@ export const Router = () => {
 					}
 				/>
 				<Route path='/chatGeneral/:idVendedor' element={<ChatGeneral />} />
+				<Route path='/chat' element={<ChatGeneral />} />
 
 
 				{/* Rutas para cualquier usuario */}

@@ -1,14 +1,16 @@
-import {useState,useEffect} from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { Alert } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import io from "socket.io-client";
+import { obtenerUsuariosChat } from "../../api";
 const socket = io("http://localhost:4000/");
 export const ChatGeneral = () => {
 	let { idVendedor } = useParams();
 	const nombre = localStorage.getItem("nombre");
 	const [message, setMessage] = useState("");
 	const [messages, setMessages] = useState([]);
-	const miNombre = localStorage.getItem("nombre")
+	const miNombre = localStorage.getItem("nombre");
 	useEffect(() => {
 		const receiveMessage = (message) => {
 			setMessages([...messages, message]);
@@ -57,9 +59,30 @@ export const ChatGeneral = () => {
 	// });
 
 	/* Ese idVendedor puede ser util para recuperar  info del servidor*/
+
+	const { data: usuarios } = useQuery({
+		queryKey: ["usuarios"],
+		queryFn: obtenerUsuariosChat,
+	});
+	// const obtenerProductoPorId = async (idProducto) => {
+	// 	const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
+
+	// 	return res.data[0];
+	// };
+	// const { data: infoProductos } = useQuery({
+	// 	queryKey: ["producto"],
+	// 	queryFn: () => obtenerProductoPorId(idProducto),
+	// });
 	return (
 		<>
-			<h1>Chat General con --- , soy {miNombre} </h1>
+			<div>
+				{usuarios?.map((usuario) => (
+					<>
+						<Link to={`/${usuario.id_usuario_hex}`}>{usuario.nombres}</Link>
+						<br />
+					</>
+				))}
+			</div>
 
 			<form onSubmit={handleSubmit}>
 				<input type='text' onChange={handleChange} value={message.mensaje} />
