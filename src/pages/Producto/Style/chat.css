@@ -1,0 +1,88 @@
+:root{/* 
+    --color1: #1b325f;
+    --color2: #9cc4e4;
+    --color3: #e9f2f9;
+    --color4: #3a89c0;
+    --color5: #f26c4f; */
+    --white: #f7f7f7;
+    --blue1: #94BFD1;
+    --blue2: #75E8E5;
+    --blue3: #365662;
+    --blue4: #153B4B;
+    --blue5: #E6F6FF;
+    --hover: #416b7a;
+    --letter: #02050A;
+    --shadow: #42a19e;
+  }
+  
+  
+  * {
+    font-family: "Mulish", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .asiChat {
+    width: 250px;
+    border-top-left-radius: 10px ;
+    border-bottom-left-radius: 10px;
+  }
+
+  .asiPrincipal {
+        display: grid;
+        grid-template-areas: 
+        'side contenido contenido'
+        'side contenido contenido' 
+        'foot foot foot';
+        gap: 0px;
+        height: 100%;
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid var(--blue2);
+  }
+
+  .artChat {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+.mensajesPadre {
+  background-color: var(--blue5);
+    width: 500px;
+    height: 530px;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    overflow: auto;
+    border-radius: 10px;
+    border: 1px solid var(--blue2);
+}
+
+  .mensajes {
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+    justify-content: space-between;
+  }
+
+  .mensajesPadre::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+    }
+    
+    .mensajesPadre::-webkit-scrollbar-track {
+    background: var(--blue1);
+    border-radius: 10px;
+    }
+    
+    .mensajesPadre::-webkit-scrollbar-thumb {
+    background-color: var(--blue2);
+    border-radius: 20px;
+    border: 4px solid var(--blue3);
+    }
+
+    .menChat {
+      background-color: var(--blue3);
+      width: 250px;
+      color: var(--white);
+      border-radius: 10px;
+    }
