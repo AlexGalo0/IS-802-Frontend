@@ -29,6 +29,7 @@ import axios from "axios"; /*
 import { agregarProductoWishlist } from "../../../api/sendRequest.api"; */
 import { Comentarios } from "./Comentarios";
 import { ModalChatVendedor } from "./ModalChatVendedor";
+import { ChatGeneral } from "./ChatGeneral";
 export const Producto = ({}) => {
 	const { userAuth } = useContext(UserContext);
 	let { idProducto } = useParams();
@@ -39,10 +40,13 @@ export const Producto = ({}) => {
 	};
 
 	const [showModal, setShowModal] = useState(false);
-
+	const [showGeneral,setShowGeneral] = useState(false)
 	const handleCerrarModal = () => {
 		setShowModal(false);
 	};
+	const handleCerrarGeneral=()=>{
+		setShowGeneral(false)
+	}
 
 	const obtenerProductoPorId = async (idProducto) => {
 		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
@@ -335,17 +339,20 @@ export const Producto = ({}) => {
 								<div>{texto}</div>
 								{userAuth ? (
 									<>
-										<Link
-											to={`/chatGeneral/${vendedor.id_vendedor}`}
-											style={{ textDecoration: "none" }}
-										>
+										
 											<button
 												className='buttonChat'
 												style={{ color: "#f7f7f7", fontSize: "medium" }}
+												onClick={()=>setShowGeneral(true)}
 											>
 												<span className='box'>Escribe al Vendedor</span>
+												
 											</button>
-										</Link>
+											<ChatGeneral 
+													showGeneral={showGeneral}
+													handleCerrarGeneral={handleCerrarGeneral}
+													vendedor={vendedor}
+												/>
 
 										<button
 											className='buttonChat'
@@ -353,7 +360,7 @@ export const Producto = ({}) => {
 											onClick={() => setShowModal(true)}
 										>
 											
-											<span className='box'>Pregunta por este articulo</span>
+											<span className='box'>Pregunta por este articulo en especifico</span>
 										</button>
 										<ModalChatVendedor
 												showModal={showModal}

@@ -4,19 +4,16 @@ import { Modal, Alert } from "react-bootstrap";
 import io from "socket.io-client";
 
 const socket = io("http://localhost:4000/");
-
-export const ModalChatVendedor = ({
-	showModal,
-	vendedor,
-	producto,
-	handleCerrarModal,
+export const ChatGeneral = ({
+    showGeneral,
+    handleCerrarGeneral,
+    vendedor
 }) => {
-	const nombre = localStorage.getItem("nombre");
+    const nombre = localStorage.getItem("nombre");
 	const token = localStorage.getItem("token")
 
-	const idResultado = producto?.idProducto?.data
 
-	const idProducto = idResultado?.join('') 
+	
 	
 	const [message, setMessage] = useState("");
 	const [messages, setMessages] = useState([]);
@@ -27,30 +24,27 @@ export const ModalChatVendedor = ({
 			: "",
 		mensaje: "",
 		nombreEmisor: localStorage.getItem("nombre"),
-		idProducto:idProducto
+		
 	});
 
-	const [showConfirmSale, setShowConfirmSale] = useState(false); //Confirmacion de Venta
-	const datosInicializacion = {
-		token:token,
-		idProducto:idProducto
-	}
+	// const [showConfirmSale, setShowConfirmSale] = useState(false); //Confirmacion de Venta
 
 	useEffect(() => {
 		const receiveMessage = (message) => {
 			setMessages([...messages, message]);
 		};
 		socket.on("envio-mensaje-producto", receiveMessage);
-		socket.on("confirmarVenta", () => {
-			setShowConfirmSale(true); //Renderizar el Div
-		});
+		
 
-	
+		const datosInicializacion = {
+			token:token,
+			idProducto:idProducto
+		}
 
-		socket.emit("chat-producto", datosInicializacion)//Evento que se dispara cuando un usuario inicia sesión
+		socket.emit("general-envio", datosInicializacion)//Evento que se dispara cuando un usuario inicia sesión
 
 		return () => {
-			socket.off("envio-mensaje-producto", receiveMessage);
+			socket.off("general-envio-mensaje", receiveMessage);
 			// socket.on("confirmarVenta", () => {
 			// 	setShowConfirmSale(false?'??'); //Renderizar el Div
 			// });
@@ -78,7 +72,7 @@ export const ModalChatVendedor = ({
 			setErrorMensaje(true);
 			return;
 		}
-		socket.emit("envio-mensaje-producto", newMessage);
+		socket.emit("general-envio-mensaje", newMessage);
 		
 		enviarDatos(message);
 		setMessages([...messages, newMessage]);
@@ -96,43 +90,26 @@ export const ModalChatVendedor = ({
 			mensaje: mensaje,
 			nombreEmisor: localStorage.getItem("nombre"),
 		};
-		await axios.post("http://localhost:4000/saveMessage", data);
+		await axios.post("http://localhost:4000/saveMessage", data); //Deberia ser ruta distinta?
 	};
 
 
 /* Codigo para confirmar venta */
 
-	function handleConfirmSale() {
+
+
 	
-		socket.emit("confirmarVenta");
-	}
-
-
-	const enviarVenta=()=>{
-		console.log('Me vendieron!');
-	}
 	return (
-		<Modal show={showModal} onHide={handleCerrarModal}>
+		<Modal show={showGeneral} onHide={handleCerrarGeneral}>
 			<Modal.Header closeButton>
 				<Modal.Title>
 					Establece un chat con : {vendedor?.nombreVendedor}
-					<br />
-					sobre {producto?.nombre}
-					<br />
-					Cantidad Total: {producto?.cantidad}
-					<br />
-					Precio : {producto?.precio}
+					
+					
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<button onClick={handleConfirmSale} disabled={showConfirmSale}>Confirmar venta</button>
-				{showConfirmSale && (
-					<alert>
-						<p>Deseas confirmar la venta?</p>
-						<button onClick={enviarVenta}>Confirmar</button>
-						<button>Cancelar</button>
-					</alert>
-				)}
+				
 
 				<form onSubmit={handleSubmit}>
 					<input type='text' onChange={handleChange} value={message.mensaje} />
