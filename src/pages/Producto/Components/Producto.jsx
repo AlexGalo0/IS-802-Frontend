@@ -91,7 +91,7 @@ export const Producto = ({}) => {
 	function handleClick() {
 		setTexto("¡Enlace de producto copiado!");
 	}
-	
+	const token = localStorage.getItem("token")
 	useEffect(()=>{
 		const datosInicializacion = {
 			token:token,
