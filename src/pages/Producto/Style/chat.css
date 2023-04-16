@@ -37,8 +37,8 @@
         'foot foot foot';
         gap: 0px;
         height: 100%;
-        width: 100%;
-        border-radius: 20px;
+        width: max-content;
+        border-radius: 10px;
         border: 1px solid var(--blue2);
   }
 
@@ -63,6 +63,8 @@
     flex-direction: column;
     align-items: initial;
     justify-content: space-between;
+    margin-top: 10px;
+    margin-left: -18px;
   }
 
   .mensajesPadre::-webkit-scrollbar {
@@ -82,7 +84,9 @@
 
     .menChat {
       background-color: var(--blue3);
-      width: 250px;
       color: var(--white);
-      border-radius: 10px;
+      border-radius: 15px;
+      max-width: 350px;
+      padding: 5px;
+      width: fit-content;
     }

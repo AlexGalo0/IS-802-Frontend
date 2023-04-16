@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+/* import { useState, useEffect } from "react"; */
 import { Modal, Alert } from "react-bootstrap";
 import io from "socket.io-client";
 import "../Style/chat.css";
 
 
 import { MdSend } from "react-icons/md";
+import React, { useState, useRef, useEffect } from "react";
 
 const socket = io("http://localhost:4000/");
 export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
@@ -81,6 +82,29 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
   // };
 
   /* Codigo para confirmar venta */
+  /* const myDivRef = useRef(null);
+
+  const handleScrollToBottom = () => {
+    scrollToBottom(myDivRef.current);
+  };
+
+  const scrollToBottom = (element) => {
+    element.scrollTop = element.scrollHeight - element.clientHeight;
+  };
+
+  const handleOnLoad = () => {
+    scrollToBottom(myDivRef.current);
+  }; */
+
+
+  /* Con este codigos logramos que al aniadir un mensaje se haga scroll automaticamente hacia abajo */
+  const messagesRef = useRef(null);
+
+  const scrollToBottom = () => {
+    setTimeout(() => {
+      messagesRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }, 0);
+  };
 
   return (
     <Modal
@@ -92,23 +116,24 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
         <aside className="asiChat">Perfiles de usuarios con los que podre chat</aside>
         <article className="artChat">
           <Modal.Header closeButton>
-            <Modal.Title style={{ height: "15px", fontSize: "20px" }}>
-              Establece un chat con : {vendedor?.nombreVendedor}
+            <Modal.Title style={{ height: "15px", fontSize: "25px" }}>
+              {/* Establece un chat con :  */}{vendedor?.nombreVendedor}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={handleSubmit}>
-              <div className="mensajesPadre">
+              <div className="mensajesPadre" /* ref={myDivRef} onLoad={handleOnLoad} */>
                 <div className="mensajes">
                   <ul>
                     {messages.map((message, index) => (
-                      <li key={index}>
+                      <li key={index} style={{listStyle: 'none'}}>
+						
                         {localStorage.nombre === message.from
-                          ? "Tú:"
-                          : " Yo no "}
+                          ? "Tú"
+                          : (vendedor?.nombreVendedor)}:
                         <div className="menChat">
-                          <p style={{ margin: "5px" }}>
-                            {message.from} : {message.body}
+                          <p style={{ margin: "1px" }}>
+                            {/* {message.from} :  */}{message.body}
                           </p>
                         </div>
                       </li>
@@ -125,7 +150,9 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
                   ) : (
                     ""
                   )}
-                </div>
+				  {/* scroll hacia abajo */}
+				  <div ref={messagesRef} />
+                </div >
               </div>
               <div
                 style={{
@@ -146,6 +173,8 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
                   type="submit"
                   className="btnComent"
                   style={{width:'110px'}}
+				  /* scroll hacia abajo */
+				  onClick={scrollToBottom}
                 >
                   <MdSend className="iconBuscar" />
                   <span className="textComent">Enviar</span>
