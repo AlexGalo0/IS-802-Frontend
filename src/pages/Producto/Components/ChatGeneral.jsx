@@ -128,14 +128,21 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
                     {messages.map((message, index) => (
                       <li key={index} style={{listStyle: 'none'}}>
 						
+            {localStorage.nombre === message.from
+                          ? <p style={{marginBottom: '-1px', textAlign: 'end', marginRight: '15px', clear: 'both'}}>Tú:</p>
+                          : <p style={{marginBottom: '-1px'}}>{vendedor?.nombreVendedor}:</p>}
                         {localStorage.nombre === message.from
-                          ? "Tú"
-                          : (vendedor?.nombreVendedor)}:
-                        <div className="menChat">
+                          ? <div className="menChat" style={{float: 'right', clear: "both", marginRight: '13px'}} >
                           <p style={{ margin: "1px" }}>
                             {/* {message.from} :  */}{message.body}
                           </p>
                         </div>
+                          : <div className="menChatUser">
+                          <p style={{ margin: "1px" }}>
+                            {/* {message.from} :  */}{message.body}
+                          </p>
+                        </div>}
+
                       </li>
                     ))}
                   </ul>
