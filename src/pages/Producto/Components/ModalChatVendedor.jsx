@@ -155,19 +155,19 @@ export const ModalChatVendedor = ({
                 className="mensajesPadre"
                 style={{ height: "440px", marginTop: "95px" }}
               >
-                <div className="mensajes">
+                <div className="mensajes" style={{ overflow: "auto" }}>
                   {/* 
           <input type="text" onChange={handleChange} value={message.mensaje} />
           <button type="submit">Enviar Mensaje</button> */}
                   <ul>
+                        
                     {messages.map((message, index) => (
                       <li key={index} style={{ listStyle: "none" }}>
                         {localStorage.nombre === message.from
-                          ? "Tú" 
-                          : vendedor?.nombreVendedor}
-                        :
+                          ? <p style={{marginBottom: '-1px', textAlign: 'end', marginRight: '5px', clear: 'both'}}>Tú:</p>
+                          : <p style={{marginBottom: '-1px'}}>{vendedor?.nombreVendedor}:</p>}
                         {localStorage.nombre === message.from
-                          ? <div className="menChat" >
+                          ? <div className="menChat" style={{float: 'right', clear: "both", marginRight: '5px'}} >
                           <p style={{ margin: "1px" }}>
                             {/* {message.from} :  */}{message.body}
                           </p>
