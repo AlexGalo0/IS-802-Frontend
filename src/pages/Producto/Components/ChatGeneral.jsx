@@ -122,7 +122,7 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={handleSubmit}>
-              <div className="mensajesPadre" /* ref={myDivRef} onLoad={handleOnLoad} */>
+              <div className="mensajesPadre">
                 <div className="mensajes">
                   <ul>
                     {messages.map((message, index) => (

@@ -1,9 +1,12 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import axios from "axios"; /* 
+import { useState, useEffect } from "react"; */
 import { Modal, Alert } from "react-bootstrap";
 import io from "socket.io-client";
 
 const socket = io("http://localhost:4000/");
+
+import { MdSend } from "react-icons/md";
+import React, { useState, useRef, useEffect } from "react";
 
 export const ModalChatVendedor = ({
   showModal,
@@ -106,54 +109,118 @@ export const ModalChatVendedor = ({
   const enviarVenta = () => {
     console.log("Me vendieron!");
   };
-  return (
-    <Modal show={showModal} onHide={handleCerrarModal}>
-      <Modal.Header closeButton>
-        <Modal.Title>
-          Establece un chat con : {vendedor?.nombreVendedor}
-          <br />
-          sobre {producto?.nombre}
-          <br />
-          Cantidad Total: {producto?.cantidad}
-          <br />
-          Precio : {producto?.precio}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <button onClick={handleConfirmSale} disabled={showConfirmSale}>
-          Confirmar venta
-        </button>
-        {showConfirmSale && (
-          <alert>
-            <p>Deseas confirmar la venta?</p>
-            <button onClick={enviarVenta}>Confirmar</button>
-            <button>Cancelar</button>
-          </alert>
-        )}
 
-        <form onSubmit={handleSubmit}>
+  /* Con este codigos logramos que al aniadir un mensaje se haga scroll automaticamente hacia abajo */
+  const messagesRef = useRef(null);
+
+  const scrollToBottom = () => {
+    setTimeout(() => {
+      messagesRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }, 0);
+  };
+
+  return (
+    <Modal
+      show={showModal}
+      onHide={handleCerrarModal}
+      style={{ display: "flex", flexDirection: "row", marginLeft: "-45px" }}
+    >
+      <main className="asiPrincipal">
+        <article className="artChat">
+          <Modal.Header closeButton>
+            <Modal.Title style={{ height: "15px", fontSize: "25px" }}>
+              {/* Establece un chat con :  */}
+              {vendedor?.nombreVendedor}
+              <div style={{ fontSize: "17px", marginTop: "-15px" }}>
+                <br />
+                Articulo: {producto?.nombre}
+                <br />
+                Cantidad Total: {producto?.cantidad}
+                <br />
+                Precio : Lps.{producto?.precio}
+              </div>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {showConfirmSale && (
+              <alert>
+                <p>Deseas confirmar la venta?</p>
+                <button onClick={enviarVenta}>Confirmar</button>
+                <button>Cancelar</button>
+              </alert>
+            )}
+
+            <form onSubmit={handleSubmit}>
+              <div
+                className="mensajesPadre"
+                style={{ height: "440px", marginTop: "95px" }}
+              >
+                <div className="mensajes">
+                  {/* 
           <input type="text" onChange={handleChange} value={message.mensaje} />
-          <button type="submit">Enviar Mensaje</button>
-          <ul>
-            {messages.map((message, index) => (
-              <li key={index}>
-                {localStorage.nombre === message.from
-                  ? "Yo envie el mensaje"
-                  : " Yo no "}
-                <p>
-                  {message.from} : {message.body}
-                </p>
-              </li>
-            ))}
-          </ul>
-          {errorMensaje ? (
-            <Alert variant="danger"> No puedes enviar un mensaje vacio</Alert>
-          ) : (
-            ""
-          )}
-        </form>
-      </Modal.Body>
-      <Modal.Footer></Modal.Footer>
+          <button type="submit">Enviar Mensaje</button> */}
+                  <ul>
+                    {messages.map((message, index) => (
+                      <li key={index} style={{ listStyle: "none" }}>
+                        {localStorage.nombre === message.from
+                          ? "Tú"
+                          : vendedor?.nombreVendedor}
+                        :
+                        <div className="menChat">
+                          <p style={{ margin: "1px" }}>
+                            {/* {message.from} :  */}{message.body}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  {errorMensaje ? (
+                    <Alert
+                      variant="danger"
+                      style={{ margin: "auto", marginBottom: "10px" }}
+                    >
+                      {" "}
+                      No puedes enviar un mensaje vacio
+                    </Alert>
+                  ) : (
+                    ""
+                  )}
+                  {/* scroll hacia abajo */}
+                  <div ref={messagesRef} />
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  margin: "auto",
+                }}
+              >
+                <input
+                  className="inPrecio"
+                  style={{ width: "380px" }}
+                  type="text"
+                  onChange={handleChange}
+                  value={message.mensaje}
+                />
+                <button
+                  type="submit"
+                  className="btnComent"
+                  style={{ width: "110px" }}
+                  /* scroll hacia abajo */
+                  onClick={scrollToBottom}
+                >
+                  <MdSend className="iconBuscar" />
+                  <span className="textComent">Enviar</span>
+                </button>
+              </div>
+            </form>
+          </Modal.Body>
+        </article>
+      </main>
+      {/* 
+      <Modal.Footer></Modal.Footer> */}
     </Modal>
   );
 };
