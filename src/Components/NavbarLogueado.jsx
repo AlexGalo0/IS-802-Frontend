@@ -162,7 +162,7 @@ export const NavbarsLogueado = () => {
 
       {/* Navbar */}
       <div className="navbar">
-        <Link to="/principal">
+        <Link to="/">
           <Image src={logo} className="image-logo" />
         </Link>
         <div /* className="buscador-div2" */ /* style={{display:"none"}} */>

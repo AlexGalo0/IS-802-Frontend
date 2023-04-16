@@ -1,7 +1,6 @@
 import "../Style/product.css";
 import { BiLeftArrow } from "react-icons/bi";
 import { MdOutlineInsertComment } from "react-icons/md";
-import { BsCurrencyDollar } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -234,8 +233,7 @@ export const Producto = ({}) => {
 								</div>
 
 								<h1>
-									<BsCurrencyDollar style={{ marginTop: "-8px" }} />
-									{infoProductos?.precio}
+									Lps. {infoProductos?.precio}
 								</h1>
 							</div>
 

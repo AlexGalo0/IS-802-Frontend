@@ -48,7 +48,7 @@ export const RegistroProducto = () => {
 		setURLS(url);
 	};
 	const handleRedirection = () => {
-		navigate("/principal");
+		navigate("/");
 	};
 
 	/* Funcion onSubmit */

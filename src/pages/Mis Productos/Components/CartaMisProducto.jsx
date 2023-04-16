@@ -46,10 +46,7 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
           <Card.Body className="card-body">
             <Card.Title className="card-title">{producto.producto}</Card.Title>
             <Card.Text className="card-medium">
-              <BsCurrencyDollar
-                style={{ marginTop: "-2px", fontSize: "20px" }}
-              />{" "}
-              {producto.precio}
+            Lps. {producto.precio}
             </Card.Text>
             <Card.Text className="card-medium">
               Categoría : {producto.nombrecategoria}

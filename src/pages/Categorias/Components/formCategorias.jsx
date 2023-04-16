@@ -23,7 +23,7 @@ export const FormCategorias = () => {
 	const navigate = useNavigate(); //Para redireccion
 
 	const handleRedirection = () => {
-		navigate("/principal");
+		navigate("/");
 	};
 	const token = localStorage.getItem("token")
 	/* Elementos de la categoria */
@@ -173,7 +173,7 @@ export const FormCategorias = () => {
 							className='buttonAdmin'
 							style={{ marginTop: "30px", marginBottom: "-10px" }}
 							onClick={()=>{
-								navigate("/principal")
+								navigate("/")
 							}}
 						>
 							¡No quiero publicidad!
