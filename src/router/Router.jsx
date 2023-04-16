@@ -15,6 +15,7 @@ import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginaFavoritos";
 import { MisProductos } from "../pages/Mis Productos/Components/MisProductos";
 import { LandingPage } from "../pages/Landing/Components/LandingPage";
 import { FormCategorias } from "../pages/Categorias/Components/formCategorias";
+import { AdminUsuarios } from "../pages/AdminUsuarios/Components/adminUsuarios";
 
 import { useContext } from "react";
 import { RutaProtegida, NavbarsLR } from "../Components";
@@ -34,14 +35,22 @@ export const Router = () => {
 						</RutaProtegida>
 					}
 				/>
-				{/* <Route
+				<Route
+					path='/usuarios'
+					element={
+						<RutaProtegida isAllowed={adminAuth}>
+							<AdminUsuarios />
+						</RutaProtegida>
+					}
+				/>
+				<Route
 					path='/dashboard-admin'
 					element={
 						<RutaProtegida isAllowed={adminAuth}>
 							<DashboardAdministrador />
 						</RutaProtegida>
 					}
-				/> */}
+				/>
 
 				{/* RUTAS PROTEGIDAS DE USUARIO */}
 				<Route

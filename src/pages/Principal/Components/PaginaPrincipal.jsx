@@ -131,7 +131,7 @@ export const PaginaPrincipal = () => {
 					>
 						<span className='textBuscar'>Limpiar filtros</span>
 					</button>
-					<div style={{ padding: "5px" }} className='scroll'>
+					<div style={{ padding: "5px", marginTop: '50px' }} className='scroll'>
 						<form onSubmit={handleSubmit(filtrarProductos)}>
 							<h5 className='py-3 cate'>Categorías</h5>
 							{categorias?.map((categoria) => (
@@ -289,8 +289,8 @@ export const PaginaPrincipal = () => {
 									fontSize: "medium",
 									margin: "auto",
 									backgroundColor: "#365662",
-									marginTop: "-860px",
-									marginLeft: "50px",
+									marginTop: "-1405px",
+									marginLeft: "56px",
 									position: "absolute",
 								}}
 							>

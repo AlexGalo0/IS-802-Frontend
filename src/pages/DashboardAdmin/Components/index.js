@@ -1,1 +1,1 @@
-export * from './DashboardAdministrador'
+export * from './adminProductos'

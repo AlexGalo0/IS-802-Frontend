@@ -23,7 +23,7 @@ import { ChatGeneral } from "../pages/Producto/Components/ChatGeneral";
 
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import axios from "axios"; 
+import axios from "axios";
 
 export const NavbarsLogueado = () => {
   const { userAuth, setUserAuth } = useContext(UserContext);
@@ -46,8 +46,8 @@ export const NavbarsLogueado = () => {
     }
   };
   const nombre = localStorage.getItem("nombre");
-  const apellido = localStorage.getItem("apellido");/* 
-  const correo = localStorage.getItem("correo"); */
+  const apellido = localStorage.getItem("apellido"); 
+  const correo = localStorage.getItem("correo");
 
   /* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
   const renderTooltip = (props) => (
@@ -80,10 +80,10 @@ export const NavbarsLogueado = () => {
   }
 
   /* Cosas del chat */
-	const [showGeneral,setShowGeneral] = useState(false);
-  const handleCerrarGeneral=()=>{
-		setShowGeneral(false)
-	}
+  const [showGeneral, setShowGeneral] = useState(false);
+  const handleCerrarGeneral = () => {
+    setShowGeneral(false);
+  };
 
   /* const obtenerProductoPorId = async (idProducto) => {
 		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
@@ -162,17 +162,16 @@ export const NavbarsLogueado = () => {
 
       {/* Navbar */}
       <div className="navbar">
-		
-	  <Link to="/principal">
-        <Image src={logo} className="image-logo" />
-		</Link>
+        <Link to="/principal">
+          <Image src={logo} className="image-logo" />
+        </Link>
         <div /* className="buscador-div2" */ /* style={{display:"none"}} */>
-
-		<div style={{color: 'white', fontSize: 'larger', marginTop: '13px'}}>
-		¡Hola {nombre} {apellido}!
-                  </div>
-
-		</div>
+          <div
+            style={{ color: "white", fontSize: "larger", marginTop: "13px" }}
+          >
+            ¡Hola {nombre} {apellido}!
+          </div>
+        </div>
         <div style={{ display: "flex", margin: "auto" }}>
           <Link to="/registrarProducto" style={{ textDecoration: "none" }}>
             <button className="btnregis" style={{ width: "300px" }}>
@@ -194,22 +193,21 @@ export const NavbarsLogueado = () => {
             delay={{ show: 250, hide: 400 }}
             overlay={renderTooltipMessaje}
           >
-            
-              <button
-                className="button-cuenta"
-                onClick={() => {
-                  scrollToTop(), setShowGeneral(true);
-                }}
-              >
-                <AiOutlineMessage />
-              </button>
+            <button
+              className="button-cuenta"
+              onClick={() => {
+                scrollToTop(), setShowGeneral(true);
+              }}
+            >
+              <AiOutlineMessage />
+            </button>
           </OverlayTrigger>
-          
-          <ChatGeneral 
-													showGeneral={showGeneral}
-													handleCerrarGeneral={handleCerrarGeneral}
-													/* vendedor={vendedor} */
-												/>
+
+          <ChatGeneral
+            showGeneral={showGeneral}
+            handleCerrarGeneral={handleCerrarGeneral}
+            // vendedor={vendedor}
+          />
 
           <OverlayTrigger
             placement="left"
@@ -251,7 +249,7 @@ export const NavbarsLogueado = () => {
               placement="end"
               bsPrefix="offcanvas"
             >
-              <Form className="formCategory" style={{width: '100%'}}>
+              <Form className="formCategory" style={{ width: "100%" }}>
                 <Offcanvas.Header closeButton closeVariant="white">
                   <Offcanvas.Title>
                     <p
@@ -262,28 +260,50 @@ export const NavbarsLogueado = () => {
                         marginRight: "80px",
                         fontSize: "26px",
                         fontWeight: "400",
-                        marginBottom: "-55px",
-                        marginTop: "0px",
+                        marginBottom: "-95px",
+                        marginTop: "40px",
                       }}
                     >
                       Perfil de:
                     </p>
                   </Offcanvas.Title>
                 </Offcanvas.Header>
-                <Offcanvas.Body style={{width: '100%', height: '100%'}}>
-                
+                <Offcanvas.Body style={{ width: "100%", height: "100%" }}>
                   <div
-                     style={{display: 'flex', justifyContent: "space-between", alignItems: 'center', flexDirection: 'column', height: '100%'}}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                      flexDirection: "column",
+                      height: "100%",
+                      marginTop: '-30px',
+
+                    }}
                   >
                     <p
+                        style={{
+                          color: "#f7f7f7",
+                          fontSize: "26px",
+                          fontWeight: "400",
+                        }}
+                      >
+                        {nombre} {apellido}
+                      </p>
+                      <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <p
                       style={{
                         color: "#f7f7f7",
-                        fontSize: "26px",
+                        fontSize: "20px",
                         fontWeight: "400",
                       }}
                     >
-                      {nombre} {apellido}
-                    </p>{/* 
+                      Informacion:
+                    </p>
                     <p
                       style={{
                         color: "#f7f7f7",
@@ -292,26 +312,74 @@ export const NavbarsLogueado = () => {
                       }}
                     >
                       {correo}
-                    </p> */}
-                    <Link to="/misProductos" style={{ textDecoration: "none" }}>
-                      <button className="buttonCerrarSesion">
-                        Mis productos
-                      </button>
-                    </Link>
-                    <Link to="/categorias" style={{ textDecoration: "none" }}>
-                      <button className="buttonCerrarSesion">
-                        Suscribite a Categorias
-                      </button>
-                    </Link>
+                    </p>
+                    <p
+                      style={{
+                        color: "#f7f7f7",
+                        fontSize: "20px",
+                        fontWeight: "400",
+                      }}
+                    >
+                      Fecha de nacimiento
+                    </p>
+                    <p
+                      style={{
+                        color: "#f7f7f7",
+                        fontSize: "20px",
+                        fontWeight: "400",
+                      }}
+                    >
+                      Telefono
+                    </p>
+                    <p
+                      style={{
+                        color: "#f7f7f7",
+                        fontSize: "20px",
+                        fontWeight: "400",
+                      }}
+                    >
+                      DNI
+                    </p>
+                    <p
+                      style={{
+                        color: "#f7f7f7",
+                        fontSize: "20px",
+                        fontWeight: "400",
+                      }}
+                    >
+                      Departamento
+                    </p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "30px",
+                      }}
+                    >
                       
-                  <button
+                      <Link
+                        to="/misProductos"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <button className="buttonCerrarSesion">
+                          Mis productos
+                        </button>
+                      </Link>
+                      <Link to="/categorias" style={{ textDecoration: "none" }}>
+                        <button className="buttonCerrarSesion">
+                          Suscribite a Categorias
+                        </button>
+                      </Link>
+                    </div>
+
+                    <button
                       onClick={pruebaDesloguear}
                       className="buttonCerrarSesion"
                     >
                       Cerrar sesión
                     </button>
                   </div>
-                  
                 </Offcanvas.Body>
               </Form>
             </Offcanvas>
@@ -321,4 +389,3 @@ export const NavbarsLogueado = () => {
     </>
   );
 };
-
