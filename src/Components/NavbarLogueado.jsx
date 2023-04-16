@@ -20,14 +20,15 @@ import { MdLogout } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context";
 import { ChatGeneral } from "../pages/Producto/Components/ChatGeneral";
+
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import axios from "axios"; 
 
 export const NavbarsLogueado = () => {
   const { userAuth, setUserAuth } = useContext(UserContext);
-  
-	let { idProducto } = useParams();
+  /* 
+	let { idProducto } = useParams(); */
 
   const pruebaDesloguear = () => {
     setUserAuth(false);
@@ -45,8 +46,8 @@ export const NavbarsLogueado = () => {
     }
   };
   const nombre = localStorage.getItem("nombre");
-  const apellido = localStorage.getItem("apellido");
-  const correo = localStorage.getItem("correo");
+  const apellido = localStorage.getItem("apellido");/* 
+  const correo = localStorage.getItem("correo"); */
 
   /* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
   const renderTooltip = (props) => (
@@ -78,13 +79,13 @@ export const NavbarsLogueado = () => {
     window.scrollTo(0, 0);
   }
 
-  
+  /* Cosas del chat */
 	const [showGeneral,setShowGeneral] = useState(false);
   const handleCerrarGeneral=()=>{
 		setShowGeneral(false)
 	}
 
-  const obtenerProductoPorId = async (idProducto) => {
+  /* const obtenerProductoPorId = async (idProducto) => {
 		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
 
 		return res.data[0];
@@ -100,7 +101,7 @@ export const NavbarsLogueado = () => {
 			"" + infoProductos?.usuarioNombre + " " + infoProductos?.usuarioApellido,
 		id_vendedor: infoProductos?.id_usuario.data,
 	};
-
+ */
   return (
     <>
       <div className="top-header">
@@ -207,7 +208,7 @@ export const NavbarsLogueado = () => {
           <ChatGeneral 
 													showGeneral={showGeneral}
 													handleCerrarGeneral={handleCerrarGeneral}
-													vendedor={vendedor}
+													/* vendedor={vendedor} */
 												/>
 
           <OverlayTrigger
@@ -282,7 +283,7 @@ export const NavbarsLogueado = () => {
                       }}
                     >
                       {nombre} {apellido}
-                    </p>
+                    </p>{/* 
                     <p
                       style={{
                         color: "#f7f7f7",
@@ -291,7 +292,7 @@ export const NavbarsLogueado = () => {
                       }}
                     >
                       {correo}
-                    </p>
+                    </p> */}
                     <Link to="/misProductos" style={{ textDecoration: "none" }}>
                       <button className="buttonCerrarSesion">
                         Mis productos
@@ -320,3 +321,4 @@ export const NavbarsLogueado = () => {
     </>
   );
 };
+
