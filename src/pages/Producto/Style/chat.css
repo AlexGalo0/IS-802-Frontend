@@ -13,6 +13,7 @@
     --hover: #416b7a;
     --letter: #02050A;
     --shadow: #42a19e;
+    --extra: #a6d6ea;
   }
   
   
@@ -85,6 +86,15 @@
     .menChat {
       background-color: var(--blue3);
       color: var(--white);
+      border-radius: 15px;
+      max-width: 350px;
+      padding: 5px;
+      width: fit-content;
+    }
+
+    .menChatUser {
+      background-color: var(--extra);
+      color: var(--letter);
       border-radius: 15px;
       max-width: 350px;
       padding: 5px;

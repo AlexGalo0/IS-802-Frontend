@@ -163,14 +163,22 @@ export const ModalChatVendedor = ({
                     {messages.map((message, index) => (
                       <li key={index} style={{ listStyle: "none" }}>
                         {localStorage.nombre === message.from
-                          ? "Tú"
+                          ? "Tú" 
                           : vendedor?.nombreVendedor}
                         :
-                        <div className="menChat">
+                        {localStorage.nombre === message.from
+                          ? <div className="menChat" >
                           <p style={{ margin: "1px" }}>
                             {/* {message.from} :  */}{message.body}
                           </p>
                         </div>
+                          : <div className="menChatUser">
+                          <p style={{ margin: "1px" }}>
+                            {/* {message.from} :  */}{message.body}
+                          </p>
+                        </div>}
+
+                        
                       </li>
                     ))}
                   </ul>
