@@ -126,7 +126,7 @@ export const ModalChatVendedor = ({
       style={{ display: "flex", flexDirection: "row", marginLeft: "-45px" }}
     >
       <main className="asiPrincipal">
-        <article className="artChat">
+        <article className="artChat" style={{borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px'}}>
           <Modal.Header closeButton>
             <Modal.Title style={{ height: "15px", fontSize: "25px" }}>
               {/* Establece un chat con :  */}

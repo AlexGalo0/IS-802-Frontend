@@ -46,6 +46,7 @@ export const NavbarsLogueado = () => {
   };
   const nombre = localStorage.getItem("nombre");
   const apellido = localStorage.getItem("apellido");
+  const correo = localStorage.getItem("correo");
 
   /* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
   const renderTooltip = (props) => (
@@ -249,7 +250,7 @@ export const NavbarsLogueado = () => {
               placement="end"
               bsPrefix="offcanvas"
             >
-              <Form className="formCategory" style={{width: '250px'}}>
+              <Form className="formCategory" style={{width: '100%'}}>
                 <Offcanvas.Header closeButton closeVariant="white">
                   <Offcanvas.Title>
                     <p
@@ -264,15 +265,33 @@ export const NavbarsLogueado = () => {
                         marginTop: "0px",
                       }}
                     >
-                      Perfil de {nombre}:
+                      Perfil de:
                     </p>
                   </Offcanvas.Title>
                 </Offcanvas.Header>
-                <Offcanvas.Body>
-                 
+                <Offcanvas.Body style={{width: '100%', height: '100%'}}>
+                
                   <div
-                     style={{display: 'flex', justifyContent: "space-between", alignItems: 'center', flexDirection: 'column', gap: '30px'}}
+                     style={{display: 'flex', justifyContent: "space-between", alignItems: 'center', flexDirection: 'column', height: '100%'}}
                   >
+                    <p
+                      style={{
+                        color: "#f7f7f7",
+                        fontSize: "26px",
+                        fontWeight: "400",
+                      }}
+                    >
+                      {nombre} {apellido}
+                    </p>
+                    <p
+                      style={{
+                        color: "#f7f7f7",
+                        fontSize: "20px",
+                        fontWeight: "400",
+                      }}
+                    >
+                      {correo}
+                    </p>
                     <Link to="/misProductos" style={{ textDecoration: "none" }}>
                       <button className="buttonCerrarSesion">
                         Mis productos
@@ -283,13 +302,15 @@ export const NavbarsLogueado = () => {
                         Suscribite a Categorias
                       </button>
                     </Link>
-                    <button
+                      
+                  <button
                       onClick={pruebaDesloguear}
                       className="buttonCerrarSesion"
                     >
                       Cerrar sesión
                     </button>
                   </div>
+                  
                 </Offcanvas.Body>
               </Form>
             </Offcanvas>
