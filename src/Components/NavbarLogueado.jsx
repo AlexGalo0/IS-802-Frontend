@@ -19,9 +19,16 @@ import { FaBoxes, FaStar, FaUserCircle } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context";
+import { ChatGeneral } from "../pages/Producto/Components/ChatGeneral";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import axios from "axios"; 
 
 export const NavbarsLogueado = () => {
   const { userAuth, setUserAuth } = useContext(UserContext);
+  
+	let { idProducto } = useParams();
+
   const pruebaDesloguear = () => {
     setUserAuth(false);
     if (localStorage.getItem("token") !== null) {
@@ -69,6 +76,29 @@ export const NavbarsLogueado = () => {
   function scrollToTop() {
     window.scrollTo(0, 0);
   }
+
+  
+	const [showGeneral,setShowGeneral] = useState(false);
+  const handleCerrarGeneral=()=>{
+		setShowGeneral(false)
+	}
+
+  const obtenerProductoPorId = async (idProducto) => {
+		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
+
+		return res.data[0];
+	};
+
+  const { data: infoProductos } = useQuery({
+		queryKey: ["producto"],
+		queryFn: () => obtenerProductoPorId(idProducto),
+	});
+
+  const vendedor = {
+		nombreVendedor:
+			"" + infoProductos?.usuarioNombre + " " + infoProductos?.usuarioApellido,
+		id_vendedor: infoProductos?.id_usuario.data,
+	};
 
   return (
     <>
@@ -162,17 +192,22 @@ export const NavbarsLogueado = () => {
             delay={{ show: 250, hide: 400 }}
             overlay={renderTooltipMessaje}
           >
-            <Link to="/construyendo">
+            
               <button
                 className="button-cuenta"
                 onClick={() => {
-                  scrollToTop();
+                  scrollToTop(), setShowGeneral(true);
                 }}
               >
                 <AiOutlineMessage />
               </button>
-            </Link>
           </OverlayTrigger>
+          
+          <ChatGeneral 
+													showGeneral={showGeneral}
+													handleCerrarGeneral={handleCerrarGeneral}
+													vendedor={vendedor}
+												/>
 
           <OverlayTrigger
             placement="left"
