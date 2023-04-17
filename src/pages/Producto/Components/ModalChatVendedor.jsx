@@ -18,7 +18,6 @@ export const ModalChatVendedor = ({
   const token = localStorage.getItem("token");
 
   const idResultado = producto?.idProducto?.data;
-
   const idProducto = idResultado?.join("");
 
   const [message, setMessage] = useState("");
@@ -48,7 +47,7 @@ export const ModalChatVendedor = ({
       setShowConfirmSale(true); //Renderizar el Div
     });
 
-    // socket.emit("chat-producto", datosInicializacion)//Evento que se dispara cuando un usuario inicia sesión
+    socket.emit("chat-producto", datosInicializacion)//Evento que se dispara cuando un usuario inicia sesión
 
     return () => {
       socket.off("envio-mensaje-producto", receiveMessage);

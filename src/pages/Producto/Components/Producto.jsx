@@ -91,14 +91,7 @@ export const Producto = ({}) => {
 		setTexto("¡Enlace de producto copiado!");
 	}
 	const token = localStorage.getItem("token")
-	useEffect(()=>{
-		const datosInicializacion = {
-			token:token,
-			idProducto:idProducto
-		}
-		socket.emit("chat-producto", datosInicializacion)
 
-	},[])
 	return (
 		<>
 			<Container fluid className='container-grid'>
