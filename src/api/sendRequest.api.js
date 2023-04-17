@@ -129,3 +129,9 @@ export const obtenerUsuariosChat=async()=>{
     return res.data
 
 }
+
+export const obtenerTodosUsuarios =async()=>{
+    const res = await axios.get("http://localhost:4000/user")
+    return res.data
+
+}

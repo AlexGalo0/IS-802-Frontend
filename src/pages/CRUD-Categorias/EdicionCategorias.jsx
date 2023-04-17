@@ -36,6 +36,7 @@ import {
 } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
 import { BiUser } from "react-icons/bi";
+import { AsideAdmin } from "../../Components/AsideAdmin";
 
 export const EdicionCategorias = () => {
   const {
@@ -167,62 +168,7 @@ export const EdicionCategorias = () => {
     <Container fluid className="container-grid">
       {/* {userAuth ? <NavbarsLogueado /> : <NavbarsLR />} */}
       <header className="headerCrud" /* style={{ paddingTop: "122px" }} */>
-        <aside
-          style={{
-            height: "100vh",
-            backgroundColor: "#365662",
-            color: "#f7f7f7",
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            flexDirection: "column",
-            padding: "10px",
-          }}
-        >
-          <div className="text-center py-3">
-            <Image src={logo} width="230px" />
-          </div>
-
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "20px" }}
-          >
-            <Link to="/usuarios" style={{ textDecoration: "none" }}>
-              <button className="buttonCerrarSesion">
-                <BiUser style={{ marginRight: "5px" }} />
-                Usuarios
-              </button>
-            </Link>
-            <Link to="/dashboard-admin" style={{ textDecoration: "none" }}>
-              <button className="buttonCerrarSesion">
-                <FaBoxes style={{ marginRight: "5px" }} />
-                Productos
-              </button>
-            </Link>
-            <Link to="/construyendo" style={{ textDecoration: "none" }}>
-              <button className="buttonCerrarSesion">
-                <AiOutlineAreaChart style={{ marginRight: "5px" }} />
-                Estadísticas
-              </button>
-            </Link>
-            <Link to="/construyendo" style={{ textDecoration: "none" }}>
-              <button className="buttonCerrarSesion">
-                <AiFillWarning style={{ marginRight: "5px" }} />
-                Denuncias
-              </button>
-            </Link>
-            <Link to="/admin/crudCategorias" style={{ textDecoration: "none" }}>
-              <button className="buttonCerrarSesion">
-                <BiCategory style={{ marginRight: "5px" }} />
-                Categorías
-              </button>
-            </Link>
-          </div>
-
-          <button onClick={deslogearAdmin} className="buttonCerrarSesion">
-            <AiOutlinePoweroff style={{ marginRight: "5px" }} />
-            Cerrar sesión
-          </button>
-        </aside>
+        <AsideAdmin/>
 
         <article
           style={{

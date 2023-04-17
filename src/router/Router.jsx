@@ -15,11 +15,12 @@ import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginaFavoritos";
 import { MisProductos } from "../pages/Mis Productos/Components/MisProductos";
 import { LandingPage } from "../pages/Landing/Components/LandingPage";
 import { FormCategorias } from "../pages/Categorias/Components/formCategorias";
-import { AdminUsuarios } from "../pages/AdminUsuarios/Components/adminUsuarios";
+import { AdminUsuarios } from "../pages/AdminUsuarios/Components/AdminUsuarios";
 
 import { useContext } from "react";
 import { RutaProtegida, NavbarsLR } from "../Components";
 import { Route, Routes } from "react-router-dom";
+import { ProductosAdminUsuarios } from "../pages/ProductosAdminUsuarios";
 export const Router = () => {
 	const { userAuth } = useContext(UserContext);
 	const { adminAuth } = useContext(AdminContext);
@@ -36,7 +37,7 @@ export const Router = () => {
 					}
 				/>
 				<Route
-					path='/usuarios'
+					path='admin/usuarios'
 					element={
 						<RutaProtegida isAllowed={adminAuth}>
 							<AdminUsuarios />
@@ -48,6 +49,14 @@ export const Router = () => {
 					element={
 						<RutaProtegida isAllowed={adminAuth}>
 							<DashboardAdministrador />
+						</RutaProtegida>
+					}
+				/>
+				<Route
+					path='admin/usuarios/productos-usuarios'
+					element={
+						<RutaProtegida isAllowed={adminAuth}>
+							<ProductosAdminUsuarios />
 						</RutaProtegida>
 					}
 				/>
@@ -88,8 +97,6 @@ export const Router = () => {
 				/>
 				<Route path='/chatGeneral/:idVendedor' element={<ChatGeneral />} />
 				<Route path='/chat' element={<ChatGeneral />} />
-
-
 				{/* Rutas para cualquier usuario */}
 
 				<Route path='/login' element={<UserLogin />} />
