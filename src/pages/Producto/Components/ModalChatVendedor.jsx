@@ -142,17 +142,27 @@ export const ModalChatVendedor = ({
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div style={{marginTop: "85px", display: 'flex', justifyContent: 'center' }}>
+            <div style={{marginTop: "85px", display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
           <button onClick={handleConfirmSale} disabled={showConfirmSale} className='buttonProducto' style={{
 									color: "#f7f7f7",
 									fontSize: "medium",
 									backgroundColor: "#365662",
 								}}> <span className='box'>Confirmar venta</span></button>
 				{showConfirmSale && (
-					<alert>
-						<p>Deseas confirmar la venta?</p>
-						<button onClick={enviarVenta}>Confirmar</button>
-						<button>Cancelar</button>
+					<alert style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontSize: '17px', marginTop: '10px'}}>
+						<p>¿Deseas confirmar la venta?</p>
+            <div style={{display: 'flex'}}>
+						<button onClick={enviarVenta} className='buttonProducto' style={{
+									color: "#f7f7f7",
+									fontSize: "medium",
+									backgroundColor: "#365662",
+								}}><span className='box'>Confirmar</span></button>
+						<button className='buttonProducto' style={{
+									color: "#f7f7f7",
+									fontSize: "medium",
+									backgroundColor: "#365662",
+								}}><span className='box'>Cancelar</span></button>
+                </div>
 					</alert>
 				)}
         </div>
