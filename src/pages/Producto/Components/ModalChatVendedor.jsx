@@ -142,18 +142,25 @@ export const ModalChatVendedor = ({
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {showConfirmSale && (
-              <alert>
-                <p>Deseas confirmar la venta?</p>
-                <button onClick={enviarVenta}>Confirmar</button>
-                <button>Cancelar</button>
-              </alert>
-            )}
+            <div style={{marginTop: "85px", display: 'flex', justifyContent: 'center' }}>
+          <button onClick={handleConfirmSale} disabled={showConfirmSale} className='buttonProducto' style={{
+									color: "#f7f7f7",
+									fontSize: "medium",
+									backgroundColor: "#365662",
+								}}> <span className='box'>Confirmar venta</span></button>
+				{showConfirmSale && (
+					<alert>
+						<p>Deseas confirmar la venta?</p>
+						<button onClick={enviarVenta}>Confirmar</button>
+						<button>Cancelar</button>
+					</alert>
+				)}
+        </div>
 
             <form onSubmit={handleSubmit}>
               <div
                 className="mensajesPadre"
-                style={{ height: "440px", marginTop: "95px" }}
+                style={{ height: "390px", marginTop: "15px" }}
               >
                 <div className="mensajes" style={{ overflow: "auto" }}>
                   {/* 
