@@ -110,11 +110,11 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
     <Modal
       show={showGeneral}
       onHide={handleCerrarGeneral}
-      style={{ display: "flex", flexDirection: "row", marginLeft: "-170px" }}
+      style={{ display: "flex", flexDirection: "row", marginLeft: "-45px" }}
     >
       <main className="asiPrincipal">
-        <aside className="asiChat">Perfiles de usuarios con los que podre chat</aside>
-        <article className="artChat">
+        {/* <aside className="asiChat">Perfiles de usuarios con los que podre chat</aside> */}
+        <article className="artChat" style={{borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px'}}>
           <Modal.Header closeButton>
             <Modal.Title style={{ height: "15px", fontSize: "25px" }}>
               {/* Establece un chat con :  */}{vendedor?.nombreVendedor}
