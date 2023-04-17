@@ -30,10 +30,10 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
     const receiveMessage = (message) => {
       setMessages([...messages, message]);
     };
-    socket.on("envio-mensaje-producto", receiveMessage);
+    socket.on("envio-mensaje-general", receiveMessage);
 
     return () => {
-      socket.off("general-envio-mensaje", receiveMessage);
+      socket.off("envio-mensaje-general", receiveMessage);
       // socket.on("confirmarVenta", () => {
       // 	setShowConfirmSale(false?'??'); //Renderizar el Div
       // });
@@ -60,7 +60,7 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
       setErrorMensaje(true);
       return;
     }
-    socket.emit("general-envio-mensaje", newMessage);
+    socket.emit("envio-mensaje-general", newMessage);
 
     // enviarDatos(message);
     setMessages([...messages, newMessage]);
