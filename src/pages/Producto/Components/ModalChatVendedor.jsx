@@ -177,7 +177,7 @@ export const ModalChatVendedor = ({
 								}}><span className='box'>Cancelar</span></button>
                 </div>
                 <label htmlFor="">Cantidad</label>
-                <input type="text" value={cantidad} onChange={handleInputChange}  />
+                <input  value={cantidad} type="number" onChange={handleInputChange}  />
 					</alert>
 				)}
         </div>
