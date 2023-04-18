@@ -44,7 +44,6 @@ export const crearProducto = async (infoProducto) => {
 
 /* **POST: Inicio Sesiones** */
 export const iniciarSesion = async (loginData) => {
-
     const res = await axios.post('http://localhost:4000/login/cliente', loginData)
     const token = res.data.token
     const nombre = res.data.nombre
@@ -56,7 +55,6 @@ export const iniciarSesion = async (loginData) => {
     localStorage.setItem("apellido", apellido)
     localStorage.setItem("correo", correo)
     return res;
-
 }
 
 export const iniciarSesionAdmin = async (loginData) => {

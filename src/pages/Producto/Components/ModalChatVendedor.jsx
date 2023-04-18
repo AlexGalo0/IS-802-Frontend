@@ -111,16 +111,14 @@ export const ModalChatVendedor = ({
   }
 
   const enviarVenta = () => {
-    
     const datosDeCompra = {
       tokenActual: localStorage.getItem("token"),
-      idUsuarioProducto: vendedor?.id_vendedor?.toString()
-        ? vendedor.id_vendedor.toString()
-        : "",
-        cantidad:cantidad
+      idVendedor: vendedor?.id_vendedor.toString(),
+      idProducto: idResultado.toString(),
+      cantidad:cantidad
     }
     console.log("Los datos de compra son: ", datosDeCompra);
-    // axios.post("http://localhost:4000/confirmarVenta", datosDeCompra);
+    axios.put(`http://localhost:4000/product/confirmar-compra/${datosDeCompra.tokenActual}`, datosDeCompra);
   };
 
   /* Con este codigos logramos que al aniadir un mensaje se haga scroll automaticamente hacia abajo */
@@ -174,7 +172,11 @@ export const ModalChatVendedor = ({
 									color: "#f7f7f7",
 									fontSize: "medium",
 									backgroundColor: "#365662",
-								}}><span className='box'>Cancelar</span></button>
+								}} onClick={()=>{
+                  socket.on("confirmar-venta", () => {
+                    setShowConfirmSale(true); //Renderizar el Div
+                  });
+                }}><span className='box'>Cancelar</span></button>
                 </div>
                 <label htmlFor="">Cantidad</label>
                 <input  value={cantidad} type="number" onChange={handleInputChange}  />
