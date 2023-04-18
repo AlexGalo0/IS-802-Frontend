@@ -22,6 +22,7 @@ export const ModalChatVendedor = ({
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [cantidad, setCantidad] = useState(1);
   const [datosDeChat, setDatosDeChat] = useState({
     tokenActual: localStorage.getItem("token"),
     idUsuarioProducto: vendedor?.id_vendedor?.toString
@@ -30,6 +31,7 @@ export const ModalChatVendedor = ({
     mensaje: "",
     nombreEmisor: localStorage.getItem("nombre"),
     idProducto: idProducto,
+    cantidad : cantidad
   });
 
   const [showConfirmSale, setShowConfirmSale] = useState(false); //Confirmacion de Venta
@@ -37,6 +39,7 @@ export const ModalChatVendedor = ({
     token: token,
     idProducto: idProducto,
   };
+  
 
   useEffect(() => {
     const receiveMessage = (message) => {
@@ -66,7 +69,9 @@ export const ModalChatVendedor = ({
     });
     setMessage(e.target.value);
   };
-
+  const handleInputChange = (event) => {
+    setCantidad(event.target.value);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const newMessage = {
@@ -95,6 +100,7 @@ export const ModalChatVendedor = ({
       mensaje: mensaje,
       nombreEmisor: localStorage.getItem("nombre"),
     };
+  
     await axios.post("http://localhost:4000/saveMessage", data);
   };
 
@@ -105,7 +111,16 @@ export const ModalChatVendedor = ({
   }
 
   const enviarVenta = () => {
-    console.log("Me vendieron!");
+    
+    const datosDeCompra = {
+      tokenActual: localStorage.getItem("token"),
+      idUsuarioProducto: vendedor?.id_vendedor?.toString()
+        ? vendedor.id_vendedor.toString()
+        : "",
+        cantidad:cantidad
+    }
+    console.log("Los datos de compra son: ", datosDeCompra);
+    // axios.post("http://localhost:4000/confirmarVenta", datosDeCompra);
   };
 
   /* Con este codigos logramos que al aniadir un mensaje se haga scroll automaticamente hacia abajo */
@@ -162,7 +177,7 @@ export const ModalChatVendedor = ({
 								}}><span className='box'>Cancelar</span></button>
                 </div>
                 <label htmlFor="">Cantidad</label>
-                <input type="text" />
+                <input type="text" value={cantidad} onChange={handleInputChange}  />
 					</alert>
 				)}
         </div>
