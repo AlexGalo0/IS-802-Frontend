@@ -315,6 +315,14 @@ export const NavbarsLogueado = () => {
                           Mis productos
                         </button>
                       </Link>
+                      <Link
+                        to="/sus-cat"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <button className="buttonCerrarSesion">
+                          Suscribite a Categorias para Publicidad!
+                        </button>
+                      </Link>
                       
                     </div>
 

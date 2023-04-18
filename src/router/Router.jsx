@@ -10,6 +10,7 @@ import {
 	EdicionCategorias,
 	Producto,
 	ChatGeneral,
+	
 } from "../pages";
 import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginaFavoritos";
 import { MisProductos } from "../pages/Mis Productos/Components/MisProductos";
@@ -98,6 +99,7 @@ export const Router = () => {
 				<Route path='/chatGeneral/:idVendedor' element={<ChatGeneral />} />
 				<Route path='/chat' element={<ChatGeneral />} />
 				{/* Rutas para cualquier usuario */}
+				<Route path='/sus-cat' element={<FormCategorias />} />
 
 				<Route path='/login' element={<UserLogin />} />
 

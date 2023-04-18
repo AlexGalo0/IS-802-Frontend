@@ -43,7 +43,7 @@ export const ModalChatVendedor = ({
       setMessages([...messages, message]);
     };
     socket.on("envio-mensaje-producto", receiveMessage);
-    socket.on("confirmarVenta", () => {
+    socket.on("confirmar-venta", () => {
       setShowConfirmSale(true); //Renderizar el Div
     });
 
@@ -51,7 +51,7 @@ export const ModalChatVendedor = ({
 
     return () => {
       socket.off("envio-mensaje-producto", receiveMessage);
-      // socket.on("confirmarVenta", () => {
+      // socket.on("confirmar-venta", () => {
       // 	setShowConfirmSale(false?'??'); //Renderizar el Div
       // });
     };
@@ -101,7 +101,7 @@ export const ModalChatVendedor = ({
   /* Codigo para confirmar venta */
 
   function handleConfirmSale() {
-    socket.emit("confirmarVenta");
+    socket.emit("confirmar-venta");
   }
 
   const enviarVenta = () => {
@@ -161,6 +161,8 @@ export const ModalChatVendedor = ({
 									backgroundColor: "#365662",
 								}}><span className='box'>Cancelar</span></button>
                 </div>
+                <label htmlFor="">Cantidad</label>
+                <input type="text" />
 					</alert>
 				)}
         </div>
