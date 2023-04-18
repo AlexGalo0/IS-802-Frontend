@@ -9,9 +9,11 @@ import {
 import { FaBoxes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { BiCategory, BiUser } from "react-icons/bi";
+import { BiCategory, BiUser  } from "react-icons/bi";
 import { AdminContext } from "../context";
+import { BsFillCloudArrowUpFill } from "react-icons/bs";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { enviarPDFs } from "../api";
 export const AsideAdmin = () => {
 	const navigate = useNavigate();
 	const { adminAuth, setAdminAuth } = useContext(AdminContext);
@@ -35,10 +37,12 @@ export const AsideAdmin = () => {
 	};
 
     const enviarPDF = useMutation({
-      // mutationFn,
-      
+      mutationFn:enviarPDFs,
       onSuccess:()=>setCompletado(true)
     })
+    const handleEnviarPDF= ()=>{
+      enviarPDF.mutate()
+    }
 
 	const [showModal, setShowModal] = useState(false);
 	const handleShowModal = () => setShowModal(true);
@@ -69,7 +73,7 @@ export const AsideAdmin = () => {
 				</Link>
 
 				<button className='buttonCerrarSesion' onClick={handleShowModal}>
-					<BiUser style={{ marginRight: "5px" }} />
+					<BsFillCloudArrowUpFill  />
 					Enviar Publicidad
 				</button>
 
@@ -111,7 +115,7 @@ export const AsideAdmin = () => {
 					<Modal.Title>Deseas enviar PDF a los usuarios</Modal.Title>
 				</Modal.Header>
 				<Modal.Footer>
-          <button>
+          <button onClick={handleEnviarPDF}>
             Si , deseo enviarlos
           </button>
 					<button  onClick={handleCloseModal}>

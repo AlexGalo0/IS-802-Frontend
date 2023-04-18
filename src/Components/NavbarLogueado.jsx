@@ -188,26 +188,9 @@ export const NavbarsLogueado = () => {
         </div>
 
         <div style={{ display: "flex", gap: "10px" }}>
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={renderTooltipMessaje}
-          >
-            <button
-              className="button-cuenta"
-              onClick={() => {
-                scrollToTop(), setShowGeneral(true);
-              }}
-            >
-              <AiOutlineMessage />
-            </button>
-          </OverlayTrigger>
+         
 
-          <ChatGeneral
-            showGeneral={showGeneral}
-            handleCerrarGeneral={handleCerrarGeneral}
-            // vendedor={vendedor}
-          />
+          
 
           <OverlayTrigger
             placement="left"
@@ -313,42 +296,8 @@ export const NavbarsLogueado = () => {
                     >
                       {correo}
                     </p>
-                    <p
-                      style={{
-                        color: "#f7f7f7",
-                        fontSize: "20px",
-                        fontWeight: "400",
-                      }}
-                    >
-                      Fecha de nacimiento
-                    </p>
-                    <p
-                      style={{
-                        color: "#f7f7f7",
-                        fontSize: "20px",
-                        fontWeight: "400",
-                      }}
-                    >
-                      Telefono
-                    </p>
-                    <p
-                      style={{
-                        color: "#f7f7f7",
-                        fontSize: "20px",
-                        fontWeight: "400",
-                      }}
-                    >
-                      DNI
-                    </p>
-                    <p
-                      style={{
-                        color: "#f7f7f7",
-                        fontSize: "20px",
-                        fontWeight: "400",
-                      }}
-                    >
-                      Departamento
-                    </p>
+                    
+                    
                     </div>
                     <div
                       style={{
@@ -366,11 +315,7 @@ export const NavbarsLogueado = () => {
                           Mis productos
                         </button>
                       </Link>
-                      <Link to="/categorias" style={{ textDecoration: "none" }}>
-                        <button className="buttonCerrarSesion">
-                          Suscribite a Categorias
-                        </button>
-                      </Link>
+                      
                     </div>
 
                     <button

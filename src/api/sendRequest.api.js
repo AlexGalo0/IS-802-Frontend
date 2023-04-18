@@ -50,6 +50,7 @@ export const iniciarSesion = async (loginData) => {
     const nombre = res.data.nombre
     const correo = res.data.correo
     const apellido = res.data.apellido
+    
     localStorage.setItem("token", token)
     localStorage.setItem("nombre", nombre)
     localStorage.setItem("apellido", apellido)
@@ -133,5 +134,9 @@ export const obtenerUsuariosChat=async()=>{
 export const obtenerTodosUsuarios =async()=>{
     const res = await axios.get("http://localhost:4000/user")
     return res.data
+}
 
+export const enviarPDFs= async ()=>{
+    const res = await axios.get('http://localhost:4000/envio-publicidad-pdf')
+    return res.data ;
 }

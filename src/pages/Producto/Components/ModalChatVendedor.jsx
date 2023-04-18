@@ -79,7 +79,6 @@ export const ModalChatVendedor = ({
       return;
     }
     socket.emit("envio-mensaje-producto", newMessage);
-
     enviarDatos(message);
     setMessages([...messages, newMessage]);
     setErrorMensaje(false);
@@ -129,7 +128,7 @@ export const ModalChatVendedor = ({
           <Modal.Header closeButton>
             <Modal.Title style={{ height: "15px", fontSize: "25px" }}>
               {/* Establece un chat con :  */}
-              {vendedor?.nombreVendedor}
+              Vendedor :  {vendedor?.nombreVendedor}
               <div style={{ fontSize: "17px", marginTop: "-15px" }}>
                 <br />
                 Articulo: {producto?.nombre}
