@@ -45,10 +45,15 @@ export const crearProducto = async (infoProducto) => {
 /* **POST: Inicio Sesiones** */
 export const iniciarSesion = async (loginData) => {
     const res = await axios.post('http://localhost:4000/login/cliente', loginData)
+    const categoriasSuscritas = await axios.get(`http://localhost:4000/categorySubscription/${res.data.token}`);
+    const idsListaDeDeseos = await axios.get(`http://localhost:4000/wishlist/1/${res.data.token}`);
+
     const token = res.data.token
     const nombre = res.data.nombre
     const correo = res.data.correo
     const apellido = res.data.apellido
+    localStorage.setItem("categoriasSuscritas", categoriasSuscritas.data)
+    localStorage.setItem("idsListaDeDeseos", JSON.stringify(idsListaDeDeseos.data))
     localStorage.setItem("token", token)
     localStorage.setItem("nombre", nombre)
     localStorage.setItem("apellido", apellido)
