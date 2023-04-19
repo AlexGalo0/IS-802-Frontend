@@ -49,7 +49,6 @@ export const iniciarSesion = async (loginData) => {
     const nombre = res.data.nombre
     const correo = res.data.correo
     const apellido = res.data.apellido
-    
     localStorage.setItem("token", token)
     localStorage.setItem("nombre", nombre)
     localStorage.setItem("apellido", apellido)

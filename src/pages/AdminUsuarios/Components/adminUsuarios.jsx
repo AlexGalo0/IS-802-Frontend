@@ -1,4 +1,12 @@
-import { Container, Image, Table, Form, Button, Modal } from "react-bootstrap";
+import {
+	Container,
+	Image,
+	Table,
+	Form,
+	Button,
+	Modal,
+	Alert,
+} from "react-bootstrap";
 import "../Style/DashboardAdmin.css";
 import logo from "../../../assets/logo.png";
 import { FaBoxes } from "react-icons/fa";
@@ -10,20 +18,19 @@ import {
 	AiOutlinePoweroff,
 } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
-
 import { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../../context";
 import { Link, useNavigate } from "react-router-dom";
 import { BiLeftArrow } from "react-icons/bi";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { AsideAdmin } from "../../../Components/AsideAdmin";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { obtenerTodosUsuarios } from "../../../api";
 
 export const AdminUsuarios = () => {
 	const navigate = useNavigate();
 	const { adminAuth, setAdminAuth } = useContext(AdminContext);
-	const [dniUsuario, setDniUsuario] = useState("");
+	const [usuarioABorrar, setUsuarioABorrar] = useState({});
 	const deslogearAdmin = () => {
 		setAdminAuth(false);
 		if (localStorage.getItem("token-admin") !== null) {
@@ -45,14 +52,28 @@ export const AdminUsuarios = () => {
 	const { data: usuarios } = useQuery({
 		queryKey: ["usuarios"],
 		queryFn: obtenerTodosUsuarios,
-		onSuccess: () => {
-			console.log(usuarios);
-		},
 	});
-
+	const queryClient = useQueryClient();
 	const [showBorrarModal, setShowBorrarModal] = useState(false);
 	const handleShowBorrarModal = () => setShowBorrarModal(true);
 	const handleCloseBorrarModal = () => setShowBorrarModal(false);
+	const [borradoCorrectamente, setBorradoCorrectamente] = useState(false);
+	const borrarUsuarioMutation = useMutation({
+		mutationFn: (dniUsuario) => {
+			console.log(dniUsuario);
+		},
+		onSuccess: () => {
+			setBorradoCorrectamente(true);
+			setTimeout(() => {
+				handleCloseBorrarModal();
+				setBorradoCorrectamente(false);
+				queryClient.invalidateQueries("usuarios");
+			}, 1000);
+		},
+	});
+	const borrarUsuario = (usuarioAEliminar) => {
+		borrarUsuarioMutation.mutate(usuarioAEliminar.dni);
+	};
 
 	return (
 		<Container fluid className='container-grid'>
@@ -149,8 +170,9 @@ export const AdminUsuarios = () => {
 											<td style={{ width: "200px" }}>{usuario.dni}</td>
 											<td style={{ width: "200px" }}>{usuario.telefono}</td>
 											<div style={{ display: "flex", gap: "5px" }}>
-												<Link to={`/admin/usuarios/productos-usuarios/${usuario.dni}`}>
-											
+												<Link
+													to={`/admin/usuarios/productos-usuarios/${usuario.dni}`}
+												>
 													<button
 														className='buttonEdiBo'
 														style={{
@@ -159,7 +181,6 @@ export const AdminUsuarios = () => {
 															width: "145px",
 														}}
 														onClick={() => {
-															
 															handleShowBorrarModal(true);
 														}}
 													>
@@ -171,6 +192,7 @@ export const AdminUsuarios = () => {
 													style={{ color: "#f7f7f7", fontSize: "medium" }}
 													onClick={() => {
 														handleShowBorrarModal(true);
+														setUsuarioABorrar(usuario);
 													}}
 												>
 													<span className='box'>
@@ -197,18 +219,22 @@ export const AdminUsuarios = () => {
 				<Modal.Header>
 					<Modal.Title
 						style={{ fontSize: "25px" }}
-					>{`¿Queres dar de baja a este usuario?`}</Modal.Title>
+					>{`¿Queres dar de baja al usuario ${usuarioABorrar.nombres}?`}</Modal.Title>
 				</Modal.Header>
 
-				{/* {mostrarAlert ? (
-					<Alert variant='success'>¡Categoría eliminada!</Alert>
+				{borradoCorrectamente ? (
+					<Alert variant='success'>
+						El usuario {usuarioABorrar.nombres} fue eliminado
+					</Alert>
 				) : (
 					""
-				)} */}
+				)}
 				<Modal.Footer style={{ margin: "auto" }}>
 					<button
-						className='buttonGuardar' /* 
-						disabled={disableButton} */
+						className='buttonGuardar'
+						onClick={() => {
+							borrarUsuario(usuarioABorrar);
+						}}
 					>
 						Eliminar
 					</button>

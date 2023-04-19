@@ -37,7 +37,9 @@ export const RegistroProducto = () => {
 	});
 	const mutationRegistrarProducto = useMutation({
 		mutationFn: crearProducto,
-		onSuccess: () => {}, //Agregar en el body funcion cuando funcione correctamente
+		onSuccess: () => {
+			handleRedirection()
+		}, //Agregar en el body funcion cuando funcione correctamente
 		onError: () => {},
 	});
 

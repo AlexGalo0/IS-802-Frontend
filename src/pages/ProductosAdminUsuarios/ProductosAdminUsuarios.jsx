@@ -10,7 +10,7 @@ import {
 	OverlayTrigger,
 	Modal,
 	Button,
-  Alert,
+	Alert,
 } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
 export const ProductosAdminUsuarios = () => {
@@ -28,21 +28,29 @@ export const ProductosAdminUsuarios = () => {
 		</Tooltip>
 	);
 	const [show, setShow] = useState(false);
-  const queryClient = useQueryClient();
+	const queryClient = useQueryClient();
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const [productoAModificar, setProductoAModificar] = useState();
-  const [seEliminoCorrectamente, setSeEliminoCorrectamente] = useState(false)
+	const [seEliminoCorrectamente, setSeEliminoCorrectamente] = useState(false);
 	const borrarProductoMutation = useMutation({
-    mutationFn:()=>console.log("Se ejecuto para el producto: " , productoAModificar.idProducto.data.toString()),
-    onSuccess:()=>{
-      setSeEliminoCorrectamente(true)
-      queryClient.invalidateQueries("productosUsuario")
-    }
-  })
-  const borrarProducto = (productoABorrar)=>{
-      borrarProductoMutation.mutate(productoABorrar)
-  }
+		mutationFn: () =>
+			console.log(
+				"Se ejecuto para el producto: ",
+				productoAModificar.idProducto.data.toString()
+			),
+		onSuccess: () => {
+			setSeEliminoCorrectamente(true);
+			queryClient.invalidateQueries("productosUsuario");
+			setTimeout(() => {
+				handleClose();
+				setSeEliminoCorrectamente(false);
+			}, 1000);
+		},
+	});
+	const borrarProducto = (productoABorrar) => {
+		borrarProductoMutation.mutate(productoABorrar);
+	};
 	return (
 		<>
 			<h1>Productos del usuario con el DNI: {usuariodni} </h1>
@@ -86,9 +94,9 @@ export const ProductosAdminUsuarios = () => {
 												fontSize: "medium",
 												width: "45px",
 											}}
-											onClick={()=>{
-                        handleShow(), setProductoAModificar(producto);
-                      }}
+											onClick={() => {
+												handleShow(), setProductoAModificar(producto);
+											}}
 										>
 											<span className='box'>
 												<AiOutlineDelete style={{ fontSize: "35px" }} />
@@ -108,13 +116,15 @@ export const ProductosAdminUsuarios = () => {
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>¿Deseas Borrar el producto : {productoAModificar?.nombre}? </Modal.Title>
+					<Modal.Title>
+						¿Deseas Borrar el producto : {productoAModificar?.nombre}?{" "}
+					</Modal.Title>
 				</Modal.Header>
 				<Modal.Footer>
 					<button
 						variant='primary'
 						onClick={() => {
-							 borrarProducto(productoAModificar?.idProducto.data.toString()) ;
+							borrarProducto(productoAModificar?.idProducto.data.toString());
 						}}
 					>
 						Borrar Producto
@@ -122,9 +132,11 @@ export const ProductosAdminUsuarios = () => {
 					<button variant='secondary' onClick={handleClose}>
 						Cerrar
 					</button>
-          {
-            seEliminoCorrectamente ? <Alert variant="success">Se elimino correctamente</Alert> : ''
-          }
+					{seEliminoCorrectamente ? (
+						<Alert variant='success'>Se elimino correctamente</Alert>
+					) : (
+						""
+					)}
 				</Modal.Footer>
 			</Modal>
 		</>

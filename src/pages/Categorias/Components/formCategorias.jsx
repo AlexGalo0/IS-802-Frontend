@@ -47,8 +47,7 @@ export const FormCategorias = () => {
 		queryFn:()=>verCategorias(token)
 	})
 
-	const mostrarCategorias =()=>{
-	}
+
 
 	const mutationSuscripcionCategoria = useMutation({
 		mutationFn: (categorias) => suscripcionACategoria(categorias,token),
@@ -180,9 +179,7 @@ export const FormCategorias = () => {
 						</button>
 						
 					</Form>
-					<button onClick={mostrarCategorias}>
-						Mostrar
-						</button>
+			
 				</Container>
 			</header>
 		</>
