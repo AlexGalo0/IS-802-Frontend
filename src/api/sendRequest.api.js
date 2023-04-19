@@ -139,3 +139,8 @@ export const enviarPDFs= async ()=>{
     console.log(res.data);
     return res.data ;
 }
+export const obtenerProductosUsuarioDNI=async(dniUsuario)=>{
+    const res = await axios.get(`http://localhost:4000/productos/productosAdmin/1/${dniUsuario}`)
+    console.log(res.data);
+    return res.data 
+}
