@@ -341,11 +341,9 @@ export const Producto = ({}) => {
 									{/* Boton de compartir */}
 								</div>
 								<div>{texto}</div>
-								{userAuth && nombreCompleto === vendedor.nombreVendedor ? (
-									<div>
-										<label htmlFor=''>Este articulo te pertenece</label>
-									</div>
-								) : (
+								{userAuth && 
+									
+								 
 									<>
 										<button
 											className='buttonChat'
@@ -353,7 +351,9 @@ export const Producto = ({}) => {
 											onClick={() => setShowGeneral(true)}
 										>
 											<span className='box'>
-												Escribele a {vendedor.nombreVendedor}
+												{nombreCompleto === vendedor.nombreVendedor
+													? "Revisa tus mensajes"
+													: `Escribele a ${vendedor.nombreVendedor}`}
 											</span>
 										</button>
 										<ChatGeneral
@@ -367,7 +367,11 @@ export const Producto = ({}) => {
 												style={{ color: "#f7f7f7", fontSize: "medium" }}
 												onClick={() => setShowModal(true)}
 											>
-												<span className='box'>Pregunta por este articulo</span>
+												<span className='box'>
+												{nombreCompleto === vendedor.nombreVendedor
+													? "Inbox de tu producto"
+													: `Pregunta por este articulo`}
+												</span>
 											</button>
 										</div>
 										<ModalChatVendedor
@@ -377,7 +381,7 @@ export const Producto = ({}) => {
 											producto={infoProductos}
 										/>
 									</>
-								)}
+}
 							</div>
 						</div>
 					</div>
