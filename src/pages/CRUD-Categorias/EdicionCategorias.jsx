@@ -28,14 +28,7 @@ import { useNavigate } from "react-router";
 import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { AdminContext } from "../../context";
-import { FaHouseDamage, FaBoxes } from "react-icons/fa";
-import {
-  AiOutlineAreaChart,
-  AiFillWarning,
-  AiOutlinePoweroff,
-} from "react-icons/ai";
-import { BiCategory } from "react-icons/bi";
-import { BiUser } from "react-icons/bi";
+;
 import { AsideAdmin } from "../../Components/AsideAdmin";
 
 export const EdicionCategorias = () => {

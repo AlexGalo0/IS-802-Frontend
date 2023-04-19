@@ -54,7 +54,7 @@ export const Router = () => {
 					}
 				/>
 				<Route
-					path='admin/usuarios/productos-usuarios'
+					path='admin/usuarios/productos-usuarios/:usuariodni'
 					element={
 						<RutaProtegida isAllowed={adminAuth}>
 							<ProductosAdminUsuarios />
@@ -96,7 +96,6 @@ export const Router = () => {
 						</RutaProtegida>
 					}
 				/>
-				<Route path='/chatGeneral/:idVendedor' element={<ChatGeneral />} />
 				<Route path='/chat' element={<ChatGeneral />} />
 				{/* Rutas para cualquier usuario */}
 				<Route path='/sus-cat' element={<FormCategorias />} />

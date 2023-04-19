@@ -117,7 +117,7 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
         <article className="artChat" style={{borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px'}}>
           <Modal.Header closeButton>
             <Modal.Title style={{ height: "15px", fontSize: "25px" }}>
-              {/* Establece un chat con :  */}{vendedor?.nombreVendedor}
+              Estas hablando con : {vendedor?.nombreVendedor}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -129,7 +129,7 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
                       <li key={index} style={{listStyle: 'none'}}>
 						
             {localStorage.nombre === message.from
-                          ? <p style={{marginBottom: '-1px', textAlign: 'end', marginRight: '15px', clear: 'both'}}>Tú:</p>
+                          ? <p style={{marginBottom: '-1px', textAlign: 'end', marginRight: '15px', clear: 'both'}}>{nombre}</p>
                           : <p style={{marginBottom: '-1px'}}>{vendedor?.nombreVendedor}:</p>}
                         {localStorage.nombre === message.from
                           ? <div className="menChat" style={{float: 'right', clear: "both", marginRight: '13px'}} >

@@ -23,7 +23,7 @@ import { obtenerTodosUsuarios } from "../../../api";
 export const AdminUsuarios = () => {
 	const navigate = useNavigate();
 	const { adminAuth, setAdminAuth } = useContext(AdminContext);
-
+	const [dniUsuario, setDniUsuario] = useState("");
 	const deslogearAdmin = () => {
 		setAdminAuth(false);
 		if (localStorage.getItem("token-admin") !== null) {
@@ -96,7 +96,7 @@ export const AdminUsuarios = () => {
 								textAlign: "center",
 							}}
 						>
-              {/* 
+							{/* 
               
 							<h4>Ingrese el id del usuario a buscar:</h4>
               <div style={{ display: "flex", width: "360px", margin: "auto" }}>
@@ -114,7 +114,6 @@ export const AdminUsuarios = () => {
 							</div>
               
               */}
-							
 						</div>
 						<div className='container-table'>
 							<table>
@@ -150,21 +149,23 @@ export const AdminUsuarios = () => {
 											<td style={{ width: "200px" }}>{usuario.dni}</td>
 											<td style={{ width: "200px" }}>{usuario.telefono}</td>
 											<div style={{ display: "flex", gap: "5px" }}>
-                        <Link to='productos-usuarios'>
-												<button
-													className='buttonEdiBo'
-													style={{
-														color: "#f7f7f7",
-														fontSize: "medium",
-														width: "145px",
-													}}
-													onClick={() => {
-														handleShowBorrarModal(true);
-													}}
-                          >
-													<span className='box'>Ver sus productos</span>
-												</button>
-                          </Link>
+												<Link to={`/admin/usuarios/productos-usuarios/${usuario.dni}`}>
+											
+													<button
+														className='buttonEdiBo'
+														style={{
+															color: "#f7f7f7",
+															fontSize: "medium",
+															width: "145px",
+														}}
+														onClick={() => {
+															
+															handleShowBorrarModal(true);
+														}}
+													>
+														<span className='box'>Ver sus productos</span>
+													</button>
+												</Link>
 												<button
 													className='buttonEdiBo'
 													style={{ color: "#f7f7f7", fontSize: "medium" }}

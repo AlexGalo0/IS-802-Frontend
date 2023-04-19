@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Image , Modal , Button, Alert} from "react-bootstrap";
+import { Image, Modal, Button, Alert } from "react-bootstrap";
 import {
 	AiFillWarning,
 	AiOutlineAreaChart,
@@ -9,7 +9,7 @@ import {
 import { FaBoxes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { BiCategory, BiUser  } from "react-icons/bi";
+import { BiCategory, BiUser } from "react-icons/bi";
 import { AdminContext } from "../context";
 import { BsFillCloudArrowUpFill } from "react-icons/bs";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -17,7 +17,7 @@ import { enviarPDFs } from "../api";
 export const AsideAdmin = () => {
 	const navigate = useNavigate();
 	const { adminAuth, setAdminAuth } = useContext(AdminContext);
-  const [completado,setCompletado] = useState(false)
+	const [completado, setCompletado] = useState(false);
 	const deslogearAdmin = () => {
 		setAdminAuth(false);
 		if (localStorage.getItem("token-admin") !== null) {
@@ -36,13 +36,13 @@ export const AsideAdmin = () => {
 		handleCloseBorrarModal();
 	};
 
-    const enviarPDF = useMutation({
-      mutationFn:enviarPDFs,
-      onSuccess:()=>setCompletado(true)
-    })
-    const handleEnviarPDF= ()=>{
-      enviarPDF.mutate()
-    }
+	const enviarPDF = useMutation({
+		mutationFn: enviarPDFs,
+		onSuccess: () => setCompletado(true),
+	});
+	const handleEnviarPDF = () => {
+		enviarPDF.mutate();
+	};
 
 	const [showModal, setShowModal] = useState(false);
 	const handleShowModal = () => setShowModal(true);
@@ -73,7 +73,7 @@ export const AsideAdmin = () => {
 				</Link>
 
 				<button className='buttonCerrarSesion' onClick={handleShowModal}>
-					<BsFillCloudArrowUpFill  />
+					<BsFillCloudArrowUpFill />
 					Enviar Publicidad
 				</button>
 
@@ -115,15 +115,13 @@ export const AsideAdmin = () => {
 					<Modal.Title>Deseas enviar PDF a los usuarios</Modal.Title>
 				</Modal.Header>
 				<Modal.Footer>
-          <button onClick={handleEnviarPDF}>
-            Si , deseo enviarlos
-          </button>
-					<button  onClick={handleCloseModal}>
-						Close
-					</button>
-				{
-          completado? <Alert variant="success">Los correos fueron enviados</Alert> : ''
-        }
+					<button onClick={handleEnviarPDF}>Si , deseo enviarlos</button>
+					<button onClick={handleCloseModal}>Close</button>
+					{completado ? (
+						<Alert variant='success'>Los correos fueron enviados</Alert>
+					) : (
+						""
+					)}
 				</Modal.Footer>
 			</Modal>
 		</aside>

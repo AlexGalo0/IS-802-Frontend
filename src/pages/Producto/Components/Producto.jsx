@@ -40,15 +40,17 @@ export const Producto = ({}) => {
 	const handleRedirection = () => {
 		navigate(-1);
 	};
+	const nombre = localStorage.getItem("nombre");
+	const apellido = localStorage.getItem("apellido");
 
 	const [showModal, setShowModal] = useState(false);
-	const [showGeneral,setShowGeneral] = useState(false)
+	const [showGeneral, setShowGeneral] = useState(false);
 	const handleCerrarModal = () => {
 		setShowModal(false);
 	};
-	const handleCerrarGeneral=()=>{
-		setShowGeneral(false)
-	}
+	const handleCerrarGeneral = () => {
+		setShowGeneral(false);
+	};
 
 	const obtenerProductoPorId = async (idProducto) => {
 		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
@@ -65,7 +67,9 @@ export const Producto = ({}) => {
 			"" + infoProductos?.usuarioNombre + " " + infoProductos?.usuarioApellido,
 		id_vendedor: infoProductos?.id_usuario.data,
 	};
-
+	console.log("El nombre del vendedor es: ", vendedor.nombreVendedor);
+	const nombreCompleto = `${nombre} ${apellido}`;
+	console.log();
 	/* Elementos de los overlays (AL poner cursor sobre el simbolo de corazon dice que inicimos sesion) */
 	const renderTooltipButtomShare = (props) => (
 		<Tooltip id='button-tooltip' {...props}>
@@ -90,7 +94,7 @@ export const Producto = ({}) => {
 	function handleClick() {
 		setTexto("¡Enlace de producto copiado!");
 	}
-	const token = localStorage.getItem("token")
+	const token = localStorage.getItem("token");
 
 	return (
 		<>
@@ -225,9 +229,7 @@ export const Producto = ({}) => {
 									</div>
 								</div>
 
-								<h1>
-									Lps. {infoProductos?.precio}
-								</h1>
+								<h1>Lps. {infoProductos?.precio}</h1>
 							</div>
 
 							<div className='spectsMedium2'>
@@ -339,40 +341,42 @@ export const Producto = ({}) => {
 									{/* Boton de compartir */}
 								</div>
 								<div>{texto}</div>
-								{userAuth ? (
+								{userAuth && nombreCompleto === vendedor.nombreVendedor ? (
+									<div>
+										<label htmlFor=''>Este articulo te pertenece</label>
+									</div>
+								) : (
 									<>
-										
-											<button
-												className='buttonChat'
-												style={{ color: "#f7f7f7", fontSize: "medium" }}
-												onClick={()=>setShowGeneral(true)}
-											>
-												<span className='box'>Escribe al Vendedor</span>
-												
-											</button>
-											<ChatGeneral 
-													showGeneral={showGeneral}
-													handleCerrarGeneral={handleCerrarGeneral}
-													vendedor={vendedor}
-												/>
-
 										<button
 											className='buttonChat'
 											style={{ color: "#f7f7f7", fontSize: "medium" }}
-											onClick={() => setShowModal(true)}
+											onClick={() => setShowGeneral(true)}
 										>
-											
-											<span className='box'>Pregunta por este articulo en especifico</span>
+											<span className='box'>
+												Escribele a {vendedor.nombreVendedor}
+											</span>
 										</button>
+										<ChatGeneral
+											showGeneral={showGeneral}
+											handleCerrarGeneral={handleCerrarGeneral}
+											vendedor={vendedor}
+										/>
+										<div>
+											<button
+												className='buttonChat'
+												style={{ color: "#f7f7f7", fontSize: "medium" }}
+												onClick={() => setShowModal(true)}
+											>
+												<span className='box'>Pregunta por este articulo</span>
+											</button>
+										</div>
 										<ModalChatVendedor
-												showModal={showModal}
-												handleCerrarModal={handleCerrarModal}
-												vendedor={vendedor}
-												producto={infoProductos}
-											/>
+											showModal={showModal}
+											handleCerrarModal={handleCerrarModal}
+											vendedor={vendedor}
+											producto={infoProductos}
+										/>
 									</>
-								) : (
-									""
 								)}
 							</div>
 						</div>
