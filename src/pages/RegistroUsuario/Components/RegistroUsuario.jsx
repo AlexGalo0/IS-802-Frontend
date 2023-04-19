@@ -523,7 +523,10 @@ export const RegistroUsuario = () => {
 									<button
 										className='Button-Link'
 										variant='link'
-										onClick={handleShow}
+										onClick={(e)=>{
+											handleShow()
+											e.preventDefault()
+										}}
 										style={{ paddingTop: "4px" }}
 									>
 										<u>términos y condiciones</u>
