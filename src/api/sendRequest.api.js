@@ -46,7 +46,9 @@ export const crearProducto = async (infoProducto) => {
 export const iniciarSesion = async (loginData) => {
     const res = await axios.post('http://localhost:4000/login/cliente', loginData)
     const categoriasSuscritas = await axios.get(`http://localhost:4000/categorySubscription/${res.data.token}`);
-    const idsListaDeDeseos = await axios.get(`http://localhost:4000/wishlist/1/${res.data.token}`);
+    const idsListaDeDeseos = await axios.get(`http://localhost:4000/wishlist-productid/${res.data.token}`);
+
+    console.log(idsListaDeDeseos.data);
 
     const token = res.data.token
     const nombre = res.data.nombre
