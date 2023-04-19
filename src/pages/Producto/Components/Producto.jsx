@@ -341,21 +341,24 @@ export const Producto = ({}) => {
 									{/* Boton de compartir */}
 								</div>
 								<div>{texto}</div>
-								{userAuth && 
-									
-								 
+								{userAuth && (
 									<>
-										<button
-											className='buttonChat'
-											style={{ color: "#f7f7f7", fontSize: "medium" }}
-											onClick={() => setShowGeneral(true)}
-										>
-											<span className='box'>
-												{nombreCompleto === vendedor.nombreVendedor
-													? "Revisa tus mensajes"
-													: `Escribele a ${vendedor.nombreVendedor}`}
-											</span>
-										</button>
+										{nombreCompleto === vendedor.nombreVendedor ? (
+											""
+										) : (
+											<>
+												<button
+													className='buttonChat'
+													style={{ color: "#f7f7f7", fontSize: "medium" }}
+													onClick={() => setShowGeneral(true)}
+												>
+													<span className='box'>
+														Habla con  {vendedor.nombreVendedor}
+													</span>
+												</button>
+											</>
+										)}
+
 										<ChatGeneral
 											showGeneral={showGeneral}
 											handleCerrarGeneral={handleCerrarGeneral}
@@ -368,9 +371,9 @@ export const Producto = ({}) => {
 												onClick={() => setShowModal(true)}
 											>
 												<span className='box'>
-												{nombreCompleto === vendedor.nombreVendedor
-													? "Inbox de tu producto"
-													: `Pregunta por este articulo`}
+													{nombreCompleto === vendedor.nombreVendedor
+														? "Inbox de tu producto"
+														: `Pregunta por este articulo`}
 												</span>
 											</button>
 										</div>
@@ -381,7 +384,7 @@ export const Producto = ({}) => {
 											producto={infoProductos}
 										/>
 									</>
-}
+								)}
 							</div>
 						</div>
 					</div>

@@ -44,7 +44,10 @@ export const RegistroUsuario = () => {
 	const mutationRegistro = useMutation({
 		mutationFn: crearUsuario,
 		onSuccess: () => {
-			console.log("Exito!");
+			setTimeout(() => {
+				navigate("/")
+			}, 1000);
+			
 		},
 		onError: () => {
 			console.log("Hubo un error");
