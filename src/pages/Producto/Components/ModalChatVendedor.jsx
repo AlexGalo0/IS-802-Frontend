@@ -199,7 +199,7 @@ export const ModalChatVendedor = ({
                       <li key={index} style={{ listStyle: "none" }}>
                         {localStorage.nombre === message.from
                           ? <p style={{marginBottom: '-1px', textAlign: 'end', marginRight: '15px', clear: 'both'}}>Tú:</p>
-                          : <p style={{marginBottom: '-1px'}}>{vendedor?.nombreVendedor}:</p>}
+                          : <p style={{marginBottom: '-1px'}}>{message.from}:</p>}
                         {localStorage.nombre === message.from
                           ? <div className="menChat" style={{float: 'right', clear: "both", marginRight: '13px'}} >
                           <p style={{ margin: "1px" }}>
