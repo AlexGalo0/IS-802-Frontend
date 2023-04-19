@@ -39,7 +39,6 @@ export const PaginaPrincipal = () => {
 	const { register, handleSubmit, reset } = useForm({
 		defaultValues: valoresIniciales,
 	});
-	
 
 	const { data: categorias } = useQuery({
 		queryKey: ["categorias"],
@@ -51,7 +50,7 @@ export const PaginaPrincipal = () => {
 	});
 
 	const [pageParam, setPageParam] = useState(1);
-
+	const [errorPrecio, setErrorPrecios] = useState(false);
 	const [filters, setFilters] = useState();
 	const {
 		fetchNextPage, //function
@@ -61,7 +60,7 @@ export const PaginaPrincipal = () => {
 		status,
 		error,
 		refetch,
-		isLoading
+		isLoading,
 	} = useInfiniteQuery({
 		queryKey: ["productos", filters],
 		queryFn: ({ pageParam = 1 }) =>
@@ -104,6 +103,24 @@ export const PaginaPrincipal = () => {
 	});
 
 	const filtrarProductos = (datosFiltrado) => {
+		console.log(datosFiltrado);
+		const emptyFilters = {
+			categorias: [],
+			departamentos: [],
+			precioMinimo: "",
+			precioMaximo: "",
+			palabraClave: "",
+			days: [],
+		};
+		if (JSON.stringify(emptyFilters) === JSON.stringify(datosFiltrado)) {
+			return;
+		}
+		if (
+			Number(datosFiltrado.precioMinimo) >= Number(datosFiltrado.precioMaximo)
+		) {
+			setErrorPrecios(true);
+			return;
+		}
 		setFilters(datosFiltrado);
 
 		// setFilters
@@ -111,7 +128,8 @@ export const PaginaPrincipal = () => {
 
 	const handleReiniciar = () => {
 		reset();
-		setFilters()
+		setFilters();
+		setErrorPrecios(false);
 	};
 
 	return (
@@ -129,9 +147,9 @@ export const PaginaPrincipal = () => {
 						className='btnFiltros'
 						style={{ marginTop: "-5px" }}
 					>
-						<span className='textBuscar'>Limpiar filtros</span>
+						<span className='textBuscar'>Reiniciar Busqueda</span>
 					</button>
-					<div style={{ padding: "5px", marginTop: '50px' }} className='scroll'>
+					<div style={{ padding: "5px", marginTop: "50px" }} className='scroll'>
 						<form onSubmit={handleSubmit(filtrarProductos)}>
 							<h5 className='py-3 cate'>Categorías</h5>
 							{categorias?.map((categoria) => (
@@ -174,7 +192,6 @@ export const PaginaPrincipal = () => {
 										{...register(`departamentos`)}
 									/>
 									<label
-										
 										htmlFor={departamento.nombre}
 										style={{ marginTop: "3px" }}
 									></label>
@@ -197,11 +214,7 @@ export const PaginaPrincipal = () => {
 											style={{ marginTop: "3px" }}
 											className='yep'
 										/>
-										<label
-											htmlFor='7'
-											
-											style={{ marginTop: "3px" }}
-										></label>
+										<label htmlFor='7' style={{ marginTop: "3px" }}></label>
 										<p className='checkP'>7 Dias</p>
 										<br />
 									</div>
@@ -215,10 +228,7 @@ export const PaginaPrincipal = () => {
 											style={{ marginTop: "3px" }}
 											className='yep'
 										/>
-										<label
-											htmlFor='15'
-											style={{ marginTop: "3px" }}
-										></label>
+										<label htmlFor='15' style={{ marginTop: "3px" }}></label>
 										<p className='checkP'>15 Dias</p>
 										<br />
 									</div>
@@ -233,10 +243,7 @@ export const PaginaPrincipal = () => {
 											style={{ marginTop: "3px" }}
 											className='yep'
 										/>
-										<label
-											htmlFor='30'
-											style={{ marginTop: "3px" }}
-										></label>
+										<label htmlFor='30' style={{ marginTop: "3px" }}></label>
 										<p className='checkP'>30 Dias</p>
 										<br />
 									</div>
@@ -264,6 +271,11 @@ export const PaginaPrincipal = () => {
 										type='number'
 										{...register("precioMaximo")}
 									/>
+									{errorPrecio ? (
+										<text>El precio maximo debe ser mayor al minimo</text>
+									) : (
+										""
+									)}
 								</>
 							}
 
@@ -301,12 +313,10 @@ export const PaginaPrincipal = () => {
 				</aside>
 
 				<article>
-					{
-						isLoading ?  <div>Cargando...</div> : ''
-					}
-					
+					{isLoading ? <div>Cargando...</div> : ""}
+
 					{!content ? (
-						''
+						""
 					) : content[0].length === 0 ? (
 						<div>!No pudimos encontrar ningún producto!</div>
 					) : (
