@@ -136,5 +136,6 @@ export const obtenerTodosUsuarios =async()=>{
 
 export const enviarPDFs= async ()=>{
     const res = await axios.get('http://localhost:4000/envio-publicidad-pdf')
+    console.log(res.data);
     return res.data ;
 }

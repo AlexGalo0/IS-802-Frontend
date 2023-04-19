@@ -14,6 +14,7 @@ import { AdminContext } from "../context";
 import { BsFillCloudArrowUpFill } from "react-icons/bs";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { enviarPDFs } from "../api";
+import axios from "axios";
 export const AsideAdmin = () => {
 	const navigate = useNavigate();
 	const { adminAuth, setAdminAuth } = useContext(AdminContext);
@@ -35,9 +36,12 @@ export const AsideAdmin = () => {
 	const handleReiniciarBorrar = () => {
 		handleCloseBorrarModal();
 	};
-
+	const [correosEnviados, setCorreosEnviados] = useState([])
 	const enviarPDF = useMutation({
-		mutationFn: enviarPDFs,
+		mutationFn: async ()=>{
+			const res = await axios.get('http://localhost:4000/envio-publicidad-pdf')
+			setCorreosEnviados(res.data)
+		},
 		onSuccess: () => setCompletado(true),
 	});
 	const handleEnviarPDF = () => {
@@ -118,7 +122,7 @@ export const AsideAdmin = () => {
 					<button onClick={handleEnviarPDF}>Si , deseo enviarlos</button>
 					<button onClick={handleCloseModal}>Close</button>
 					{completado ? (
-						<Alert variant='success'>Los correos fueron enviados</Alert>
+						<Alert variant='success'>Los PDFs fueron enviados a los siguientes correos: {JSON.stringify(correosEnviados)}</Alert>
 					) : (
 						""
 					)}

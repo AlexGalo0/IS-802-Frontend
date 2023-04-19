@@ -12,7 +12,8 @@ const socket = io("http://localhost:4000/");
 export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
   const nombre = localStorage.getItem("nombre");
   const token = localStorage.getItem("token");
-
+	const apellido = localStorage.getItem("apellido");
+	const nombreCompleto = `${nombre} ${apellido}`;
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [datosDeChat, setDatosDeChat] = useState({
@@ -117,7 +118,10 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
         <article className="artChat" style={{borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px'}}>
           <Modal.Header closeButton>
             <Modal.Title style={{ height: "15px", fontSize: "25px" }}>
-              Estas hablando con : {vendedor?.nombreVendedor}
+              {
+                nombreCompleto === vendedor?.nombreVendedor ?  `Eres tú , ${nombreCompleto}` : ` Estas hablando con : ${vendedor?.nombreVendedor}` 
+              }
+            
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
