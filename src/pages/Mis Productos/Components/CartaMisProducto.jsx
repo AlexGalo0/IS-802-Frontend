@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import {
 	Container,
-	Accordion,
-	Form,
 	Card,
-	Row,
 	Col,
 	OverlayTrigger,
 	Tooltip,
@@ -13,10 +10,9 @@ import {
 } from "react-bootstrap";
 import "../Style/Temp_Principal.css";
 import { Link } from "react-router-dom";
-import { BsCurrencyDollar } from "react-icons/bs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AiOutlineDelete } from "react-icons/ai";
-import { borrarProductoListaDeseos, darBajaMiProducto } from "../../../api";
+import { darBajaMiProducto } from "../../../api";
 import io from "socket.io-client";
 
 const socket = io("http://localhost:4000/");

@@ -5,7 +5,6 @@ import {
 	Form,
 	Row,
 	Image,
-	Modal,
 	Alert,
 } from "react-bootstrap";
 import "../../../style/styleForm.css";

@@ -4,11 +4,11 @@ import "../Style/LoginAdministrador.css";
 import logo from "../../../assets/logoV2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Form, Row, Image, Alert } from "react-bootstrap";
-import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
+import { BiLeftArrow } from "react-icons/bi";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import {  useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { AdminContext } from "../../../context";
 
 export const LoginAdministrador = () => {

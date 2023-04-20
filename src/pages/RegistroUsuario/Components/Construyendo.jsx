@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navigate, useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 import '../styles/style.css'
 import whmcs from '../styles/whmcs.svg'
 

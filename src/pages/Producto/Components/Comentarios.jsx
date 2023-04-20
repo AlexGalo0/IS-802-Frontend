@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../../context";
 import { Alert, Form, Table } from "react-bootstrap";
 import { MdOutlineInsertComment } from "react-icons/md";
 import {
-	QueryClient,
 	useMutation,
 	useQuery,
 	useQueryClient,
@@ -12,7 +11,6 @@ import {
 import { useForm } from "react-hook-form";
 import {
 	crearComentario,
-	obtenerCategorias,
 	obtenerComentarios,
 } from "../../../api";
 export const Comentarios = ({ productoID }) => {

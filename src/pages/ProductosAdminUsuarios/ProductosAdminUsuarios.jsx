@@ -6,15 +6,12 @@ import {
   obtenerProductosUsuarioDNI,
 } from "../../api/sendRequest.api";
 import {
-  Col,
   Row,
   Card,
   Container,
   Tooltip,
   OverlayTrigger,
   Modal,
-  Button,
-  Alert,
 } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
 

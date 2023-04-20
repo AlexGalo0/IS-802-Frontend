@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { Footers } from "../../../Components/Footer";
-import { BiLeftArrow, BiCategoryAlt } from "react-icons/bi";
+import { BiLeftArrow } from "react-icons/bi";
 
 export const PaginaFavoritos = () => {
   const navigate = useNavigate(); //Para redireccion

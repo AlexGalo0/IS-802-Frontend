@@ -1,14 +1,8 @@
-import { Container, Image, Table, Form, Button, Modal } from "react-bootstrap";
+import { Container, Modal } from "react-bootstrap";
 import "../Style/DashboardAdmin.css";
-import logo from "../../../assets/logo.png";
-import { FaBoxes } from "react-icons/fa"; BiUser
+
 import { BiUser } from "react-icons/bi";
-import {
-  AiOutlineAreaChart,
-  AiFillWarning,
-  AiOutlinePoweroff,
-} from "react-icons/ai";
-import { BiCategory } from "react-icons/bi";
+
 
 import { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../../context";
