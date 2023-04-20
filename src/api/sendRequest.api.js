@@ -168,10 +168,9 @@ export const darBajaProductosAdmin = async (dni, tokenProduct) => {
 
     return res.data;
 }
-export const darBajaMiProducto = async (tokenUsuario, idProducto) => {
+export const darBajaMiProducto = async (tokenUsuario, tokenProduct) => {
     console.log(tokenUsuario);
-    console.log(idProducto);
-    const res = await axios.get(`http://localhost:4000/productos/${tokenProduct}`,idProducto)
-
+    console.log(tokenProduct);
+    const res = await axios.get(`http://localhost:4000/productos/${tokenUsuario}/${tokenProduct}`)
     return res.data;
 }
