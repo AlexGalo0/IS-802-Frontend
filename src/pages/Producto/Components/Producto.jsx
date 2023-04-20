@@ -348,7 +348,7 @@ export const Producto = ({}) => {
 								<div>{texto}</div>
 								{userAuth && (
 									<>
-										{nombreCompleto === vendedor.nombreVendedor ? (
+										{/* {nombreCompleto === vendedor.nombreVendedor ? (
 											""
 										) : (
 											<>
@@ -362,7 +362,7 @@ export const Producto = ({}) => {
 													</span>
 												</button>
 											</>
-										)}
+										)} */}
 
 										<ChatGeneral
 											showGeneral={showGeneral}

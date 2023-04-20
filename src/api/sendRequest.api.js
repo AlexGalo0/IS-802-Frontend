@@ -162,15 +162,13 @@ export const darBajaUsuario = async (dni) => {
 }
 
 export const darBajaProductosAdmin = async (dni, tokenProduct) => {
-    console.log(dni);
-    console.log(tokenProduct);
+    
     const res = await axios.get(`http://localhost:4000/productoBorrar/${dni}/${tokenProduct}`)
 
     return res.data;
 }
 export const darBajaMiProducto = async (tokenUsuario, tokenProduct) => {
-    console.log(tokenUsuario);
-    console.log(tokenProduct);
+
     const res = await axios.delete(`http://localhost:4000/productos/${tokenUsuario}/${tokenProduct}`)
     return res.data;
 }
