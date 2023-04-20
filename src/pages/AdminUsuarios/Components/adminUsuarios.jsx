@@ -83,8 +83,11 @@ export const AdminUsuarios = () => {
 				<article
 					style={{
 						display: "flex",
-						justifyContent: "center",
+						justifyContent: "initial",
+						alignItems: 'center',
 						flexDirection: "column",
+						padding: '10px',
+						width: '100%'
 					}}
 				>
 					<div
@@ -92,8 +95,7 @@ export const AdminUsuarios = () => {
 							display: "flex",
 							alignItems: "center",
 							gap: "20px",
-							marginTop: "-20px",
-							marginBottom: "40px",
+							marginBottom: "10px",
 						}}
 					>
 						<button
@@ -143,15 +145,15 @@ export const AdminUsuarios = () => {
 										width: "20%",
 										borderBottom: "1px solid black",
 										fontSize: "large",
+										gap: '10px'
 									}}
 								>
 									<th>Nombre</th>
 									<th>Apellido</th>
 									<th>Telefono</th>
 									<th>Correo</th>
-									<th>Direccion de Domicilio</th>
+									<th>Direccion de domicilio</th>
 									<th>DNI</th>
-									<th>Telefono</th>
 								</tr>
 
 								<tbody>
@@ -160,18 +162,19 @@ export const AdminUsuarios = () => {
 											style={{
 												height: "50px",
 												borderBottom: "1px solid black",
+												gap: '10px'
 											}}
 										>
-											<td style={{ width: "200px" }}>{usuario.nombres}</td>
-											<td style={{ width: "200px" }}>{usuario.apellidos}</td>
-											<td style={{ width: "200px" }}>{usuario.telefono}</td>
-											<td style={{ width: "200px" }}>{usuario.email}</td>
-											<td style={{ width: "200px" }}>{usuario.direccion}</td>
+											<td style={{ width: "100px" }}>{usuario.nombres}</td>
+											<td style={{ width: "100px" }}>{usuario.apellidos}</td>
+											<td style={{ width: "150px" }}>{usuario.telefono}</td>
+											<td style={{ width: "250px" }}>{usuario.email}</td>
+											<td style={{ width: "150px" }}>{usuario.direccion}</td>
 											<td style={{ width: "200px" }}>{usuario.dni}</td>
-											<td style={{ width: "200px" }}>{usuario.telefono}</td>
 											<div style={{ display: "flex", gap: "5px" }}>
 												<Link
 													to={`/admin/usuarios/productos-usuarios/${usuario.dni}`}
+													style={{textDecoration: 'none'}}
 												>
 													<button
 														className='buttonEdiBo'

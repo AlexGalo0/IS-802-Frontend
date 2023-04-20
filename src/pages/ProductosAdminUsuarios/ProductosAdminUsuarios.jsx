@@ -6,15 +6,21 @@ import {
 	obtenerProductosUsuarioDNI,
 } from "../../api/sendRequest.api";
 import {
-	Col,
-	Card,
-	Container,
-	Tooltip,
-	OverlayTrigger,
-	Modal,
-	Alert,
+  Col,
+  Card,
+  Container,
+  Tooltip,
+  OverlayTrigger,
+  Modal,
+  Button,
+  Alert,
 } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
+
+import { AsideAdmin } from "../../Components/AsideAdmin";
+import { BiLeftArrow } from "react-icons/bi";
+import { Link } from "react-router-dom";
+
 export const ProductosAdminUsuarios = () => {
 	const { usuariodni } = useParams();
 	const { data: productosUsuario } = useQuery({

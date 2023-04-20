@@ -147,7 +147,7 @@ export const PaginaPrincipal = () => {
 						className='btnFiltros'
 						style={{ marginTop: "-5px" }}
 					>
-						<span className='textBuscar'>Reiniciar Busqueda</span>
+						<span className='textBuscar'>Reiniciar filtros</span>
 					</button>
 					<div style={{ padding: "5px", marginTop: "50px" }} className='scroll'>
 						<form onSubmit={handleSubmit(filtrarProductos)}>
@@ -271,11 +271,7 @@ export const PaginaPrincipal = () => {
 										type='number'
 										{...register("precioMaximo")}
 									/>
-									{errorPrecio ? (
-										<text>El precio maximo debe ser mayor al minimo</text>
-									) : (
-										""
-									)}
+									
 								</>
 							}
 
@@ -310,6 +306,11 @@ export const PaginaPrincipal = () => {
 							</button>
 						</form>
 					</div>
+					{errorPrecio ? (
+										<text style={{margin: '5px'}}>¡El precio máximo debe ser mayor al mínimo!</text>
+									) : (
+										""
+									)}
 				</aside>
 
 				<article>
@@ -318,7 +319,7 @@ export const PaginaPrincipal = () => {
 					{!content ? (
 						""
 					) : content[0].length === 0 ? (
-						<div>!No pudimos encontrar ningún producto!</div>
+						<div>¡No pudimos encontrar ningún producto!</div>
 					) : (
 						<Row xs={1} md={3} className='g-2' style={{ marginTop: "-20px" }}>
 							{content}

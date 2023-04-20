@@ -175,16 +175,12 @@ export const UserLogin = () => {
               </>
             )}
 
-            <div style={{display: 'flex', justifyContent: "center", flexDirection: 'column', gap: '30px', marginBottom: '-15px'}}>
+            <div style={{display: 'flex', justifyContent: "center", flexDirection: 'column', gap: '30px'}}>
               <button className="Button" type="submit" disabled={disableButton}>
                 <span className="boxForm">Iniciar sesión</span>
               </button>
 
-              <Link to="/login-admin">
-                <button  className="buttonAdmin">
-                  ¿Eres administrador?
-                </button>
-              </Link>
+              
             </div>
           </form>
         </Container>

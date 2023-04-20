@@ -4,7 +4,6 @@ import { Modal, Alert } from "react-bootstrap";
 import io from "socket.io-client";
 import "../Style/chat.css";
 
-
 import { MdSend } from "react-icons/md";
 import React, { useState, useRef, useEffect } from "react";
 
@@ -12,8 +11,8 @@ const socket = io("http://localhost:4000/");
 export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
   const nombre = localStorage.getItem("nombre");
   const token = localStorage.getItem("token");
-	const apellido = localStorage.getItem("apellido");
-	const nombreCompleto = `${nombre} ${apellido}`;
+  const apellido = localStorage.getItem("apellido");
+  const nombreCompleto = `${nombre} ${apellido}`;
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [datosDeChat, setDatosDeChat] = useState({
@@ -97,7 +96,6 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
     scrollToBottom(myDivRef.current);
   }; */
 
-
   /* Con este codigos logramos que al aniadir un mensaje se haga scroll automaticamente hacia abajo */
   const messagesRef = useRef(null);
 
@@ -115,13 +113,18 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
     >
       <main className="asiPrincipal">
         {/* <aside className="asiChat">Perfiles de usuarios con los que podre chat</aside> */}
-        <article className="artChat" style={{borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px'}}>
+        <article
+          className="artChat"
+          style={{
+            borderTopLeftRadius: "10px",
+            borderBottomLeftRadius: "10px",
+          }}
+        >
           <Modal.Header closeButton>
             <Modal.Title style={{ height: "15px", fontSize: "25px" }}>
-              {
-                nombreCompleto === vendedor?.nombreVendedor ?  `Eres tú , ${nombreCompleto}` : ` Estas hablando con : ${vendedor?.nombreVendedor}` 
-              }
-            
+              {nombreCompleto === vendedor?.nombreVendedor
+                ? `Eres tú , ${nombreCompleto}`
+                : ` Estas hablando con : ${vendedor?.nombreVendedor}`}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -130,23 +133,45 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
                 <div className="mensajes">
                   <ul>
                     {messages.map((message, index) => (
-                      <li key={index} style={{listStyle: 'none'}}>
-						
-                    {localStorage === message.from
-                          ? <p style={{marginBottom: '-1px', textAlign: 'end', marginRight: '15px', clear: 'both'}}>Tú</p>
-                          : <p style={{marginBottom: '-1px'}}>{message.from}:</p>}
-                        {localStorage.nombre === message.from
-                          ? <div className="menChat" style={{float: 'right', clear: "both", marginRight: '13px'}} >
-                          <p style={{ margin: "1px" }}>
-                            {/* {message.from} :  */}{message.body}
-                          </p>
-                        </div>
-                          : <div className="menChatUser">
-                          <p style={{ margin: "1px" }}>
-                            {/* {message.from} :  */}{message.body}
-                          </p>
-                        </div>}
-
+                      <li key={index} style={{ listStyle: "none" }}>
+                        {localStorage.nombre === message.from ? (
+													<p
+														style={{
+															marginBottom: "-1px",
+															textAlign: "end",
+															marginRight: "15px",
+															clear: "both",
+														}}
+													>
+														Tú:
+													</p>
+												) : (
+													<p style={{ marginBottom: "-1px",  clear: "both", }}>
+														{message.from}:
+													</p>
+												)}
+                        {localStorage.nombre === message.from ? (
+                          <div
+                            className="menChat"
+                            style={{
+                              float: "right",
+                              clear: "both",
+                              marginRight: "13px",
+                            }}
+                          >
+                            <p style={{ margin: "1px" }}>
+                              {/* {message.from} :  */}
+                              {message.body}
+                            </p>
+                          </div>
+                        ) : (
+                          <div className="menChatUser">
+                            <p style={{ margin: "1px" }}>
+                              {/* {message.from} :  */}
+                              {message.body}
+                            </p>
+                          </div>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -161,9 +186,9 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
                   ) : (
                     ""
                   )}
-				  {/* scroll hacia abajo */}
-				  <div ref={messagesRef} />
-                </div >
+                  {/* scroll hacia abajo */}
+                  <div ref={messagesRef} />
+                </div>
               </div>
               <div
                 style={{
@@ -183,12 +208,12 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
                 <button
                   type="submit"
                   className="btnComent"
-                  style={{width:'110px'}}
-				  /* scroll hacia abajo */
-				  onClick={scrollToBottom}
+                  style={{ width: "110px" }}
+                  /* scroll hacia abajo */
+                  onClick={scrollToBottom}
                 >
-                  <MdSend className="iconBuscar" />
-                  <span className="textComent">Enviar</span>
+                  <MdSend className="iconBuscar" style={{marginLeft: '1px'}}/>
+                  <span className="textComent" style={{marginLeft: '11px'}}>Enviar</span>
                 </button>
               </div>
             </form>
