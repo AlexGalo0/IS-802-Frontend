@@ -20,7 +20,7 @@ export const CloudinaryUploadWidget = ({recibirURL}) => {
 				cloudName: "djnzoyal5",
 				uploadPreset: "preset_pabs",
 				theme: "blue",
-				clientAllowedFormats: ["jpg", "png"],
+				clientAllowedFormats: ["jpg", "png", "jpeg", "webp"],
 				multiple: true,
 				sources: ["local"],
 				maxFiles,

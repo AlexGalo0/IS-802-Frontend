@@ -138,19 +138,24 @@ export const PaginaPrincipal = () => {
 
 			<main className='principal'>
 				<aside className='text-center'>
-					<h4 className='py-3 fil'>
-						<FaFilter /> Filtros
-					</h4>
 					<SidebarFiltros />
-					<button
-						onClick={handleReiniciar}
-						className='btnFiltros'
-						style={{ marginTop: "-5px" }}
-					>
-						<span className='textBuscar'>Reiniciar filtros</span>
-					</button>
-					<div style={{ padding: "5px", marginTop: "50px" }} className='scroll'>
+					
+					<div style={{ padding: "5px", position: "fixed", height: "550px", marginBottom: "100px", paddingBottom: "50px" }} className='scroll'>
+						<h4 className='py-3 fil'>
+							<FaFilter /> Filtros
+						</h4>
 						<form onSubmit={handleSubmit(filtrarProductos)}>
+
+						<div className="d-grip">
+							<button onClick={handleReiniciar} className='btnFiltros'>
+								<span className='textBuscar'>Reiniciar filtros</span>
+							</button>
+
+							<button type='submit' className='btnFiltros'>
+								<span className='textBuscar'>Filtrar</span>
+							</button>
+						</div>
+
 							<h5 className='py-3 cate'>Categorías</h5>
 							{categorias?.map((categoria) => (
 								<div
@@ -289,21 +294,7 @@ export const PaginaPrincipal = () => {
 									/>
 								</>
 							}
-							<button
-								type='submit'
-								className='buttonProducto'
-								style={{
-									color: "#f7f7f7",
-									fontSize: "medium",
-									margin: "auto",
-									backgroundColor: "#365662",
-									marginTop: "-1405px",
-									marginLeft: "56px",
-									position: "absolute",
-								}}
-							>
-								<span className='box'>Filtrar</span>
-							</button>
+							
 						</form>
 					</div>
 					{errorPrecio ? (
