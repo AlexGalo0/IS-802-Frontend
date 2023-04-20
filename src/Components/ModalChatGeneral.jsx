@@ -99,8 +99,8 @@ export const ModalChatGeneral = ({
 					}}
 				>
 					<Modal.Header closeButton>
-						<Modal.Title style={{ height: "15px", fontSize: "25px" }}>
-							Chat General: Bienvenido {nombre}
+						<Modal.Title style={{ height: "15px", fontSize: "25px", minWidth: '400px', textAlign: "center" }}>
+							Mensajería general: Bienvenido {nombre}
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
@@ -157,7 +157,7 @@ export const ModalChatGeneral = ({
 											style={{ margin: "auto", marginBottom: "10px" }}
 										>
 											{" "}
-											¡No puedes enviar un mensaje vacio!
+											¡No puedes enviar un mensaje vacío!
 										</Alert>
 									) : (
 										""

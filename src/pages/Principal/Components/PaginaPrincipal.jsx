@@ -220,7 +220,7 @@ export const PaginaPrincipal = () => {
 											className='yep'
 										/>
 										<label htmlFor='7' style={{ marginTop: "3px" }}></label>
-										<p className='checkP'>7 Dias</p>
+										<p className='checkP'>7 Días</p>
 										<br />
 									</div>
 									<div className='checkbox-apple' style={{ width: "auto" }}>
@@ -234,7 +234,7 @@ export const PaginaPrincipal = () => {
 											className='yep'
 										/>
 										<label htmlFor='15' style={{ marginTop: "3px" }}></label>
-										<p className='checkP'>15 Dias</p>
+										<p className='checkP'>15 Días</p>
 										<br />
 									</div>
 
@@ -249,7 +249,7 @@ export const PaginaPrincipal = () => {
 											className='yep'
 										/>
 										<label htmlFor='30' style={{ marginTop: "3px" }}></label>
-										<p className='checkP'>30 Dias</p>
+										<p className='checkP'>30 Días</p>
 										<br />
 									</div>
 								</>

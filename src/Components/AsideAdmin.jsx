@@ -144,7 +144,7 @@ export const AsideAdmin = () => {
                 }}
               >
 					<button onClick={handleEnviarPDF} 
-                  className="buttonGuardar">Si, deseo enviarlos</button>
+                  className="buttonGuardar">Si, deseo enviar</button>
 					<button onClick={handleCloseModal} 
                   className="buttonGuardar">Cerrar</button>
 				  </div>

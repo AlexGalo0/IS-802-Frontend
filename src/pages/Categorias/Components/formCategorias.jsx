@@ -124,7 +124,7 @@ export const FormCategorias = () => {
 								marginLeft: "10px",
 							}}
 						>
-							Categorias:
+							Categorías:
 						</h1>
 
 						<Form.Group
@@ -141,8 +141,7 @@ export const FormCategorias = () => {
 								}}
 							>
 								<h4 className='py-3' style={{ color: "black" }}>
-									Selecciona las categorias de las cuales te gustaria recibir
-									publicidad:
+								Selecciona las categorías de las cuales te gustaría recibir publicidad:
 								</h4>
 								{categorias?.map((categoria) => (
 									<div
@@ -172,7 +171,7 @@ export const FormCategorias = () => {
 							</form>
 						</Form.Group>
 						{suscripcionExitosa ? (
-							<Alert variant='success'>Suscripciones Completadas.</Alert>
+							<Alert variant='success'>¡Suscripciones Completadas!</Alert>
 						) : (
 							""
 						)}

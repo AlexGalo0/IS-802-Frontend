@@ -162,17 +162,17 @@ export const ModalChatVendedor = ({
 					}}
 				>
 					<Modal.Header closeButton>
-						<Modal.Title style={{ height: "15px", fontSize: "25px" }}>
+						<Modal.Title style={{ height: "15px", fontSize: "25px", minWidth: '400px', textAlign: "center" }}>
 							{/* Establece un chat con :  */}
 							Vendedor:{" "}
 							{vendedor?.nombreVendedor === nombreCompleto
-								? `Tu eres el vendedor!`
+								? `Tú`
 								: `${vendedor?.nombreVendedor}`}
 							<div style={{ fontSize: "17px", marginTop: "-15px" }}>
 								<br />
-								Articulo: {producto?.nombre}
+								Artículo: {producto?.nombre}
 								<br />
-								Cantidad Total: {producto?.cantidad}
+								Cantidad total: {producto?.cantidad}
 								<br />
 								Precio : Lps.{producto?.precio}
 							</div>
@@ -200,7 +200,7 @@ export const ModalChatVendedor = ({
 									}}
 								>
 									{" "}
-									<span className='box'>Envia solicitud de venta</span>
+									<span className='box'>Envía solicitud de venta</span>
 								</button>
 							) : (
 								""
@@ -255,13 +255,13 @@ export const ModalChatVendedor = ({
 							)}
 							{ventaConfirmada ? (
 								<Alert variant='success'>
-									Venta Completada por: {cantidad}
+									Venta completada por: {cantidad}
 								</Alert>
 							) : (
 								""
 							)}
 							{errorConfirmado ? (
-								<Alert variant='danger'>Hubo un error!</Alert>
+								<Alert variant='danger'>¡Hubo un error!</Alert>
 							) : (
 								""
 							)}
@@ -326,7 +326,7 @@ export const ModalChatVendedor = ({
 											style={{ margin: "auto", marginBottom: "10px" }}
 										>
 											{" "}
-											No puedes enviar un mensaje vacio
+											¡No puedes enviar un mensaje vacío!
 										</Alert>
 									) : (
 										""

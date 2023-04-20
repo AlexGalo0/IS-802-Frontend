@@ -150,14 +150,14 @@ export const Producto = ({}) => {
 								<h4>Categoría: {infoProductos?.nombrecategoria}</h4>
 								<h4>Cantidad en inventario: {infoProductos?.cantidad}</h4>
 								<h4>
-									Vendido por:{" "}
+									Vendedor:{" "}
 									{nombreCompleto === vendedor.nombreVendedor
-										? "Tu eres el vendedor!"
+										? "Tú"
 										: vendedor?.nombreVendedor}
 								</h4>
 
 								<h4 style={{ marginBottom: "5px" }}>
-									Calificacion del vendedor:
+									Calificación del vendedor: 
 								</h4>
 								<div className='conCalificacion'>
 									<div className='starWitget'>
@@ -302,7 +302,7 @@ export const Producto = ({}) => {
 								)}
 
 								<div style={{ display: "flex", gap: "10px" }}>
-									{userAuth ? <Boton /> : ""}
+									{/* {userAuth ? <Boton /> : ""} */}
 
 									{userAuth ? (
 										<div className='like'>
