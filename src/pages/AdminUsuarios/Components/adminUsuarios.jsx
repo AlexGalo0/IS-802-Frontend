@@ -25,7 +25,7 @@ import { BiLeftArrow } from "react-icons/bi";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { AsideAdmin } from "../../../Components/AsideAdmin";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { obtenerTodosUsuarios } from "../../../api";
+import { darBajaUsuario, obtenerTodosUsuarios } from "../../../api";
 
 export const AdminUsuarios = () => {
 	const navigate = useNavigate();
@@ -60,7 +60,7 @@ export const AdminUsuarios = () => {
 	const [borradoCorrectamente, setBorradoCorrectamente] = useState(false);
 	const borrarUsuarioMutation = useMutation({
 		mutationFn: (dniUsuario) => {
-			console.log(dniUsuario);
+			darBajaUsuario(dniUsuario)
 		},
 		onSuccess: () => {
 			setBorradoCorrectamente(true);
