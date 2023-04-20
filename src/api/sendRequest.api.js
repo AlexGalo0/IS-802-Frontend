@@ -107,7 +107,7 @@ export const borrarProductoListaDeseos = async (idProducto, tokenUser) => {
     return res.data
 }
 export const suscripcionACategoria = async (categorias, tokenUser) => {
-    
+
     const res = await axios.post(`http://localhost:4000/categorySubscription/${tokenUser}`, categorias)
     return res.data;
 }
@@ -123,7 +123,6 @@ export const obtenerProductosUsuario = async (numeroPagina, token) => {
 }
 
 export const crearComentario = async (tokenUser, idProduct, comentario) => {
-
 
     await axios.post(`http://localhost:4000/comentarios/${tokenUser}/${idProduct}`, comentario)
 
@@ -156,17 +155,23 @@ export const obtenerProductosUsuarioDNI = async (dniUsuario) => {
     const res = await axios.get(`http://localhost:4000/productos/productosAdmin/1/${dniUsuario}`)
     return res.data
 }
-export const darBajaUsuario= async (dni) =>{
-    console.log('Dni recibido : ' , dni);
+export const darBajaUsuario = async (dni) => {
+    console.log('Dni recibido : ', dni);
     const res = await axios.get(`http://localhost:4000/darbajaUsuario/${dni}`)
-    return res.data ; 
+    return res.data;
 }
 
-export const darBajaProductosAdmin = async(dni,tokenProduct)=>{
+export const darBajaProductosAdmin = async (dni, tokenProduct) => {
     console.log(dni);
     console.log(tokenProduct);
     const res = await axios.get(`http://localhost:4000/productoBorrar/${dni}/${tokenProduct}`)
- 
-    return res.data ; 
 
-} 
+    return res.data;
+}
+export const darBajaMiProducto = async (tokenUsuario, idProducto) => {
+    console.log(tokenUsuario);
+    console.log(idProducto);
+    const res = await axios.get(`http://localhost:4000/productos/${tokenProduct}`,idProducto)
+
+    return res.data;
+}

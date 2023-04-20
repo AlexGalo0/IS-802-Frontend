@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AiOutlineDelete } from "react-icons/ai";
-import { borrarProductoListaDeseos } from "../../../api";
+import { borrarProductoListaDeseos, darBajaMiProducto } from "../../../api";
 import io from "socket.io-client";
 
 const socket = io("http://localhost:4000/");
@@ -26,6 +26,7 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
   socket.on("envio-mensaje", () => {
     console.log("Desde Mis Productos recibi el mensaje");
   });
+  const token = localStorage.getItem("token")
 
   function scrollToTop() {
     window.scrollTo(0, 0);
@@ -43,13 +44,10 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
   const imagen = JSON.parse(producto.imagenes);
 
   const queryClient = useQueryClient();
-  const borrarProducto = (productoABorrar) => {
-    /* Esta funcion en realidad solo es de prueba , deberia enviarse a la api aqui */
-    console.log(productoABorrar.idProducto.data.toString());
-  };
+
   const mutationBorrarProducto = useMutation({
     mutationFn: (productoAEliminar) => {
-      borrarProducto(productoAEliminar);
+      darBajaMiProducto(token,productoAEliminar.idProducto.data.toString());
     },
     onSuccess: () => {
       queryClient.invalidateQueries("misProductos");

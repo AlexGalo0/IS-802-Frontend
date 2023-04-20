@@ -154,7 +154,7 @@ export const NavbarsLogueado = () => {
 								<span className='titulo'>instagram</span>
 							</li>
 						</Link>
-						<OverlayTrigger
+						{/* <OverlayTrigger
 							placement='left'
 							delay={{ show: 250, hide: 400 }}
 							overlay={renderTooltipMessaje}
@@ -169,7 +169,7 @@ export const NavbarsLogueado = () => {
 									<AiOutlineMessage />
 								</button>
 							</Link>
-						</OverlayTrigger>
+						</OverlayTrigger> */}
 						<Link to='https://discord.com/' style={{ textDecoration: "none" }}>
 							<li className='liRedes'>
 								<span className='redes'>
