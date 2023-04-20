@@ -51,9 +51,7 @@ export const FormCategorias = () => {
 		queryFn: () => verCategorias(token),
 	});
 
-	const categoriasYaSuscritas = localStorage.getItem("categoriasSuscritas");
-
-	const arregloCategoriasSuscritas = JSON.parse(categoriasYaSuscritas) ?? [];
+		console.log(categoriasPorUsuario?.categorias);
 	const queryClient = useQueryClient()
 	const mutationSuscripcionCategoria = useMutation({
 		mutationFn: (categorias) => suscripcionACategoria(categorias, token),
@@ -156,9 +154,7 @@ export const FormCategorias = () => {
 											id={categoria.nombre}
 											type='checkbox'
 											value={categoria.nombre}
-											defaultChecked={arregloCategoriasSuscritas.includes(
-												categoria.nombre
-											)}
+										
 											{...register(`categorias`)}
 										/>
 										<label
