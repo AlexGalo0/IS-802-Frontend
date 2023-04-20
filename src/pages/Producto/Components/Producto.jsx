@@ -68,6 +68,8 @@ export const Producto = ({}) => {
 			"" + infoProductos?.usuarioNombre + " " + infoProductos?.usuarioApellido,
 		id_vendedor: infoProductos?.id_usuario.data,
 	};
+	const nombreCompleto = `${nombre} ${apellido}`;
+
 	/* Elementos de los overlays (AL poner cursor sobre el simbolo de corazon dice que inicimos sesion) */
 	const renderTooltipButtomShare = (props) => (
 		<Tooltip id='button-tooltip' {...props}>
@@ -339,7 +341,6 @@ export const Producto = ({}) => {
 											</OverlayTrigger>
 										</div>
 									)}
-									
 									
 									{/* Boton de compartir */}
 								</div>
