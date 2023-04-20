@@ -301,7 +301,7 @@ export const Producto = ({}) => {
 								)}
 
 								<div style={{ display: "flex", gap: "10px" }}>
-									{userAuth ? <Boton /> : ""}
+									{/* {userAuth ? <Boton /> : ""} */}
 
 									{userAuth ? (
 										<div className='like'>
