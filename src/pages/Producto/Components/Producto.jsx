@@ -156,7 +156,7 @@ export const Producto = ({}) => {
 										: vendedor?.nombreVendedor}
 								</h4>
 
-								<h4 style={{ marginBottom: "-10px" }}>
+								<h4 style={{ marginBottom: '5px' }}>
 									Calificacion del vendedor:
 								</h4>
 								<div className='conCalificacion'>
@@ -302,7 +302,7 @@ export const Producto = ({}) => {
 								)}
 
 								<div style={{ display: "flex", gap: "10px" }}>
-									{userAuth ? <Boton /> : ""}
+									{/* {userAuth ? <Boton /> : ""} */}
 
 									{userAuth ? (
 										<div className='like'>
@@ -354,10 +354,10 @@ export const Producto = ({}) => {
 											<>
 												<button
 													className='buttonChat'
-													style={{ color: "#f7f7f7", fontSize: "medium" }}
+													style={{ color: "#f7f7f7", fontSize: "medium", minWidth: '200px'}}
 													onClick={() => setShowGeneral(true)}
 												>
-													<span className='box'>
+													<span className='box' style={{minWidth: '200px'}}>
 														Habla con {vendedor.nombreVendedor}
 													</span>
 												</button>
@@ -372,10 +372,10 @@ export const Producto = ({}) => {
 										<div>
 											<button
 												className='buttonChat'
-												style={{ color: "#f7f7f7", fontSize: "medium" }}
+												style={{ color: "#f7f7f7", fontSize: "medium", minWidth: '200px' }}
 												onClick={() => setShowModal(true)}
 											>
-												<span className='box'>
+												<span className='box' style={{minWidth: '200px'}}>
 													{nombreCompleto === vendedor.nombreVendedor
 														? "Inbox de tu producto"
 														: `Pregunta por este articulo`}

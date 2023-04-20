@@ -166,8 +166,11 @@ export const EdicionCategorias = () => {
         <article
           style={{
             display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
+						justifyContent: "initial",
+						alignItems: 'center',
+						flexDirection: "column",
+						padding: '10px',
+						width: '100%'
           }}
         >
           <div
@@ -175,7 +178,6 @@ export const EdicionCategorias = () => {
               display: "flex",
               alignItems: "center",
               gap: "20px",
-              marginTop: "-20px",
               marginBottom: "40px",
             }}
           >
@@ -194,7 +196,7 @@ export const EdicionCategorias = () => {
             style={{
               width: "400px",
               margin: "auto",
-              marginBottom: "25px",
+              marginBottom: "20px",
               marginTop: "-35px",
             }}
             className="buttonGuardar"

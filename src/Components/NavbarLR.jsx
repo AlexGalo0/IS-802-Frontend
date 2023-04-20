@@ -7,6 +7,7 @@ import { BiSearchAlt, BiUser } from "react-icons/bi";
 import logo from "../assets/logo.png";
 import { BsFacebook, BsInstagram, BsDiscord } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { BiLeftArrow } from "react-icons/bi";
 
 import { useState } from "react";
 
@@ -164,7 +165,8 @@ export const NavbarsLR = () => {
         <Modal.Header>
           <Modal.Title
             style={{ fontSize: "25px", margin: "auto" }}
-          >{`¡Debes iniciar sesión!`}</Modal.Title>
+          >
+            {`¡Debes iniciar sesión!`}</Modal.Title>
         </Modal.Header>
 
         {/* {mostrarAlert ? (
@@ -193,8 +195,13 @@ export const NavbarsLR = () => {
             </button>
           </Link>
           </div>
+          <Link to="/login-admin">
+                <button  className="buttonAdmin">
+                ¡Soy administrador!
+                </button>
+              </Link>
           <button className="buttonAdmin" onClick={handleReiniciarBorrar}>
-          ¡Despues!
+        Volver
           </button>
         </Modal.Footer>
       </Modal>

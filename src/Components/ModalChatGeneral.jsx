@@ -100,7 +100,7 @@ export const ModalChatGeneral = ({
 				>
 					<Modal.Header closeButton>
 						<Modal.Title style={{ height: "15px", fontSize: "25px" }}>
-							Chat General : Bienvenido {nombre}
+							Chat General: Bienvenido {nombre}
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
@@ -110,7 +110,7 @@ export const ModalChatGeneral = ({
 									<ul>
 										{messages.map((message, index) => (
 											<li key={index} style={{ listStyle: "none" }}>
-												{localStorage === message.from ? (
+												{localStorage.nombre === message.from ? (
 													<p
 														style={{
 															marginBottom: "-1px",
@@ -119,10 +119,10 @@ export const ModalChatGeneral = ({
 															clear: "both",
 														}}
 													>
-														Tú
+														Tú:
 													</p>
 												) : (
-													<p style={{ marginBottom: "-1px" }}>
+													<p style={{ marginBottom: "-1px",  clear: "both", }}>
 														{message.from}:
 													</p>
 												)}
@@ -157,7 +157,7 @@ export const ModalChatGeneral = ({
 											style={{ margin: "auto", marginBottom: "10px" }}
 										>
 											{" "}
-											No puedes enviar un mensaje vacio
+											¡No puedes enviar un mensaje vacio!
 										</Alert>
 									) : (
 										""
@@ -188,8 +188,8 @@ export const ModalChatGeneral = ({
 									/* scroll hacia abajo */
 									onClick={scrollToBottom}
 								>
-									<MdSend className='iconBuscar' />
-									<span className='textComent'>Enviar</span>
+									<MdSend className='iconBuscar' style={{marginLeft: '1px'}}/>
+									<span className='textComent' style={{marginLeft: '11px'}}>Enviar</span>
 								</button>
 							</div>
 						</form>

@@ -294,7 +294,7 @@ export const NavbarsLogueado = () => {
 											alignItems: "center",
 											flexDirection: "column",
 											height: "100%",
-											marginTop: "-30px",
+											marginTop: "-60px"
 										}}
 									>
 										<p
@@ -306,7 +306,7 @@ export const NavbarsLogueado = () => {
 										>
 											{nombre} {apellido}
 										</p>
-										<div
+										{/* <div
 											style={{
 												display: "flex",
 												flexDirection: "column",
@@ -330,14 +330,14 @@ export const NavbarsLogueado = () => {
 											>
 												{correo}
 											</p>
-										</div>
-										<div
+										</div> */}
+										{/* <div
 											style={{
 												display: "flex",
 												flexDirection: "column",
-												gap: "30px",
+												gap: "50px",
 											}}
-										>
+										> */}
 											<Link
 												to='/misProductos'
 												style={{ textDecoration: "none" }}
@@ -348,14 +348,16 @@ export const NavbarsLogueado = () => {
 											</Link>
 											<Link to='/sus-cat' style={{ textDecoration: "none" }}>
 												<button className='buttonCerrarSesion'>
-													Suscribite a Categorias para Publicidad!
+													Suscribite a categorías
 												</button>
 											</Link>
-										</div>
+										{/* </div> */}
 
 										<button
 											onClick={pruebaDesloguear}
 											className='buttonCerrarSesion'
+											style={{
+												marginBottom: '-70px'}}
 										>
 											Cerrar sesión
 										</button>

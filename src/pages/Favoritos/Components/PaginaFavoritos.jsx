@@ -70,7 +70,7 @@ export const PaginaFavoritos = () => {
     <>
       <Container fluid className="container-grid">
         {userAuth ? <NavbarsLogueado /> : <NavbarsLR />}
-        <article style={{ paddingTop: "90px" }}>
+        <article style={{ paddingTop: "90px", minHeight: '86vh' }}>
           <div
             style={{
               display: "flex",

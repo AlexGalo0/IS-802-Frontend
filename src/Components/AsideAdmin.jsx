@@ -77,8 +77,8 @@ export const AsideAdmin = () => {
 				</Link>
 
 				<button className='buttonCerrarSesion' onClick={handleShowModal}>
-					<BsFillCloudArrowUpFill />
-					Enviar Publicidad
+					<BsFillCloudArrowUpFill style={{ marginRight: "15px" }}/>
+					Publicidad
 				</button>
 
 				{/* <Link to='/dashboard-admin' style={{ textDecoration: "none" }}>
@@ -114,19 +114,50 @@ export const AsideAdmin = () => {
 
 			{/* Modal */}
 
-			<Modal show={showModal} onHide={handleCloseModal}>
+			<Modal show={showModal} onHide={handleCloseModal} style={{width: '1400px'}}>
+			<main className='asiPrincipal'>
+			<article
+					className='artChat'
+					style={{
+						borderTopLeftRadius: "10px",
+						borderBottomLeftRadius: "10px",
+						maxWidth: '700px'
+					}}
+				>
 				<Modal.Header closeButton>
-					<Modal.Title>Deseas enviar PDF a los usuarios</Modal.Title>
+					<Modal.Title style={{ textAlign: "center", fontSize: "25px" }}>¿Deseas enviar publicidad a los usuarios?</Modal.Title>
 				</Modal.Header>
 				<Modal.Footer>
-					<button onClick={handleEnviarPDF}>Si , deseo enviarlos</button>
-					<button onClick={handleCloseModal}>Close</button>
+				<div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+				margin: 'auto'
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "5px",
+                }}
+              >
+					<button onClick={handleEnviarPDF} 
+                  className="buttonGuardar">Si, deseo enviarlos</button>
+					<button onClick={handleCloseModal} 
+                  className="buttonGuardar">Cerrar</button>
+				  </div>
 					{completado ? (
-						<Alert variant='success'>Los PDFs fueron enviados a los siguientes correos: {JSON.stringify(correosEnviados)}</Alert>
+						<Alert variant='success' className='alertPDF'>Los PDFs fueron enviados a los siguientes correos: {JSON.stringify(correosEnviados)}</Alert>
 					) : (
 						""
 					)}
+					
+					</div>
 				</Modal.Footer>
+				</article>
+			</main>
 			</Modal>
 		</aside>
 	);

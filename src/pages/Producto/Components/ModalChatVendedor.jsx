@@ -164,7 +164,7 @@ export const ModalChatVendedor = ({
 					<Modal.Header closeButton>
 						<Modal.Title style={{ height: "15px", fontSize: "25px" }}>
 							{/* Establece un chat con :  */}
-							Vendedor :{" "}
+							Vendedor:{" "}
 							{vendedor?.nombreVendedor === nombreCompleto
 								? `Tu eres el vendedor!`
 								: `${vendedor?.nombreVendedor}`}
@@ -357,8 +357,8 @@ export const ModalChatVendedor = ({
 									/* scroll hacia abajo */
 									onClick={scrollToBottom}
 								>
-									<MdSend className='iconBuscar' />
-									<span className='textComent'>Enviar</span>
+									<MdSend className='iconBuscar' style={{marginLeft: '1px'}}/>
+									<span className='textComent' style={{marginLeft: '11px'}}>Enviar</span>
 								</button>
 							</div>
 						</form>
