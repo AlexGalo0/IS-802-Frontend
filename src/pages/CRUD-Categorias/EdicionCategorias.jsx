@@ -170,7 +170,8 @@ export const EdicionCategorias = () => {
 						alignItems: 'center',
 						flexDirection: "column",
 						padding: '10px',
-						width: '100%'
+						width: '100%',
+            marginLeft: '249px'
           }}
         >
           <div
@@ -342,7 +343,7 @@ export const EdicionCategorias = () => {
         <Modal.Header closeButton>
           <Modal.Title
             style={{ fontSize: "25px" }}
-          >{`Edita la categoria ${categoriaAEditar.nombre}`}</Modal.Title>
+          >{`Edita la categoría ${categoriaAEditar.nombre}`}</Modal.Title>
         </Modal.Header>
         <form
           style={{
@@ -405,7 +406,7 @@ export const EdicionCategorias = () => {
         <Modal.Header>
           <Modal.Title
             style={{ fontSize: "25px" }}
-          >{`Estas seguro que quieres borrar la categoria ${categoriaABorrar.nombre} ? `}</Modal.Title>
+          >{`Estas seguro que quieres borrar la categoría ${categoriaABorrar.nombre} ? `}</Modal.Title>
         </Modal.Header>
 
         {mostrarAlert ? (

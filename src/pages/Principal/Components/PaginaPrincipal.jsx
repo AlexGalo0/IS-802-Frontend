@@ -138,7 +138,7 @@ export const PaginaPrincipal = () => {
 				<aside className='text-center'>
 					<SidebarFiltros />
 					
-					<div style={{ padding: "5px", position: "fixed", height: "550px", marginBottom: "100px", paddingBottom: "50px" }} className='scroll'>
+					<div style={{ padding: "5px", position: "fixed", height: "650px", marginBottom: "100px", paddingBottom: "50px" }} className='scroll'>
 						<h4 className='py-3 fil'>
 							<FaFilter /> Filtros
 						</h4>
@@ -218,7 +218,7 @@ export const PaginaPrincipal = () => {
 											className='yep'
 										/>
 										<label htmlFor='7' style={{ marginTop: "3px" }}></label>
-										<p className='checkP'>7 Dias</p>
+										<p className='checkP'>7 Días</p>
 										<br />
 									</div>
 									<div className='checkbox-apple' style={{ width: "auto" }}>
@@ -232,7 +232,7 @@ export const PaginaPrincipal = () => {
 											className='yep'
 										/>
 										<label htmlFor='15' style={{ marginTop: "3px" }}></label>
-										<p className='checkP'>15 Dias</p>
+										<p className='checkP'>15 Días</p>
 										<br />
 									</div>
 
@@ -247,7 +247,7 @@ export const PaginaPrincipal = () => {
 											className='yep'
 										/>
 										<label htmlFor='30' style={{ marginTop: "3px" }}></label>
-										<p className='checkP'>30 Dias</p>
+										<p className='checkP'>30 Días</p>
 										<br />
 									</div>
 								</>

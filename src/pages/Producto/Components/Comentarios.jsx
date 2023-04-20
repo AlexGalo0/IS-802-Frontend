@@ -95,7 +95,7 @@ export const Comentarios = ({ productoID }) => {
 									marginBottom: "15px",
 								}}
 							>
-								Comentario añadido
+								¡Comentario añadido!
 							</Alert>
 						) : (
 							""

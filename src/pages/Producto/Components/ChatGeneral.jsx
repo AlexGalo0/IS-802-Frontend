@@ -181,7 +181,7 @@ export const ChatGeneral = ({ showGeneral, handleCerrarGeneral, vendedor }) => {
                       style={{ margin: "auto", marginBottom: "10px" }}
                     >
                       {" "}
-                      No puedes enviar un mensaje vacio
+                      ¡No puedes enviar un mensaje vacío!
                     </Alert>
                   ) : (
                     ""
