@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Container, Accordion, Form, Card, Row, Col } from "react-bootstrap";
+import React from "react";
+import { Container,Card, Col } from "react-bootstrap";
 import "../Style/Temp_Principal.css";
 import { Link } from "react-router-dom";
-import { BsCurrencyDollar } from "react-icons/bs";
 
 export const CartaProducto = React.forwardRef(({ producto }, ref) => {
 	// const [primeraImagen, setPrimeraImagen] = useState("");

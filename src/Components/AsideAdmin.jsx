@@ -63,6 +63,7 @@ export const AsideAdmin = () => {
 				alignItems: "center",
 				flexDirection: "column",
 				padding: "10px",
+				position: 'fixed',
 			}}
 		>
 			<div className='text-center py-3'>
@@ -144,7 +145,7 @@ export const AsideAdmin = () => {
                 }}
               >
 					<button onClick={handleEnviarPDF} 
-                  className="buttonGuardar">Si, deseo enviarlos</button>
+                  className="buttonGuardar">Si, deseo enviar</button>
 					<button onClick={handleCloseModal} 
                   className="buttonGuardar">Cerrar</button>
 				  </div>

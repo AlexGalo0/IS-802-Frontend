@@ -11,7 +11,7 @@ import "./styles/stNav.css";
 // import { get, useForm } from "react-hook-form";
 // import { FiMenu } from "react-icons/fi";
 import { BiSearchAlt, BiUser } from "react-icons/bi";
-import { AiOutlineHeart, AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineMessage, AiOutlinePoweroff } from "react-icons/ai";
 import logo from "../assets/logo.png";
 import { BsFacebook, BsInstagram, BsDiscord } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -359,6 +359,7 @@ export const NavbarsLogueado = () => {
 											style={{
 												marginBottom: '-70px'}}
 										>
+											<AiOutlinePoweroff style={{marginRight: '5px'}}/>
 											Cerrar sesión
 										</button>
 									</div>

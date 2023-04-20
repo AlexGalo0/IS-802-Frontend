@@ -10,16 +10,14 @@ import {
 	EdicionCategorias,
 	Producto,
 	ChatGeneral,
-	
 } from "../pages";
 import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginaFavoritos";
 import { MisProductos } from "../pages/Mis Productos/Components/MisProductos";
-import { LandingPage } from "../pages/Landing/Components/LandingPage";
 import { FormCategorias } from "../pages/Categorias/Components/formCategorias";
 import { AdminUsuarios } from "../pages/AdminUsuarios/Components/AdminUsuarios";
 
 import { useContext } from "react";
-import { RutaProtegida, NavbarsLR } from "../Components";
+import { RutaProtegida } from "../Components";
 import { Route, Routes } from "react-router-dom";
 import { ProductosAdminUsuarios } from "../pages/ProductosAdminUsuarios";
 export const Router = () => {

@@ -1,11 +1,9 @@
 import "../Style/Landing.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Col, Container, Image } from "react-bootstrap";
-import { useContext, useState } from "react";
+import {  Container, Image } from "react-bootstrap";
+import { useContext} from "react";
 import { UserContext } from "../../../context";
-import { AiFillHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { BiSearchAlt, BiUser } from "react-icons/bi";
 
 import "animate.css";
 import logo from "../../../assets/logo.png";

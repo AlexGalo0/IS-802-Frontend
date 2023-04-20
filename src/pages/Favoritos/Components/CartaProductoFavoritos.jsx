@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
 	Container,
-	Accordion,
-	Form,
 	Card,
-	Row,
 	Col,
 	OverlayTrigger,
 	Tooltip,
 } from "react-bootstrap";
 import "../Style/Temp_Principal.css";
 import { Link } from "react-router-dom";
-import { BsCurrencyDollar } from "react-icons/bs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { TiDelete } from "react-icons/ti";
 import { borrarProductoListaDeseos } from "../../../api";

@@ -5,7 +5,6 @@ import {
 	Form,
 	Row,
 	Image,
-	Modal,
 	Alert,
 } from "react-bootstrap";
 import "../../../style/styleForm.css";
@@ -51,8 +50,6 @@ export const FormCategorias = () => {
 		queryFn: () => verCategorias(token),
 	});
 
-	
-
 
 	const queryClient = useQueryClient()
 	const mutationSuscripcionCategoria = useMutation({
@@ -60,6 +57,7 @@ export const FormCategorias = () => {
 		onSuccess: () => {
 			setSuscripcionExitosa(true);
 			queryClient.invalidateQueries("categoriasDeUsuario")
+			
 			setTimeout(() => {
 				handleRedirection();
 				setSuscripcionExitosa(false);
@@ -124,7 +122,7 @@ export const FormCategorias = () => {
 								marginLeft: "10px",
 							}}
 						>
-							Categorias:
+							Categorías:
 						</h1>
 
 						<Form.Group
@@ -141,8 +139,7 @@ export const FormCategorias = () => {
 								}}
 							>
 								<h4 className='py-3' style={{ color: "black" }}>
-									Selecciona las categorias de las cuales te gustaria recibir
-									publicidad:
+								Selecciona las categorías de las cuales te gustaría recibir publicidad:
 								</h4>
 								{categorias?.map((categoria) => (
 									<div
@@ -172,7 +169,7 @@ export const FormCategorias = () => {
 							</form>
 						</Form.Group>
 						{suscripcionExitosa ? (
-							<Alert variant='success'>Suscripciones Completadas.</Alert>
+							<Alert variant='success'>¡Suscripciones Completadas!</Alert>
 						) : (
 							""
 						)}
