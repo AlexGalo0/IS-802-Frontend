@@ -51,8 +51,6 @@ export const FormCategorias = () => {
 		queryFn: () => verCategorias(token),
 	});
 
-		console.log();
-
 
 	const queryClient = useQueryClient()
 	const mutationSuscripcionCategoria = useMutation({
@@ -60,6 +58,7 @@ export const FormCategorias = () => {
 		onSuccess: () => {
 			setSuscripcionExitosa(true);
 			queryClient.invalidateQueries("categoriasDeUsuario")
+			
 			setTimeout(() => {
 				handleRedirection();
 				setSuscripcionExitosa(false);

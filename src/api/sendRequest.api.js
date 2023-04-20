@@ -107,7 +107,7 @@ export const borrarProductoListaDeseos = async (idProducto, tokenUser) => {
 }
 export const suscripcionACategoria = async (categorias, tokenUser) => {
 
-    const res = await axios.post(`http://localhost:4000/categorySubscription/${tokenUser}`, categorias)
+    const res = await axios.put(`http://localhost:4000/categorySubscription/${tokenUser}`, categorias)
     return res.data;
 }
 export const verCategorias = async (token) => {
