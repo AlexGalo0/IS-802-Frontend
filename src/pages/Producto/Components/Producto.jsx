@@ -84,11 +84,11 @@ export const Producto = ({}) => {
 		);
 	};
 
-	const token = localStorage.getItem("token");
-	const { data: misFavoritos } = useQuery({
-		queryKey: ["misFavoritos"],
-		queryFn: () => idsProductosWishlist(token),
-	});
+	// const token = localStorage.getItem("token");
+	// const { data: misFavoritos } = useQuery({
+	// 	queryKey: ["misFavoritos"],
+	// 	queryFn: () => idsProductosWishlist(token),
+	// });
 	const [texto, setTexto] = useState("");
 
 	function handleClick() {
