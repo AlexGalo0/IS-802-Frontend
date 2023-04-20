@@ -46,7 +46,6 @@ export const crearProducto = async (infoProducto) => {
 export const iniciarSesion = async (loginData) => {
     const res = await axios.post('http://localhost:4000/login/cliente', loginData)
     const categoriasSuscritas = await axios.get(`http://localhost:4000/categorySubscription/${res.data.token}`);
-    const idsListaDeDeseos = await axios.get(`http://localhost:4000/wishlist-productid/${res.data.token}`);
 
 
 
@@ -54,14 +53,14 @@ export const iniciarSesion = async (loginData) => {
     const nombre = res.data.nombre
     const correo = res.data.correo
     const apellido = res.data.apellido
-    if (categoriasSuscritas.data.categorias === undefined) {
-        localStorage.setItem("categoriasSuscritas", "[]")
-    } else {
+    // if (categoriasSuscritas.data.categorias === undefined) {
+    //     localStorage.setItem("categoriasSuscritas", "[]")
+    // } else {
 
-        localStorage.setItem("categoriasSuscritas", categoriasSuscritas.data.categorias)
-    }
+    //     localStorage.setItem("categoriasSuscritas", categoriasSuscritas.data.categorias)
+    // }
 
-    localStorage.setItem("idsListaDeDeseos", JSON.stringify(idsListaDeDeseos.data))
+    // localStorage.setItem("idsListaDeDeseos", JSON.stringify(idsListaDeDeseos.data))
     localStorage.setItem("token", token)
     localStorage.setItem("nombre", nombre)
     localStorage.setItem("apellido", apellido)
@@ -162,7 +161,7 @@ export const darBajaUsuario = async (dni) => {
 }
 
 export const darBajaProductosAdmin = async (dni, tokenProduct) => {
-    
+
     const res = await axios.get(`http://localhost:4000/productoBorrar/${dni}/${tokenProduct}`)
 
     return res.data;
@@ -171,4 +170,10 @@ export const darBajaMiProducto = async (tokenUsuario, tokenProduct) => {
 
     const res = await axios.delete(`http://localhost:4000/productos/${tokenUsuario}/${tokenProduct}`)
     return res.data;
+}
+
+export const idsProductosWishlist = async (token) => {
+    const res = await axios.get(`http://localhost:4000/wishlist-productid/${token}`);
+    console.log(res.data);
+    return res.data
 }
