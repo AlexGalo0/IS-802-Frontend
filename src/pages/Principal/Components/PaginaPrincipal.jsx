@@ -116,7 +116,7 @@ export const PaginaPrincipal = () => {
 			return;
 		}
 		if (
-			Number(datosFiltrado.precioMinimo) >= Number(datosFiltrado.precioMaximo)
+			Number(datosFiltrado.precioMinimo) > Number(datosFiltrado.precioMaximo)
 		) {
 			setErrorPrecios(true);
 			return;
