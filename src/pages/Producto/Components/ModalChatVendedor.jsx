@@ -42,7 +42,10 @@ export const ModalChatVendedor = ({
 
 	const [show, setShow] = useState(false);
 
-	const handleClose = () => setShow(false);
+	const handleClose = () => {
+		setShow(false);
+		handleCerrarModal()
+	}
 	const handleShow = () => setShow(true);
 
 	const datosInicializacion = {
@@ -135,11 +138,12 @@ export const ModalChatVendedor = ({
 					setVentaConfirmada(true);
 					queryClient.invalidateQueries("producto");
 					setTimeout(() => {
-						handleCerrarModal();
-						setVentaConfirmada(false);
 						if (cantidad === producto.cantidad) {
 							navigate("/");
 						}
+						setVentaConfirmada(false);
+						setShowConfirmSale(false)
+						handleShow()
 					}, 1000);
 				} else {
 					setErrorConfirmado(true);
@@ -398,7 +402,7 @@ export const ModalChatVendedor = ({
 				<Modal.Footer>
 					<button variant='secondary'>Calificar al vendedor</button>
 					<button variant='primary' onClick={handleClose}>
-						Ignorar,
+						Ignorar
 					</button>
 				</Modal.Footer>
 			</Modal>
