@@ -12,7 +12,6 @@ import {
 	Tooltip,
 	OverlayTrigger,
 	Modal,
-	Button,
 	Alert,
 } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -42,8 +41,8 @@ export const ProductosAdminUsuarios = () => {
 		},
 
 		onSuccess: () => {
-			setSeEliminoCorrectamente(true);
 			queryClient.invalidateQueries("productosUsuario");
+			setSeEliminoCorrectamente(true);
 			setTimeout(() => {
 				handleClose();
 				setSeEliminoCorrectamente(false);
@@ -112,11 +111,6 @@ export const ProductosAdminUsuarios = () => {
 					</Col>
 				</>
 			))}
-
-			{/* 
-                      Definicion de Modal de Borrar Productos
-      */}
-
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>
