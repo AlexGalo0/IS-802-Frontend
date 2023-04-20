@@ -30,6 +30,7 @@ import { Comentarios } from "./Comentarios";
 import { ModalChatVendedor } from "./ModalChatVendedor";
 import { ChatGeneral } from "./ChatGeneral";
 import io from "socket.io-client";
+import { idsProductosWishlist } from "../../../api";
 
 const socket = io("http://localhost:4000/");
 export const Producto = ({}) => {
@@ -67,9 +68,6 @@ export const Producto = ({}) => {
 			"" + infoProductos?.usuarioNombre + " " + infoProductos?.usuarioApellido,
 		id_vendedor: infoProductos?.id_usuario.data,
 	};
-	console.log("El nombre del vendedor es: ", vendedor.nombreVendedor);
-	const nombreCompleto = `${nombre} ${apellido}`;
-	console.log();
 	/* Elementos de los overlays (AL poner cursor sobre el simbolo de corazon dice que inicimos sesion) */
 	const renderTooltipButtomShare = (props) => (
 		<Tooltip id='button-tooltip' {...props}>
@@ -84,17 +82,17 @@ export const Producto = ({}) => {
 		);
 	};
 
-	/* const agregarFavoritos=()=>{
-		const tokenUsuario= localStorage.getItem('token')
-		agregarProductoWishlist(tokenUsuario,idProducto)
-	} */
+	const token = localStorage.getItem("token");
+	const { data: misFavoritos } = useQuery({
+		queryKey: ["misFavoritos"],
+		queryFn: () => idsProductosWishlist(token),
+	});
 
 	const [texto, setTexto] = useState("");
 
 	function handleClick() {
 		setTexto("¡Enlace de producto copiado!");
 	}
-	const token = localStorage.getItem("token");
 
 	return (
 		<>
@@ -156,7 +154,7 @@ export const Producto = ({}) => {
 										: vendedor?.nombreVendedor}
 								</h4>
 
-								<h4 style={{ marginBottom: '5px' }}>
+								<h4 style={{ marginBottom: "5px" }}>
 									Calificacion del vendedor:
 								</h4>
 								<div className='conCalificacion'>
@@ -341,8 +339,8 @@ export const Producto = ({}) => {
 											</OverlayTrigger>
 										</div>
 									)}
-									{/* 
-									<button onClick={agregarFavoritos}>Agregar a Favoritos</button> */}
+									
+									
 									{/* Boton de compartir */}
 								</div>
 								<div>{texto}</div>
@@ -372,10 +370,14 @@ export const Producto = ({}) => {
 										<div>
 											<button
 												className='buttonChat'
-												style={{ color: "#f7f7f7", fontSize: "medium", minWidth: '200px' }}
+												style={{
+													color: "#f7f7f7",
+													fontSize: "medium",
+													minWidth: "200px",
+												}}
 												onClick={() => setShowModal(true)}
 											>
-												<span className='box' style={{minWidth: '200px'}}>
+												<span className='box' style={{ minWidth: "200px" }}>
 													{nombreCompleto === vendedor.nombreVendedor
 														? "Inbox de tu producto"
 														: `Pregunta por este articulo`}
