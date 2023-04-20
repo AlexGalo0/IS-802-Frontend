@@ -34,7 +34,6 @@ Verificar si existe en el local storage.
 	useEffect(() => {
 		const productosFavoritos = localStorage.getItem("idsListaDeDeseos");
 		const arreglo = JSON.parse(productosFavoritos);
-		// console.log(arreglo[0].id_producto.data);
 		const arregloIdProductosFavoritos = [];
 		arreglo.map((producto) =>
 			arregloIdProductosFavoritos.push(producto.id_producto.data)
@@ -57,7 +56,6 @@ Verificar si existe en el local storage.
 				break;
 			}
 		}
-		console.log(seEncuentra);
 		return seEncuentra
 	};
 verificarSiYaEsFavorito()

@@ -95,7 +95,6 @@ export const PaginaPrincipal = () => {
 	const content = data?.pages.map((pg) => {
 		return pg.map((post, i) => {
 			if (pg.length === i + 1) {
-				// console.log('last element'); el ultimo elemento
 				return <CartaProducto ref={lastPostRef} producto={post} />;
 			}
 			return <CartaProducto producto={post} />;
@@ -103,7 +102,6 @@ export const PaginaPrincipal = () => {
 	});
 
 	const filtrarProductos = (datosFiltrado) => {
-		console.log(datosFiltrado);
 		const emptyFilters = {
 			categorias: [],
 			departamentos: [],

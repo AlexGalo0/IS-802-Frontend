@@ -51,7 +51,7 @@ export const FormCategorias = () => {
 		queryFn: () => verCategorias(token),
 	});
 
-		console.log();
+	
 
 
 	const queryClient = useQueryClient()
