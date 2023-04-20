@@ -147,7 +147,6 @@ export const obtenerTodosUsuarios = async () => {
 
 export const enviarPDFs = async () => {
     const res = await axios.get('http://localhost:4000/envio-publicidad-pdf')
-    console.log(res.data);
     return res.data;
 }
 export const obtenerProductosUsuarioDNI = async (dniUsuario) => {
@@ -155,7 +154,7 @@ export const obtenerProductosUsuarioDNI = async (dniUsuario) => {
     return res.data
 }
 export const darBajaUsuario = async (dni) => {
-    console.log('Dni recibido : ', dni);
+   
     const res = await axios.delete(`http://localhost:4000/darbajaUsuario/${dni}`)
     return res.data;
 }
@@ -174,6 +173,6 @@ export const darBajaMiProducto = async (tokenUsuario, tokenProduct) => {
 
 export const idsProductosWishlist = async (token) => {
     const res = await axios.get(`http://localhost:4000/wishlist-productid/${token}`);
-    console.log(res.data);
+  
     return res.data
 }

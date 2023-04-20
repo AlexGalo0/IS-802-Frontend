@@ -14,7 +14,6 @@ export const CloudinaryUploadWidget = ({recibirURL}) => {
 	
 	useEffect(() => {
 		cloudinaryRef.current = window.cloudinary;
-		//console.log(cloudinaryRef.current)
 		widgetRef.current = cloudinaryRef.current.createUploadWidget(
 			{
 				cloudName: "djnzoyal5",

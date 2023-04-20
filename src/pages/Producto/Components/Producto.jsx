@@ -89,7 +89,6 @@ export const Producto = ({}) => {
 		queryKey: ["misFavoritos"],
 		queryFn: () => idsProductosWishlist(token),
 	});
-
 	const [texto, setTexto] = useState("");
 
 	function handleClick() {
@@ -302,7 +301,7 @@ export const Producto = ({}) => {
 								)}
 
 								<div style={{ display: "flex", gap: "10px" }}>
-									{userAuth ? <Boton /> : ""}
+									{/* {userAuth ? <Boton /> : ""} */}
 
 									{userAuth ? (
 										<div className='like'>
