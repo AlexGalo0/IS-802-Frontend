@@ -23,7 +23,7 @@ export const Footers = () => {
 
   return (
     <>
-      <footer>
+      <footer style={{position: "relative"}}>
         <div className="top-footer">
           <span className="letterLightFooter">
             Los principales distribuidores y grandes vendedores trabajan con{" "}
