@@ -8,6 +8,7 @@ const socket = io("http://localhost:4000/");
 import { MdSend } from "react-icons/md";
 import React, { useState, useRef, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 export const ModalChatVendedor = ({
 	showModal,
@@ -43,6 +44,8 @@ export const ModalChatVendedor = ({
 		token: token,
 		idProducto: idProducto ?? producto?.idProducto?.data,
 	};
+
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		const receiveMessage = (message) => {
@@ -124,15 +127,18 @@ export const ModalChatVendedor = ({
 			)
 			.then((res) => {
 				if (res.status === 200) {
-					console.log("Me ejecuto");
-					showConfirmSale(false);
-					setVentaConfirmada(true);
+			
+					setVentaConfirmada(true)
 					queryClient.invalidateQueries("producto")
 					setTimeout(() => {
-						handleCerrarModal();
+						handleCerrarModal()
+						setVentaConfirmada(false)
+						if(cantidad===producto.cantidad){
+							navigate("/")
+						}
 					}, 1000);
 				} else {
-					console.log("Me ejecuto");
+					
 					setErrorConfirmado(true);
 				}
 			});
@@ -255,7 +261,7 @@ export const ModalChatVendedor = ({
 							)}
 							{ventaConfirmada ? (
 								<Alert variant='success'>
-									Venta Completada por: {cantidad}
+									Compra Completada con exito!
 								</Alert>
 							) : (
 								""
