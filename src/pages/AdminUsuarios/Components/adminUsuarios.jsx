@@ -88,6 +88,7 @@ export const AdminUsuarios = () => {
             flexDirection: "column",
             padding: "10px",
             width: "100%",
+            marginLeft: '249px'
           }}
         >
           <div

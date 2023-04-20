@@ -64,7 +64,7 @@ export const ProductosAdminUsuarios = () => {
     <>
       <Container fluid className="container-grid">
         <header className="headerCrud" /* style={{ paddingTop: "122px" }} */>
-          <AsideAdmin />
+          <AsideAdmin/>
           <article
             style={{
               display: "flex",
@@ -73,6 +73,7 @@ export const ProductosAdminUsuarios = () => {
               flexDirection: "column",
               padding: "10px",
               minWidth: "83%",
+              marginLeft: '249px'
             }}
           >
             <div
@@ -93,17 +94,17 @@ export const ProductosAdminUsuarios = () => {
               </h1>
             </div>
 
-            <div
+            {/* <div
               style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 minWidth: "100%",
               }}
-            >
+            > */}
               {productosUsuario?.map((producto) => (
                 <>
-                  <Col xs={1} md={4} className="g-2" style={{ marginTop: "-20px" }}>
+                  <Row xs={1} md={3} className="g-2" style={{ marginTop: "-20px" }}>
             
           
                     <Card className="card">
@@ -155,10 +156,10 @@ export const ProductosAdminUsuarios = () => {
                         </div>
                       </Card.Body>
                     </Card>
-					</Col>
+					</Row>
                 </>
               ))}
-            </div>
+           {/*  </div> */}
           </article>
         </header>
       </Container>

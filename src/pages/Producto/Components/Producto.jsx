@@ -380,8 +380,8 @@ export const Producto = ({}) => {
 											>
 												<span className='box' style={{ minWidth: "200px" }}>
 													{nombreCompleto === vendedor.nombreVendedor
-														? "Mensajes de tu producto"
-														: `Pregunta por este articulo`}
+														? "Mensajes de tú producto"
+														: `Pregunta por este artículo`}
 												</span>
 											</button>
 										</div>

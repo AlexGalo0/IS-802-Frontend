@@ -63,6 +63,7 @@ export const AsideAdmin = () => {
 				alignItems: "center",
 				flexDirection: "column",
 				padding: "10px",
+				position: 'fixed',
 			}}
 		>
 			<div className='text-center py-3'>

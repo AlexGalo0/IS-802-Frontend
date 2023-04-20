@@ -170,7 +170,8 @@ export const EdicionCategorias = () => {
 						alignItems: 'center',
 						flexDirection: "column",
 						padding: '10px',
-						width: '100%'
+						width: '100%',
+            marginLeft: '249px'
           }}
         >
           <div
