@@ -40,12 +40,17 @@ export const ModalChatVendedor = ({
 		cantidad: cantidad,
 	});
 
+	const [show, setShow] = useState(false);
+
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
 	const datosInicializacion = {
 		token: token,
 		idProducto: idProducto ?? producto?.idProducto?.data,
 	};
 
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const receiveMessage = (message) => {
@@ -108,7 +113,7 @@ export const ModalChatVendedor = ({
 	};
 
 	/* Codigo para confirmar venta */
-	const queryClient = useQueryClient()
+	const queryClient = useQueryClient();
 	function handleConfirmSale() {
 		socket.emit("confirmar-venta");
 	}
@@ -127,18 +132,16 @@ export const ModalChatVendedor = ({
 			)
 			.then((res) => {
 				if (res.status === 200) {
-			
-					setVentaConfirmada(true)
-					queryClient.invalidateQueries("producto")
+					setVentaConfirmada(true);
+					queryClient.invalidateQueries("producto");
 					setTimeout(() => {
-						handleCerrarModal()
-						setVentaConfirmada(false)
-						if(cantidad===producto.cantidad){
-							navigate("/")
+						handleCerrarModal();
+						setVentaConfirmada(false);
+						if (cantidad === producto.cantidad) {
+							navigate("/");
 						}
 					}, 1000);
 				} else {
-					
 					setErrorConfirmado(true);
 				}
 			});
@@ -260,9 +263,14 @@ export const ModalChatVendedor = ({
 								</alert>
 							)}
 							{ventaConfirmada ? (
-								<Alert variant='success'>
-									Compra Completada con exito!
-								</Alert>
+								<>
+									<Alert variant='success'>Compra Completada con exito!</Alert>
+									{
+										setTimeout(() => {
+												handleShow()
+										}, 1000)
+									}
+								</>
 							) : (
 								""
 							)}
@@ -363,16 +371,37 @@ export const ModalChatVendedor = ({
 									/* scroll hacia abajo */
 									onClick={scrollToBottom}
 								>
-									<MdSend className='iconBuscar' style={{marginLeft: '1px'}}/>
-									<span className='textComent' style={{marginLeft: '11px'}}>Enviar</span>
+									<MdSend
+										className='iconBuscar'
+										style={{ marginLeft: "1px" }}
+									/>
+									<span className='textComent' style={{ marginLeft: "11px" }}>
+										Enviar
+									</span>
 								</button>
 							</div>
 						</form>
 					</Modal.Body>
 				</article>
 			</main>
-			{/* 
-      <Modal.Footer></Modal.Footer> */}
+			{/* Modal de calificacion de */}
+			
+
+			<Modal show={show} onHide={handleClose}>
+				<Modal.Header closeButton>
+					<Modal.Title>Deseas calificar al vendedor?</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					¿Que calificacion le darias al vendedor del 1 al 5?
+				</Modal.Body>
+				<input type='number' />
+				<Modal.Footer>
+					<button variant='secondary'>Calificar al vendedor</button>
+					<button variant='primary' onClick={handleClose}>
+						Ignorar,
+					</button>
+				</Modal.Footer>
+			</Modal>
 		</Modal>
 	);
 };
