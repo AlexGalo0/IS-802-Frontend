@@ -302,7 +302,7 @@ export const Producto = ({}) => {
 								)}
 
 								<div style={{ display: "flex", gap: "10px" }}>
-									{/* {userAuth ? <Boton /> : ""} */}
+									{userAuth ? <Boton /> : ""}
 
 									{userAuth ? (
 										<div className='like'>
@@ -380,7 +380,7 @@ export const Producto = ({}) => {
 											>
 												<span className='box' style={{ minWidth: "200px" }}>
 													{nombreCompleto === vendedor.nombreVendedor
-														? "Inbox de tu producto"
+														? "Mensajes de tu producto"
 														: `Pregunta por este articulo`}
 												</span>
 											</button>
