@@ -109,7 +109,12 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
 								</button>
 							</OverlayTrigger>
 							<Link to={`/producto/${producto.idProducto.data.toString()}`}>
-							<button>Ingresar a este producto</button>
+							<button className='buttonProducto'
+									style={{
+										color: "#f7f7f7",
+										fontSize: "medium",
+										width: "150px",
+									}}>Ingresar a este producto</button>
               </Link>
 						</div>
 					</Card.Body>
