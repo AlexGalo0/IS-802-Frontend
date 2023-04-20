@@ -1,7 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { obtenerProductosUsuarioDNI } from "../../api/sendRequest.api";
+import {
+	darBajaProductosAdmin,
+	obtenerProductosUsuarioDNI,
+} from "../../api/sendRequest.api";
 import {
 	Col,
 	Card,
@@ -34,11 +37,10 @@ export const ProductosAdminUsuarios = () => {
 	const [productoAModificar, setProductoAModificar] = useState();
 	const [seEliminoCorrectamente, setSeEliminoCorrectamente] = useState(false);
 	const borrarProductoMutation = useMutation({
-		mutationFn: () =>
-			console.log(
-				"Se ejecuto para el producto: ",
-				productoAModificar.idProducto.data.toString()
-			),
+		mutationFn: (productoABorrar) => {
+			darBajaProductosAdmin(usuariodni, productoABorrar);
+		},
+
 		onSuccess: () => {
 			setSeEliminoCorrectamente(true);
 			queryClient.invalidateQueries("productosUsuario");
@@ -47,6 +49,7 @@ export const ProductosAdminUsuarios = () => {
 				setSeEliminoCorrectamente(false);
 			}, 1000);
 		},
+		onError:()=>console.log("Hubo un error")
 	});
 	const borrarProducto = (productoABorrar) => {
 		borrarProductoMutation.mutate(productoABorrar);

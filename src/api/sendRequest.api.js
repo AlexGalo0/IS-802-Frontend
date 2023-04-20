@@ -154,12 +154,19 @@ export const enviarPDFs = async () => {
 }
 export const obtenerProductosUsuarioDNI = async (dniUsuario) => {
     const res = await axios.get(`http://localhost:4000/productos/productosAdmin/1/${dniUsuario}`)
-    console.log(res.data);
     return res.data
 }
 export const darBajaUsuario= async (dni) =>{
     console.log('Dni recibido : ' , dni);
     const res = await axios.get(`http://localhost:4000/darbajaUsuario/${dni}`)
-    console.log(res.data);
     return res.data ; 
 }
+
+export const darBajaProductosAdmin = async(dni,tokenProduct)=>{
+    console.log(dni);
+    console.log(tokenProduct);
+    const res = await axios.get(`http://localhost:4000/productoBorrar/${dni}/${tokenProduct}`)
+ 
+    return res.data ; 
+
+} 
