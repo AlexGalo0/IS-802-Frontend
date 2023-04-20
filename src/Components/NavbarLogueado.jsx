@@ -51,6 +51,11 @@ export const NavbarsLogueado = () => {
 		if (localStorage.getItem("correo") !== null) {
 			localStorage.removeItem("correo");
 		}
+		if (localStorage.getItem("categoriasSuscritas") !== null) {
+			localStorage.removeItem("categoriasSuscritas");
+		}if (localStorage.getItem("idsListaDeDeseos") !== null) {
+			localStorage.removeItem("idsListaDeDeseos");
+		}
 	};
 	const nombre = localStorage.getItem("nombre");
 	const apellido = localStorage.getItem("apellido");

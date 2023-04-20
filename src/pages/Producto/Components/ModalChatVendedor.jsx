@@ -7,6 +7,7 @@ const socket = io("http://localhost:4000/");
 
 import { MdSend } from "react-icons/md";
 import React, { useState, useRef, useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const ModalChatVendedor = ({
 	showModal,
@@ -23,10 +24,10 @@ export const ModalChatVendedor = ({
 	const [message, setMessage] = useState("");
 	const [messages, setMessages] = useState([]);
 	const [cantidad, setCantidad] = useState(1);
-  const [showConfirmSale, setShowConfirmSale] = useState(false); //Mostrar modal de Confirmacion de Venta
-  const [ventaConfirmada, setVentaConfirmada] = useState(false);
-  const [errorConfirmado , setErrorConfirmado] = useState(false)
-  const [errorMensaje, setErrorMensaje] = useState(false);
+	const [showConfirmSale, setShowConfirmSale] = useState(false); //Mostrar modal de Confirmacion de Venta
+	const [ventaConfirmada, setVentaConfirmada] = useState(false);
+	const [errorConfirmado, setErrorConfirmado] = useState(false);
+	const [errorMensaje, setErrorMensaje] = useState(false);
 	const [datosDeChat, setDatosDeChat] = useState({
 		tokenActual: localStorage.getItem("token"),
 		idUsuarioProducto: vendedor?.id_vendedor?.toString
@@ -68,7 +69,7 @@ export const ModalChatVendedor = ({
 		setMessage(e.target.value);
 	};
 	const handleInputChange = (event) => {
-    const nuevaCantidad = Math.min(event.target.value, producto.cantidad);
+		const nuevaCantidad = Math.min(event.target.value, producto.cantidad);
 		setCantidad(nuevaCantidad);
 	};
 	const handleSubmit = (e) => {
@@ -91,7 +92,6 @@ export const ModalChatVendedor = ({
 	};
 
 	const enviarDatos = async (mensaje) => {
-    
 		const data = {
 			tokenActual: localStorage.getItem("token"),
 			idUsuarioProducto: vendedor?.id_vendedor?.toString()
@@ -105,7 +105,7 @@ export const ModalChatVendedor = ({
 	};
 
 	/* Codigo para confirmar venta */
-
+	const queryClient = useQueryClient()
 	function handleConfirmSale() {
 		socket.emit("confirmar-venta");
 	}
@@ -123,17 +123,18 @@ export const ModalChatVendedor = ({
 				datosDeCompra
 			)
 			.then((res) => {
-				if (res.status === 200 ) {
-          console.log('Me ejecuto');
-          showConfirmSale(false)
-					setVentaConfirmada(true)
-          setTimeout(() => {
-            handleCerrarModal()
-          }, 1000);
+				if (res.status === 200) {
+					console.log("Me ejecuto");
+					showConfirmSale(false);
+					setVentaConfirmada(true);
+					queryClient.invalidateQueries("producto")
+					setTimeout(() => {
+						handleCerrarModal();
+					}, 1000);
 				} else {
-          console.log('Me ejecuto');
-          setErrorConfirmado(true)
-        }
+					console.log("Me ejecuto");
+					setErrorConfirmado(true);
+				}
 			});
 	};
 
@@ -206,7 +207,6 @@ export const ModalChatVendedor = ({
 							)}
 
 							{showConfirmSale && vendedor && (
-                
 								<alert
 									style={{
 										display: "flex",
@@ -238,7 +238,7 @@ export const ModalChatVendedor = ({
 												backgroundColor: "#365662",
 											}}
 											onClick={() => {
-												setShowConfirmSale(false)
+												setShowConfirmSale(false);
 											}}
 										>
 											<span className='box'>Cancelar</span>
@@ -249,16 +249,22 @@ export const ModalChatVendedor = ({
 										value={cantidad}
 										type='number'
 										onChange={handleInputChange}
-                    max={producto.cantidad}
+										max={producto.cantidad}
 									/>
 								</alert>
 							)}
-              {
-                ventaConfirmada ? <Alert variant="success">Venta Completada por:  {cantidad}</Alert> : ''
-              } 
-              {
-                errorConfirmado ? <Alert variant="danger">Hubo un error!</Alert> : ''
-              }
+							{ventaConfirmada ? (
+								<Alert variant='success'>
+									Venta Completada por: {cantidad}
+								</Alert>
+							) : (
+								""
+							)}
+							{errorConfirmado ? (
+								<Alert variant='danger'>Hubo un error!</Alert>
+							) : (
+								""
+							)}
 						</div>
 
 						<form onSubmit={handleSubmit}>

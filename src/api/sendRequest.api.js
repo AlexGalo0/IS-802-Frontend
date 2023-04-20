@@ -48,13 +48,19 @@ export const iniciarSesion = async (loginData) => {
     const categoriasSuscritas = await axios.get(`http://localhost:4000/categorySubscription/${res.data.token}`);
     const idsListaDeDeseos = await axios.get(`http://localhost:4000/wishlist-productid/${res.data.token}`);
 
-    console.log(idsListaDeDeseos.data);
+
 
     const token = res.data.token
     const nombre = res.data.nombre
     const correo = res.data.correo
     const apellido = res.data.apellido
-    localStorage.setItem("categoriasSuscritas", categoriasSuscritas.data.categorias)
+    if (categoriasSuscritas.data.categorias === undefined) {
+        localStorage.setItem("categoriasSuscritas", "[]")
+    } else {
+
+        localStorage.setItem("categoriasSuscritas", categoriasSuscritas.data.categorias)
+    }
+
     localStorage.setItem("idsListaDeDeseos", JSON.stringify(idsListaDeDeseos.data))
     localStorage.setItem("token", token)
     localStorage.setItem("nombre", nombre)
@@ -101,6 +107,7 @@ export const borrarProductoListaDeseos = async (idProducto, tokenUser) => {
     return res.data
 }
 export const suscripcionACategoria = async (categorias, tokenUser) => {
+    
     const res = await axios.post(`http://localhost:4000/categorySubscription/${tokenUser}`, categorias)
     return res.data;
 }
@@ -129,24 +136,24 @@ export const obtenerComentarios = async (idProducto) => {
 
 // export const borrarComentarios = async = (id)
 
-export const obtenerUsuariosChat=async()=>{
+export const obtenerUsuariosChat = async () => {
     const res = await axios.get("http://localhost:4000/user")
     return res.data
 
 }
 
-export const obtenerTodosUsuarios =async()=>{
+export const obtenerTodosUsuarios = async () => {
     const res = await axios.get("http://localhost:4000/user")
     return res.data
 }
 
-export const enviarPDFs= async ()=>{
+export const enviarPDFs = async () => {
     const res = await axios.get('http://localhost:4000/envio-publicidad-pdf')
     console.log(res.data);
-    return res.data ;
+    return res.data;
 }
-export const obtenerProductosUsuarioDNI=async(dniUsuario)=>{
+export const obtenerProductosUsuarioDNI = async (dniUsuario) => {
     const res = await axios.get(`http://localhost:4000/productos/productosAdmin/1/${dniUsuario}`)
     console.log(res.data);
-    return res.data 
+    return res.data
 }

@@ -15,9 +15,13 @@ import { useForm } from "react-hook-form";
 import { BiLeftArrow } from "react-icons/bi";
 import { useNavigate } from "react-router";
 import logo from "../../../assets/logoV2.png";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { obtenerCategorias, suscripcionACategoria, verCategorias } from "../../../api";
+import {
+	obtenerCategorias,
+	suscripcionACategoria,
+	verCategorias,
+} from "../../../api";
 
 export const FormCategorias = () => {
 	const navigate = useNavigate(); //Para redireccion
@@ -25,13 +29,13 @@ export const FormCategorias = () => {
 	const handleRedirection = () => {
 		navigate("/");
 	};
-	const token = localStorage.getItem("token")
+	const token = localStorage.getItem("token");
 	/* Elementos de la categoria */
 	const [valoresIniciales, setValoresIniciales] = useState({
 		categorias: [],
 	});
 
-	const [suscripcionExitosa, setSuscripcionExitosa] = useState(false)
+	const [suscripcionExitosa, setSuscripcionExitosa] = useState(false);
 
 	const { data: categorias } = useQuery({
 		queryKey: ["categorias"],
@@ -42,26 +46,31 @@ export const FormCategorias = () => {
 		defaultValues: valoresIniciales,
 	});
 
-	const {data:categoriasPorUsuario} = useQuery({
-		queryKey:["categoriasDeUsuario"],
-		queryFn:()=>verCategorias(token)
-	})
+	const { data: categoriasPorUsuario } = useQuery({
+		queryKey: ["categoriasDeUsuario"],
+		queryFn: () => verCategorias(token),
+	});
 
+	const categoriasYaSuscritas = localStorage.getItem("categoriasSuscritas");
 
-
+	const arregloCategoriasSuscritas = JSON.parse(categoriasYaSuscritas) ?? [];
+	const queryClient = useQueryClient()
 	const mutationSuscripcionCategoria = useMutation({
-		mutationFn: (categorias) => suscripcionACategoria(categorias,token),
+		mutationFn: (categorias) => suscripcionACategoria(categorias, token),
 		onSuccess: () => {
-			setSuscripcionExitosa(true)
+			setSuscripcionExitosa(true);
+			queryClient.invalidateQueries("categoriasDeUsuario")
 			setTimeout(() => {
-				handleRedirection()
-				setSuscripcionExitosa(false)
+				handleRedirection();
+				setSuscripcionExitosa(false);
 			}, 2000);
 		},
 	});
 	const enviarCategorias = (categorias) => {
 		mutationSuscripcionCategoria.mutate(categorias);
 	};
+
+	// const verificarSiYaSuscrito=(categoria)=>
 
 	return (
 		<>
@@ -147,10 +156,12 @@ export const FormCategorias = () => {
 											id={categoria.nombre}
 											type='checkbox'
 											value={categoria.nombre}
+											defaultChecked={arregloCategoriasSuscritas.includes(
+												categoria.nombre
+											)}
 											{...register(`categorias`)}
 										/>
 										<label
-											
 											htmlFor={categoria.nombre}
 											style={{ marginTop: "3px" }}
 										></label>
@@ -160,9 +171,11 @@ export const FormCategorias = () => {
 								))}
 							</form>
 						</Form.Group>
-						{
-							suscripcionExitosa ? <Alert variant="success">Suscripciones Completadas.</Alert> : ''
-						}
+						{suscripcionExitosa ? (
+							<Alert variant='success'>Suscripciones Completadas.</Alert>
+						) : (
+							""
+						)}
 						<button className='Button' type='submit'>
 							<span className='boxForm' style={{ fontSize: "20px" }}>
 								Continuar
@@ -171,15 +184,13 @@ export const FormCategorias = () => {
 						<button
 							className='buttonAdmin'
 							style={{ marginTop: "30px", marginBottom: "-10px" }}
-							onClick={()=>{
-								navigate("/")
+							onClick={() => {
+								navigate("/");
 							}}
 						>
 							¡No quiero publicidad!
 						</button>
-						
 					</Form>
-			
 				</Container>
 			</header>
 		</>

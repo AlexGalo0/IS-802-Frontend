@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Boton.css";
 import { AiFillHeart } from "react-icons/ai";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { agregarProductoWishlist } from "../../../api/sendRequest.api";
 import { Link, useParams } from "react-router-dom";
-
+import { obtenerListaDeseosUsuario } from "../../../api/sendRequest.api";
 export default function Boton() {
 	let { idProducto } = useParams();
 	/* 
@@ -25,31 +25,42 @@ Verificar si existe en el local storage.
 		localStorage.setItem("productosFavorito", JSON.stringify(result));
 
 		agregarProductoWishlist(tokenUsuario, idProducto);
+		localStorage.clear("idsListaDeDeseos")
+
 	};
-	/*  Algo asi: 
-function cadenaEstaEnArreglo(cadena, arreglo) {
-  // Convertir la cadena en un arreglo de números
-  const numeros = cadena.split(",").map(numero => parseInt(numero));
+	const [productosFavoritosUsuario, setProductosFavoritosUsuario] = useState(
+		[]
+	);
+	useEffect(() => {
+		const productosFavoritos = localStorage.getItem("idsListaDeDeseos");
+		const arreglo = JSON.parse(productosFavoritos);
+		// console.log(arreglo[0].id_producto.data);
+		const arregloIdProductosFavoritos = [];
+		arreglo.map((producto) =>
+			arregloIdProductosFavoritos.push(producto.id_producto.data)
+		);
+		setProductosFavoritosUsuario(arregloIdProductosFavoritos);
+	}, []);
 
-  // Convertir la cadena de números en el arreglo esperado
-  const arregloNumeros = JSON.parse(`[${arreglo}]`);
+	const arregloIDProducto = idProducto.split(",").map(Number);
 
-  // Verificar si la cadena está en el arreglo
-  return arregloNumeros.includes(numeros);
-}
-
-// Ejemplo de uso
-const cadena = "12,73,77,127,42,39,175,189,215,11,138,118,42,122,181,112,5,104,63,252";
-const arreglo = "[7,62,82,206,151,61,148,54,118,120,
-
-
-
-*/
 	const [active, setActive] = useState(false);
 
 	function handleClick() {
 		setActive(!active);
 	}
+	const verificarSiYaEsFavorito = () => {
+		let seEncuentra = false;
+		for (let i = 0; i < productosFavoritosUsuario.length; i++) {
+			if (productosFavoritosUsuario[i].includes(arregloIDProducto[0])) {
+				seEncuentra = true;
+				break;
+			}
+		}
+		console.log(seEncuentra);
+		return seEncuentra
+	};
+verificarSiYaEsFavorito()
 
 	/* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
 	const renderTooltipButtomLike = (props) => (
@@ -66,7 +77,7 @@ const arreglo = "[7,62,82,206,151,61,148,54,118,120,
 				overlay={renderTooltipButtomLike}
 			>
 				<button
-					className={active ? "active" : ""}
+					className={verificarSiYaEsFavorito ? "" : "active"}
 					onClick={() => {
 						handleClick();
 						agregarFavoritos();

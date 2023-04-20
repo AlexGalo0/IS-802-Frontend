@@ -149,7 +149,12 @@ export const Producto = ({}) => {
 								<h4>Departamento: {infoProductos?.departamento}</h4>
 								<h4>Categoría: {infoProductos?.nombrecategoria}</h4>
 								<h4>Cantidad en inventario: {infoProductos?.cantidad}</h4>
-								<h4>Vendido por: {vendedor?.nombreVendedor}</h4>
+								<h4>
+									Vendido por:{" "}
+									{nombreCompleto === vendedor.nombreVendedor
+										? "Tu eres el vendedor!"
+										: vendedor?.nombreVendedor}
+								</h4>
 
 								<h4 style={{ marginBottom: "-10px" }}>
 									Calificacion del vendedor:
@@ -353,7 +358,7 @@ export const Producto = ({}) => {
 													onClick={() => setShowGeneral(true)}
 												>
 													<span className='box'>
-														Habla con  {vendedor.nombreVendedor}
+														Habla con {vendedor.nombreVendedor}
 													</span>
 												</button>
 											</>
