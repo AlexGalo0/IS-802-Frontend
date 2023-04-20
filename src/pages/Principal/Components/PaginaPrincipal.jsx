@@ -144,7 +144,7 @@ export const PaginaPrincipal = () => {
 						</h4>
 						<form onSubmit={handleSubmit(filtrarProductos)}>
 
-						<div className="d-grip">
+						<div className="d-flex flex-flex-wrap">
 							<button onClick={handleReiniciar} className='btnFiltros'>
 								<span className='textBuscar'>Reiniciar filtros</span>
 							</button>
