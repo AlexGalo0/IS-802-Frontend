@@ -279,8 +279,9 @@ export const PaginaPrincipal = () => {
 									
 								</>
 							}
-
 							<br />
+							{errorPrecio ? (<text>¡El precio máximo debe <br/>ser mayor al mínimo!</text>) : ("")}
+							
 							<h5 className='py-3 cate'>Buscador</h5>
 							{
 								<>
@@ -297,11 +298,6 @@ export const PaginaPrincipal = () => {
 							
 						</form>
 					</div>
-					{errorPrecio ? (
-										<text style={{margin: '5px'}}>¡El precio máximo debe ser mayor al mínimo!</text>
-									) : (
-										""
-									)}
 				</aside>
 
 				<article>
