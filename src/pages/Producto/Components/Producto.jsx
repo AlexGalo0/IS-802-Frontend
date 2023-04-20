@@ -89,7 +89,6 @@ export const Producto = ({}) => {
 		queryKey: ["misFavoritos"],
 		queryFn: () => idsProductosWishlist(token),
 	});
-
 	const [texto, setTexto] = useState("");
 
 	function handleClick() {
