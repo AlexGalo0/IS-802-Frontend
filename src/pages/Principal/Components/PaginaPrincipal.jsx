@@ -179,7 +179,14 @@ export const PaginaPrincipal = () => {
 							))}
 
 							<br />
-						
+								<div>
+
+							<h5>Mas populares</h5> 
+							<input type="checkbox" {...register("masPopulares")}/>
+							<label >Productos mas populares</label>
+								</div>
+							
+								
 							<h5 className='py-3 cate'>Departamentos</h5>
 							{departamentos?.map((departamento) => (
 								<div
