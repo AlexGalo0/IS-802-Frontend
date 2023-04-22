@@ -181,3 +181,6 @@ export const envioDeDenuncia = async (denuncia) => {
     console.log(denuncia);
 
 }
+export const envioCalificacion = async (calificacion)=>{
+    console.log(calificacion)
+}

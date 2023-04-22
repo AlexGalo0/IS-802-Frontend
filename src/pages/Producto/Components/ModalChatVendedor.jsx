@@ -7,9 +7,10 @@ const socket = io("http://localhost:4000/");
 
 import { MdSend } from "react-icons/md";
 import React, { useState, useRef, useEffect } from "react";
-import { useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-
+import { useForm } from "react-hook-form";
+import { envioCalificacion } from "../../../api";
 export const ModalChatVendedor = ({
 	showModal,
 	vendedor,
@@ -83,7 +84,7 @@ export const ModalChatVendedor = ({
 		const nuevaCantidad = Math.min(event.target.value, producto.cantidad);
 		setCantidad(nuevaCantidad);
 	};
-	const handleSubmit = (e) => {
+	const handleSubmitMensaje = (e) => {
 		e.preventDefault();
 		const newMessage = {
 			body: message,
@@ -159,7 +160,22 @@ export const ModalChatVendedor = ({
 			messagesRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
 		}, 0);
 	};
+	const { register, handleSubmit, watch, formState: { errors } } = useForm();
+	/* Calificacion */
 
+	const mutationEnvioCalificacion = useMutation({
+		mutationFn:(calificacion)=>{
+			envioCalificacion(calificacion)
+		},
+		onSuccess:()=>console.log("Calificacion Enviada")
+	}) 
+	const recibirCalificacion=(calificacion)=>{
+		const token = localStorage.getItem("token")
+		mutationEnvioCalificacion.mutate({
+			calificacion,
+			token
+		})
+	}
 	return (
 		<Modal
 			show={showModal}
@@ -285,7 +301,7 @@ export const ModalChatVendedor = ({
 							)}
 						</div>
 
-						<form onSubmit={handleSubmit}>
+						<form onSubmit={handleSubmitMensaje}>
 							<div
 								className='mensajesPadre'
 								style={{ height: "390px", marginTop: "15px" }}
@@ -398,9 +414,12 @@ export const ModalChatVendedor = ({
 				<Modal.Body>
 					¿Que calificacion le darias al vendedor del 1 al 5?
 				</Modal.Body>
-				<input type='number' />
+				<form onSubmit={handleSubmit(recibirCalificacion)}>
+
+				<input type='number' max="5" min="1" maxLength="1" {...register("calificacion")}/>
+					<button variant='secondary' type="submit">Calificar al vendedor</button>
+				</form>
 				<Modal.Footer>
-					<button variant='secondary'>Calificar al vendedor</button>
 					<button variant='primary' onClick={handleClose}>
 						Ignorar
 					</button>
