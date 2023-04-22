@@ -16,21 +16,6 @@ export const SidebarFiltros = () => {
   return (
     <>
     {/* Categorias */}
- 
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     </>
   )
 }

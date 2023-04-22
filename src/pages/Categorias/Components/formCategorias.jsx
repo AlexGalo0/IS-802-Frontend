@@ -154,7 +154,7 @@ export const FormCategorias = () => {
 											type='checkbox'
 											value={categoria.nombre}
 											defaultChecked={
-												categoriasPorUsuario?.categorias.includes(categoria.nombre)
+												categoriasPorUsuario?.categorias?.includes(categoria.nombre)
 											}
 											{...register(`categorias`)}
 										/>

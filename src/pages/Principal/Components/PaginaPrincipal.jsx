@@ -136,9 +136,9 @@ export const PaginaPrincipal = () => {
 
 			<main className='principal'>
 				<aside className='text-center'>
-					<SidebarFiltros />
+					<SidebarFiltros  />
 					
-					<div style={{ padding: "5px", position: "fixed", height: "650px", marginBottom: "100px", paddingBottom: "50px" }} className='scroll'>
+					<div style={{ padding: "5px", position: "fixed", height: "550px", paddingBottom: "80px", marginBottom: "100px" }} className='scroll'>
 						<h4 className='py-3 fil'>
 							<FaFilter /> Filtros
 						</h4>

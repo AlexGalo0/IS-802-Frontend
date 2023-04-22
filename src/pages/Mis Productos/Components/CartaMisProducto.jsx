@@ -46,9 +46,10 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
 			darBajaMiProducto(token, productoAEliminar.idProducto.data.toString());
 		},
 		onSuccess: () => {
-			queryClient.invalidateQueries("misProductos");
 			setEliminacionCorrecta(true);
-
+			queryClient.invalidateQueries("misProductos");
+			queryClient.refetchQueries("misProductos");
+			
 			setTimeout(() => {
 				handleClose();
 				setEliminacionCorrecta(false);
