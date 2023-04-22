@@ -179,6 +179,7 @@ export const PaginaPrincipal = () => {
 							))}
 
 							<br />
+						
 							<h5 className='py-3 cate'>Departamentos</h5>
 							{departamentos?.map((departamento) => (
 								<div

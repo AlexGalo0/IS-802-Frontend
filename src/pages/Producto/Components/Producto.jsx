@@ -59,6 +59,15 @@ export const Producto = ({}) => {
 		setShowDenuncia(true);
 	};
 
+	useEffect(() => {
+		/* 
+		const enviarVisita=async()=>{
+const res = await axios.put("enviar/1"  , idProducto)
+		}
+		enviarVisita()
+		
+		*/
+	}, []);
 	const obtenerProductoPorId = async (idProducto) => {
 		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
 
@@ -98,19 +107,19 @@ export const Producto = ({}) => {
 	const { register, handleSubmit } = useForm();
 
 	const mutationEnviarDenuncias = useMutation({
-		mutationFn: (denuncia)=>{
-			envioDeDenuncia(denuncia)
+		mutationFn: (denuncia) => {
+			envioDeDenuncia(denuncia);
 		},
-		onSuccess:()=>{
-			console.log("Denuncia Enviada")
-		}
+		onSuccess: () => {
+			console.log("Denuncia Enviada");
+		},
 	});
 	const enviarDenuncia = (denuncia) => {
 		const token = localStorage.getItem("token");
 		mutationEnviarDenuncias.mutate({
 			token,
 			denuncia,
-			idVendedor:vendedor.id_vendedor.toString()
+			idVendedor: vendedor.id_vendedor.toString(),
 		});
 	};
 
