@@ -80,7 +80,10 @@ export const UserLogin = () => {
                 <button
                   className="Button-back"
                   type="submit"
-                  onClick={handleRedirection}
+                  onClick={(e)=>{
+                    handleRedirection()
+                    e.preventDefault()
+                  }}
                   style={{
                     marginTop: "-25px",
                     paddingTop: "1px",

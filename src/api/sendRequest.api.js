@@ -154,7 +154,7 @@ export const obtenerProductosUsuarioDNI = async (dniUsuario) => {
     return res.data
 }
 export const darBajaUsuario = async (dni) => {
-   
+
     const res = await axios.delete(`http://localhost:4000/darbajaUsuario/${dni}`)
     return res.data;
 }
@@ -173,6 +173,11 @@ export const darBajaMiProducto = async (tokenUsuario, tokenProduct) => {
 
 export const idsProductosWishlist = async (token) => {
     const res = await axios.get(`http://localhost:4000/wishlist-productid/${token}`);
-  
+
     return res.data
+}
+
+export const envioDeDenuncia = async (denuncia) => {
+    console.log(denuncia);
+
 }

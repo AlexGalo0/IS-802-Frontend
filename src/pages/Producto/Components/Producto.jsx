@@ -12,11 +12,11 @@ import {
 	OverlayTrigger,
 	Tooltip,
 	Alert,
+	Modal,
 } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { useQuery } from "@tanstack/react-query";
-
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { UserContext } from "../../../context";
@@ -30,7 +30,8 @@ import { Comentarios } from "./Comentarios";
 import { ModalChatVendedor } from "./ModalChatVendedor";
 import { ChatGeneral } from "./ChatGeneral";
 import io from "socket.io-client";
-import { idsProductosWishlist } from "../../../api";
+import { envioDeDenuncia, idsProductosWishlist } from "../../../api";
+import { useForm } from "react-hook-form";
 
 const socket = io("http://localhost:4000/");
 export const Producto = ({}) => {
@@ -45,12 +46,17 @@ export const Producto = ({}) => {
 	const apellido = localStorage.getItem("apellido");
 
 	const [showModal, setShowModal] = useState(false);
-	const [showGeneral, setShowGeneral] = useState(false);
+	const [showDenuncia, setShowDenuncia] = useState(false);
+
 	const handleCerrarModal = () => {
 		setShowModal(false);
 	};
-	const handleCerrarGeneral = () => {
-		setShowGeneral(false);
+
+	const handleCerrarDenuncia = () => {
+		setShowDenuncia(false);
+	};
+	const handleShowDenuncia = () => {
+		setShowDenuncia(true);
 	};
 
 	const obtenerProductoPorId = async (idProducto) => {
@@ -84,16 +90,29 @@ export const Producto = ({}) => {
 		);
 	};
 
-	// const token = localStorage.getItem("token");
-	// const { data: misFavoritos } = useQuery({
-	// 	queryKey: ["misFavoritos"],
-	// 	queryFn: () => idsProductosWishlist(token),
-	// });
 	const [texto, setTexto] = useState("");
 
 	function handleClick() {
 		setTexto("¡Enlace de producto copiado!");
 	}
+	const { register, handleSubmit } = useForm();
+
+	const mutationEnviarDenuncias = useMutation({
+		mutationFn: (denuncia)=>{
+			envioDeDenuncia(denuncia)
+		},
+		onSuccess:()=>{
+			console.log("Denuncia Enviada")
+		}
+	});
+	const enviarDenuncia = (denuncia) => {
+		const token = localStorage.getItem("token");
+		mutationEnviarDenuncias.mutate({
+			token,
+			denuncia,
+			idVendedor:vendedor.id_vendedor.toString()
+		});
+	};
 
 	return (
 		<>
@@ -156,7 +175,7 @@ export const Producto = ({}) => {
 								</h4>
 
 								<h4 style={{ marginBottom: "5px" }}>
-									Calificación del vendedor: 
+									Calificación del vendedor:
 								</h4>
 								<div className='conCalificacion'>
 									<div className='starWitget'>
@@ -304,21 +323,45 @@ export const Producto = ({}) => {
 									{/* {userAuth ? <Boton /> : ""} */}
 
 									{userAuth ? (
-										<div className='like'>
-											<OverlayTrigger
-												placement='top'
-												delay={{ show: 250, hide: 400 }}
-												overlay={renderTooltipButtomShare}
-											>
-												<button
-													onClick={() => {
-														generarEnlace(), handleClick();
-													}}
+										<>
+											<div className='like'>
+												<OverlayTrigger
+													placement='top'
+													delay={{ show: 250, hide: 400 }}
+													overlay={renderTooltipButtomShare}
 												>
-													<FaShare className='heart' />
+													<button
+														onClick={() => {
+															generarEnlace(), handleClick();
+														}}
+													>
+														<FaShare className='heart' />
+													</button>
+												</OverlayTrigger>
+											</div>
+											<div>
+												<button onClick={handleShowDenuncia}>
+													Denunciar Vendedor
 												</button>
-											</OverlayTrigger>
-										</div>
+											</div>
+											<Modal show={showDenuncia} onHide={handleCerrarDenuncia}>
+												<Modal.Header closeButton>
+													<Modal.Title>Denuncia al usuario</Modal.Title>
+												</Modal.Header>
+												<form onSubmit={handleSubmit(enviarDenuncia)}>
+													<input type='text' {...register("denuncia")} />
+													<button type='submit'>Enviar Denuncia</button>
+												</form>
+												<Modal.Footer>
+													<button
+														variant='primary'
+														onClick={handleCerrarDenuncia}
+													>
+														Cerrar
+													</button>
+												</Modal.Footer>
+											</Modal>
+										</>
 									) : (
 										<div className='like'>
 											<OverlayTrigger
@@ -340,33 +383,12 @@ export const Producto = ({}) => {
 											</OverlayTrigger>
 										</div>
 									)}
-									
+
 									{/* Boton de compartir */}
 								</div>
 								<div>{texto}</div>
 								{userAuth && (
 									<>
-										{/* {nombreCompleto === vendedor.nombreVendedor ? (
-											""
-										) : (
-											<>
-												<button
-													className='buttonChat'
-													style={{ color: "#f7f7f7", fontSize: "medium", minWidth: '200px'}}
-													onClick={() => setShowGeneral(true)}
-												>
-													<span className='box' style={{minWidth: '200px'}}>
-														Habla con {vendedor.nombreVendedor}
-													</span>
-												</button>
-											</>
-										)} */}
-
-										<ChatGeneral
-											showGeneral={showGeneral}
-											handleCerrarGeneral={handleCerrarGeneral}
-											vendedor={vendedor}
-										/>
 										<div>
 											<button
 												className='buttonChat'
