@@ -60,13 +60,12 @@ export const Producto = ({}) => {
 	};
 
 	useEffect(() => {
-		/* 
-		const enviarVisita=async()=>{
-const res = await axios.put("enviar/1"  , idProducto)
-		}
-		enviarVisita()
+		const enviarVisita = async () => {
+			let visita = 1 ;
+			// const res = await axios.put(`enviar/${idProducto}`, visita);
 		
-		*/
+		};
+		enviarVisita();
 	}, []);
 	const obtenerProductoPorId = async (idProducto) => {
 		const res = await axios.get(`http://localhost:4000/product/${idProducto}`);
