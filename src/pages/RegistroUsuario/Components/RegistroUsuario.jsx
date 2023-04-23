@@ -97,7 +97,10 @@ export const RegistroUsuario = () => {
 								<button
 									className='Button-back'
 									type='submit'
-									onClick={handleRedirection}
+									onClick={(e)=>{
+										e.preventDefault()
+										handleRedirection()
+									}}
 									style={{
 										marginTop: "-45px",
 										paddingTop: "1px",
