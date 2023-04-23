@@ -185,6 +185,23 @@ export const envioDeDenuncia = async (denunciaRecibida) => {
 
 
 }
+export const obtenerDenuncias = async () => {
+    const res = await axios.get(`http://localhost:4000/denuncia/verDenuncias`);
+
+    return res.data
+}
+
+export const desestimarDenuncia = async (idDenuncia) => {
+    console.log(idDenuncia);
+    // const res = await axios.delete(`http://localhost:4000/denuncia/desestimarDenuncia/${idDenuncia}`);
+    // return res.data
+}
+
+export const darBajaDenunciaUsuario = async (idDenuncia) => {
+    // const res = await axios.delete(`http://localhost:4000/denuncia/darBajaDenunciaUsuario/${idDenuncia}`);
+    // return res.data
+    console.log(idDenuncia);
+}
 export const envioCalificacion = async (calificacion) => {
     console.log(calificacion)
 }
