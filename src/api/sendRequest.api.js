@@ -177,10 +177,14 @@ export const idsProductosWishlist = async (token) => {
     return res.data
 }
 
-export const envioDeDenuncia = async (denuncia) => {
-    console.log(denuncia);
+export const envioDeDenuncia = async (denunciaRecibida) => {
+    const { idVendedor, token } = denunciaRecibida
+    const denunciaABackend = denunciaRecibida.denuncia
+    const res = await axios.post(`http://localhost:4000/denuncia/${token}/${idVendedor}`, denunciaABackend);
+    return res.data
+
 
 }
-export const envioCalificacion = async (calificacion)=>{
+export const envioCalificacion = async (calificacion) => {
     console.log(calificacion)
 }
