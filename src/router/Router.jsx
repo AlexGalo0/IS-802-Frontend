@@ -20,6 +20,7 @@ import { useContext } from "react";
 import { RutaProtegida } from "../Components";
 import { Route, Routes } from "react-router-dom";
 import { ProductosAdminUsuarios } from "../pages/ProductosAdminUsuarios";
+import { ModalChatGeneral } from "../Components/ModalChatGeneral";
 export const Router = () => {
 	const { userAuth } = useContext(UserContext);
 	const { adminAuth } = useContext(AdminContext);
@@ -91,6 +92,14 @@ export const Router = () => {
 					element={
 						<RutaProtegida isAllowed={userAuth}>
 							<FormCategorias />
+						</RutaProtegida>
+					}
+				/>
+				<Route
+					path='/chatGeneral'
+					element={
+						<RutaProtegida isAllowed={userAuth}>
+							<ModalChatGeneral />
 						</RutaProtegida>
 					}
 				/>

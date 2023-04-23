@@ -169,14 +169,15 @@
 }
 
 .buscador-div2 {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  height: 35px;
-  width: 450px;
-  border-radius: 30px;
-  padding: 5px 0px;
+  height: 40px;
+  width: 100%;
+  border-radius: 15px;
+  padding: 5px;
+  background-color: #f7f7f7;
 }
+/* .buscador-div2:hover {
+  border: 1px solid #75E8E5;
+} */
 
 .buscador {
   display: flex;

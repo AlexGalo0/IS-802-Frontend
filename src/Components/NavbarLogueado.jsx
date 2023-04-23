@@ -231,19 +231,21 @@ export const NavbarsLogueado = () => {
 						delay={{ show: 250, hide: 400 }}
 						overlay={renderTooltipMessaje}
 					>
+						<Link to='/chatGeneral'>
 						<button
 							className='button-cuenta'
-							onClick={() => {
+							/* onClick={() => {
 								abrirModal()
-							}}
+							}} */
 						>
 							<AiOutlineMessage />
 						</button>
+						</Link>
 					</OverlayTrigger>
-					<ModalChatGeneral
+					{/* <ModalChatGeneral
 						showGeneral={showGeneral}
 						handleCerrarGeneral={handleCerrarModal}
-					/>
+					/> */}
 					<OverlayTrigger
 						placement='left'
 						delay={{ show: 250, hide: 400 }}
