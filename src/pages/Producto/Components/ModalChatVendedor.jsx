@@ -48,7 +48,7 @@ export const ModalChatVendedor = ({
 		handleCerrarModal()
 	}
 	const handleShow = () => setShow(true);
-
+	
 	const datosInicializacion = {
 		token: token,
 		idProducto: idProducto ?? producto?.idProducto?.data,

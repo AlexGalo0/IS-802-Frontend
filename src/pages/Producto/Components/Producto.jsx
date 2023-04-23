@@ -60,8 +60,12 @@ export const Producto = ({}) => {
 
 	useEffect(() => {
 		const enviarVisita = async () => {
-			let visita = 1;
-			// const res = await axios.put(`enviar/${idProducto}`, visita);
+			
+			const visita = {
+				visitas: 1,
+				idProducto: idProducto,
+			}
+			const res = await axios.put(`http://localhost:4000/acumuladorVisitasProducto/`, visita);
 		};
 		enviarVisita();
 	}, []);
