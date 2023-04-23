@@ -21,6 +21,7 @@ import { RutaProtegida } from "../Components";
 import { Route, Routes } from "react-router-dom";
 import { ProductosAdminUsuarios } from "../pages/ProductosAdminUsuarios";
 import { ModalChatGeneral } from "../Components/ModalChatGeneral";
+import { AdminDenuncias } from "../pages/AdminDenuncias";
 export const Router = () => {
 	const { userAuth } = useContext(UserContext);
 	const { adminAuth } = useContext(AdminContext);
@@ -57,6 +58,14 @@ export const Router = () => {
 					element={
 						<RutaProtegida isAllowed={adminAuth}>
 							<ProductosAdminUsuarios />
+						</RutaProtegida>
+					}
+				/>
+				<Route
+					path='/admin/denuncias'
+					element={
+						<RutaProtegida isAllowed={adminAuth}>
+							<AdminDenuncias/>
 						</RutaProtegida>
 					}
 				/>

@@ -94,7 +94,7 @@ export const AsideAdmin = () => {
 						Estadísticas
 					</button>
 				</Link>
-				<Link to='/construyendo' style={{ textDecoration: "none" }}>
+				<Link to='/admin/denuncias' style={{ textDecoration: "none" }}>
 					<button className='buttonCerrarSesion'>
 						<AiFillWarning style={{ marginRight: "5px" }} />
 						Denuncias
