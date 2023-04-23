@@ -73,11 +73,9 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
 						<Card.Text className='card-medium'>
 							Lps. {producto.precio}
 						</Card.Text>
+					
 						<Card.Text className='card-medium'>
-							Categoría : {producto.nombrecategoria}
-						</Card.Text>
-						<Card.Text className='card-medium'>
-							Departamento : {producto.departamento}
+							Descripcion : {producto.descripcion}
 						</Card.Text>
 						<Card.Text className='card-medium'>
 							Disponibles en inventario: {producto.cantidad}

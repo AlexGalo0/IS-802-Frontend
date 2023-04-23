@@ -32,7 +32,6 @@ import { ModalChatVendedor } from "./ModalChatVendedor";
 import io from "socket.io-client";
 import { envioDeDenuncia, idsProductosWishlist } from "../../../api";
 import { useForm } from "react-hook-form";
-
 const socket = io("http://localhost:4000/");
 export const Producto = ({}) => {
 	const { userAuth } = useContext(UserContext);
@@ -104,18 +103,24 @@ export const Producto = ({}) => {
 	};
 
 	const [texto, setTexto] = useState("");
-
+	const [alertDenunciaEnviada, setAlertDenunciaEnviada] = useState(false);
 	function handleClick() {
 		setTexto("¡Enlace de producto copiado!");
 	}
-	const { register, handleSubmit } = useForm();
+	const { register, handleSubmit ,reset  , formState:{errors}	} = useForm();
 
 	const mutationEnviarDenuncias = useMutation({
 		mutationFn: (denuncia) => {
 			envioDeDenuncia(denuncia);
 		},
 		onSuccess: () => {
-			console.log("Denuncia Enviada");
+			setAlertDenunciaEnviada(true);
+			setTimeout(() => {
+				setAlertDenunciaEnviada(false);
+				
+				handleCerrarDenuncia();
+				reset()
+			}, 1000);
 		},
 	});
 	const enviarDenuncia = (denuncia) => {
@@ -438,7 +443,7 @@ export const Producto = ({}) => {
 												closeButton
 												style={{ textAlign: "center", margin: "auto" }}
 											>
-												<Modal.Title>Denuncia al usuario</Modal.Title>
+												<Modal.Title>Denuncia a {vendedor.nombreVendedor}</Modal.Title>
 											</Modal.Header>
 											<form
 												onSubmit={handleSubmit(enviarDenuncia)}
@@ -451,9 +456,10 @@ export const Producto = ({}) => {
 											>
 												<input
 													type='text'
-													{...register("denuncia")}
+													{...register("denuncia" ,{required: true})}
 													className='inPrecio'
 													style={{ width: "350px" }}
+													placeholder="Ingresa el motivo de tu denuncia"
 												/>
 												<button
 													type='submit'
@@ -467,7 +473,10 @@ export const Producto = ({}) => {
 												>
 													<span className='box'>Enviar</span>
 												</button>
+											
+										
 											</form>
+
 											<Modal.Footer
 												style={{
 													display: "flex",
@@ -475,6 +484,18 @@ export const Producto = ({}) => {
 													alignItems: "center",
 												}}
 											>
+													{
+													errors.denuncia?.type==="required" && (
+														<Alert variant='danger'>
+															Debes ingresar una descripcion a tu denuncia
+														</Alert>
+													)
+												}
+												{alertDenunciaEnviada ? (
+													<Alert variant='success'>Gracias por tu denuncia</Alert>
+												) : (
+													""
+												)}
 												<button
 													variant='primary'
 													onClick={handleCerrarDenuncia}
