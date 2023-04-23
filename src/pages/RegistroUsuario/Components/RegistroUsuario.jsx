@@ -323,6 +323,28 @@ export const RegistroUsuario = () => {
 										<HiOutlineIdentification />
 										DNI Hondureño
 									</Form.Label>
+									
+						{
+							errors.dniHondurenio?.type === "required" && (
+								<p className='FontAlert'>
+									El DNI hondureño es requerido!
+								</p>)
+								
+							
+						}
+						{
+							errors.dniHondurenio?.type === "pattern" && (
+								<p className='FontAlert'>
+									El dni debe ser del formato ZONA-AÑO-CODIGO
+								</p>)
+						}
+
+						{errors.dniExtranjero?.type === "maxLength" && (
+							<p className='maxLength'>
+								El DNI Extranjero no debe exceder 20 caracteres!
+							</p>
+						)}
+
 								</Form.Group>
 							</Col>
 						)}
