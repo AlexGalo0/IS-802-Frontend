@@ -23,6 +23,8 @@ export const AdminDenuncias = () => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries("denuncias")
+            queryClient.invalidateQueries("usuarios")
+
         }
     })
 
