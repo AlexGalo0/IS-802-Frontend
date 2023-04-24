@@ -202,8 +202,7 @@ export const darBajaDenunciaUsuario = async (idDenuncia) => {
 }
 export const envioCalificacion = async (calificacionRecibida) => {
     const datos = {
-        calificacion : calificacionRecibida.calificacion.calificacion,
-        
+        calificacion: calificacionRecibida.calificacion.calificacion,
         idVendedor: calificacionRecibida.idVendedor
     }
 
