@@ -170,10 +170,9 @@ export const ModalChatVendedor = ({
 		onSuccess:()=>console.log("Calificacion Enviada")
 	}) 
 	const recibirCalificacion=(calificacion)=>{
-		const token = localStorage.getItem("token")
 		mutationEnvioCalificacion.mutate({
 			calificacion,
-			token
+			idVendedor:vendedor.id_vendedor.toString(),
 		})
 	}
 	return (

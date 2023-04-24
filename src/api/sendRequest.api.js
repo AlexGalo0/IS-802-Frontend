@@ -202,6 +202,13 @@ export const darBajaDenunciaUsuario = async (idDenuncia) => {
     // return res.data
     console.log(idDenuncia);
 }
-export const envioCalificacion = async (calificacion) => {
-    console.log(calificacion)
+export const envioCalificacion = async (calificacionRecibida) => {
+    const datos = {
+        calificacionRecibida : calificacionRecibida.calificacion.calificacion,
+        
+        idVendedor: calificacionRecibida.idVendedor
+    }
+
+    const res = await axios.post(`http://localhost:4000/calificacion_vendedor`, datos);
+    return res.data
 }
