@@ -192,15 +192,13 @@ export const obtenerDenuncias = async () => {
 }
 
 export const desestimarDenuncia = async (idDenuncia) => {
-    console.log(idDenuncia);
-    // const res = await axios.delete(`http://localhost:4000/denuncia/desestimarDenuncia/${idDenuncia}`);
-    // return res.data
+    const res = await axios.delete(`http://localhost:4000/delete/${idDenuncia}`);
+    return res.data
 }
 
 export const darBajaDenunciaUsuario = async (idDenuncia) => {
-    // const res = await axios.delete(`http://localhost:4000/denuncia/darBajaDenunciaUsuario/${idDenuncia}`);
-    // return res.data
-    console.log(idDenuncia);
+    const res = await axios.delete(`http://localhost:4000/deleteUsuario/${idDenuncia}`);
+    return res.data
 }
 export const envioCalificacion = async (calificacionRecibida) => {
     const datos = {
