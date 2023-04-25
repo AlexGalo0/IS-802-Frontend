@@ -176,6 +176,7 @@ export const ModalChatVendedor = ({
 		mutationEnvioCalificacion.mutate({
 			calificacion,
 			idVendedor:vendedor.id_vendedor.toString(),
+			idProducto:idResultado.toString()
 		})
 	}
 	return (
