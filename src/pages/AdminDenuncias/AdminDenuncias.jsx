@@ -114,7 +114,7 @@ export const AdminDenuncias = () => {
 								<td style={{ width: "200px" }}>{denuncia.denunciado}</td>
 								<td style={{ width: "200px" }}>{denuncia.denunciante}</td>
                                 <td>{denuncia.descripcion}</td>
-                                <div style={{ display: "flex", gap: "5px" }}>
+                                <div style={{ display: "flex", gap: "5px", marginLeft: '20px' }}>
                                     <button onClick={()=>{
                                         handleDesestimar(denuncia.id_denuncia.data.toString())
                                     }} 
