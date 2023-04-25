@@ -52,6 +52,7 @@ export const AsideAdmin = () => {
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
 
+
 	return (
 		<aside
 			style={{
@@ -71,13 +72,13 @@ export const AsideAdmin = () => {
 			</div>
 			<div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
 				<Link to='/admin/usuarios' style={{ textDecoration: "none" }}>
-					<button className='buttonCerrarSesion'>
+					<button className='buttonCerrarSesionAdmin' >
 						<BiUser style={{ marginRight: "5px" }} />
 						Usuarios
 					</button>
 				</Link>
 
-				<button className='buttonCerrarSesion' onClick={handleShowModal}>
+				<button className='buttonCerrarSesionAdmin' onClick={handleShowModal}>
 					<BsFillCloudArrowUpFill style={{ marginRight: "15px" }}/>
 					Publicidad
 				</button>
@@ -89,19 +90,19 @@ export const AsideAdmin = () => {
 					</button>
 				</Link> */}
 				<Link to='/construyendo' style={{ textDecoration: "none" }}>
-					<button className='buttonCerrarSesion'>
+					<button className='buttonCerrarSesionAdmin'>
 						<AiOutlineAreaChart style={{ marginRight: "5px" }} />
 						Estadísticas
 					</button>
 				</Link>
 				<Link to='/admin/denuncias' style={{ textDecoration: "none" }}>
-					<button className='buttonCerrarSesion'>
+					<button className='buttonCerrarSesionAdmin'>
 						<AiFillWarning style={{ marginRight: "5px" }} />
 						Denuncias
 					</button>
 				</Link>
 				<Link to='/admin/crudCategorias' style={{ textDecoration: "none" }}>
-					<button className='buttonCerrarSesion'>
+					<button className='buttonCerrarSesionAdmin'>
 						<BiCategory style={{ marginRight: "5px" }} />
 						Categorías
 					</button>

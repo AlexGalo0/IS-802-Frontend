@@ -11,6 +11,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { envioCalificacion } from "../../../api";
+
+import "../Style/chat.css"
+
 export const ModalChatVendedor = ({
 	showModal,
 	vendedor,
@@ -406,20 +409,36 @@ export const ModalChatVendedor = ({
 			{/* Modal de calificacion de */}
 			
 
-			<Modal show={show} onHide={handleClose}>
-				<Modal.Header closeButton>
-					<Modal.Title>Deseas calificar al vendedor?</Modal.Title>
+			<Modal show={show} onHide={handleClose} style={{width: '1505px'}}>
+				<Modal.Header closeButton style={{ textAlign: "center", margin: "auto" }}>
+					<Modal.Title>¿Deseas calificar al vendedor?</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>
+				<Modal.Body style={{ textAlign: "center", margin: "auto" }}>
 					¿Que calificacion le darias al vendedor del 1 al 5?
 				</Modal.Body>
-				<form onSubmit={handleSubmit(recibirCalificacion)}>
+				<form onSubmit={handleSubmit(recibirCalificacion)} style={{
+													display: "flex",
+													justifyContent: "center",
+													alignItems: "center",
+													gap: "5px",
+												}}>
 
-				<input type='number' max="5" min="1" maxLength="1" {...register("calificacion")}/>
-					<button variant='secondary' type="submit">Calificar al vendedor</button>
+				<input type='number' max="5" min="1" maxLength="1" {...register("calificacion")} style={{ width: "80px" }} className='inPrecio'/>
+					<button variant='secondary' type="submit" className='buttonProducto'
+													style={{
+														backgroundColor: "#365662",
+														color: "#f7f7f7",
+														marginRight: "80px",
+														marginLeft: '-40px',
+														width: "200px",
+													}}><span className='box'>Calificar al vendedor</span></button>
 				</form>
-				<Modal.Footer>
-					<button variant='primary' onClick={handleClose}>
+				<Modal.Footer style={{
+													display: "flex",
+													justifyContent: "center",
+													alignItems: "center",
+												}}>
+					<button variant='primary' onClick={handleClose} className='buttonGuardar'>
 						Ignorar
 					</button>
 				</Modal.Footer>

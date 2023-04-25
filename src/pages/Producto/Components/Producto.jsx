@@ -278,11 +278,11 @@ export const Producto = ({}) => {
 							</div>
 
 							<div className='spectsMedium2'>
-								{userAuth ? <h3>Califica el producto:</h3> : ""}
+								{/* {userAuth ? <h3>Califica el producto:</h3> : ""} */}
 
 								{userAuth ? (
 									<>
-										<div className='conCalificacion'>
+										{/* <div className='conCalificacion'>
 											<div className='starWitget'>
 												<input
 													className='inStar'
@@ -335,7 +335,7 @@ export const Producto = ({}) => {
 													<AiFillStar />
 												</label>
 											</div>
-										</div>
+										</div> */}
 									</>
 								) : (
 									""
@@ -488,6 +488,7 @@ export const Producto = ({}) => {
 													alignItems: "center",
 												}}
 											>
+												<div style={{display: 'flex', flexDirection: 'column'}}>
 													{
 													errors.denuncia?.type==="required" && (
 														<Alert variant='danger'>
@@ -507,6 +508,7 @@ export const Producto = ({}) => {
 												>
 													Cerrar
 												</button>
+												</div>
 											</Modal.Footer>
 										</Modal>
 									</>

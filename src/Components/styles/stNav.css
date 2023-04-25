@@ -348,6 +348,42 @@
   margin-top: 5px;
 }
 
+.buttonCerrarSesion:hover {
+  background-color: var(--blue1);
+  color: #02050A;
+}
+
+.buttonCerrarSesionAdmin {
+  height: 45px;
+  width: 160px;
+  border-radius: 30px;
+  border: none;
+  background-color: hsla(0, 0%, 100%, 0.15);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  font-size: large;
+  color: var(--white);
+  margin-top: 5px;
+}
+
+.buttonCerrarSesionAdmin:active {
+  background-color: #75E8E5;
+  color: #02050A;
+}
+
+.buttonCerrarSesionAdmin:focus {
+  background-color: #75E8E5;
+  color: #02050A;
+}
+
+
+.buttonCerrarSesionAdmin:hover {
+  background-color: #75E8E5;
+  color: #02050A;
+}
+
 .palabrasClave {
   display: flex;
   margin-top: -57px;

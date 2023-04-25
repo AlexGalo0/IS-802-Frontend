@@ -25,6 +25,7 @@ import { Footers } from "../Components/Footer";
 import { BiLeftArrow } from "react-icons/bi";
 import { useNavigate } from "react-router";
 import { BiSearchAlt, BiUser } from "react-icons/bi";
+import "../pages/Producto/Style/chat.css"
 
 export const ModalChatGeneral = ({
   showGeneral,

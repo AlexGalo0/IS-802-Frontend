@@ -57,6 +57,9 @@ export const ProductosAdminUsuarios = () => {
   const borrarProducto = (productoABorrar) => {
     borrarProductoMutation.mutate(productoABorrar);
   };
+
+  
+
   return (
     <>
       <Container fluid className="container-grid">
@@ -101,7 +104,7 @@ export const ProductosAdminUsuarios = () => {
             > */}
               {productosUsuario?.map((producto) => (
                 <>
-                  <Row xs={1} md={3} className="g-2" style={{ marginTop: "-20px" }}>
+                  <Row xs={1} md={3} className='g-2' style={{ marginTop: "-20px" }}>
             
           
                     <Card className="card">

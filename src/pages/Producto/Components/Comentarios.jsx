@@ -1,7 +1,7 @@
 import React, {  useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../../context";
-import { Alert, Form, Table } from "react-bootstrap";
+import { Alert, Form, Table, Container } from "react-bootstrap";
 import { MdOutlineInsertComment } from "react-icons/md";
 import {
 	useMutation,
@@ -70,6 +70,7 @@ export const Comentarios = ({ productoID }) => {
 						>
 							<Form.Control
 								className='comment'
+								style={{border: '2px solid #75E8E5'}}
 								type='text'
 								{...register("comentario", {
 									required: true,
@@ -114,23 +115,33 @@ export const Comentarios = ({ productoID }) => {
 					</Alert>
 				)}
 			</div>
-			<Table
+			<Container className="conCrud">
+			<table
 				striped
 				bordered
 				hover /* className="tabComments" style={{borderRadius: '20px'}} */
 				
 			>
-				<thead>
-					<tr>
-						<th style={{ width: "200px" }}>Creado por: </th>
-						<th>Comentario: </th>
+				<thead >
+					<tr style={{
+						width: "20%",
+						borderBottom: "1px solid black",
+						fontSize: "large",
+						gap: "10px",
+					}}>
+						<th style={{ width: "200px" }}>Creado por:</th>
+						<th  style={{ width: "90%" }}>Comentario: </th>
 					</tr>
 				</thead>
 				<tbody>
 				
 					{comentariosDeProducto?.map((comentario) => (
 						
-							<tr key={comentario.id_comentario.data}>
+							<tr key={comentario.id_comentario.data} style={{
+                                height: "50px",
+                                borderBottom: "1px solid black",
+                                gap: "10px",
+                              }}>
 								<td>
 									{comentario.nombres} {comentario.apellidos}
 								</td>
@@ -139,7 +150,8 @@ export const Comentarios = ({ productoID }) => {
 						
 					))}
 				</tbody>
-			</Table>
+			</table>
+			</Container>
 		</div>
 	);
 };
