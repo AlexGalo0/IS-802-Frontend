@@ -109,6 +109,7 @@ export const PaginaPrincipal = () => {
 			precioMaximo: "",
 			palabraClave: "",
 			days: [],
+			calificacion:false ,
 			masPopulares: false,
 		};
 		if (JSON.stringify(emptyFilters) === JSON.stringify(datosFiltrado)) {
