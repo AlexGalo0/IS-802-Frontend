@@ -89,7 +89,8 @@ export const editarCategoria = async (nuevaCategoria) => {
 }
 
 
-export const agregarProductoWishlist = async (token, idProducto) => {
+export const agregarProductoWishlist = async (obj) => {
+    const { idProducto, token } = obj
 
     const res = await axios.post(`http://localhost:4000/wishlist/${token}/${idProducto}`)
     return res.data
@@ -211,3 +212,4 @@ export const envioCalificacion = async (calificacionRecibida) => {
     const res = await axios.post(`http://localhost:4000/calificacion_vendedor`, datos);
     return res.data
 }
+

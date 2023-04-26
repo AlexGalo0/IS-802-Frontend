@@ -25,12 +25,15 @@ import { Link, useParams } from "react-router-dom";
 import Boton from "../Components/botonLike";
 import { FaShare } from "react-icons/fa";
 import { MdReportProblem } from "react-icons/md";
-import axios from "axios"; /* 
-import { agregarProductoWishlist } from "../../../api/sendRequest.api"; */
+import axios from "axios"; 
 import { Comentarios } from "./Comentarios";
 import { ModalChatVendedor } from "./ModalChatVendedor";
 import io from "socket.io-client";
-import { envioDeDenuncia, idsProductosWishlist } from "../../../api";
+import {
+	agregarProductoWishlist,
+	envioDeDenuncia,
+	idsProductosWishlist,
+} from "../../../api";
 import { useForm } from "react-hook-form";
 const socket = io("http://localhost:4000/");
 export const Producto = ({}) => {
@@ -57,7 +60,7 @@ export const Producto = ({}) => {
 	const handleShowDenuncia = () => {
 		setShowDenuncia(true);
 	};
-	const [calificacionVendedor, setCalificacionVendedor] = useState(0)
+	const [calificacionVendedor, setCalificacionVendedor] = useState(0);
 	useEffect(() => {
 		const enviarVisita = async () => {
 			const visita = {
@@ -74,8 +77,7 @@ export const Producto = ({}) => {
 				`http://localhost:4000/calificacion_vendedor_por_producto/${idProducto}`
 			);
 			setCalificacionVendedor(res.data[0].calificacion_promedio);
-			
-		}
+		};
 		obtenerCalificacionDeVendedor(idProducto);
 		enviarVisita();
 	}, []);
@@ -168,6 +170,23 @@ export const Producto = ({}) => {
 			token,
 			denuncia,
 			idVendedor: vendedor.id_vendedor.toString(),
+		});
+	};
+
+	const mutationAgregarFavoritos = useMutation({
+		mutationFn: (obj) => {
+			agregarProductoWishlist(obj);
+		},
+		onSuccess: () => {
+			console.log("Añadido");
+		},
+	});
+
+	const agregarFavoritos = () => {
+		const token = localStorage.getItem("token");
+		mutationAgregarFavoritos.mutate({
+			idProducto:idProducto,
+			token,
 		});
 	};
 
@@ -377,7 +396,15 @@ export const Producto = ({}) => {
 								)}
 
 								<div style={{ display: "flex", gap: "10px" }}>
-									{/* {userAuth ? <Boton /> : ""} */}
+									{userAuth ? (
+										<>
+											<button onClick={agregarFavoritos}>
+												Agregar a Favoritos
+											</button>
+										</>
+									) : (
+										""
+									)}
 
 									{userAuth ? (
 										<>
