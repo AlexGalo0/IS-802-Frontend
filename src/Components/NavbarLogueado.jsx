@@ -294,7 +294,7 @@ export const NavbarsLogueado = () => {
                     </p>
 					</div>
 
-					<div>
+					{/* <div>
 					<p
                       style={{
                         color: "#f7f7f7",
@@ -316,7 +316,7 @@ export const NavbarsLogueado = () => {
                     </p>
 					  <AiFillStar style={{width: '35px', height: '35px', color: '#75E8E5'}}/>
 					  </div>
-					</div>
+					</div> */}
                     
                     <Link to="/misProductos" style={{ textDecoration: "none" }}>
                       <button className="buttonCerrarSesion" style={{width: '300px', gap: '10px'}}>

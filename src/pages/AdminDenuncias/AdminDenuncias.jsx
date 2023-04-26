@@ -25,7 +25,7 @@ export const AdminDenuncias = () => {
             desestimarDenuncia(idDesestimar)
         },
         onSuccess: () => {
-            queryClient.invalidateQueries("denuncias")
+            queryClient.refetchQueries("denuncias")
         }
     })
 
@@ -34,8 +34,8 @@ export const AdminDenuncias = () => {
             darBajaDenunciaUsuario(idDenuncia)
         },
         onSuccess: () => {
-            queryClient.invalidateQueries("denuncias")
-            queryClient.invalidateQueries("usuarios")
+            queryClient.refetchQueries("denuncias")
+            queryClient.refetchQueries("usuarios")
 
         }
     })
