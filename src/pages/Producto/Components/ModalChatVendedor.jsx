@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { envioCalificacion } from "../../../api";
 
-import "../Style/chat.css"
+import "../Style/chat.css";
 
 export const ModalChatVendedor = ({
 	showModal,
@@ -48,10 +48,10 @@ export const ModalChatVendedor = ({
 
 	const handleClose = () => {
 		setShow(false);
-		handleCerrarModal()
-	}
+		handleCerrarModal();
+	};
 	const handleShow = () => setShow(true);
-	
+
 	const datosInicializacion = {
 		token: token,
 		idProducto: idProducto ?? producto?.idProducto?.data,
@@ -146,8 +146,8 @@ export const ModalChatVendedor = ({
 							navigate("/");
 						}
 						setVentaConfirmada(false);
-						setShowConfirmSale(false)
-						handleShow()
+						setShowConfirmSale(false);
+						handleShow();
 					}, 1000);
 				} else {
 					setErrorConfirmado(true);
@@ -163,22 +163,36 @@ export const ModalChatVendedor = ({
 			messagesRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
 		}, 0);
 	};
-	const { register, handleSubmit, watch, formState: { errors } } = useForm();
+	const {
+		register,
+		handleSubmit,
+		watch,
+		formState: { errors },
+	} = useForm();
 	/* Calificacion */
-
+	const [calificacionExitosa, setCalificacionExitosa] = useState(false);
 	const mutationEnvioCalificacion = useMutation({
-		mutationFn:(calificacion)=>{
-			envioCalificacion(calificacion)
+		mutationFn: (calificacion) => {
+			envioCalificacion(calificacion);
 		},
-		onSuccess:()=>console.log("Calificacion Enviada")
-	}) 
-	const recibirCalificacion=(calificacion)=>{
+		onSuccess: () => {
+			setCalificacionExitosa(true);
+			setTimeout(() => {
+				setCalificacionExitosa(false);
+				handleClose();
+			}, 1000);
+		},
+		onError: (error) => {
+			console.log(error);
+		},
+	});
+	const recibirCalificacion = (calificacion) => {
 		mutationEnvioCalificacion.mutate({
 			calificacion,
-			idVendedor:vendedor.id_vendedor.toString(),
-			idProducto:idResultado.toString()
-		})
-	}
+			idVendedor: vendedor.id_vendedor.toString(),
+			idProducto: idResultado.toString(),
+		});
+	};
 	return (
 		<Modal
 			show={showModal}
@@ -194,7 +208,14 @@ export const ModalChatVendedor = ({
 					}}
 				>
 					<Modal.Header closeButton>
-						<Modal.Title style={{ height: "15px", fontSize: "25px", minWidth: '400px', textAlign: "center" }}>
+						<Modal.Title
+							style={{
+								height: "15px",
+								fontSize: "25px",
+								minWidth: "400px",
+								textAlign: "center",
+							}}
+						>
 							{/* Establece un chat con :  */}
 							Vendedor:{" "}
 							{vendedor?.nombreVendedor === nombreCompleto
@@ -288,11 +309,9 @@ export const ModalChatVendedor = ({
 							{ventaConfirmada ? (
 								<>
 									<Alert variant='success'>Compra Completada con exito!</Alert>
-									{
-										setTimeout(() => {
-												handleShow()
-										}, 1000)
-									}
+									{setTimeout(() => {
+										handleShow();
+									}, 1000)}
 								</>
 							) : (
 								""
@@ -408,38 +427,67 @@ export const ModalChatVendedor = ({
 				</article>
 			</main>
 			{/* Modal de calificacion de */}
-			
 
-			<Modal show={show} onHide={handleClose} style={{width: '1505px'}}>
-				<Modal.Header closeButton style={{ textAlign: "center", margin: "auto" }}>
+			<Modal show={show} onHide={handleClose} style={{ width: "1505px" }}>
+				<Modal.Header
+					closeButton
+					style={{ textAlign: "center", margin: "auto" }}
+				>
 					<Modal.Title>¿Deseas calificar al vendedor?</Modal.Title>
 				</Modal.Header>
 				<Modal.Body style={{ textAlign: "center", margin: "auto" }}>
 					¿Que calificacion le darias al vendedor del 1 al 5?
 				</Modal.Body>
-				<form onSubmit={handleSubmit(recibirCalificacion)} style={{
-													display: "flex",
-													justifyContent: "center",
-													alignItems: "center",
-													gap: "5px",
-												}}>
-
-				<input type='number' max="5" min="1" maxLength="1" {...register("calificacion")} style={{ width: "80px" }} className='inPrecio'/>
-					<button variant='secondary' type="submit" className='buttonProducto'
-													style={{
-														backgroundColor: "#365662",
-														color: "#f7f7f7",
-														marginRight: "80px",
-														marginLeft: '-40px',
-														width: "200px",
-													}}><span className='box'>Calificar al vendedor</span></button>
+				<form
+					onSubmit={handleSubmit(recibirCalificacion)}
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						gap: "5px",
+					}}
+				>
+					<input
+						type='number'
+						max='5'
+						min='1'
+						maxLength='1'
+						{...register("calificacion")}
+						style={{ width: "80px" }}
+						className='inPrecio'
+					/>
+					<button
+						variant='secondary'
+						type='submit'
+						className='buttonProducto'
+						style={{
+							backgroundColor: "#365662",
+							color: "#f7f7f7",
+							marginRight: "80px",
+							marginLeft: "-40px",
+							width: "200px",
+						}}
+					>
+						<span className='box'>Calificar al vendedor</span>
+					</button>
 				</form>
-				<Modal.Footer style={{
-													display: "flex",
-													justifyContent: "center",
-													alignItems: "center",
-												}}>
-					<button variant='primary' onClick={handleClose} className='buttonGuardar'>
+				{calificacionExitosa ? (
+					<Alert variant='success'>Calificacion exitosa!</Alert>
+				) : (
+					""
+				)}
+				<Modal.Footer
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
+					<button
+						variant='primary'
+						onClick={handleClose}
+						className='buttonGuardar'
+					>
 						Ignorar
 					</button>
 				</Modal.Footer>

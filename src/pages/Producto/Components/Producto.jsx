@@ -57,16 +57,26 @@ export const Producto = ({}) => {
 	const handleShowDenuncia = () => {
 		setShowDenuncia(true);
 	};
-
+	const [calificacionVendedor, setCalificacionVendedor] = useState(0)
 	useEffect(() => {
 		const enviarVisita = async () => {
-			
 			const visita = {
 				visitas: 1,
 				idProducto: idProducto,
-			}
-			const res = await axios.put(`http://localhost:4000/acumuladorVisitasProducto/`, visita);
+			};
+			const res = await axios.put(
+				`http://localhost:4000/acumuladorVisitasProducto/`,
+				visita
+			);
 		};
+		const obtenerCalificacionDeVendedor = async (idProducto) => {
+			const res = await axios.get(
+				`http://localhost:4000/calificacion_vendedor_por_producto/${idProducto}`
+			);
+			setCalificacionVendedor(res.data[0].calificacion_promedio);
+			
+		}
+		obtenerCalificacionDeVendedor(idProducto);
 		enviarVisita();
 	}, []);
 	const obtenerProductoPorId = async (idProducto) => {
@@ -74,10 +84,30 @@ export const Producto = ({}) => {
 
 		return res.data[0];
 	};
+	// const obtenerCalificacionDeVendedor = async (idProducto) => {
+	// 	const res = await axios.get(
+	// 		`http://localhost:4000/calificacion_vendedor_por_producto/${idProducto}`
+	// 	);
+	// 	console.log(res.data[0]);
+	// 	return res.data;
+	// };
 	const { data: infoProductos } = useQuery({
 		queryKey: ["producto"],
 		queryFn: () => obtenerProductoPorId(idProducto),
 	});
+
+	// const { data: calificacion } = useQuery({
+	// 	queryKey: ["calificacion"],
+	// 	queryFn: () => {
+	// 		obtenerCalificacionDeVendedor(idProducto);
+	// 	},
+	// 	onSuccess: () => {
+	// 		console.log("La calificacion es: ", calificacion);
+	// 	},
+	// 	onError: () => {
+	// 		console.log("error");
+	// 	},
+	// });
 
 	const vendedor = {
 		nombreVendedor:
@@ -111,7 +141,12 @@ export const Producto = ({}) => {
 	function handleClick() {
 		setTexto("¡Enlace de producto copiado!");
 	}
-	const { register, handleSubmit ,reset  , formState:{errors}	} = useForm();
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm();
 
 	const mutationEnviarDenuncias = useMutation({
 		mutationFn: (denuncia) => {
@@ -121,9 +156,9 @@ export const Producto = ({}) => {
 			setAlertDenunciaEnviada(true);
 			setTimeout(() => {
 				setAlertDenunciaEnviada(false);
-				
+
 				handleCerrarDenuncia();
-				reset()
+				reset();
 			}, 1000);
 		},
 	});
@@ -197,9 +232,9 @@ export const Producto = ({}) => {
 								</h4>
 
 								<h4 style={{ marginBottom: "5px" }}>
-									Calificación del vendedor:
+									Calificación del vendedor: {calificacionVendedor} Estrellas
 								</h4>
-								<div className='conCalificacion'>
+								{/* <div className='conCalificacion'>
 									<div className='starWitget'>
 										<input
 											className='inStar'
@@ -272,7 +307,7 @@ export const Producto = ({}) => {
 											<AiFillStar />
 										</label>
 									</div>
-								</div>
+								</div> */}
 
 								<h1>Lps. {infoProductos?.precio}</h1>
 							</div>
@@ -447,7 +482,9 @@ export const Producto = ({}) => {
 												closeButton
 												style={{ textAlign: "center", margin: "auto" }}
 											>
-												<Modal.Title>Denuncia a {vendedor.nombreVendedor}</Modal.Title>
+												<Modal.Title>
+													Denuncia a {vendedor.nombreVendedor}
+												</Modal.Title>
 											</Modal.Header>
 											<form
 												onSubmit={handleSubmit(enviarDenuncia)}
@@ -460,10 +497,10 @@ export const Producto = ({}) => {
 											>
 												<input
 													type='text'
-													{...register("denuncia" ,{required: true})}
+													{...register("denuncia", { required: true })}
 													className='inPrecio'
 													style={{ width: "350px" }}
-													placeholder="Ingresa el motivo de tu denuncia"
+													placeholder='Ingresa el motivo de tu denuncia'
 												/>
 												<button
 													type='submit'
@@ -477,8 +514,6 @@ export const Producto = ({}) => {
 												>
 													<span className='box'>Enviar</span>
 												</button>
-											
-										
 											</form>
 
 											<Modal.Footer
@@ -488,26 +523,28 @@ export const Producto = ({}) => {
 													alignItems: "center",
 												}}
 											>
-												<div style={{display: 'flex', flexDirection: 'column'}}>
-													{
-													errors.denuncia?.type==="required" && (
+												<div
+													style={{ display: "flex", flexDirection: "column" }}
+												>
+													{errors.denuncia?.type === "required" && (
 														<Alert variant='danger'>
 															Debes ingresar una descripcion a tu denuncia
 														</Alert>
-													)
-												}
-												{alertDenunciaEnviada ? (
-													<Alert variant='success'>Gracias por tu denuncia</Alert>
-												) : (
-													""
-												)}
-												<button
-													variant='primary'
-													onClick={handleCerrarDenuncia}
-													className='buttonGuardar'
-												>
-													Cerrar
-												</button>
+													)}
+													{alertDenunciaEnviada ? (
+														<Alert variant='success'>
+															Gracias por tu denuncia
+														</Alert>
+													) : (
+														""
+													)}
+													<button
+														variant='primary'
+														onClick={handleCerrarDenuncia}
+														className='buttonGuardar'
+													>
+														Cerrar
+													</button>
 												</div>
 											</Modal.Footer>
 										</Modal>
