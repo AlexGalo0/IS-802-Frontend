@@ -9,7 +9,6 @@ import {
 	Construyendo,
 	EdicionCategorias,
 	Producto,
-	ChatGeneral,
 } from "../pages";
 import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginaFavoritos";
 import { MisProductos } from "../pages/Mis Productos/Components/MisProductos";
@@ -112,7 +111,6 @@ export const Router = () => {
 						</RutaProtegida>
 					}
 				/>
-				<Route path='/chat' element={<ChatGeneral />} />
 				{/* Rutas para cualquier usuario */}
 				<Route path='/sus-cat' element={<FormCategorias />} />
 

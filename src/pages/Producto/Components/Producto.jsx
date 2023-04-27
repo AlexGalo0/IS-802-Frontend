@@ -22,20 +22,16 @@ import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { UserContext } from "../../../context";
 import { Footers } from "../../../Components/Footer";
 import { Link, useParams } from "react-router-dom";
-import Boton from "../Components/botonLike";
 import { FaShare } from "react-icons/fa";
 import { MdReportProblem } from "react-icons/md";
-import axios from "axios"; 
+import axios from "axios";
 import { Comentarios } from "./Comentarios";
 import { ModalChatVendedor } from "./ModalChatVendedor";
-import io from "socket.io-client";
-import {
-	agregarProductoWishlist,
-	envioDeDenuncia,
-	idsProductosWishlist,
-} from "../../../api";
+import { agregarProductoWishlist, envioDeDenuncia } from "../../../api";
 import { useForm } from "react-hook-form";
-const socket = io("http://localhost:4000/");
+import "./Boton.css";
+import { AiFillHeart } from "react-icons/ai";
+
 export const Producto = ({}) => {
 	const { userAuth } = useContext(UserContext);
 	let { idProducto } = useParams();
@@ -185,11 +181,22 @@ export const Producto = ({}) => {
 	const agregarFavoritos = () => {
 		const token = localStorage.getItem("token");
 		mutationAgregarFavoritos.mutate({
-			idProducto:idProducto,
+			idProducto: idProducto,
 			token,
 		});
 	};
+	const [active, setActive] = useState(false);
 
+	function handleClick() {
+		setActive(!active);
+	}
+
+	/* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
+	const renderTooltipButtomLike = (props) => (
+		<Tooltip id='button-tooltip' {...props}>
+			Agregar a lista de favoritos
+		</Tooltip>
+	);
 	return (
 		<>
 			<Container fluid className='container-grid'>
@@ -398,9 +405,25 @@ export const Producto = ({}) => {
 								<div style={{ display: "flex", gap: "10px" }}>
 									{userAuth ? (
 										<>
-											<button onClick={agregarFavoritos}>
-												Agregar a Favoritos
-											</button>
+											<div className='like'>
+												<OverlayTrigger
+													placement='top'
+													delay={{ show: 250, hide: 400 }}
+													overlay={renderTooltipButtomLike}
+												>
+													<button
+														className={active ? "active" : ""}
+														onClick={agregarFavoritos}
+													>
+														{active ? (
+															<AiFillHeart className='heart' />
+														) : (
+															<AiFillHeart className='heart' />
+														)}
+													</button>
+												</OverlayTrigger>
+												   
+											</div>
 										</>
 									) : (
 										""
