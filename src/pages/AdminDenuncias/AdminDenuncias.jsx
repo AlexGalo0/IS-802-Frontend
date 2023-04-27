@@ -149,10 +149,10 @@ export const AdminDenuncias = () => {
 														style={{
 															color: "#f7f7f7",
 															fontSize: "medium",
-															width: "145px",
+															width: "195px",
 														}}
 													>
-														<span className='box'>Dar de baja</span>
+														<span className='box'>Dar de baja a {denuncia.denunciado}</span>
 													</button>
 												</div>
 											</tr>
