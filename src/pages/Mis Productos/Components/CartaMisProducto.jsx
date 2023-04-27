@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
 	Container,
 	Card,
@@ -42,14 +42,12 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
 	const queryClient = useQueryClient();
 
 	const mutationBorrarProducto = useMutation({
-		mutationFn: (productoAEliminar) => {
-			darBajaMiProducto(token, productoAEliminar.idProducto.data.toString());
-		},
+		mutationFn: (productoAEliminar) =>
+			darBajaMiProducto(token, productoAEliminar.idProducto.data.toString()),
 		onSuccess: () => {
 			setEliminacionCorrecta(true);
 			queryClient.invalidateQueries("misProductos");
-			queryClient.refetchQueries("misProductos");
-			
+
 			setTimeout(() => {
 				handleClose();
 				setEliminacionCorrecta(false);
@@ -73,7 +71,7 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
 						<Card.Text className='card-medium'>
 							Lps. {producto.precio}
 						</Card.Text>
-					
+
 						<Card.Text className='card-medium'>
 							Descripcion : {producto.descripcion}
 						</Card.Text>
@@ -104,13 +102,17 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
 								</button>
 							</OverlayTrigger>
 							<Link to={`/producto/${producto.idProducto.data.toString()}`}>
-							<button className='buttonProducto'
+								<button
+									className='buttonProducto'
 									style={{
 										color: "#f7f7f7",
 										fontSize: "medium",
 										width: "150px",
-									}}>Ingresar a este producto</button>
-              </Link>
+									}}
+								>
+									Ingresar a este producto
+								</button>
+							</Link>
 						</div>
 					</Card.Body>
 				</Card>

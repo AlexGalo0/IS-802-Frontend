@@ -35,6 +35,7 @@ export const obtenerProductoPorId = async (idProducto) => {
 /* ******** POST ********** */
 export const crearUsuario = async (userData) => {
     await axios.post("http://localhost:4000/user", userData);
+    await axios.post("http://localhost:4000/register_user",userData);
 }
 
 export const crearProducto = async (infoProducto) => {
