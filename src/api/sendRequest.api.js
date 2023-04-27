@@ -35,7 +35,7 @@ export const obtenerProductoPorId = async (idProducto) => {
 /* ******** POST ********** */
 export const crearUsuario = async (userData) => {
     await axios.post("http://localhost:4000/user", userData);
-    await axios.post("http://localhost:4000/register_user",userData);
+    await axios.post("http://localhost:4000/register_user", userData);
 }
 
 export const crearProducto = async (infoProducto) => {
@@ -46,7 +46,6 @@ export const crearProducto = async (infoProducto) => {
 /* **POST: Inicio Sesiones** */
 export const iniciarSesion = async (loginData) => {
     const res = await axios.post('http://localhost:4000/login/cliente', loginData)
-    const categoriasSuscritas = await axios.get(`http://localhost:4000/categorySubscription/${res.data.token}`);
 
 
 
@@ -54,14 +53,6 @@ export const iniciarSesion = async (loginData) => {
     const nombre = res.data.nombre
     const correo = res.data.correo
     const apellido = res.data.apellido
-    // if (categoriasSuscritas.data.categorias === undefined) {
-    //     localStorage.setItem("categoriasSuscritas", "[]")
-    // } else {
-
-    //     localStorage.setItem("categoriasSuscritas", categoriasSuscritas.data.categorias)
-    // }
-
-    // localStorage.setItem("idsListaDeDeseos", JSON.stringify(idsListaDeDeseos.data))
     localStorage.setItem("token", token)
     localStorage.setItem("nombre", nombre)
     localStorage.setItem("apellido", apellido)

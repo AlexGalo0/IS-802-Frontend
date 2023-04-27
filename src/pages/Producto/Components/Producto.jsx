@@ -28,7 +28,7 @@ import axios from "axios";
 import { Comentarios } from "./Comentarios";
 import { ModalChatVendedor } from "./ModalChatVendedor";
 import { agregarProductoWishlist, envioDeDenuncia } from "../../../api";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import "./Boton.css";
 import { AiFillHeart } from "react-icons/ai";
 
@@ -179,6 +179,7 @@ export const Producto = ({}) => {
 	});
 
 	const agregarFavoritos = () => {
+		setActive(!active);
 		const token = localStorage.getItem("token");
 		mutationAgregarFavoritos.mutate({
 			idProducto: idProducto,
@@ -187,9 +188,7 @@ export const Producto = ({}) => {
 	};
 	const [active, setActive] = useState(false);
 
-	function handleClick() {
-		setActive(!active);
-	}
+	
 
 	/* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
 	const renderTooltipButtomLike = (props) => (
