@@ -158,6 +158,7 @@ export const Producto = ({}) => {
 			agregarProductoWishlist(obj);
 		},
 		onSuccess: () => {
+			
 			queryClient.invalidateQueries("favoritos");
 			queryClient.invalidateQueries("producto");
 
