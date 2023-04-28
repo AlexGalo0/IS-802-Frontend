@@ -89,7 +89,7 @@ export const AsideAdmin = () => {
 						Productos
 					</button>
 				</Link> */}
-				<Link to='/construyendo' style={{ textDecoration: "none" }}>
+				<Link to='/admin/estadisticas' style={{ textDecoration: "none" }}>
 					<button className='buttonCerrarSesionAdmin'>
 						<AiOutlineAreaChart style={{ marginRight: "5px" }} />
 						Estadísticas

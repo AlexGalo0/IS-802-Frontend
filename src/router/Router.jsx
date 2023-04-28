@@ -9,6 +9,7 @@ import {
 	Construyendo,
 	EdicionCategorias,
 	Producto,
+	AdminEstadisticas
 } from "../pages";
 import { PaginaFavoritos } from "../pages/Favoritos/Components/PaginaFavoritos";
 import { MisProductos } from "../pages/Mis Productos/Components/MisProductos";
@@ -65,6 +66,14 @@ export const Router = () => {
 					element={
 						<RutaProtegida isAllowed={adminAuth}>
 							<AdminDenuncias/>
+						</RutaProtegida>
+					}
+				/>
+				<Route
+					path='/admin/estadisticas'
+					element={
+						<RutaProtegida isAllowed={adminAuth}>
+							<AdminEstadisticas/>
 						</RutaProtegida>
 					}
 				/>

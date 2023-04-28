@@ -27,7 +27,11 @@ import { MdReportProblem } from "react-icons/md";
 import axios from "axios";
 import { Comentarios } from "./Comentarios";
 import { ModalChatVendedor } from "./ModalChatVendedor";
-import { agregarProductoWishlist, envioDeDenuncia } from "../../../api";
+import {
+	agregarProductoWishlist,
+	envioDeDenuncia,
+	obtenerListaDeseosUsuario,
+} from "../../../api";
 import { set, useForm } from "react-hook-form";
 import "./Boton.css";
 import { AiFillHeart } from "react-icons/ai";
@@ -82,30 +86,10 @@ export const Producto = ({}) => {
 
 		return res.data[0];
 	};
-	// const obtenerCalificacionDeVendedor = async (idProducto) => {
-	// 	const res = await axios.get(
-	// 		`http://localhost:4000/calificacion_vendedor_por_producto/${idProducto}`
-	// 	);
-	// 	console.log(res.data[0]);
-	// 	return res.data;
-	// };
 	const { data: infoProductos } = useQuery({
 		queryKey: ["producto"],
 		queryFn: () => obtenerProductoPorId(idProducto),
 	});
-
-	// const { data: calificacion } = useQuery({
-	// 	queryKey: ["calificacion"],
-	// 	queryFn: () => {
-	// 		obtenerCalificacionDeVendedor(idProducto);
-	// 	},
-	// 	onSuccess: () => {
-	// 		console.log("La calificacion es: ", calificacion);
-	// 	},
-	// 	onError: () => {
-	// 		console.log("error");
-	// 	},
-	// });
 
 	const vendedor = {
 		nombreVendedor:
@@ -178,6 +162,38 @@ export const Producto = ({}) => {
 		},
 	});
 
+	/* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
+	const renderTooltipButtomLike = (props) => (
+		<Tooltip id='button-tooltip' {...props}>
+			Agregar a lista de favoritos
+		</Tooltip>
+	);
+
+	/* Favoritos */
+	const [active, setActive] = useState(false);
+
+	/* Verificar si esta como favorito el producto  */
+	const { data: favoritos } = useQuery({
+		queryKey: ["favoritos"],
+		queryFn: () => {
+			const token = localStorage.getItem("token");
+			return obtenerListaDeseosUsuario(1, token);
+		},
+		onSuccess: () => {
+			console.log(favoritos);
+			verificacionDeFavoritos(favoritos);
+		},
+		enabled: !!localStorage.getItem("token"),
+	});
+	const verificacionDeFavoritos = (favoritos) => {
+		
+		if (favoritos.length === 0) {
+			setActive(false);
+		} else {
+			setActive(true);
+		}
+	};
+
 	const agregarFavoritos = () => {
 		setActive(!active);
 		const token = localStorage.getItem("token");
@@ -186,16 +202,7 @@ export const Producto = ({}) => {
 			token,
 		});
 	};
-	const [active, setActive] = useState(false);
 
-	
-
-	/* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
-	const renderTooltipButtomLike = (props) => (
-		<Tooltip id='button-tooltip' {...props}>
-			Agregar a lista de favoritos
-		</Tooltip>
-	);
 	return (
 		<>
 			<Container fluid className='container-grid'>
@@ -259,80 +266,6 @@ export const Producto = ({}) => {
 								<h4 style={{ marginBottom: "5px" }}>
 									Calificación del vendedor: {calificacionVendedor} Estrellas
 								</h4>
-								{/* <div className='conCalificacion'>
-									<div className='starWitget'>
-										<input
-											className='inStar'
-											type='checkbox'
-											name='rate'
-											id='cal5'
-											value='5'
-										/>
-										<label
-											className='laStar'
-											htmlFor='cal5'
-											style={{ color: "black" }}
-										>
-											<AiFillStar />
-										</label>
-										<input
-											className='inStar'
-											type='checkbox'
-											name='rate'
-											id='cal4'
-											value='4'
-										/>
-										<label
-											className='laStar'
-											htmlFor='cal4'
-											style={{ color: "black" }}
-										>
-											<AiFillStar />
-										</label>
-										<input
-											className='inStar'
-											type='checkbox'
-											name='rate'
-											id='cal3'
-											value='3'
-										/>
-										<label
-											className='laStar'
-											htmlFor='cal3'
-											style={{ color: "black" }}
-										>
-											<AiFillStar />
-										</label>
-										<input
-											className='inStar'
-											type='checkbox'
-											name='rate'
-											id='cal2'
-											value='2'
-										/>
-										<label
-											className='laStar'
-											htmlFor='cal2'
-											style={{ color: "black" }}
-										>
-											<AiFillStar />
-										</label>
-										<input
-											className='inStar'
-											type='checkbox'
-											name='rate'
-											id='cal1'
-											value='1'
-										/>
-										<label
-											className='laStar'
-											htmlFor='cal1'
-											style={{ color: "black" }}
-										>
-											<AiFillStar />
-										</label>
-									</div>
-								</div> */}
 
 								<h1>Lps. {infoProductos?.precio}</h1>
 							</div>
