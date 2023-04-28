@@ -16,7 +16,7 @@ import {
 } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery , useQueryClient} from "@tanstack/react-query";
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { UserContext } from "../../../context";
@@ -129,7 +129,7 @@ export const Producto = ({}) => {
 		reset,
 		formState: { errors },
 	} = useForm();
-
+	const queryClient = useQueryClient();
 	const mutationEnviarDenuncias = useMutation({
 		mutationFn: (denuncia) => {
 			envioDeDenuncia(denuncia);
@@ -158,7 +158,9 @@ export const Producto = ({}) => {
 			agregarProductoWishlist(obj);
 		},
 		onSuccess: () => {
-			console.log("Añadido");
+			queryClient.invalidateQueries("favoritos");
+			queryClient.invalidateQueries("producto");
+
 		},
 	});
 
@@ -180,8 +182,10 @@ export const Producto = ({}) => {
 			return obtenerListaDeseosUsuario(1, token);
 		},
 		onSuccess: () => {
-			console.log(favoritos);
+			
 			verificacionDeFavoritos(favoritos);
+			queryClient.invalidateQueries("favoritos");
+			queryClient.invalidateQueries("producto");
 		},
 		enabled: !!localStorage.getItem("token"),
 	});
@@ -189,9 +193,13 @@ export const Producto = ({}) => {
 		
 		if (favoritos.length === 0) {
 			setActive(false);
-		} else {
-			setActive(true);
-		}
+		} 
+		favoritos.map((favorito) => {
+			if(favorito.id_producto.data.toString() === idProducto) {
+				setActive(true);
+			}
+		});
+
 	};
 
 	const agregarFavoritos = () => {
