@@ -16,7 +16,12 @@ import {
 } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { QueryClient, useMutation, useQuery , useQueryClient} from "@tanstack/react-query";
+import {
+	QueryClient,
+	useMutation,
+	useQuery,
+	useQueryClient,
+} from "@tanstack/react-query";
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { UserContext } from "../../../context";
@@ -153,18 +158,6 @@ export const Producto = ({}) => {
 		});
 	};
 
-	const mutationAgregarFavoritos = useMutation({
-		mutationFn: (obj) => {
-			agregarProductoWishlist(obj);
-		},
-		onSuccess: () => {
-			
-			queryClient.invalidateQueries("favoritos");
-			queryClient.invalidateQueries("producto");
-
-		},
-	});
-
 	/* Elementos de los overlays (AL poner cursor sobre el simbolo de perfil dice que inicimos sesion) */
 	const renderTooltipButtomLike = (props) => (
 		<Tooltip id='button-tooltip' {...props}>
@@ -182,26 +175,26 @@ export const Producto = ({}) => {
 			const token = localStorage.getItem("token");
 			return obtenerListaDeseosUsuario(1, token);
 		},
-		onSuccess: () => {
-			
-			verificacionDeFavoritos(favoritos);
-			queryClient.invalidateQueries("favoritos");
-			queryClient.invalidateQueries("producto");
-		},
+		// onSuccess:
+
+		// queryClient.invalidateQueries("producto");
 		enabled: !!localStorage.getItem("token"),
 	});
 	const verificacionDeFavoritos = (favoritos) => {
-		
+		queryClient.invalidateQueries("favoritos");
 		if (favoritos.length === 0) {
 			setActive(false);
-		} 
+		}
 		favoritos.map((favorito) => {
-			if(favorito.id_producto.data.toString() === idProducto) {
+			if (favorito.id_producto.data.toString() === idProducto) {
 				setActive(true);
 			}
 		});
-
 	};
+
+	useEffect(() => {
+		verificacionDeFavoritos(favoritos);
+	}, [favoritos]);
 
 	const agregarFavoritos = () => {
 		setActive(!active);
@@ -211,6 +204,16 @@ export const Producto = ({}) => {
 			token,
 		});
 	};
+
+	const mutationAgregarFavoritos = useMutation({
+		mutationFn: (obj) => {
+			agregarProductoWishlist(obj);
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries("favoritos");
+			queryClient.invalidateQueries("producto");
+		},
+	});
 
 	return (
 		<>

@@ -18,8 +18,15 @@ export const AdminEstadisticas = () => {
 				}
 			},
 			background: models.BackgroundType.Transparent,
-		}
+		},
+		// eventHooks:{
+		// 	accessTokenProvider
+		// }
+		
+
+		
 	}}
+	
 
 	eventHandlers = { 
 		new Map([
