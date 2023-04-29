@@ -175,21 +175,27 @@ export const Producto = ({}) => {
 			const token = localStorage.getItem("token");
 			return obtenerListaDeseosUsuario(1, token);
 		},
-		// onSuccess:
-
-		// queryClient.invalidateQueries("producto");
+		onSuccess:()=>{
+			
+			verificacionDeFavoritos(favoritos)
+		},
 		enabled: !!localStorage.getItem("token"),
 	});
 	const verificacionDeFavoritos = (favoritos) => {
-		queryClient.invalidateQueries("favoritos");
-		if (favoritos.length === 0) {
-			setActive(false);
-		}
-		favoritos.map((favorito) => {
-			if (favorito.id_producto.data.toString() === idProducto) {
-				setActive(true);
+		// queryClient.invalidateQueries("favoritos");
+		try {
+			if (favoritos.length === 0) {
+				setActive(false);
 			}
-		});
+			favoritos.map((favorito) => {
+				if (favorito.id_producto.data.toString() === idProducto) {
+					setActive(true);
+				}
+			});
+		} catch (error) {
+			console.log('Error');
+		}
+		
 	};
 
 	useEffect(() => {
