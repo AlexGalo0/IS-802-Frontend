@@ -24,6 +24,13 @@ export const Messenger = () => {
     return res.data;
   };
 
+  const guardarConversacion = async (data) => {
+    const res = await axios.post(`http://localhost:4000/new_conversation`, {
+      data,
+    });
+    return res.data;
+  };
+
   const { data: todosUsuarios } = useQuery({
     queryKey: ["todosUsuarios"],
     queryFn: obtenerTodosLosUsuarios,
@@ -31,7 +38,6 @@ export const Messenger = () => {
   });
 
   useEffect(() => {
-  
     socket.current = io("http://localhost:4000");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
@@ -43,29 +49,20 @@ export const Messenger = () => {
   }, []);
 
   useEffect(() => {
-    if (arrivalMessage) {//&& currentChat?.includes(arrivalMessage.sender)
+    if (arrivalMessage) {
       setTimeout(() => {
         setMessages((prev) => [...prev, arrivalMessage]);
+
+        guardarConversacion({
+          senderId: UserMongo[0]._id,
+          receiverId: arrivalMessage.sender,
+        });
       }, 1000);
     }
   }, [arrivalMessage, currentChat]);
 
-
-  // useEffect(() => {
-  //   console.log(arrivalMessage);
-  //   console.log(currentChat);
-  //   arrivalMessage &&
-  //     currentChat?.includes(arrivalMessage.sender) &&
-  //   setMessages((prev) => [...prev, arrivalMessage]);
-  // }, [arrivalMessage, currentChat]);
-
   useEffect(() => {
     socket.current.emit("addUser", UserMongo[0]._id);
-    // socket.current.on("getUsers", (users) => {
-    // 	setOnlineUsers(
-    // 		user.followings.filter((f) => users.some((u) => u.userId === f))
-    // 	);
-    // });
   }, [UserMongo]);
 
   useEffect(() => {
@@ -104,10 +101,6 @@ export const Messenger = () => {
       conversationId: currentChat._id,
     };
 
-    // const receiverId = currentChat.members.find(
-    //   (member) => member !== UserMongo._id
-    // );
-
     socket.current.emit("sendMessage", {
       senderId: UserMongo[0]._id,
       receiverId: currentChat._id,
@@ -134,12 +127,6 @@ export const Messenger = () => {
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <input placeholder="Search for friends" className="chatMenuInput" />
-
-            {/* {todosUsuarios?.map((c) => (
-              <div onClick={() => setCurrentChat(c)}>
-                <Conversation conversation={c} currentUser={UserMongo} />
-              </div>
-            ))} */}
 
             {todosUsuarios?.map((usuario) => (
               <>

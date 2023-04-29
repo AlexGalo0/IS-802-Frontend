@@ -17,21 +17,6 @@ export default function Conversation({ conversation, currentUser }) {
 
   const [user, setUser] = useState(null);
 
-  // useEffect(() => {
-  //   const friendId = todosUsuarios?.find((m) => m !== currentUser[0]._id);
-  //   //console.log("friendId ", friendId);
-
-  //   const getUser = async () => {
-  //     try {
-  //       const res = await axios.get("http://localhost:4000/user_mongo_id/" + friendId._id);
-  //       setUser(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getUser();
-  // }, [currentUser, conversation]);
-
   return (
     <>
       {todosUsuarios?.map((usuario) => (
@@ -50,8 +35,5 @@ export default function Conversation({ conversation, currentUser }) {
         </>
       ))}
     </>
-    // <div className="conversation">
-    //   <span className="conversationName">{user?.nombres} {user?.apellidos}</span>
-    // </div>
   );
 }
