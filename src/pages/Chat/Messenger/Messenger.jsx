@@ -117,9 +117,9 @@ export const Messenger = () => {
 	return (
 		<>
 			<div>
-				{todosUsuarios?.map(() => (
+				{todosUsuarios?.map((user) => (
 					<div>
-						<h1>hola</h1>
+						<h1>{user.nombre}</h1>
 					</div>
 				))}
 			</div>
