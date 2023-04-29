@@ -1,179 +1,206 @@
 import Conversation from "../Components/Conversation/Conversation";
 import Message from "../Components/Message/Message";
-
-import "./Messenger.module.css";
-import { useEffect, useRef, useState } from "react";
+import "./Messenger.css";
+import { useEffect, useRef, useState, useContext } from "react";
+import { UserMongoContext } from "../../../context";
 import axios from "axios";
 import { io } from "socket.io-client";
 import { ChatOnline } from "../Components/ChatOnline";
 import { useQuery } from "@tanstack/react-query";
-
 export const Messenger = () => {
-	// const [conversations, setConversations] = useState([]);
-	// const [currentChat, setCurrentChat] = useState(null);
-	// const [messages, setMessages] = useState([]);
-	// const [newMessage, setNewMessage] = useState("");
-	// const [arrivalMessage, setArrivalMessage] = useState(null);
-	// const [onlineUsers, setOnlineUsers] = useState([]);
-	// const socket = useRef();
-	// const { user } = useContext(AuthContext);
-	// const scrollRef = useRef();
+  const [conversations, setConversations] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const socket = useRef();
+  const scrollRef = useRef();
+  const { UserMongo } = useContext(UserMongoContext);
 
-	// useEffect(() => {
-	// 	socket.current = io("http://localhost:4000");
-	// 	socket.current.on("getMessage", (data) => {
-	// 		setArrivalMessage({
-	// 			sender: data.senderId,
-	// 			text: data.text,
-	// 			createdAt: Date.now(),
-	// 		});
-	// 	});
-	// }, []);
-	// useEffect(() => {
-	// 	arrivalMessage &&
-	// 		currentChat?.members.includes(arrivalMessage.sender) &&
-	// 		setMessages((prev) => [...prev, arrivalMessage]);
-	// }, [arrivalMessage, currentChat]);
+  const correoUsuarioActual = localStorage.getItem("correo");
+  const obtenerTodosLosUsuarios = async () => {
+    const res = await axios.get(`http://localhost:4000/usersMongo`);
+    return res.data;
+  };
 
-	// useEffect(() => {
-	// 	socket.current.emit("addUser", user._id);
-	// 	socket.current.on("getUsers", (users) => {
-	// 		setOnlineUsers(
-	// 			user.followings.filter((f) => users.some((u) => u.userId === f))
-	// 		);
-	// 	});
-	// }, [user]);
+  const { data: todosUsuarios } = useQuery({
+    queryKey: ["todosUsuarios"],
+    queryFn: obtenerTodosLosUsuarios,
+    onSuccess: () => setOnlineUsers(todosUsuarios),
+  });
 
-	// useEffect(() => {
-	// 	const getConversations = async () => {
-	// 		try {
-	// 			const res = await axios.get("/conversations/" + user._id);
-	// 			setConversations(res.data);
-	// 		} catch (err) {
-	// 			console.log(err);
-	// 		}
-	// 	};
-	// 	getConversations();
-	// }, [user._id]);
+  useEffect(() => {
+  
+    socket.current = io("http://localhost:4000");
+    socket.current.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
 
-	// useEffect(() => {
-	// 	const getMessages = async () => {
-	// 		try {
-	// 			const res = await axios.get("/messages/" + currentChat?._id);
-	// 			setMessages(res.data);
-	// 		} catch (err) {
-	// 			console.log(err);
-	// 		}
-	// 	};
-	// 	getMessages();
-	// }, [currentChat]);
-	// const handleSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	const message = {
-	// 		sender: user._id,
-	// 		text: newMessage,
-	// 		conversationId: currentChat._id,
-	// 	};
+  useEffect(() => {
+    if (arrivalMessage) {//&& currentChat?.includes(arrivalMessage.sender)
+      setTimeout(() => {
+        setMessages((prev) => [...prev, arrivalMessage]);
+      }, 1000);
+    }
+  }, [arrivalMessage, currentChat]);
 
-	// 	const receiverId = currentChat.members.find(
-	// 		(member) => member !== user._id
-	// 	);
 
-	// 	socket.current.emit("sendMessage", {
-	// 		senderId: user._id,
-	// 		receiverId,
-	// 		text: newMessage,
-	// 	});
+  // useEffect(() => {
+  //   console.log(arrivalMessage);
+  //   console.log(currentChat);
+  //   arrivalMessage &&
+  //     currentChat?.includes(arrivalMessage.sender) &&
+  //   setMessages((prev) => [...prev, arrivalMessage]);
+  // }, [arrivalMessage, currentChat]);
 
-	// 	try {
-	// 		const res = await axios.post("/messages", message);
-	// 		setMessages([...messages, res.data]);
-	// 		setNewMessage("");
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	// };
+  useEffect(() => {
+    socket.current.emit("addUser", UserMongo[0]._id);
+    // socket.current.on("getUsers", (users) => {
+    // 	setOnlineUsers(
+    // 		user.followings.filter((f) => users.some((u) => u.userId === f))
+    // 	);
+    // });
+  }, [UserMongo]);
 
-	// useEffect(() => {
-	// 	scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-	// }, [messages]);
+  useEffect(() => {
+    const getConversations = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/conversations/" + UserMongo._id
+        );
+        setConversations(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getConversations();
+  }, [UserMongo[0]._id]);
 
-	// const obtenerUsuarioPorDNI = async () => {
-	//     const correo = localStorage.getItem("correo")
-	//     const res = await axios.get(`/users/${correo}`);
-	//     console.log(res.data);
-	//   }
-	const obtenerTodosLosUsuarios = async () => {
-		const res = await axios.get(`http://localhost:4000/usersMongo`);
-		console.log(res.data);
-		return res.data;
-	};
+  useEffect(() => {
+    const getMessages = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/messages/" + currentChat?._id
+        );
+        setMessages(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getMessages();
+  }, [currentChat]);
 
-	const { data: todosUsuarios } = useQuery({
-        queryKey: ["todosUsuarios"],
-		queryFn: obtenerTodosLosUsuarios,
-		onSuccess: () => console.log(todosUsuarios),
-	});
-	return (
-		<>
-			<div>
-				{todosUsuarios?.map((user) => (
-					<div>
-						<h1>{user.nombre}</h1>
-					</div>
-				))}
-			</div>
-		</>
-		// <div className='messenger'>
-		// 	<div className='chatMenu'>
-		// 		<div className='chatMenuWrapper'>
-		// 			<input placeholder='Search for friends' className='chatMenuInput' />
-		// 			{conversations.map((c) => (
-		// 				<div onClick={() => setCurrentChat(c)}>
-		// 					<Conversation conversation={c} currentUser={user} />
-		// 				</div>
-		// 			))}
-		// 		</div>
-		// 	</div>
-		// 	<div className='chatBox'>
-		// 		<div className='chatBoxWrapper'>
-		// 			{currentChat ? (
-		// 				<>
-		// 					<div className='chatBoxTop'>
-		// 						{messages.map((m) => (
-		// 							<div ref={scrollRef}>
-		// 								<Message message={m} own={m.sender === user._id} />
-		// 							</div>
-		// 						))}
-		// 					</div>
-		// 					<div className='chatBoxBottom'>
-		// 						<textarea
-		// 							className='chatMessageInput'
-		// 							placeholder='write something...'
-		// 							onChange={(e) => setNewMessage(e.target.value)}
-		// 							value={newMessage}
-		// 						></textarea>
-		// 						<button className='chatSubmitButton' onClick={handleSubmit}>
-		// 							Send
-		// 						</button>
-		// 					</div>
-		// 				</>
-		// 			) : (
-		// 				<span className='noConversationText'>
-		// 					Open a conversation to start a chat.
-		// 				</span>
-		// 			)}
-		// 		</div>
-		// 	</div>
-		// 	<div className='chatOnline'>
-		// 		<div className='chatOnlineWrapper'>
-		// 			<ChatOnline
-		// 				onlineUsers={onlineUsers}
-		// 				currentId={user._id}
-		// 				setCurrentChat={setCurrentChat}
-		// 			/>
-		// 		</div>
-		// 	</div>
-		// </div>
-	);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const message = {
+      sender: UserMongo[0]._id,
+      text: newMessage,
+      conversationId: currentChat._id,
+    };
+
+    // const receiverId = currentChat.members.find(
+    //   (member) => member !== UserMongo._id
+    // );
+
+    socket.current.emit("sendMessage", {
+      senderId: UserMongo[0]._id,
+      receiverId: currentChat._id,
+      text: newMessage,
+    });
+
+    try {
+      const res = await axios.post("http://localhost:4000/messages", message);
+      setMessages([...messages, res.data]);
+      setNewMessage("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  return (
+    <>
+      <h1>Soy {UserMongo[0].nombres}</h1>
+      <div className="messenger">
+        <div className="chatMenu">
+          <div className="chatMenuWrapper">
+            <input placeholder="Search for friends" className="chatMenuInput" />
+
+            {/* {todosUsuarios?.map((c) => (
+              <div onClick={() => setCurrentChat(c)}>
+                <Conversation conversation={c} currentUser={UserMongo} />
+              </div>
+            ))} */}
+
+            {todosUsuarios?.map((usuario) => (
+              <>
+                {usuario._id !== UserMongo[0]._id ? (
+                  <div className="conversation">
+                    <div onClick={() => setCurrentChat(usuario)}>
+                      <span className="conversationName">
+                        {usuario?.nombres} {usuario?.apellidos}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </>
+            ))}
+          </div>
+        </div>
+        <div className="chatBox">
+          <div className="chatBoxWrapper">
+            {currentChat ? (
+              <>
+                <div className="chatBoxTop">
+                  {messages.map((m) => (
+                    <div ref={scrollRef}>
+                      <Message
+                        message={m}
+                        own={m.sender === UserMongo[0]._id}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="chatBoxBottom">
+                  <textarea
+                    className="chatMessageInput"
+                    placeholder="write something..."
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    value={newMessage}
+                  ></textarea>
+                  <button className="chatSubmitButton" onClick={handleSubmit}>
+                    Send
+                  </button>
+                </div>
+              </>
+            ) : (
+              <span className="noConversationText">
+                Open a conversation to start a chat.
+              </span>
+            )}
+          </div>
+        </div>
+        <div className="chatOnline">
+          <div className="chatOnlineWrapper">
+            <ChatOnline
+              onlineUsers={onlineUsers}
+              currentId={UserMongo._id}
+              setCurrentChat={setCurrentChat}
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };

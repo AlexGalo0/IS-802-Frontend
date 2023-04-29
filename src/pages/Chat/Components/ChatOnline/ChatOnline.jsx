@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import "./ChatOnline.module.css";
+import "./ChatOnline.css";
 export const ChatOnline = ({ onlineUsers, currentId, setCurrentChat }) => {
 	const [friends, setFriends] = useState([]);
 	const [onlineFriends, setOnlineFriends] = useState([]);

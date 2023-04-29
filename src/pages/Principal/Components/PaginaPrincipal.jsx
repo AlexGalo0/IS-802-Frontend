@@ -4,7 +4,7 @@ import { FaFilter } from "react-icons/fa";
 import { NavbarsLR } from "../../../Components/NavbarLR";
 import { NavbarsLogueado } from "../../../Components/NavbarLogueado";
 import { Footers } from "../../../Components/Footer";
-import { useContext, useState, useRef, useCallback } from "react";
+import { useContext, useState, useRef, useCallback, useEffect } from "react";
 import { UserContext } from "../../../context";
 import { SidebarFiltros } from "./SidebarFiltros";
 import {
@@ -23,9 +23,11 @@ import {
 } from "../../../api";
 import { useForm } from "react-hook-form";
 import { CartaProducto } from "./CartaProducto";
-
+import axios from "axios";
+import { UserMongoContext } from "../../../context";
 export const PaginaPrincipal = () => {
-	const { userAuth } = useContext(UserContext);
+	const { UserMongo , setUserMongo } = useContext(UserMongoContext);
+	const { userAuth  } = useContext(UserContext);
 	const [numeroPagina, setNumeroPagina] = useState(1);
 	const [valoresIniciales, setValoresIniciales] = useState({
 		categorias: [],
@@ -48,6 +50,7 @@ export const PaginaPrincipal = () => {
 		queryKey: ["departamentos"],
 		queryFn: obtenerDepartamentos,
 	});
+
 
 	const [pageParam, setPageParam] = useState(1);
 	const [errorPrecio, setErrorPrecios] = useState(false);
@@ -132,6 +135,16 @@ export const PaginaPrincipal = () => {
 		setFilters();
 		setErrorPrecios(false);
 	};
+	const correoUsuarioActual= localStorage.getItem("correo")
+	useEffect(()=>{
+		const obtenerUsuarioActual=async(correoUsuarioActual)=>{
+            
+            const res = await axios.get(`http://localhost:4000/user_mongo/${correoUsuarioActual}`);
+            setUserMongo(res.data)
+            return res.data;
+          }
+		  obtenerUsuarioActual(correoUsuarioActual)
+	},[])
 
 	return (
 		<Container fluid className='container-grid'>

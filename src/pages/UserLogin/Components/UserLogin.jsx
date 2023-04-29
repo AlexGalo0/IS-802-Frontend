@@ -28,12 +28,17 @@ export const UserLogin = () => {
   }, []);
 
   const [disableButton, setDisableButton] = useState(false);
-
+  localStorage.getItem("correo")
   const mutationLogin = useMutation({
     mutationFn: iniciarSesion,
     onSuccess: () => {
       setUserAuth(true);
       setDisableButton(true);
+
+
+
+
+
       setTimeout(() => {
         navigate("/");
       }, 2000);
