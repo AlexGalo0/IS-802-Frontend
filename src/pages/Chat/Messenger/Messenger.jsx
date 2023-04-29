@@ -104,7 +104,7 @@ export const Messenger = () => {
 	//     console.log(res.data);
 	//   }
 	const obtenerTodosLosUsuarios = async () => {
-		const res = await axios.get(`/user_mongo/alls`);
+		const res = await axios.get(`http://localhost:4000/usersMongo`);
 		console.log(res.data);
 		return res.data;
 	};
