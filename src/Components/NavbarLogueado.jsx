@@ -319,19 +319,19 @@ export const NavbarsLogueado = () => {
 					</div> */}
                     
                     <Link to="/misProductos" style={{ textDecoration: "none" }}>
-                      <button className="buttonCerrarSesion" style={{width: '300px', gap: '10px'}}>
+                      <button className="buttonCerrarSesion" style={{width: '300px', height: '55px', gap: '10px'}}>
 						<MdProductionQuantityLimits/>
                         Mis productos
                       </button>
                     </Link>
 					<Link to="/favoritos" style={{ textDecoration: "none" }}>
-                      <button className="buttonCerrarSesion" style={{width: '300px', gap: '10px'}}>
+                      <button className="buttonCerrarSesion" style={{width: '300px', height: '55px', gap: '10px'}}>
 						<AiOutlineHeart/>
                         Productos que me gustan
                       </button>
                     </Link>
                     <Link to="/sus-cat" style={{ textDecoration: "none" }}>
-                      <button className="buttonCerrarSesion" style={{width: '300px', gap: '10px'}}>
+                      <button className="buttonCerrarSesion" style={{width: '300px', height: '55px', gap: '10px'}}>
 						<BiCategory/>
                         Suscribite a categorías
                       </button>
@@ -343,7 +343,7 @@ export const NavbarsLogueado = () => {
                       className="buttonCerrarSesion"
                       style={{
                         marginBottom: "-40px",
-						width: '300px',
+						width: '300px', height: '55px',
 						gap: '10px'
                       }}
                     >

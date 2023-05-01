@@ -1,0 +1,22 @@
+.partial-star {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 0.6em;
+    vertical-align: bottom;
+    color: #75E8E5;
+  }
+  
+  .partial-star::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transform: skewX(-45deg);
+    margin-top: -10px;
+    color: #75E8E5;
+  }
+
+  

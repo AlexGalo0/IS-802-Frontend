@@ -3,6 +3,8 @@ import { Container,Card, Col } from "react-bootstrap";
 import "../Style/Temp_Principal.css";
 import { Link } from "react-router-dom";
 
+import {Rating} from '../../SobreNosotros/Components/star'
+
 export const CartaProducto = React.forwardRef(({ producto }, ref) => {
 
 	function scrollToTop() {
@@ -32,9 +34,9 @@ export const CartaProducto = React.forwardRef(({ producto }, ref) => {
 						</Card.Text>
 						<Card.Text className='card-medium'>
 							{
-								producto.calificacion_vendedor === null ? 'El vendedor no tiene calificaciones' : 'Calificacion del Vendedor : ' + producto.calificacion_vendedor
+								producto.calificacion_vendedor === null ? 'El vendedor no tiene calificación' : 'Calificación del vendedor : ' + producto.calificacion_vendedor
 							}
-							
+							<Rating rating={/* producto.calificacion_vendedor */ 3} />
 						</Card.Text>
 						<Link
 							to={`/producto/${producto.idProducto.data}`}

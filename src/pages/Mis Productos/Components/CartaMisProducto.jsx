@@ -73,12 +73,24 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
 						</Card.Text>
 
 						<Card.Text className='card-medium'>
-							Descripcion : {producto.descripcion}
+							Descripción : {producto.descripcion}
 						</Card.Text>
 						<Card.Text className='card-medium'>
 							Disponibles en inventario: {producto.cantidad}
 						</Card.Text>
 						<div style={{ display: "flex" }}>
+						<Link to={`/producto/${producto.idProducto.data.toString()}`} style={{ textDecoration: "none" }}>
+								<button
+									className='buttonProducto'
+									style={{
+										color: "#f7f7f7",
+										fontSize: "medium",
+										width: "150px",
+									}}
+								>
+									<span className='box'>Ver producto</span>
+								</button>
+							</Link>
 							<OverlayTrigger
 								placement='right'
 								delay={{ show: 250, hide: 400 }}
@@ -101,18 +113,7 @@ export const CartaMisProducto = React.forwardRef(({ producto }, ref) => {
 									</span>
 								</button>
 							</OverlayTrigger>
-							<Link to={`/producto/${producto.idProducto.data.toString()}`}>
-								<button
-									className='buttonProducto'
-									style={{
-										color: "#f7f7f7",
-										fontSize: "medium",
-										width: "150px",
-									}}
-								>
-									Ingresar a este producto
-								</button>
-							</Link>
+							
 						</div>
 					</Card.Body>
 				</Card>

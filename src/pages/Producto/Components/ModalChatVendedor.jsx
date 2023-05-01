@@ -308,7 +308,7 @@ export const ModalChatVendedor = ({
 							)}
 							{ventaConfirmada ? (
 								<>
-									<Alert variant='success'>Compra Completada con exito!</Alert>
+									<Alert variant='success'>¡Compra Completada con exito!</Alert>
 									{setTimeout(() => {
 										handleShow();
 									}, 1000)}
@@ -472,7 +472,9 @@ export const ModalChatVendedor = ({
 					</button>
 				</form>
 				{calificacionExitosa ? (
-					<Alert variant='success'>Calificacion exitosa!</Alert>
+					<Alert variant='success' style={{
+						margin: "auto"
+					  }}>¡Calificación exitosa!</Alert>
 				) : (
 					""
 				)}

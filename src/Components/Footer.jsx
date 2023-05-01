@@ -21,6 +21,10 @@ export const Footers = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
   return (
     <>
       <footer style={{position: "relative"}}>
@@ -68,8 +72,10 @@ export const Footers = () => {
             </div>
             <div>
               
-        <Link to='/construyendo'>
-              <button className="buttonFooter">Sobre nosotros</button></Link>
+            <Link to='/nosotros'>
+              <button className="buttonFooter" onClick={() => {
+                  scrollToTop();
+                }}>Sobre nosotros</button></Link>
             </div>
           </div>
           <div
