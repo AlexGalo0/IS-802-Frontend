@@ -4,7 +4,7 @@ import "../Style/Temp_Principal.css";
 import { Link } from "react-router-dom";
 
 export const CartaProducto = React.forwardRef(({ producto }, ref) => {
-
+console.log(producto.calificacion_vendedor);
 	function scrollToTop() {
 		window.scrollTo(0, 0);
 	  }
@@ -32,7 +32,7 @@ export const CartaProducto = React.forwardRef(({ producto }, ref) => {
 						</Card.Text>
 						<Card.Text className='card-medium'>
 							{
-								producto.calificacion_vendedor === null ? 'El vendedor no tiene calificaciones' : 'Calificacion del Vendedor : ' + producto.calificacion_vendedor
+								producto.calificacion_vendedor === undefined ? 'El vendedor no tiene calificaciones' : 'Calificacion del Vendedor : ' + producto.calificacion_vendedor
 							}
 							
 						</Card.Text>
