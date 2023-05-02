@@ -282,7 +282,7 @@ export const Producto = ({}) => {
 								</h4>
 
 								<h4 style={{ marginBottom: "5px" }}>
-									Calificación del vendedor: {calificacionVendedor} Estrellas
+									Calificación del vendedor: {infoProductos?.calificacion_vendedor} Estrellas
 								</h4>
 
 								<h1>Lps. {infoProductos?.precio}</h1>

@@ -4,7 +4,7 @@ import "../Style/Temp_Principal.css";
 import { Link } from "react-router-dom";
 
 export const CartaProducto = React.forwardRef(({ producto }, ref) => {
-console.log(producto.calificacion_vendedor);
+
 	function scrollToTop() {
 		window.scrollTo(0, 0);
 	  }
