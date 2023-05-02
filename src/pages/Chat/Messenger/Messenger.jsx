@@ -7,6 +7,7 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import { ChatOnline } from "../Components/ChatOnline";
 import { useQuery } from "@tanstack/react-query";
+import {NavbarsLogueado, Footers } from '../../../Components'
 export const Messenger = () => {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -119,14 +120,16 @@ export const Messenger = () => {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+  
 
   return (
     <>
-      <h1>Soy {UserMongo[0].nombres}</h1>
-      <div className="messenger">
+    <NavbarsLogueado/>
+      <div className="messenger"  >
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="Search for friends" className="chatMenuInput" />
+            
+            <h3 className="conversation">Usuarios : </h3>
 
             {todosUsuarios?.map((usuario) => (
               <>
@@ -162,32 +165,24 @@ export const Messenger = () => {
                 <div className="chatBoxBottom">
                   <textarea
                     className="chatMessageInput"
-                    placeholder="write something..."
+                    placeholder="Envia un mensaje"
                     onChange={(e) => setNewMessage(e.target.value)}
                     value={newMessage}
                   ></textarea>
                   <button className="chatSubmitButton" onClick={handleSubmit}>
-                    Send
+                    Enviar
                   </button>
                 </div>
               </>
             ) : (
               <span className="noConversationText">
-                Open a conversation to start a chat.
+                Abra un chat para iniciar una conversación.
               </span>
             )}
           </div>
         </div>
-        <div className="chatOnline">
-          <div className="chatOnlineWrapper">
-            <ChatOnline
-              onlineUsers={onlineUsers}
-              currentId={UserMongo._id}
-              setCurrentChat={setCurrentChat}
-            />
-          </div>
-        </div>
       </div>
+      <Footers/>
     </>
   );
 };
